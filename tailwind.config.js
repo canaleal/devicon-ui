@@ -8,6 +8,7 @@ export default {
     extend: {
       colors: {
         'dark': '#141414',
+        'smoke': "#f0f1f3"
       }
     },
   },

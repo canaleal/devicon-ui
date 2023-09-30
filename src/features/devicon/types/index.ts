@@ -1,4 +1,4 @@
-type Version = 'plain' | 'line' | 'original' | 'plain-wordmark' | 'line-wordmark' | 'original-wordmark';
+export type Version = 'plain' | 'line' | 'original' | 'plain-wordmark' | 'line-wordmark' | 'original-wordmark';
 
 
 export interface IIcon {
@@ -11,4 +11,9 @@ export interface IIcon {
     };
     color: string;
     aliases: string[];
+}
+
+export interface IVersion {
+    versionType: Version,
+    numberOfIcons: number
 }
