@@ -16,7 +16,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
 
 
     return (
-        <div className="flex p-4 space-x-4 w-2/6">
+        <div className="flex space-x-4 w-2/6">
             <input
                 type="text"
                 value={searchTerm}
@@ -24,7 +24,6 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
                 placeholder="Search Icons..."
                 className="flex-grow px-3 py-2 border rounded-lg "
             />
-
         </div>
     );
 }

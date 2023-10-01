@@ -1,115 +1,115 @@
 import { useEffect, useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import { RootState } from "../../store/store"
+
 import CategoryList from "./components/CategoryList"
 import IconCard from "./components/IconCard"
-import Modal from "./components/IconModal"
 import SearchBar from "./components/SearchBar"
-import { ICON_URL_BASE } from "./constants"
-import { getIconVersionCategories } from "./helpers/iconCategories"
-import { resetSelectedIcon } from './iconSlice'
-import { ICategory, IIcon } from "./types"
+import { getIconCategories } from "./helpers/iconCategories"
+import { IVersionStyle, IIcon } from "./types"
+import { filterIconsByName, filterIconsByVersion } from "./helpers/iconFilters"
+import IconModal from "./components/IconModal"
+
 
 const IconGallery = () => {
 
+
     const [icons, setIcons] = useState<IIcon[]>([])
+    const [selectedIcon, setSelectedIcon] = useState<IIcon | null>(null)
     const [filteredIcons, setFilteredIcons] = useState<IIcon[]>([])
-
-
-
-    const [versionCategories, setCategories] = useState<ICategory[]>([
-        { versionType: 'original', numberOfIcons: 0 },
-        { versionType: 'plain', numberOfIcons: 0 },
-        { versionType: 'line', numberOfIcons: 0 },
-        { versionType: 'original-wordmark', numberOfIcons: 0 },
-        { versionType: 'plain-wordmark', numberOfIcons: 0 },
-        { versionType: 'line-wordmark', numberOfIcons: 0 },
+    const [versionCategories, setCategories] = useState<IVersionStyle[]>([
+        { versionName: 'original', numberOfIcons: 0, isSelected: false },
+        { versionName: 'plain', numberOfIcons: 0, isSelected: false },
+        { versionName: 'line', numberOfIcons: 0, isSelected: false },
+        { versionName: 'original-wordmark', numberOfIcons: 0, isSelected: false },
+        { versionName: 'plain-wordmark', numberOfIcons: 0, isSelected: false },
+        { versionName: 'line-wordmark', numberOfIcons: 0, isSelected: false },
     ])
+    const [searchTerm, setSearchTerm] = useState("");
 
-
-
-    const getIcons = async () => {
-        const response = await fetch('https://raw.githubusercontent.com/devicons/devicon/develop/devicon.json')
-        const data: IIcon[] = await response.json()
-        const categories = getIconVersionCategories(data);
-
-        setCategories(categories)
-
-        setIcons(data)
-        setFilteredIcons(data)
+    const fetchIcons = async (): Promise<IIcon[]> => {
+        const response = await fetch('https://raw.githubusercontent.com/devicons/devicon/develop/devicon.json');
+        const icons: IIcon[] = await response.json();
+        return icons;
     }
 
+    useEffect(() => {
+        (async () => {
+            const icons = await fetchIcons();
+            setIcons(icons);
+            setFilteredIcons(icons);
+            const categories = getIconCategories(icons);
+            setCategories(categories);
+        })();
+    }, []);
 
-
-    const searchFilterIcons = (search: string) => {
-        const filteredIcons = icons.filter(icon => icon.name.toLowerCase().includes(search.toLowerCase()))
-        const categories = getIconVersionCategories(filteredIcons);
-        setCategories(categories)
-        setFilteredIcons(filteredIcons)
+    const handleSelectIcon = (icon: IIcon) => {
+        setSelectedIcon(icon);
     }
 
+    const handleDeselectIcon = () => {
+        setSelectedIcon(null);
+    }
 
-    useEffect(() => {
-        getIcons()
-    }, [])
+    const handleSearch = (search: string) => {
 
+        const filteredIcons = filterIconsByName(icons, search);
+        const categories = getIconCategories(filteredIcons);
 
+        setSearchTerm(search);
+        setFilteredIcons(filteredIcons);
+        setCategories(categories);
+    }
 
+    const handleVersionFilter = (category: IVersionStyle) => {
+        const updatedCategories = [...versionCategories];
+        const index = updatedCategories.findIndex((c) => c.versionName === category.versionName);
+        updatedCategories[index].isSelected = !updatedCategories[index].isSelected;
+        setCategories(updatedCategories);
+        applyAllFilters(updatedCategories);
+    }
 
-    const [isModalOpen, setModalOpen] = useState(false);
+    const applyAllFilters = (categories: IVersionStyle[]) => {
+        let filtered = [...icons];
 
-
-    const dispatch = useDispatch();
-
-    const selectedIcon = useSelector((state: RootState) => state.icon.selectedIcon);
-    useEffect(() => {
-        if (selectedIcon) {
-            setModalOpen(true)
-        } else {
-            setModalOpen(false)
-            dispatch(resetSelectedIcon())
+        // Apply search filter
+        if (searchTerm) {
+            filtered = filterIconsByName(filtered, searchTerm);
         }
-    }, [selectedIcon])
+
+        for (const category of categories) {
+            if (category.isSelected) {
+                filtered = filterIconsByVersion(filtered, category.versionName);
+            }
+        }
+
+        setFilteredIcons(filtered);
+    }
+
 
 
     return (
         <>
+
             {selectedIcon && (
-                <Modal isOpen={isModalOpen} onClose={() => setModalOpen(false)}>
-                    <div className="flex flex-row gap-4">
-                        <img width={100} height={'auto'} src={`${ICON_URL_BASE}/${selectedIcon.name}/${selectedIcon.name}-${selectedIcon.versions.svg[0]}.svg`} alt={selectedIcon.name} />
-
-                        <div className="flex flex-col gap-2">
-                            <p className="text-subtitle">{selectedIcon.name}</p>
-                            <p>{selectedIcon.tags}</p>
-
-                            <p>{selectedIcon.versions.svg}</p>
-                        </div>
-
-                    </div>
-                </Modal>
+                <IconModal icon={selectedIcon} handleClose={handleDeselectIcon} />
             )}
 
             <section className="bg-white px-64 py-8 flex flex-row">
-                <div className="flex flex-row justify-center items-center w-full">
-                    <SearchBar onSearch={searchFilterIcons} />
-                </div>
+                <SearchBar onSearch={handleSearch} />
             </section>
 
-            <section className="main bg-smoke flex flex-row py-8 px-64 min-h-screen">
-
+            <section className="bg-smoke flex flex-row px-64 py-8  min-h-screen">
                 <div className="flex flex-col w-1/6 gap-4">
-                    <CategoryList title="Style" categories={versionCategories} />
+                    <CategoryList title="Style" categories={versionCategories} handleFilter={handleVersionFilter} />
                 </div>
 
-
                 <div className="flex flex-col px-4 w-5/6">
-                    <div className="flex w-full justify-between mb-6">
+                    <div className="flex w-full  mb-6 justify-between">
                         <p className="font-bold text-xl my-auto">{filteredIcons.length} Icons</p>
+
                     </div>
-                    <div className="grid  xl:grid-cols-8 gap-4">
+                    <div className="grid xl:grid-cols-6 gap-4">
                         {filteredIcons.map((icon: IIcon) => (
-                            <IconCard key={icon.name} icon={icon} imageBaseUrl={ICON_URL_BASE} />
+                            <IconCard key={icon.name} icon={icon} onSelect={handleSelectIcon} />
                         ))}
                     </div>
                 </div>

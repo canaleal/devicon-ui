@@ -1,6 +1,5 @@
 export type Version = 'plain' | 'line' | 'original' | 'plain-wordmark' | 'line-wordmark' | 'original-wordmark';
 
-
 export interface IIcon {
     name: string;
     altNames: string[];
@@ -13,7 +12,8 @@ export interface IIcon {
     aliases: string[];
 }
 
-export interface ICategory {
-    versionType: Version,
-    numberOfIcons: number
+export interface IVersionStyle {
+    versionName: Version,
+    numberOfIcons: number,
+    isSelected: boolean
 }

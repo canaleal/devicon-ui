@@ -1,34 +1,19 @@
-import { ICategory, IIcon, Version } from "../types"
+import {IVersionStyle, IIcon, Version } from "../types"
 
 
-export const getIconVersionCategories = (icons: IIcon[]) => {
-    const categories: ICategory[] = []
+export const getIconCategories = (icons: IIcon[]) => {
+    const categories: IVersionStyle[] = []
     icons.forEach((icon: IIcon) => {
-        icon.versions.svg.forEach((version: string) => {
-            const category = categories.find(category => category.versionType === version)
+        const items: string[] = icon.versions.svg
+        items.forEach((item: string) => {
+            const category = categories.find(category => category.versionName === item);
             if (category) {
-                category.numberOfIcons++
+                category.numberOfIcons++;
             } else {
-                categories.push({ versionType: version as Version, numberOfIcons: 1 })
+                categories.push({ versionName: item as Version, numberOfIcons: 1, isSelected: false });
             }
-        })
-    })
+        });
+    });
 
-    return categories
-}
-
-export const getIconTagCategories = (icons: IIcon[]) => {
-    const categories: ICategory[] = []
-    icons.forEach((icon: IIcon) => {
-        icon.tags.forEach((tag: string) => {
-            const category = categories.find(category => category.versionType === tag)
-            if (category) {
-                category.numberOfIcons++
-            } else {
-                categories.push({ versionType: tag as Version, numberOfIcons: 1 })
-            }
-        })
-    })
-
-    return categories
+    return categories;
 }
