@@ -13,7 +13,7 @@ export interface IIcon {
     aliases: string[];
 }
 
-export interface IVersion {
+export interface ICategory {
     versionType: Version,
     numberOfIcons: number
 }
