@@ -4,9 +4,9 @@ import CategoryList from "./components/CategoryList"
 import IconCard from "./components/IconCard"
 import SearchBar from "./components/SearchBar"
 import { getIconCategories } from "./helpers/iconCategories"
-import { IVersionStyle, IIcon } from "./types"
+import { IVersionStyle, IIcon, initialVersionStyle } from "./types"
 import { filterIconsByName, filterIconsByVersion } from "./helpers/iconFilters"
-import IconModal from "./components/IconModal"
+import IconModal from "./components/modal/IconModal"
 
 
 const IconGallery = () => {
@@ -15,14 +15,7 @@ const IconGallery = () => {
     const [icons, setIcons] = useState<IIcon[]>([])
     const [selectedIcon, setSelectedIcon] = useState<IIcon | null>(null)
     const [filteredIcons, setFilteredIcons] = useState<IIcon[]>([])
-    const [versionCategories, setCategories] = useState<IVersionStyle[]>([
-        { versionName: 'original', numberOfIcons: 0, isSelected: false },
-        { versionName: 'plain', numberOfIcons: 0, isSelected: false },
-        { versionName: 'line', numberOfIcons: 0, isSelected: false },
-        { versionName: 'original-wordmark', numberOfIcons: 0, isSelected: false },
-        { versionName: 'plain-wordmark', numberOfIcons: 0, isSelected: false },
-        { versionName: 'line-wordmark', numberOfIcons: 0, isSelected: false },
-    ])
+    const [versionCategories, setCategories] = useState<IVersionStyle[]>(initialVersionStyle)
     const [searchTerm, setSearchTerm] = useState("");
 
     const fetchIcons = async (): Promise<IIcon[]> => {

@@ -14,7 +14,6 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
         onSearch(value);
     };
 
-
     return (
         <div className="flex space-x-4 w-2/6">
             <input
