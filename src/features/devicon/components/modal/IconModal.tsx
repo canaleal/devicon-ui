@@ -78,7 +78,7 @@ const IconModal = ({ icon, deviconBranch, handleClose }: IconModalProps) => {
                     </div>
                 </div>
 
-                <IconCode iconUrl={iconUrl} handleCopyClick={handleCopyClick} />
+                <IconCode icon={icon} iconUrl={iconUrl} handleCopyClick={handleCopyClick} />
 
                 <div className='flex flex-row justify-between mt-4'>
                     {icon.altnames && (

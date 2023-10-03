@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react"
-import { CodeTypes, codeTypesList } from "../../types"
+import { CodeTypes, IIcon, codeTypesList } from "../../types"
 
 
 interface IconCodeProps {
+    icon: IIcon,
     iconUrl: string,
     handleCopyClick: (text: string) => void
 
 }
 
-const IconCode = ({ iconUrl, handleCopyClick }: IconCodeProps) => {
+const IconCode = ({ icon, iconUrl, handleCopyClick }: IconCodeProps) => {
 
     const [selectedOption, setSelectedOption] = useState<CodeTypes>("SVG Link")
     const [codeText, setCodeText] = useState<string>("")
@@ -24,7 +25,7 @@ const IconCode = ({ iconUrl, handleCopyClick }: IconCodeProps) => {
                 text = iconUrl;
                 break;
             case "Img Tag":
-                text = `<img src="${iconUrl}" alt="icon-name" />`;
+                text = `<img src="${iconUrl}" alt="${icon.name}" />`;
                 break;
             case "SVG": {
                 const response = await fetch(iconUrl);
