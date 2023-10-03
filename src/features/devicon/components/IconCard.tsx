@@ -1,17 +1,18 @@
 
-import { IIcon } from "../types";
-import { DEVICON_IMAGE_URL_BASE } from '../constants';
+import { DeviconBranch, IIcon } from "../types";
+import { createDeviconIconUrl } from "../helpers/iconUrl";
 
 interface IconCardProps {
     icon: IIcon,
+    deviconBranch: DeviconBranch
     onSelect : (icon: IIcon) => void
 }
 
-const IconCard = ({ icon, onSelect }: IconCardProps) => {
+const IconCard = ({ icon, deviconBranch, onSelect }: IconCardProps) => {
 
     const createIconUrl = () => {
         if (!icon) return;
-        const iconUrl = `${DEVICON_IMAGE_URL_BASE}/${icon.name}/${icon.name}-${icon.versions.svg[0]}.svg`
+        const iconUrl = createDeviconIconUrl(icon.name, icon.versions.svg[0], deviconBranch);
         return iconUrl;
     }
     return (

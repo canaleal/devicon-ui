@@ -4,9 +4,10 @@ import CategoryList from "./components/CategoryList"
 import IconCard from "./components/IconCard"
 import SearchBar from "./components/SearchBar"
 import { getIconCategories } from "./helpers/iconCategories"
-import { IVersionStyle, IIcon, initialVersionStyle } from "./types"
+import { IVersionStyle, IIcon, initialVersionStyle, DeviconBranch } from "./types"
 import { filterIconsByName, filterIconsByVersion } from "./helpers/iconFilters"
 import IconModal from "./components/modal/IconModal"
+import { createDeviconJsonUrl } from "./helpers/iconUrl"
 
 
 const IconGallery = () => {
@@ -17,9 +18,11 @@ const IconGallery = () => {
     const [filteredIcons, setFilteredIcons] = useState<IIcon[]>([])
     const [versionCategories, setCategories] = useState<IVersionStyle[]>(initialVersionStyle)
     const [searchTerm, setSearchTerm] = useState("");
+    const [deviconBranch, setDeviconBranch] = useState<DeviconBranch>("master");
 
     const fetchIcons = async (): Promise<IIcon[]> => {
-        const response = await fetch('https://raw.githubusercontent.com/devicons/devicon/develop/devicon.json');
+        const url = createDeviconJsonUrl(deviconBranch);
+        const response = await fetch(url);
         const icons: IIcon[] = await response.json();
         return icons;
     }
@@ -32,7 +35,7 @@ const IconGallery = () => {
             const categories = getIconCategories(icons);
             setCategories(categories);
         })();
-    }, []);
+    }, [deviconBranch]);
 
     const handleSelectIcon = (icon: IIcon) => {
         setSelectedIcon(icon);
@@ -43,10 +46,8 @@ const IconGallery = () => {
     }
 
     const handleSearch = (search: string) => {
-
         const filteredIcons = filterIconsByName(icons, search);
         const categories = getIconCategories(filteredIcons);
-
         setSearchTerm(search);
         setFilteredIcons(filteredIcons);
         setCategories(categories);
@@ -62,18 +63,15 @@ const IconGallery = () => {
 
     const applyAllFilters = (categories: IVersionStyle[]) => {
         let filtered = [...icons];
-
         // Apply search filter
         if (searchTerm) {
             filtered = filterIconsByName(filtered, searchTerm);
         }
-
         for (const category of categories) {
             if (category.isSelected) {
                 filtered = filterIconsByVersion(filtered, category.versionName);
             }
         }
-
         setFilteredIcons(filtered);
     }
 
@@ -83,11 +81,16 @@ const IconGallery = () => {
         <>
 
             {selectedIcon && (
-                <IconModal icon={selectedIcon} handleClose={handleDeselectIcon} />
+                <IconModal icon={selectedIcon} handleClose={handleDeselectIcon} deviconBranch={deviconBranch} />
             )}
 
-            <section className="bg-white px-64 py-8 flex flex-row">
+            <section className="bg-white px-64 py-8 flex flex-row gap-4">
+                <select onChange={(e) => { setDeviconBranch(e.target.value as DeviconBranch) }} className="bg-white border rounded-lg px-4 py-2">
+                    <option value="master">Master</option>
+                    <option value="develop">Develop</option>
+                </select>
                 <SearchBar onSearch={handleSearch} />
+
             </section>
 
             <section className="bg-smoke flex flex-row px-64 py-8  min-h-screen">
@@ -102,7 +105,7 @@ const IconGallery = () => {
                     </div>
                     <div className="grid xl:grid-cols-6 gap-4">
                         {filteredIcons.map((icon: IIcon) => (
-                            <IconCard key={icon.name} icon={icon} onSelect={handleSelectIcon} />
+                            <IconCard key={icon.name} icon={icon} onSelect={handleSelectIcon} deviconBranch={deviconBranch} />
                         ))}
                     </div>
                 </div>

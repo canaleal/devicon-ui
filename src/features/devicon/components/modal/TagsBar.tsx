@@ -1,12 +1,13 @@
 
 interface AltNameBarProps {
     tags: string[];
+    handleCopyClick: (text: string) => void;
 }
 
-const TagsBar = ({ tags }: AltNameBarProps) => {
+const TagsBar = ({ tags, handleCopyClick }: AltNameBarProps) => {
     return (
         <div className='flex flex-row'>
-            <button title='Copy Categories' className='p-2 hover:text-green-600 flex'>
+            <button onClick={()=>{handleCopyClick(tags.toString())}} title='Copy Categories' className='p-2 hover:text-green-600 flex'>
                 <i className="fa-solid fa-folder"></i>
             </button>
             {

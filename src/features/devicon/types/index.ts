@@ -1,6 +1,4 @@
 export type Version = 'plain' | 'line' | 'original' | 'plain-wordmark' | 'line-wordmark' | 'original-wordmark';
-
-
 export type CodeTypes = "SVG Link" | "Img Tag" | "SVG"
 export const codeTypesList: CodeTypes[] = ['SVG Link', 'Img Tag', "SVG"]
 
@@ -13,6 +11,8 @@ export const versionIconMap: Record<Version, string> = {
     'line': 'fa-solid fa-wave-square',
     'line-wordmark': 'fa-solid fa-wave-square',
 }
+
+export type DeviconBranch = 'master' | 'develop'
 
 export interface IIcon {
     name: string;
