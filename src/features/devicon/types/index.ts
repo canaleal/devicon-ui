@@ -22,9 +22,9 @@ export interface IIcon {
     }[]
 }
 
-export interface ICategory {
+
+export interface IIconFilter {
     categoryName: IconVersion,
     numberOfIcons: number,
     isSelected: boolean
 }
-

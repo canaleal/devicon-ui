@@ -1,4 +1,4 @@
-import { ICategory, IconVersion } from "../types";
+import { IIconFilter, IconVersion } from "../types";
 
 export const iconVersionMap: Record<IconVersion, string> = {
     'original': 'fa-solid fa-square',
@@ -9,7 +9,7 @@ export const iconVersionMap: Record<IconVersion, string> = {
     'line-wordmark': 'fa-solid fa-wave-square',
 }
 
-export const initialIconVersionCategories: ICategory[] = [
+export const initialIconVersionFilters: IIconFilter[] = [
     { categoryName: 'original', numberOfIcons: 0, isSelected: false },
     { categoryName: 'original-wordmark', numberOfIcons: 0, isSelected: false },
     { categoryName: 'plain', numberOfIcons: 0, isSelected: false },

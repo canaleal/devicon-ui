@@ -1,11 +1,11 @@
-import { ICategory } from "../types";
+import { IIconFilter } from "../types";
 
 interface CategoryListProps {
   title: string,
-  categories: ICategory[],
+  categories: IIconFilter[],
   iconMap: { [key: string]: string },
   limit?: number,
-  handleFilter: (category: ICategory) => void
+  handleFilter: (category: IIconFilter) => void
 }
 
 const CategoryList: React.FC<CategoryListProps> = ({ title, categories, iconMap, limit, handleFilter }) => {

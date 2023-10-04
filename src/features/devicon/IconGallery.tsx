@@ -2,15 +2,15 @@ import { useEffect, useState } from "react"
 
 import CategoryList from "./components/CategoryList"
 import SearchBar from "./components/SearchBar"
-import { getIconCategories } from "./helpers/iconCategories"
-import { ICategory, IIcon, DeviconBranch } from "./types"
-import { filterIconsByName, filterIconsByVersion } from "./helpers/iconFilters"
+
+import { IIconFilter, IIcon, DeviconBranch, IconVersion } from "./types"
+import { filterIconsByName, filterIconsByVersion, getIconVersionFilters } from "./helpers/iconFilters"
 import IconModal from "./components/modal/IconModal"
 import { createDeviconJsonUrl } from "./helpers/iconUrl"
 import PaginatedGrid from "./components/pagination/PaginatedGrid"
 import { Footer } from "./components/Footer"
 import ScrollButton from "./components/ScrollButton"
-import { iconVersionMap, initialIconVersionCategories } from "./config"
+import { iconVersionMap, initialIconVersionFilters } from "./config"
 
 
 const IconGallery = () => {
@@ -19,25 +19,26 @@ const IconGallery = () => {
     const [icons, setIcons] = useState<IIcon[]>([])
     const [selectedIcon, setSelectedIcon] = useState<IIcon | null>(null)
     const [filteredIcons, setFilteredIcons] = useState<IIcon[]>([])
-    const [versionCategories, setVersionCategories] = useState<ICategory[]>(initialIconVersionCategories)
+    const [versionFilters, setVersionFilters] = useState<IIconFilter[]>(initialIconVersionFilters)
     const [searchTerm, setSearchTerm] = useState("");
     const [deviconBranch, setDeviconBranch] = useState<DeviconBranch>("master");
 
 
-    const fetchIcons = async (): Promise<IIcon[]> => {
+    const fetchIconsFromBranch = async (): Promise<IIcon[]> => {
         const url = createDeviconJsonUrl(deviconBranch);
         const response = await fetch(url);
-        const icons: IIcon[] = await response.json();
-        return icons;
+        return response.json();
+    }
+    
+    const initializeIconsData = async () => {
+        const fetchedIcons = await fetchIconsFromBranch();
+        setIcons(fetchedIcons);
+        setFilteredIcons(fetchedIcons);
+        setVersionFilters(getIconVersionFilters(fetchedIcons));
     }
 
     useEffect(() => {
-        (async () => {
-            const fetchedIcons = await fetchIcons();
-            setIcons(fetchedIcons);
-            setFilteredIcons(fetchedIcons);
-            setVersionCategories(getIconCategories(fetchedIcons));
-        })();
+        initializeIconsData();
     }, [deviconBranch]);
 
 
@@ -45,21 +46,21 @@ const IconGallery = () => {
         const filtered = filterIconsByName(icons, search);
         setSearchTerm(search);
         setFilteredIcons(filtered);
-        setVersionCategories(getIconCategories(filtered));
+        setVersionFilters(getIconVersionFilters(filtered));
     }
 
-    const handleVersionFilter = (category: ICategory) => {
-        const updatedCategories = [...versionCategories];
+    const handleVersionFilter = (category: IIconFilter) => {
+        const updatedCategories = [...versionFilters];
         const index = updatedCategories.findIndex((c) => c.categoryName === category.categoryName);
         updatedCategories[index].isSelected = !updatedCategories[index].isSelected;
-        setVersionCategories(updatedCategories);
+        setVersionFilters(updatedCategories);
         applyAllFilters(updatedCategories);
     }
 
-    const applyAllFilters = (categories: ICategory[]) => {
+    const applyAllFilters = (categories: IIconFilter[]) => {
         let filtered = searchTerm ? filterIconsByName(icons, searchTerm) : icons;
         categories.forEach(category => {
-            if (category.isSelected) filtered = filterIconsByVersion(filtered, category.categoryName);
+            if (category.isSelected) filtered = filterIconsByVersion(filtered, category.categoryName as IconVersion);
         });
         setFilteredIcons(filtered);
     }
@@ -85,7 +86,8 @@ const IconGallery = () => {
 
             <section className="bg-smoke flex flex-row px-64 py-16  gap-8 h-fit">
                 <div className="flex flex-col w-1/6 gap-4">
-                    <CategoryList title="Icon Style" categories={versionCategories} handleFilter={handleVersionFilter} iconMap={iconVersionMap} />
+                    <CategoryList title="Icon Style" categories={versionFilters} handleFilter={handleVersionFilter} iconMap={iconVersionMap} />
+                 
                 </div>
 
                 <div className="flex flex-col w-5/6">
