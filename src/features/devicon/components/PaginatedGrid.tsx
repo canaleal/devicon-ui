@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { DeviconBranch, IIcon } from '../types';
 import IconCard from './IconCard';
+import PaginationButtons from './PaginationButtons';
 
 interface PaginatedGridProps {
   icons: IIcon[];
@@ -19,26 +20,21 @@ const PaginatedGrid: React.FC<PaginatedGridProps> = ({ icons, onSelect, deviconB
     setCurrentPage(1);
   };
 
-  useEffect(() => {
+  const paginateIcons = () =>{
     const startIndex = (currentPage - 1) * iconsPerPage;
     const endIndex = startIndex + iconsPerPage;
     setPaginatedIcons(icons.slice(startIndex, endIndex));
-  }, [icons, currentPage, iconsPerPage]);
+  }
 
-  const pageButtons = Array.from({ length: totalPages }).map((_, index) => {
-    const pageNumber = index + 1;
-    return (
-      <button
-        key={pageNumber}
-        className={`${
-          pageNumber === currentPage ? 'bg-green-600 text-white' : 'hover:bg-gray-200 hover:shadow-sm'
-        } px-4 py-2 rounded-md text-sm`}
-        onClick={() => setCurrentPage(pageNumber)}
-      >
-        {pageNumber}
-      </button>
-    );
-  });
+  useEffect(() => {
+      paginateIcons();
+  }, [currentPage, iconsPerPage]);
+
+
+  useEffect(() => {
+    setCurrentPage(1);
+    paginateIcons();
+  }, [icons]);
 
   return (
     <div className="flex flex-col">
@@ -66,7 +62,9 @@ const PaginatedGrid: React.FC<PaginatedGridProps> = ({ icons, onSelect, deviconB
             {(currentPage - 1) * iconsPerPage + 1}-{Math.min(currentPage * iconsPerPage, icons.length)} of {icons.length} icons
           </p>
         </div>
-        <div className="flex flex-row">{pageButtons}</div>
+        <div className="flex flex-row">
+          <PaginationButtons currentPage={currentPage} setCurrentPage={setCurrentPage} totalPages={totalPages} />
+        </div>
       </div>
     </div>
   );
