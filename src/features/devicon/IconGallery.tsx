@@ -1,15 +1,14 @@
 import { useEffect, useState } from "react"
 
 import CategoryList from "./components/CategoryList"
-import SearchBar from "./components/SearchBar"
+import SearchBar from "../../components/SearchBar"
 
 import { IIconFilter, IIcon, DeviconBranch, IconVersion } from "./types"
 import { filterIconsByName, filterIconsByVersion, getIconVersionFilters } from "./helpers/iconFilters"
 import IconModal from "./components/modal/IconModal"
 import { createDeviconJsonUrl } from "./helpers/iconUrl"
 import PaginatedGrid from "./components/pagination/PaginatedGrid"
-import { Footer } from "./components/Footer"
-import ScrollButton from "./components/ScrollButton"
+import ScrollButton from "../../components/ScrollButton"
 import { iconVersionMap, initialIconVersionFilters } from "./config"
 
 
@@ -95,7 +94,6 @@ const IconGallery = () => {
                 </div>
             </section>
 
-            <Footer />
         </>
     )
 }
