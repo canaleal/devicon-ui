@@ -9,6 +9,7 @@ import IconModal from "./components/modal/IconModal"
 import { createDeviconJsonUrl } from "./helpers/iconUrl"
 import PaginatedGrid from "./components/PaginatedGrid"
 import { Footer } from "./components/Footer"
+import ScrollButton from "./components/ScrollButton"
 
 
 const IconGallery = () => {
@@ -75,6 +76,8 @@ const IconGallery = () => {
 
     return (
         <>
+
+            <ScrollButton />
 
             {selectedIcon && (
                 <IconModal icon={selectedIcon} handleClose={handleDeselectIcon} deviconBranch={deviconBranch} />

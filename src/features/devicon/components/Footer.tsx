@@ -17,14 +17,11 @@ export const Footer = () => {
                 <a href="https://github.com/devicons/devicon/" target="_blank" className="mt-4  hover:text-green-500 text-green-400">GitHub</a>
                 <a href="https://devicon.dev/" target="_blank" className="hover:text-green-500 text-green-400">Devicon.dev</a>
                 <a href="https://colordesigner.io/tools" target="_blank" className="hover:text-green-500 text-green-400">Color Designer</a>
+                <a href="https://react-svgr.com/playground/" target="_blank" className="hover:text-green-500 text-green-400">SVG to JSX</a>
             </div>
 
             <div className='flex-1 flex flex-row gap-2'>
-                <img title="react" className="h-8 w-8" src="https://raw.githubusercontent.com/devicons/devicon/develop/icons/react/react-original.svg" alt="icon-name" />
-                <img title="react-router" className="h-8 w-8" src="https://raw.githubusercontent.com/devicons/devicon/develop/icons/reactrouter/reactrouter-original.svg" alt="icon-name" />
-                <img title="tailwind" className="h-8 w-8" src="https://raw.githubusercontent.com/devicons/devicon/develop/icons/tailwindcss/tailwindcss-original.svg" alt="icon-name" />
-                <img title="jest" className="h-8 w-8"  src="https://raw.githubusercontent.com/devicons/devicon/develop/icons/jest/jest-plain.svg" alt="icon-name" />
-                <img title="vite" className="h-8 w-8" src="https://raw.githubusercontent.com/devicons/devicon/develop/icons/vitejs/vitejs-original.svg" alt="icon-name" />
+               
             </div>
 
         </div>
