@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { DEVICON_VERSION_RELEASE } from '../../constants';
-import { DeviconBranch, IIcon, Version } from '../../types';
+import { DeviconBranch, IIcon, IconVersion } from '../../types';
 import AltNameBar from './AltNameBar';
 import TagsBar from './TagsBar';
 import IconImage from './IconImage';
@@ -17,12 +17,12 @@ interface IconModalProps {
 
 const IconModal = ({ icon, deviconBranch, handleClose }: IconModalProps) => {
 
-    const [selectedVersion, setSelectedVersion] = useState<Version>(icon.versions.svg[0]);
+    const [selectedVersion, setSelectedVersion] = useState<IconVersion>(icon.versions.svg[0]);
     const [iconUrl, setIconUrl] = useState<string>("");
 
     const handleVersionChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const { value } = e.target;
-        setSelectedVersion(value as Version);
+        setSelectedVersion(value as IconVersion);
     }
 
     const createIconUrl = async () => {

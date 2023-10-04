@@ -1,16 +1,9 @@
-export type Version = 'plain' | 'line' | 'original' | 'plain-wordmark' | 'line-wordmark' | 'original-wordmark';
+export type IconVersion = 'plain' | 'line' | 'original' | 'plain-wordmark' | 'line-wordmark' | 'original-wordmark';
 export type CodeTypes = "SVG Link" | "Img Tag" | "SVG"
 export const codeTypesList: CodeTypes[] = ['SVG Link', 'Img Tag', "SVG"]
 
 // create a map of the version name for the font icon 
-export const versionIconMap: Record<Version, string> = {
-    'original': 'fa-solid fa-square',
-    'original-wordmark': 'fa-solid fa-square',
-    'plain': 'fa-regular fa-square',
-    'plain-wordmark': 'fa-regular fa-square',
-    'line': 'fa-solid fa-wave-square',
-    'line-wordmark': 'fa-solid fa-wave-square',
-}
+
 
 export type DeviconBranch = 'master' | 'develop'
 
@@ -19,8 +12,8 @@ export interface IIcon {
     altnames: string[];
     tags: string[];
     versions: {
-        svg: Version[];
-        font: Version[];
+        svg: IconVersion[];
+        font: IconVersion[];
     };
     color: string;
     aliases: {
@@ -30,16 +23,8 @@ export interface IIcon {
 }
 
 export interface ICategory {
-    versionName: Version,
+    categoryName: IconVersion,
     numberOfIcons: number,
     isSelected: boolean
 }
 
-export const initialVersionStyle: ICategory[] = [
-    { versionName: 'original', numberOfIcons: 0, isSelected: false },
-    { versionName: 'original-wordmark', numberOfIcons: 0, isSelected: false },
-    { versionName: 'plain', numberOfIcons: 0, isSelected: false },
-    { versionName: 'plain-wordmark', numberOfIcons: 0, isSelected: false },
-    { versionName: 'line', numberOfIcons: 0, isSelected: false },
-    { versionName: 'line-wordmark', numberOfIcons: 0, isSelected: false },
-]

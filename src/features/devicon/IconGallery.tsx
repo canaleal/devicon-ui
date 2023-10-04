@@ -3,13 +3,14 @@ import { useEffect, useState } from "react"
 import CategoryList from "./components/CategoryList"
 import SearchBar from "./components/SearchBar"
 import { getIconCategories } from "./helpers/iconCategories"
-import { ICategory, IIcon, initialVersionStyle, DeviconBranch } from "./types"
+import { ICategory, IIcon, DeviconBranch } from "./types"
 import { filterIconsByName, filterIconsByVersion } from "./helpers/iconFilters"
 import IconModal from "./components/modal/IconModal"
 import { createDeviconJsonUrl } from "./helpers/iconUrl"
 import PaginatedGrid from "./components/pagination/PaginatedGrid"
 import { Footer } from "./components/Footer"
 import ScrollButton from "./components/ScrollButton"
+import { iconVersionMap, initialIconVersionCategories } from "./config"
 
 
 const IconGallery = () => {
@@ -18,11 +19,11 @@ const IconGallery = () => {
     const [icons, setIcons] = useState<IIcon[]>([])
     const [selectedIcon, setSelectedIcon] = useState<IIcon | null>(null)
     const [filteredIcons, setFilteredIcons] = useState<IIcon[]>([])
-    const [versionCategories, setVersionCategories] = useState<ICategory[]>(initialVersionStyle)
+    const [versionCategories, setVersionCategories] = useState<ICategory[]>(initialIconVersionCategories)
     const [searchTerm, setSearchTerm] = useState("");
     const [deviconBranch, setDeviconBranch] = useState<DeviconBranch>("master");
 
- 
+
     const fetchIcons = async (): Promise<IIcon[]> => {
         const url = createDeviconJsonUrl(deviconBranch);
         const response = await fetch(url);
@@ -32,43 +33,33 @@ const IconGallery = () => {
 
     useEffect(() => {
         (async () => {
-            const icons = await fetchIcons();
-            setIcons(icons);
-            setFilteredIcons(icons);
-            const categories = getIconCategories(icons);
-            setVersionCategories(categories);
+            const fetchedIcons = await fetchIcons();
+            setIcons(fetchedIcons);
+            setFilteredIcons(fetchedIcons);
+            setVersionCategories(getIconCategories(fetchedIcons));
         })();
     }, [deviconBranch]);
 
-    const handleSelectIcon = (icon: IIcon) => {
-        setSelectedIcon(icon);
-    }
-
-    const handleDeselectIcon = () => {
-        setSelectedIcon(null);
-    }
 
     const handleSearch = (search: string) => {
-        const filteredIcons = filterIconsByName(icons, search);
-        const categories = getIconCategories(filteredIcons);
+        const filtered = filterIconsByName(icons, search);
         setSearchTerm(search);
-        setFilteredIcons(filteredIcons);
-        setVersionCategories(categories);
+        setFilteredIcons(filtered);
+        setVersionCategories(getIconCategories(filtered));
     }
 
     const handleVersionFilter = (category: ICategory) => {
         const updatedCategories = [...versionCategories];
-        const index = updatedCategories.findIndex((c) => c.versionName === category.versionName);
+        const index = updatedCategories.findIndex((c) => c.categoryName === category.categoryName);
         updatedCategories[index].isSelected = !updatedCategories[index].isSelected;
         setVersionCategories(updatedCategories);
         applyAllFilters(updatedCategories);
     }
 
     const applyAllFilters = (categories: ICategory[]) => {
-        let filtered = [...icons];  
-        if (searchTerm) filtered = filterIconsByName(filtered, searchTerm);
+        let filtered = searchTerm ? filterIconsByName(icons, searchTerm) : icons;
         categories.forEach(category => {
-            if (category.isSelected) filtered = filterIconsByVersion(filtered, category.versionName);
+            if (category.isSelected) filtered = filterIconsByVersion(filtered, category.categoryName);
         });
         setFilteredIcons(filtered);
     }
@@ -76,11 +67,10 @@ const IconGallery = () => {
 
     return (
         <>
-
             <ScrollButton />
 
             {selectedIcon && (
-                <IconModal icon={selectedIcon} handleClose={handleDeselectIcon} deviconBranch={deviconBranch} />
+                <IconModal icon={selectedIcon} handleClose={() => setSelectedIcon(null)} deviconBranch={deviconBranch} />
             )}
 
             <section className="bg-white px-64 py-8 flex flex-row gap-4">
@@ -93,13 +83,13 @@ const IconGallery = () => {
 
             </section>
 
-            <section className="bg-smoke flex flex-row px-64 py-16  h-fit">
+            <section className="bg-smoke flex flex-row px-64 py-16  gap-8 h-fit">
                 <div className="flex flex-col w-1/6 gap-4">
-                    <CategoryList title="Style" categories={versionCategories} handleFilter={handleVersionFilter} />
+                    <CategoryList title="Icon Style" categories={versionCategories} handleFilter={handleVersionFilter} iconMap={iconVersionMap} />
                 </div>
 
-                <div className="flex flex-col px-4 w-5/6">
-                    <PaginatedGrid icons={filteredIcons} deviconBranch={deviconBranch} onSelect={handleSelectIcon}  />
+                <div className="flex flex-col w-5/6">
+                    <PaginatedGrid icons={filteredIcons} deviconBranch={deviconBranch} onSelect={setSelectedIcon} />
                 </div>
             </section>
 
