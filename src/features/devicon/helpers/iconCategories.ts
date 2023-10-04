@@ -1,8 +1,8 @@
-import {IVersionStyle, IIcon, Version } from "../types"
+import {ICategory, IIcon, Version } from "../types"
 
 
 export const getIconCategories = (icons: IIcon[]) => {
-    const categories: IVersionStyle[] = []
+    const categories: ICategory[] = []
     icons.forEach((icon: IIcon) => {
         const items: string[] = icon.versions.svg
         items.forEach((item: string) => {

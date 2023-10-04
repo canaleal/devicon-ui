@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { DeviconBranch, IIcon } from '../types';
+import { DeviconBranch, IIcon } from '../../types';
 import IconCard from './IconCard';
 import PaginationButtons from './PaginationButtons';
 

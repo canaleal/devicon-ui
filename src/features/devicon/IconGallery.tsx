@@ -3,11 +3,11 @@ import { useEffect, useState } from "react"
 import CategoryList from "./components/CategoryList"
 import SearchBar from "./components/SearchBar"
 import { getIconCategories } from "./helpers/iconCategories"
-import { IVersionStyle, IIcon, initialVersionStyle, DeviconBranch } from "./types"
+import { ICategory, IIcon, initialVersionStyle, DeviconBranch } from "./types"
 import { filterIconsByName, filterIconsByVersion } from "./helpers/iconFilters"
 import IconModal from "./components/modal/IconModal"
 import { createDeviconJsonUrl } from "./helpers/iconUrl"
-import PaginatedGrid from "./components/PaginatedGrid"
+import PaginatedGrid from "./components/pagination/PaginatedGrid"
 import { Footer } from "./components/Footer"
 import ScrollButton from "./components/ScrollButton"
 
@@ -18,7 +18,7 @@ const IconGallery = () => {
     const [icons, setIcons] = useState<IIcon[]>([])
     const [selectedIcon, setSelectedIcon] = useState<IIcon | null>(null)
     const [filteredIcons, setFilteredIcons] = useState<IIcon[]>([])
-    const [versionCategories, setCategories] = useState<IVersionStyle[]>(initialVersionStyle)
+    const [versionCategories, setVersionCategories] = useState<ICategory[]>(initialVersionStyle)
     const [searchTerm, setSearchTerm] = useState("");
     const [deviconBranch, setDeviconBranch] = useState<DeviconBranch>("master");
 
@@ -36,7 +36,7 @@ const IconGallery = () => {
             setIcons(icons);
             setFilteredIcons(icons);
             const categories = getIconCategories(icons);
-            setCategories(categories);
+            setVersionCategories(categories);
         })();
     }, [deviconBranch]);
 
@@ -53,18 +53,18 @@ const IconGallery = () => {
         const categories = getIconCategories(filteredIcons);
         setSearchTerm(search);
         setFilteredIcons(filteredIcons);
-        setCategories(categories);
+        setVersionCategories(categories);
     }
 
-    const handleVersionFilter = (category: IVersionStyle) => {
+    const handleVersionFilter = (category: ICategory) => {
         const updatedCategories = [...versionCategories];
         const index = updatedCategories.findIndex((c) => c.versionName === category.versionName);
         updatedCategories[index].isSelected = !updatedCategories[index].isSelected;
-        setCategories(updatedCategories);
+        setVersionCategories(updatedCategories);
         applyAllFilters(updatedCategories);
     }
 
-    const applyAllFilters = (categories: IVersionStyle[]) => {
+    const applyAllFilters = (categories: ICategory[]) => {
         let filtered = [...icons];  
         if (searchTerm) filtered = filterIconsByName(filtered, searchTerm);
         categories.forEach(category => {

@@ -1,6 +1,6 @@
 
-import { DeviconBranch, IIcon } from "../types";
-import { createDeviconIconUrl } from "../helpers/iconUrl";
+import { DeviconBranch, IIcon } from "../../types";
+import { createDeviconIconUrl } from "../../helpers/iconUrl";
 
 interface IconCardProps {
     icon: IIcon,

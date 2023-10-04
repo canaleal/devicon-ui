@@ -1,9 +1,9 @@
-import { IVersionStyle, versionIconMap } from "../types";
+import { ICategory, versionIconMap } from "../types";
 
 interface CategoryListProps {
   title: string,
-  categories: IVersionStyle[],
-  handleFilter: (category: IVersionStyle) => void
+  categories: ICategory[],
+  handleFilter: (category: ICategory) => void
 }
 
 const CategoryList: React.FC<CategoryListProps> = ({ title, categories, handleFilter }) => {

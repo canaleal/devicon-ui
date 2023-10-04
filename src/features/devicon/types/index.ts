@@ -29,13 +29,13 @@ export interface IIcon {
     }[]
 }
 
-export interface IVersionStyle {
+export interface ICategory {
     versionName: Version,
     numberOfIcons: number,
     isSelected: boolean
 }
 
-export const initialVersionStyle: IVersionStyle[] = [
+export const initialVersionStyle: ICategory[] = [
     { versionName: 'original', numberOfIcons: 0, isSelected: false },
     { versionName: 'original-wordmark', numberOfIcons: 0, isSelected: false },
     { versionName: 'plain', numberOfIcons: 0, isSelected: false },
