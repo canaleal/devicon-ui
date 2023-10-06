@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
-import { CodeTypes, IIcon, codeTypesList } from "../../types"
+import { CodeBlockTypes, IIcon, codeBlockTypesList } from "../../types"
+import { createIconCodeBlockText } from "../../helpers/iconCodeBlock"
 
 
 interface IconCodeProps {
@@ -11,43 +12,25 @@ interface IconCodeProps {
 
 const IconCode = ({ icon, iconUrl, handleCopyClick }: IconCodeProps) => {
 
-    const [selectedOption, setSelectedOption] = useState<CodeTypes>("SVG Link")
+    const [selectedOption, setSelectedOption] = useState<CodeBlockTypes>("SVG Link")
     const [codeText, setCodeText] = useState<string>("")
 
-    const handleClick = (codeType: CodeTypes) => {
+    const handleClick = (codeType: CodeBlockTypes) => {
         setSelectedOption(codeType)
     }
 
-    const createCodeText = async () => {
-        let text = "";
-        switch (selectedOption) {
-            case "SVG Link":
-                text = iconUrl;
-                break;
-            case "Img Tag":
-                text = `<img src="${iconUrl}" alt="${icon.name}" />`;
-                break;
-            case "SVG": {
-                const response = await fetch(iconUrl);
-                text = await response.text();
-                break;
-            }
-        }
-        setCodeText(text);
-    }
-
-
-
     useEffect(() => {
-        (async () => {
-            await createCodeText()
-        })()
-    }, [iconUrl, selectedOption])
+        const createCodeText = async () => {
+            const text = await createIconCodeBlockText(icon, iconUrl, selectedOption);
+            setCodeText(text);
+        }
+        createCodeText()
+    }, [icon, iconUrl, selectedOption])
 
     return (
-        <div className='flex flex-col'>
-            <div className='flex flex-row bg-zinc-900 rounded-t-lg overflow-hidden'>
-                {codeTypesList.map((codeType) => (
+        <div className='flex flex-col border-2 dark:border-zinc-600 rounded-lg overflow-hidden'>
+            <div className='flex flex-row bg-zinc-900 '>
+                {codeBlockTypesList.map((codeType) => (
                     <button onClick={() => { handleClick(codeType) }} className={`px-4 py-2  ${codeType === selectedOption ? "bg-zinc-800" : "bg-zinc-900"} hover:bg-green-800 text-white `}>
                         <span className='font-bold text-sm'>{codeType}</span>
                     </button>
@@ -58,7 +41,7 @@ const IconCode = ({ icon, iconUrl, handleCopyClick }: IconCodeProps) => {
                     <i className="fa-solid fa-copy ml-2 my-auto"></i>
                 </button>
             </div>
-            <div className='flex flex-row bg-zinc-800 rounded-b-lg px-4 py-8 text-white overflow-auto'>
+            <div className='flex flex-row bg-zinc-800  px-4 py-8 text-white '>
                 <p className="whitespace-nowrap">{codeText}</p>
             </div>
         </div>

@@ -10,10 +10,10 @@ export const iconVersionMap: Record<IconVersion, string> = {
 }
 
 export const initialIconVersionFilters: IIconFilter[] = [
-    { categoryName: 'original', numberOfIcons: 0, isSelected: false },
-    { categoryName: 'original-wordmark', numberOfIcons: 0, isSelected: false },
-    { categoryName: 'plain', numberOfIcons: 0, isSelected: false },
-    { categoryName: 'plain-wordmark', numberOfIcons: 0, isSelected: false },
-    { categoryName: 'line', numberOfIcons: 0, isSelected: false },
-    { categoryName: 'line-wordmark', numberOfIcons: 0, isSelected: false },
+    { filterNme: 'original', numberOfIcons: 0, isSelected: false },
+    { filterNme: 'original-wordmark', numberOfIcons: 0, isSelected: false },
+    { filterNme: 'plain', numberOfIcons: 0, isSelected: false },
+    { filterNme: 'plain-wordmark', numberOfIcons: 0, isSelected: false },
+    { filterNme: 'line', numberOfIcons: 0, isSelected: false },
+    { filterNme: 'line-wordmark', numberOfIcons: 0, isSelected: false },
 ]

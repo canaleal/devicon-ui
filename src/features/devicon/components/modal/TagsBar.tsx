@@ -6,7 +6,7 @@ interface AltNameBarProps {
 
 const TagsBar = ({ tags, handleCopyClick }: AltNameBarProps) => {
     return (
-        <div className='flex flex-row'>
+        <div className='flex flex-row dark:text-white'>
             <button onClick={()=>{handleCopyClick(tags.toString())}} title='Copy Categories' className='p-2 hover:text-green-600 flex'>
                 <i className="fa-solid fa-folder"></i>
             </button>

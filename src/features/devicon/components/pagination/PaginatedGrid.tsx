@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { DeviconBranch, IIcon } from '../../types';
 import IconCard from './IconCard';
 import PaginationButtons from './PaginationButtons';
+import PaginationSelection from './PaginationSelection';
 
 interface PaginatedGridProps {
   icons: IIcon[];
@@ -20,14 +21,14 @@ const PaginatedGrid: React.FC<PaginatedGridProps> = ({ icons, onSelect, deviconB
     setCurrentPage(1);
   };
 
-  const paginateIcons = () =>{
+  const paginateIcons = () => {
     const startIndex = (currentPage - 1) * iconsPerPage;
     const endIndex = startIndex + iconsPerPage;
     setPaginatedIcons(icons.slice(startIndex, endIndex));
   }
 
   useEffect(() => {
-      paginateIcons();
+    paginateIcons();
   }, [currentPage, iconsPerPage]);
 
 
@@ -38,33 +39,27 @@ const PaginatedGrid: React.FC<PaginatedGridProps> = ({ icons, onSelect, deviconB
 
   return (
     <div className="flex flex-col">
-      <div className="flex w-full mb-6 justify-between">
+      <div className="flex w-full justify-between dark:text-white">
         <p className="font-bold text-xl my-auto">{icons.length} Icons</p>
-        <p>Page {currentPage} of {totalPages}</p>
+        <p>Page {currentPage} of {totalPages || 1}</p>
       </div>
 
-      <div className="grid xl:grid-cols-6 gap-4">
-        {paginatedIcons.map((icon) => (
-          <IconCard key={icon.name} icon={icon} onSelect={onSelect} deviconBranch={deviconBranch} />
-        ))}
-      </div>
+      {paginatedIcons.length ? (
+        <div className="grid xl:grid-cols-6 gap-4 mt-6">
+          {paginatedIcons.map((icon) => (
+            <IconCard key={icon.name} icon={icon} onSelect={onSelect} deviconBranch={deviconBranch} />
+          ))}
+        </div>
+      ) : (
+        <div className="flex flex-col items-center justify-center mt-6 h-64">
+          <p className="text-2xl text-gray-500">No icons found</p>
+          <p className="text-gray-500">Try a different search term</p>
+        </div>
+      )}
 
-      <div className="flex flex-row justify-between mt-6">
-        <div className="flex flex-row">
-          <p className="my-auto">Items Per Page</p>
-          <select value={iconsPerPage} onChange={handleIconsPerPageChange} className="ml-2 bg-white border rounded-lg px-2 py-2">
-            <option value={24}>24</option>
-            <option value={48}>48</option>
-            <option value={72}>72</option>
-            <option value={96}>96</option>
-          </select>
-          <p className="ml-4 my-auto">
-            {(currentPage - 1) * iconsPerPage + 1}-{Math.min(currentPage * iconsPerPage, icons.length)} of {icons.length} icons
-          </p>
-        </div>
-        <div className="flex flex-row">
-          <PaginationButtons currentPage={currentPage} setCurrentPage={setCurrentPage} totalPages={totalPages} />
-        </div>
+      <div className="flex flex-row justify-between mt-6 ">
+        <PaginationSelection iconsPerPage={iconsPerPage} currentPage={currentPage} totalIcons={icons.length} handleIconsPerPageChange={handleIconsPerPageChange} />
+        <PaginationButtons currentPage={currentPage} setCurrentPage={setCurrentPage} totalPages={totalPages} />
       </div>
     </div>
   );

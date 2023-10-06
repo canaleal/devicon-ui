@@ -44,10 +44,10 @@ const PaginationButtons = ({ currentPage, setCurrentPage, totalPages }: Paginati
 
 
     return (
-        <>
+        <div className="flex flex-row dark:text-white">
 
             <button
-                className={`px-4 py-2 rounded-md text-sm ${currentPage === 1 ? 'text-gray-400': 'hover:bg-gray-200 hover:shadow-sm'}`}
+                className={`px-4 py-2 rounded-md text-sm ${currentPage === 1 ? 'text-gray-400': 'hover:bg-gray-200 hover:shadow-sm dark:hover:bg-zinc-900'}`}
                 disabled={currentPage === 1}
                 onClick={() => setCurrentPage(1)}
             >
@@ -58,7 +58,7 @@ const PaginationButtons = ({ currentPage, setCurrentPage, totalPages }: Paginati
                 const isNumber = typeof page === "number";
                 const key = isNumber ? page : `${pagesToRender[idx - 1]}-${pagesToRender[idx + 1]}`;
                 return isNumber ? (
-                    <button key={key} className={`${page === currentPage ? 'bg-green-600 text-white' : 'hover:bg-gray-200 hover:shadow-sm'} px-4 py-2 rounded-md text-sm`} onClick={() => setCurrentPage(page)}>
+                    <button key={key} className={`${page === currentPage ? 'bg-green-600 text-white' : 'hover:bg-gray-200 hover:shadow-sm dark:hover:bg-zinc-900'} px-4 py-2 rounded-md text-sm`} onClick={() => setCurrentPage(page)}>
                         {page}
                     </button>
                 ) : (
@@ -74,7 +74,7 @@ const PaginationButtons = ({ currentPage, setCurrentPage, totalPages }: Paginati
             >
                 <i className="fa fa-arrow-right"></i>
             </button>
-        </>
+        </div>
 
 
     );

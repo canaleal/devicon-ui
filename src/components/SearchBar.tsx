@@ -21,7 +21,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
                 value={searchTerm}
                 onChange={handleInputChange}
                 placeholder="Search Icons..."
-                className="flex-grow px-3 py-2 border rounded-lg "
+                className="flex-grow px-3 py-2 border rounded-lg bg-white dark:bg-zinc-800 dark:border-zinc-600"
             />
         </div>
     );

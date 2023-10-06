@@ -1,10 +1,6 @@
 export type IconVersion = 'plain' | 'line' | 'original' | 'plain-wordmark' | 'line-wordmark' | 'original-wordmark';
-export type CodeTypes = "SVG Link" | "Img Tag" | "SVG"
-export const codeTypesList: CodeTypes[] = ['SVG Link', 'Img Tag', "SVG"]
-
-// create a map of the version name for the font icon 
-
-
+export type CodeBlockTypes = "SVG Link" | "Img Tag" | "SVG"
+export const codeBlockTypesList: CodeBlockTypes[] = ['SVG Link', 'Img Tag', "SVG"]
 export type DeviconBranch = 'master' | 'develop'
 
 export interface IIcon {
@@ -24,7 +20,7 @@ export interface IIcon {
 
 
 export interface IIconFilter {
-    categoryName: IconVersion,
+    filterNme: IconVersion,
     numberOfIcons: number,
     isSelected: boolean
 }

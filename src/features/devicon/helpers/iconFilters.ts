@@ -1,21 +1,24 @@
 import { IIconFilter, IIcon, IconVersion } from "../types";
 
-export const getIconVersionFilters = (icons: IIcon[]) => {
-    const categories: IIconFilter[] = [];
-    
+export const getIconVersionFilters = (icons: IIcon[], filters: IIconFilter[]) => {
+    // reset the number of icons for each filter
+    filters.forEach((filter: IIconFilter) => {
+        filter.numberOfIcons = 0;
+    });
+
     icons.forEach((icon: IIcon) => {
         const items: string[] = icon.versions.svg;
         items.forEach((item: string) => {
-            const category = categories.find(category => category.categoryName === item);
+            const category = filters.find(category => category.filterNme === item);
             if (category) {
                 category.numberOfIcons++;
             } else {
-                categories.push({ categoryName: item as IconVersion, numberOfIcons: 1, isSelected: false });
+                filters.push({ filterNme: item as IconVersion, numberOfIcons: 1, isSelected: false });
             }
         });
     });
 
-    return categories;
+    return filters;
 }
 
 export const filterIconsByName = (icons: IIcon[], search: string): IIcon[] => {

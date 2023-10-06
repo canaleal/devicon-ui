@@ -1,6 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { DEVICON_VERSION_RELEASE } from '../../constants';
 import { DeviconBranch, IIcon, IconVersion } from '../../types';
 import AltNameBar from './AltNameBar';
@@ -18,34 +16,20 @@ interface IconModalProps {
 const IconModal = ({ icon, deviconBranch, handleClose }: IconModalProps) => {
 
     const [selectedVersion, setSelectedVersion] = useState<IconVersion>(icon.versions.svg[0]);
-    const [iconUrl, setIconUrl] = useState<string>("");
+    const iconUrl = createDeviconIconUrl(icon.name, selectedVersion, deviconBranch);
 
     const handleVersionChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const { value } = e.target;
         setSelectedVersion(value as IconVersion);
     }
 
-    const createIconUrl = async () => {
-        if (!icon) return;
-        const iconUrl = createDeviconIconUrl(icon.name, selectedVersion, deviconBranch);
-        setIconUrl(iconUrl);
-    }
-
     const handleCopyClick = (text: string) => {
         navigator.clipboard.writeText(text);
     }
 
-    useEffect(() => {
-        (async () => {
-            await createIconUrl();
-        })();
-    }, [selectedVersion]);
-
-
-
     return (
         <section className="fixed inset-0 z-50 flex items-center justify-center bg-zinc-600 bg-opacity-50">
-            <div className="relative bg-white rounded-lg shadow-lg p-8 w-11/12 md:w-2/3 lg:w-2/3">
+            <div className="relative bg-white dark:bg-zinc-800 rounded-lg shadow-lg p-8 w-11/12 md:w-2/3 lg:w-2/3">
                 <button
                     className="absolute top-0 right-0 bg-zinc-900 hover:bg-zinc-800 text-white p-4 text-4xl leading-none rounded-bl-lg rounded-tr-lg"
                     onClick={handleClose}
@@ -54,7 +38,7 @@ const IconModal = ({ icon, deviconBranch, handleClose }: IconModalProps) => {
 
                 </button>
 
-                <div className="flex flex-row">
+                <div className="flex flex-row dark:text-white">
                     <button onClick={()=>{handleCopyClick(icon.name)}} title='Copy Name' className='p-2 hover:text-green-600 flex'>
                         <p className="font-bold text-3xl">{icon.name}</p>
                         <i className="fa-solid fa-copy text-xl ml-2 my-auto"></i>
@@ -70,7 +54,7 @@ const IconModal = ({ icon, deviconBranch, handleClose }: IconModalProps) => {
                         {icon.tags.length > 0 && (
                             <TagsBar tags={icon.tags} handleCopyClick={handleCopyClick}/>
                         )}
-                        <select onChange={handleVersionChange} className="bg-white border rounded-lg px-4 py-4">
+                        <select onChange={handleVersionChange} className="bg-white dark:bg-zinc-900 dark:text-white dark:border-zinc-600 border rounded-lg px-4 py-4">
                             {icon.versions.svg.map((version, index) => (
                                 <option key={index} value={version}>{version}</option>
                             ))}
@@ -84,7 +68,7 @@ const IconModal = ({ icon, deviconBranch, handleClose }: IconModalProps) => {
                     {icon.altnames && (
                         <AltNameBar altnames={icon.altnames} />
                     )}
-                    <p>{DEVICON_VERSION_RELEASE}</p>
+                    <p className='dark:text-white'>{DEVICON_VERSION_RELEASE}</p>
                 </div>
             </div>
         </section>

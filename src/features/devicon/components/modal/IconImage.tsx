@@ -14,7 +14,7 @@ const IconImage = ({ iconName, iconUrl }: IconContainerProps) => {
     }
 
     return (
-        <div className={`flex-1 flex flex-col border-2 rounded-lg p-4 ${isLight ? "bg-white " : "bg-zinc-900 text-white"}`}>
+        <div className={`flex-1 flex flex-col border-2 rounded-lg p-4 ${isLight ? "bg-white " : "bg-zinc-900 text-white dark:border-zinc-600 "}`}>
             <img className='m-auto my-16' height={200} width={200} src={iconUrl} alt={iconName} />
 
             <div className="flex flex-row gap-4">
