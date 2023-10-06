@@ -1,6 +1,5 @@
 export type IconVersion = 'plain' | 'line' | 'original' | 'plain-wordmark' | 'line-wordmark' | 'original-wordmark';
-export type CodeBlockTypes = "SVG Link" | "Img Tag" | "SVG"
-export const codeBlockTypesList: CodeBlockTypes[] = ['SVG Link', 'Img Tag', "SVG"]
+export type CodeBlockTypes = "Link" | "Img Tag" | "SVG"
 export type DeviconBranch = 'master' | 'develop'
 
 export interface IIcon {
@@ -23,4 +22,11 @@ export interface IIconFilter {
     filterNme: IconVersion,
     numberOfIcons: number,
     isSelected: boolean
+}
+
+export type IconSize = 'X-Small' | 'Small' | 'Medium' | 'Large' | 'X-Large'
+export interface IIconSize {
+    name: IconSize;
+    height: number;
+    width: number;
 }

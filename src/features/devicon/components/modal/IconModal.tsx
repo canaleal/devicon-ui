@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import { DEVICON_VERSION_RELEASE } from '../../constants';
-import { DeviconBranch, IIcon, IconVersion } from '../../types';
+import { DeviconBranch, IIcon, IIconSize, IconVersion } from '../../types';
 import AltNameBar from './AltNameBar';
 import TagsBar from './TagsBar';
 import IconImage from './IconImage';
 import IconCode from './IconCode';
 import { createDeviconIconUrl } from '../../helpers/iconUrl';
+import { iconSizeOptions } from '../../config';
 
 interface IconModalProps {
     icon: IIcon;
@@ -16,12 +17,22 @@ interface IconModalProps {
 const IconModal = ({ icon, deviconBranch, handleClose }: IconModalProps) => {
 
     const [selectedVersion, setSelectedVersion] = useState<IconVersion>(icon.versions.svg[0]);
+    const [selectedIconSize, setSelectedIconSize] = useState<IIconSize>(iconSizeOptions.find((option) =>  option.name === 'Large')!);
+   
     const iconUrl = createDeviconIconUrl(icon.name, selectedVersion, deviconBranch);
 
     const handleVersionChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const { value } = e.target;
         setSelectedVersion(value as IconVersion);
     }
+
+    const handleSizeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        const { value } = e.target;
+        const sizeOption = iconSizeOptions.find((option) => option.name === value) || iconSizeOptions[1];
+        setSelectedIconSize(sizeOption);
+    }
+
+  
 
     const handleCopyClick = (text: string) => {
         navigator.clipboard.writeText(text);
@@ -48,7 +59,7 @@ const IconModal = ({ icon, deviconBranch, handleClose }: IconModalProps) => {
 
                 <div className="flex flex-row my-4 gap-8">
 
-                    <IconImage iconUrl={iconUrl} iconName={icon.name} />
+                    <IconImage iconUrl={iconUrl} iconName={icon.name} iconSize={selectedIconSize} />
 
                     <div className="flex-1 flex flex-col gap-4">
                         {icon.tags.length > 0 && (
@@ -59,10 +70,18 @@ const IconModal = ({ icon, deviconBranch, handleClose }: IconModalProps) => {
                                 <option key={index} value={version}>{version}</option>
                             ))}
                         </select>
+
+                        <select value={selectedIconSize.name} onChange={handleSizeChange} className="bg-white dark:bg-zinc-900 dark:text-white dark:border-zinc-600 border rounded-lg px-4 py-4">
+                            {iconSizeOptions.map((size, index) => (
+                                <option key={index} value={size.name}>{size.name} ({size.height} x {size.width})</option>
+                            ))}
+                        </select>
+
+                     
                     </div>
                 </div>
 
-                <IconCode icon={icon} iconUrl={iconUrl} handleCopyClick={handleCopyClick} />
+                <IconCode icon={icon} iconSize={selectedIconSize} iconUrl={iconUrl} handleCopyClick={handleCopyClick} />
 
                 <div className='flex flex-row justify-between mt-4'>
                     {icon.altnames && (
