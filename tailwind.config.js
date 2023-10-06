@@ -9,7 +9,8 @@ export default {
     extend: {
       colors: {
         'dark': '#141414',
-        'smoke': "#f0f1f3"
+        'smoke': "#f0f1f3",
+        "devicon-green": '#70a47c'
       }
     },
   },

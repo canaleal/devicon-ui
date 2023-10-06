@@ -10,7 +10,7 @@ interface FilterListProps {
 
 const FilterList = ({ title, categories, iconMap, limit, handleFilter }: FilterListProps) => {
   return (
-    <div className="flex flex-col gap-2 text-gray-800 dark:text-gray-200 ">
+    <div className="flex flex-col  text-gray-800 dark:text-gray-200 ">
       <p className="font-bold text-md  mb-2 dark:text-white ">{title}</p>
       {categories.slice(0, limit || categories.length).map((category, index) => (
         <button

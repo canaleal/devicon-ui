@@ -49,7 +49,7 @@ const PaginationButtons = ({ currentPage, setCurrentPage, totalPages }: Paginati
             <button
                 className={`px-4 py-2 rounded-md text-sm ${currentPage === 1 ? 'text-gray-400': 'hover:bg-gray-200 hover:shadow-sm dark:hover:bg-zinc-900'}`}
                 disabled={currentPage === 1}
-                onClick={() => setCurrentPage(1)}
+                onClick={() => setCurrentPage(currentPage-1)}
             >
                 <i className="fa fa-arrow-left"></i>
             </button>
@@ -70,7 +70,7 @@ const PaginationButtons = ({ currentPage, setCurrentPage, totalPages }: Paginati
             <button
                 className={`px-4 py-2 rounded-md text-sm ${currentPage === totalPages ? 'text-gray-400': 'hover:bg-gray-200 hover:shadow-sm'}`}
                 disabled={currentPage === totalPages}
-                onClick={() => setCurrentPage(totalPages)}
+                onClick={() => setCurrentPage(currentPage+1)}
             >
                 <i className="fa fa-arrow-right"></i>
             </button>

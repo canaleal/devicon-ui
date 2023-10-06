@@ -25,7 +25,7 @@ function DarkLightToggle() {
 
         <button
             onClick={() => setDarkMode(!darkMode)}
-            className="fixed bottom-0 left-0 mb-8 ml-8 bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-md"
+            className="fixed top-0 right-0 mt-8 mr-8 bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-md"
         >
            {darkMode ? <i className="fa-solid fa-sun"></i>   :  <i className="fa-solid fa-moon"></i>}
         </button>

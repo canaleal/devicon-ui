@@ -72,8 +72,8 @@ const IconGallery = () => {
                 <IconModal icon={selectedIcon} handleClose={() => setSelectedIcon(null)} deviconBranch={deviconBranch} />
             )}
 
-            <section className="bg-white dark:bg-zinc-900 dark:text-white  px-64 py-8 flex flex-row gap-4">
-                <p className="text-title my-auto ">Devicon</p>
+            <section className="bg-white dark:bg-zinc-900 dark:text-white  px-32 py-8 flex flex-row gap-4">
+                <p className="text-title my-auto text-green-600">Devicon</p>
                 <select onChange={(e) => { setDeviconBranch(e.target.value as DeviconBranch) }} className="ml-auto bg-white dark:bg-zinc-900 border dark:border-zinc-600 rounded-lg px-4 py-2">
                     <option value="master">Master</option>
                     <option value="develop">Develop</option>
@@ -82,7 +82,7 @@ const IconGallery = () => {
 
             </section>
 
-            <section className="bg-smoke dark:bg-zinc-800 flex flex-row px-64 py-16  gap-8 h-fit">
+            <section className="bg-smoke dark:bg-zinc-800 flex flex-row px-32 py-16  gap-8 h-fit">
                 <div className="flex flex-col w-1/6 gap-4">
                     <FilterList title="Icon Style" categories={versionFilters} handleFilter={handleVersionFilter} iconMap={iconVersionMap} />
                 </div>
