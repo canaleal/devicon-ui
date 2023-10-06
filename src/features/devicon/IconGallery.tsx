@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import FilterList from "./components/FilterList"
 import SearchBar from "../../components/SearchBar"
 import { IIconFilter, IIcon, DeviconBranch, IconVersion } from "./types"
-import { filterIconsByName, filterIconsByVersion, getIconVersionFilters } from "./helpers/iconFilters"
+import { filterIconsByName, filterIconsByTag, filterIconsByVersion, getIconTagFilters, getIconVersionFilters } from "./helpers/iconFilters"
 import IconModal from "./components/modal/IconModal"
 import { createDeviconJsonUrl } from "./helpers/iconUrl"
 import PaginatedGrid from "./components/pagination/PaginatedGrid"
@@ -17,6 +17,7 @@ const IconGallery = () => {
     const [selectedIcon, setSelectedIcon] = useState<IIcon | null>(null)
     const [filteredIcons, setFilteredIcons] = useState<IIcon[]>([])
     const [versionFilters, setVersionFilters] = useState<IIconFilter[]>(initialIconVersionFilters)
+    const [tagFilters, setTagFilters] = useState<IIconFilter[]>([]); 
     const [searchTerm, setSearchTerm] = useState("");
     const [deviconBranch, setDeviconBranch] = useState<DeviconBranch>("master");
 
@@ -35,6 +36,8 @@ const IconGallery = () => {
             setIcons(fetchedIcons);
             setFilteredIcons(fetchedIcons);
             setVersionFilters(getIconVersionFilters(fetchedIcons, versionFilters));
+            setTagFilters(getIconTagFilters(fetchedIcons, tagFilters));
+
         }
         initializeIconsData();
     }, [deviconBranch]);
@@ -45,24 +48,39 @@ const IconGallery = () => {
         setSearchTerm(search);
         setFilteredIcons(filtered);
         setVersionFilters(getIconVersionFilters(filtered, versionFilters));
+        setTagFilters(getIconTagFilters(filtered, tagFilters));
+    }
+
+    const updateFilters = (filters: IIconFilter[], category: IIconFilter) => {
+        const updatedCategories = [...filters];
+        const index = updatedCategories.findIndex((c) => c.filterName === category.filterName);
+        updatedCategories[index].isSelected = !updatedCategories[index].isSelected;
+        return updatedCategories;
     }
 
     const handleVersionFilter = (category: IIconFilter) => {
-        const updatedCategories = [...versionFilters];
-        const index = updatedCategories.findIndex((c) => c.filterNme === category.filterNme);
-        updatedCategories[index].isSelected = !updatedCategories[index].isSelected;
-        setVersionFilters(updatedCategories);
-        applyAllFilters(updatedCategories);
+        setVersionFilters(updateFilters(versionFilters, category));     
     }
 
-    const applyAllFilters = (categories: IIconFilter[]) => {
+    const handleTagFilter = (category: IIconFilter) => {
+        setTagFilters(updateFilters(tagFilters, category));
+    }
+
+    const applyAllFilters = () => {
         let filtered = searchTerm ? filterIconsByName(icons, searchTerm) : icons;
-        categories.forEach(category => {
-            if (category.isSelected) filtered = filterIconsByVersion(filtered, category.filterNme as IconVersion);
+        versionFilters.forEach(filter => {
+            if (filter.isSelected) filtered = filterIconsByVersion(filtered, filter.filterName as IconVersion);
+        });
+
+        tagFilters.forEach(filter => {
+            if (filter.isSelected) filtered = filterIconsByTag(filtered, filter.filterName);
         });
         setFilteredIcons(filtered);
     }
 
+    useEffect(() => {
+        applyAllFilters();
+    }, [versionFilters, tagFilters]);
 
     return (
         <>
@@ -82,9 +100,10 @@ const IconGallery = () => {
 
             </section>
 
-            <section className="bg-smoke dark:bg-zinc-800 flex flex-row px-32 py-16  gap-8 h-fit">
-                <div className="flex flex-col w-1/6 gap-4">
-                    <FilterList title="Icon Style" categories={versionFilters} handleFilter={handleVersionFilter} iconMap={iconVersionMap} />
+            <section className="bg-smoke dark:bg-zinc-800 flex flex-row px-32 py-16  gap-8 ">
+                <div className="flex flex-col w-1/6 gap-8">
+                    <FilterList title="Icon Style" filters={versionFilters} handleFilter={handleVersionFilter} iconMap={iconVersionMap} />
+                    <FilterList title="Icon Tags" filters={tagFilters} handleFilter={handleTagFilter} iconMap={iconVersionMap} limit={10} />
                 </div>
 
                 <div className="flex flex-col w-5/6">

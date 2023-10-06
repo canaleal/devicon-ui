@@ -1,7 +1,6 @@
 import { IIconFilter, IIcon, IconVersion } from "../types";
 
 export const getIconVersionFilters = (icons: IIcon[], filters: IIconFilter[]) => {
-    // reset the number of icons for each filter
     filters.forEach((filter: IIconFilter) => {
         filter.numberOfIcons = 0;
     });
@@ -9,14 +8,36 @@ export const getIconVersionFilters = (icons: IIcon[], filters: IIconFilter[]) =>
     icons.forEach((icon: IIcon) => {
         const items: string[] = icon.versions.svg;
         items.forEach((item: string) => {
-            const category = filters.find(category => category.filterNme === item);
+            const category = filters.find(category => category.filterName === item);
             if (category) {
                 category.numberOfIcons++;
             } else {
-                filters.push({ filterNme: item as IconVersion, numberOfIcons: 1, isSelected: false });
+                filters.push({ filterName: item as IconVersion, numberOfIcons: 1, isSelected: false });
             }
         });
     });
+
+    return filters;
+}
+
+export const getIconTagFilters = (icons: IIcon[], filters: IIconFilter[]) => {
+    filters.forEach((filter: IIconFilter) => {
+        filter.numberOfIcons = 0;
+    });
+    icons.forEach((icon: IIcon) => {
+        const items: string[] = icon.tags;
+        items.forEach((item: string) => {
+            const category = filters.find(category => category.filterName === item);
+            if (category) {
+                category.numberOfIcons++;
+            } else {
+                filters.push({ filterName: item, numberOfIcons: 1, isSelected: false });
+            }
+        });
+    });
+
+    // SORT BY NUMBER OF ICONS
+    filters.sort((a, b) => b.numberOfIcons - a.numberOfIcons);
 
     return filters;
 }
@@ -30,4 +51,8 @@ export const filterIconsByName = (icons: IIcon[], search: string): IIcon[] => {
 
 export const filterIconsByVersion = (icons: IIcon[], version: IconVersion): IIcon[] => {
     return icons.filter(icon => icon.versions.svg.includes(version as IconVersion));
+}
+
+export const filterIconsByTag = (icons: IIcon[], tag: string): IIcon[] => {
+    return icons.filter(icon => icon.tags.includes(tag));
 }

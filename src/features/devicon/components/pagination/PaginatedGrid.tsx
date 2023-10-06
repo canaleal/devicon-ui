@@ -38,7 +38,7 @@ const PaginatedGrid: React.FC<PaginatedGridProps> = ({ icons, onSelect, deviconB
   }, [icons]);
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col h-full">
       <div className="flex w-full justify-between dark:text-white">
         <p className="font-bold text-xl my-auto">{icons.length} Icons</p>
         <p>Page {currentPage} of {totalPages || 1}</p>
@@ -51,9 +51,9 @@ const PaginatedGrid: React.FC<PaginatedGridProps> = ({ icons, onSelect, deviconB
           ))}
         </div>
       ) : (
-        <div className="flex flex-col items-center justify-center mt-6 h-64">
+        <div className="flex flex-col items-center justify-center min-h-screen">
           <p className="text-2xl text-gray-500">No icons found</p>
-          <p className="text-gray-500">Try a different search term</p>
+          <p className="text-gray-500">Try a different search term or change filters</p>
         </div>
       )}
 

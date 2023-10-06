@@ -19,7 +19,7 @@ export interface IIcon {
 
 
 export interface IIconFilter {
-    filterNme: IconVersion,
+    filterName: string,
     numberOfIcons: number,
     isSelected: boolean
 }
