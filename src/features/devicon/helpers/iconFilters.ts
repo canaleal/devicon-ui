@@ -56,3 +56,10 @@ export const filterIconsByVersion = (icons: IIcon[], version: IconVersion): IIco
 export const filterIconsByTag = (icons: IIcon[], tag: string): IIcon[] => {
     return icons.filter(icon => icon.tags.includes(tag));
 }
+
+export const updateFilters = (filters: IIconFilter[], category: IIconFilter) => {
+    const updatedCategories = [...filters];
+    const index = updatedCategories.findIndex((c) => c.filterName === category.filterName);
+    updatedCategories[index].isSelected = !updatedCategories[index].isSelected;
+    return updatedCategories;
+}

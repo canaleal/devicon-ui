@@ -1,5 +1,5 @@
 export type IconVersion = 'plain' | 'line' | 'original' | 'plain-wordmark' | 'line-wordmark' | 'original-wordmark';
-export type CodeBlockTypes = "Link" | "Img Tag" | "SVG"
+export type CodeBlockTypes = "Link" | "<img> Tag" | "SVG" | "<i> Tag";
 export type DeviconBranch = 'master' | 'develop'
 
 export interface IIcon {

@@ -1,4 +1,4 @@
-import { CodeBlockTypes, IIcon, IIconSize } from "../types";
+import { CodeBlockTypes, IIcon, IIconSize, IconVersion } from "../types";
 
 const fetchIconSVG = async (iconUrl:string) => {
     const response = await fetch(iconUrl);
@@ -27,19 +27,24 @@ export const createIconCodeBlockText = async (
     icon: IIcon, 
     iconSize: IIconSize, 
     iconUrl: string, 
-    selectedOption: CodeBlockTypes
+    selectedVersion: IconVersion,
+    selectedOption: CodeBlockTypes,
 ) => {
     let text = "";
     switch (selectedOption) {
         case "Link":
             text = iconUrl;
             break;
-        case "Img Tag":
+        case "<img> Tag":
             text = `<img src="${iconUrl}" alt="${icon.name}" height="${iconSize.height}" width="${iconSize.width}" />`;
             break;
         case "SVG": {
             const svg = await fetchIconSVG(iconUrl);
             text = adjustSVGAttributes(svg, iconSize);
+            break;
+        }
+        case "<i> Tag": {
+            text = `<i class="devicon-${icon.name}-${selectedVersion} colored"></i>`;
             break;
         }
     }

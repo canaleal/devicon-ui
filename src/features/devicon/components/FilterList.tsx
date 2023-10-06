@@ -21,10 +21,10 @@ const FilterList = ({ title, filters, iconMap, limit, handleFilter }: FilterList
         {filters.map((filter, index) => (
           <button
             key={index}
-            className={`${filter.isSelected ? "bg-white hover:bg-gray-50 dark:bg-zinc-900 dark:hover:bg-zinc-700 shadow-sm" : " hover:bg-gray-50  dark:hover:bg-zinc-700 hover:shadow-sm"}  rounded-md flex px-4 py-2 text-sm`}
+            className={`${filter.isSelected ? "bg-green-600 hover:bg-green-700 text-white dark:bg-zinc-900 dark:hover:bg-zinc-700 shadow-sm" : " hover:bg-gray-50  dark:hover:bg-zinc-700 hover:shadow-sm"}  rounded-md flex px-4 py-2 text-sm`}
             onClick={() => handleFilter(filter)}
           >
-            <i className={iconMap[filter.filterName] ?? 'fa-solid fa-square'} />
+            <i className={`${iconMap[filter.filterName] ?? 'fa-solid fa-square'} my-auto`} />
             <p className="ml-2">{filter.filterName}</p>
             <p className="ml-auto">{filter.numberOfIcons}</p>
           </button>

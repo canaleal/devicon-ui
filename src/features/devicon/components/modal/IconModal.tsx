@@ -17,8 +17,8 @@ interface IconModalProps {
 const IconModal = ({ icon, deviconBranch, handleClose }: IconModalProps) => {
 
     const [selectedVersion, setSelectedVersion] = useState<IconVersion>(icon.versions.svg[0]);
-    const [selectedIconSize, setSelectedIconSize] = useState<IIconSize>(iconSizeOptions.find((option) =>  option.name === 'Large')!);
-   
+    const [selectedIconSize, setSelectedIconSize] = useState<IIconSize>(iconSizeOptions.find((option) => option.name === 'Large')!);
+
     const iconUrl = createDeviconIconUrl(icon.name, selectedVersion, deviconBranch);
 
     const handleVersionChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -32,14 +32,14 @@ const IconModal = ({ icon, deviconBranch, handleClose }: IconModalProps) => {
         setSelectedIconSize(sizeOption);
     }
 
-  
+
 
     const handleCopyClick = (text: string) => {
         navigator.clipboard.writeText(text);
     }
 
     return (
-        <section className="fixed inset-0 z-50 flex items-center justify-center bg-zinc-600 bg-opacity-50">
+        <section className="fixed inset-0 z-20 flex items-center justify-center bg-zinc-600 bg-opacity-50">
             <div className="relative bg-white dark:bg-zinc-800 rounded-lg shadow-lg p-8 w-11/12 md:w-2/3 lg:w-2/3">
                 <button
                     className="absolute top-0 right-0 bg-zinc-900 hover:bg-zinc-800 text-white p-4 text-4xl leading-none rounded-bl-lg rounded-tr-lg"
@@ -50,7 +50,7 @@ const IconModal = ({ icon, deviconBranch, handleClose }: IconModalProps) => {
                 </button>
 
                 <div className="flex flex-row dark:text-white">
-                    <button onClick={()=>{handleCopyClick(icon.name)}} title='Copy Name' className='p-2 hover:text-green-600 flex'>
+                    <button onClick={() => { handleCopyClick(icon.name) }} title='Copy Name' className='p-2 hover:text-green-600 flex'>
                         <p className="font-bold text-3xl">{icon.name}</p>
                         <i className="fa-solid fa-copy text-xl ml-2 my-auto"></i>
                     </button>
@@ -63,7 +63,7 @@ const IconModal = ({ icon, deviconBranch, handleClose }: IconModalProps) => {
 
                     <div className="flex-1 flex flex-col gap-4">
                         {icon.tags.length > 0 && (
-                            <TagsBar tags={icon.tags} handleCopyClick={handleCopyClick}/>
+                            <TagsBar tags={icon.tags} handleCopyClick={handleCopyClick} />
                         )}
                         <select onChange={handleVersionChange} className="bg-white dark:bg-zinc-900 dark:text-white dark:border-zinc-600 border rounded-lg px-4 py-4">
                             {icon.versions.svg.map((version, index) => (
@@ -77,11 +77,11 @@ const IconModal = ({ icon, deviconBranch, handleClose }: IconModalProps) => {
                             ))}
                         </select>
 
-                     
+
                     </div>
                 </div>
 
-                <IconCode icon={icon} iconSize={selectedIconSize} iconUrl={iconUrl} handleCopyClick={handleCopyClick} />
+                <IconCode icon={icon} iconSize={selectedIconSize} iconUrl={iconUrl} deviconBranch={deviconBranch} selectedVersion={selectedVersion} handleCopyClick={handleCopyClick} />
 
                 <div className='flex flex-row justify-between mt-4'>
                     {icon.altnames && (

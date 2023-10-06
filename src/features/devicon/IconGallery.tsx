@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import FilterList from "./components/FilterList"
 import SearchBar from "../../components/SearchBar"
 import { IIconFilter, IIcon, DeviconBranch, IconVersion } from "./types"
-import { filterIconsByName, filterIconsByTag, filterIconsByVersion, getIconTagFilters, getIconVersionFilters } from "./helpers/iconFilters"
+import { filterIconsByName, filterIconsByTag, filterIconsByVersion, getIconTagFilters, getIconVersionFilters, updateFilters } from "./helpers/iconFilters"
 import IconModal from "./components/modal/IconModal"
 import { createDeviconJsonUrl } from "./helpers/iconUrl"
 import PaginatedGrid from "./components/pagination/PaginatedGrid"
@@ -17,12 +17,9 @@ const IconGallery = () => {
     const [selectedIcon, setSelectedIcon] = useState<IIcon | null>(null)
     const [filteredIcons, setFilteredIcons] = useState<IIcon[]>([])
     const [versionFilters, setVersionFilters] = useState<IIconFilter[]>(initialIconVersionFilters)
-    const [tagFilters, setTagFilters] = useState<IIconFilter[]>([]); 
+    const [tagFilters, setTagFilters] = useState<IIconFilter[]>([]);
     const [searchTerm, setSearchTerm] = useState("");
     const [deviconBranch, setDeviconBranch] = useState<DeviconBranch>("master");
-
-
-
 
     useEffect(() => {
         const fetchIconsFromBranch = async (): Promise<IIcon[]> => {
@@ -44,48 +41,36 @@ const IconGallery = () => {
 
 
     const handleSearch = (search: string) => {
-        const filtered = filterIconsByName(icons, search);
         setSearchTerm(search);
-        setFilteredIcons(filtered);
-        setVersionFilters(getIconVersionFilters(filtered, versionFilters));
-        setTagFilters(getIconTagFilters(filtered, tagFilters));
     }
 
-    const updateFilters = (filters: IIconFilter[], category: IIconFilter) => {
-        const updatedCategories = [...filters];
-        const index = updatedCategories.findIndex((c) => c.filterName === category.filterName);
-        updatedCategories[index].isSelected = !updatedCategories[index].isSelected;
-        return updatedCategories;
-    }
-
+ 
     const handleVersionFilter = (category: IIconFilter) => {
-        setVersionFilters(updateFilters(versionFilters, category));     
+        setVersionFilters(updateFilters(versionFilters, category));
     }
 
     const handleTagFilter = (category: IIconFilter) => {
         setTagFilters(updateFilters(tagFilters, category));
     }
 
-    const applyAllFilters = () => {
-        let filtered = searchTerm ? filterIconsByName(icons, searchTerm) : icons;
-        versionFilters.forEach(filter => {
-            if (filter.isSelected) filtered = filterIconsByVersion(filtered, filter.filterName as IconVersion);
-        });
-
-        tagFilters.forEach(filter => {
-            if (filter.isSelected) filtered = filterIconsByTag(filtered, filter.filterName);
-        });
-        setFilteredIcons(filtered);
-    }
 
     useEffect(() => {
+        const applyAllFilters = () => {
+            let filtered = searchTerm ? filterIconsByName(icons, searchTerm) : icons;
+            versionFilters.forEach(filter => {
+                if (filter.isSelected) filtered = filterIconsByVersion(filtered, filter.filterName as IconVersion);
+            });
+
+            tagFilters.forEach(filter => {
+                if (filter.isSelected) filtered = filterIconsByTag(filtered, filter.filterName);
+            });
+            setFilteredIcons(filtered);
+        }
         applyAllFilters();
-    }, [versionFilters, tagFilters]);
+    }, [versionFilters, tagFilters, searchTerm]);
 
     return (
         <>
-          
-
             {selectedIcon && (
                 <IconModal icon={selectedIcon} handleClose={() => setSelectedIcon(null)} deviconBranch={deviconBranch} />
             )}
