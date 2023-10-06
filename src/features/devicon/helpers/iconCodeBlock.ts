@@ -1,52 +1,40 @@
 import { CodeBlockTypes, IIcon, IIconSize, IconVersion } from "../types";
 
-const fetchIconSVG = async (iconUrl:string) => {
+const fetchIconSVG = async (iconUrl: string) => {
     const response = await fetch(iconUrl);
     return response.text();
-}
+};
 
 const adjustSVGAttributes = (svgContent: string, iconSize: IIconSize) => {
-    let adjustedSVG = svgContent;
+    const replaceOrAddAttribute = (attr: "width" | "height") => {
+        const pattern = new RegExp(`${attr}="[^"]*"`);
+        const replacement = `${attr}="${iconSize[attr]}"`;
+        if (svgContent.includes(`${attr}=`)) {
+            return svgContent.replace(pattern, replacement);
+        } else {
+            return svgContent.replace('<svg', `<svg ${replacement}`);
+        }
+    };
 
-    // Replace or add width and height attributes in the SVG content
-    if(adjustedSVG.includes("width=")){
-        adjustedSVG = adjustedSVG.replace(/width="[^"]*"/, `width="${iconSize.width}"`);
-    } else {
-        adjustedSVG = adjustedSVG.replace('<svg', `<svg width="${iconSize.width}"`);
-    }
-    if(adjustedSVG.includes("height=")){
-        adjustedSVG = adjustedSVG.replace(/height="[^"]*"/, `height="${iconSize.height}"`);
-    } else {
-        adjustedSVG = adjustedSVG.replace('<svg', `<svg height="${iconSize.height}"`);
-    }
-
-    return adjustedSVG;
-}
+    return ["width", "height"].reduce(
+        (_acc, attr) => replaceOrAddAttribute(attr as "width" | "height"),
+        svgContent
+    );
+};
 
 export const createIconCodeBlockText = async (
-    icon: IIcon, 
-    iconSize: IIconSize, 
-    iconUrl: string, 
+    icon: IIcon,
+    iconSize: IIconSize,
+    iconUrl: string,
     selectedVersion: IconVersion,
-    selectedOption: CodeBlockTypes,
+    selectedOption: CodeBlockTypes
 ) => {
-    let text = "";
-    switch (selectedOption) {
-        case "Link":
-            text = iconUrl;
-            break;
-        case "<img> Tag":
-            text = `<img src="${iconUrl}" alt="${icon.name}" height="${iconSize.height}" width="${iconSize.width}" />`;
-            break;
-        case "SVG": {
-            const svg = await fetchIconSVG(iconUrl);
-            text = adjustSVGAttributes(svg, iconSize);
-            break;
-        }
-        case "<i> Tag": {
-            text = `<i class="devicon-${icon.name}-${selectedVersion} colored"></i>`;
-            break;
-        }
-    }
-    return text;
-}
+    const outputFormats = {
+        "Link": () => iconUrl,
+        "<img> Tag": () => `<img src="${iconUrl}" alt="${icon.name}" height="${iconSize.height}" width="${iconSize.width}" />`,
+        "SVG": async () => adjustSVGAttributes(await fetchIconSVG(iconUrl), iconSize),
+        "<i> Tag": () => `<i class="devicon-${icon.name}-${selectedVersion} colored"></i>`
+    };
+
+    return outputFormats[selectedOption] ? await outputFormats[selectedOption]() : "";
+};

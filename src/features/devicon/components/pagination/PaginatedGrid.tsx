@@ -28,14 +28,12 @@ const PaginatedGrid: React.FC<PaginatedGridProps> = ({ icons, onSelect, deviconB
   }
 
   useEffect(() => {
-    paginateIcons();
-  }, [currentPage, iconsPerPage]);
-
+    setCurrentPage(1);
+  }, [icons]);
 
   useEffect(() => {
-    setCurrentPage(1);
     paginateIcons();
-  }, [icons]);
+  }, [currentPage, iconsPerPage]);
 
   return (
     <div className="flex flex-col h-full">

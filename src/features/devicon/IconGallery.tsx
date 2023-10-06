@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import FilterList from "./components/FilterList"
 import SearchBar from "../../components/SearchBar"
 import { IIconFilter, IIcon, DeviconBranch, IconVersion } from "./types"
-import { filterIconsByName, filterIconsByTag, filterIconsByVersion, getIconTagFilters, getIconVersionFilters, updateFilters } from "./helpers/iconFilters"
+import { filterIconsByName, filterIconsByTag, filterIconsByVersion, populateIconFilters, updateFilters } from "./helpers/iconFilters"
 import IconModal from "./components/modal/IconModal"
 import { createDeviconJsonUrl } from "./helpers/iconUrl"
 import PaginatedGrid from "./components/pagination/PaginatedGrid"
@@ -32,8 +32,8 @@ const IconGallery = () => {
             const fetchedIcons = await fetchIconsFromBranch();
             setIcons(fetchedIcons);
             setFilteredIcons(fetchedIcons);
-            setVersionFilters(getIconVersionFilters(fetchedIcons, versionFilters));
-            setTagFilters(getIconTagFilters(fetchedIcons, tagFilters));
+            setVersionFilters(populateIconFilters(fetchedIcons, versionFilters, 'versions.svg'));
+            setTagFilters(populateIconFilters(fetchedIcons, tagFilters, 'tags'));
 
         }
         initializeIconsData();
@@ -62,7 +62,7 @@ const IconGallery = () => {
             });
 
             tagFilters.forEach(filter => {
-                if (filter.isSelected) filtered = filterIconsByTag(filtered, filter.filterName);
+                if (filter.isSelected) filtered = filterIconsByTag(filtered, filter.filterName as string);
             });
             setFilteredIcons(filtered);
         }
