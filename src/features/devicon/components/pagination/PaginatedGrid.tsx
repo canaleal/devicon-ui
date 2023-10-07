@@ -29,6 +29,7 @@ const PaginatedGrid: React.FC<PaginatedGridProps> = ({ icons, onSelect, deviconB
 
   useEffect(() => {
     setCurrentPage(1);
+    paginateIcons();
   }, [icons]);
 
   useEffect(() => {
