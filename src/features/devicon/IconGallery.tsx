@@ -8,6 +8,7 @@ import IconModal from "./components/modal/IconModal"
 import { createDeviconJsonUrl } from "./helpers/iconUrl"
 import PaginatedGrid from "./components/pagination/PaginatedGrid"
 import { iconVersionMap, initialIconVersionFilters } from "./config"
+import CdnBlock from "./components/CdnBlock"
 
 
 const IconGallery = () => {
@@ -89,9 +90,11 @@ const IconGallery = () => {
                 <div className="flex flex-col w-1/6 gap-8">
                     <FilterList title="Icon Style" filters={versionFilters} handleFilter={handleVersionFilter} iconMap={iconVersionMap} />
                     <FilterList title="Icon Tags" filters={tagFilters} handleFilter={handleTagFilter} iconMap={iconVersionMap} limit={10} />
+                  
                 </div>
 
                 <div className="flex flex-col w-5/6">
+                <CdnBlock deviconBranch={deviconBranch} />
                     <PaginatedGrid icons={filteredIcons} deviconBranch={deviconBranch} onSelect={setSelectedIcon} />
                 </div>
             </section>

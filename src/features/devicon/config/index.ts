@@ -26,4 +26,4 @@ export const iconSizeOptions: IIconSize[] = [
     { name: 'X-Large', height: 384, width: 384 },
 ]
 
-export const codeBlockTypeList: CodeBlockTypes[] = ["Link", "SVG",  "<img> Tag", "<i> Tag"];
+export const codeBlockTypeList: CodeBlockTypes[] = ["Link", "SVG", "<img> Tag", "<i> Tag"];

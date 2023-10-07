@@ -43,6 +43,7 @@ const PaginatedGrid: React.FC<PaginatedGridProps> = ({ icons, onSelect, deviconB
         <p>Page {currentPage} of {totalPages || 1}</p>
       </div>
 
+
       {paginatedIcons.length ? (
         <div className="grid xl:grid-cols-8 gap-4 mt-6">
           {paginatedIcons.map((icon) => (

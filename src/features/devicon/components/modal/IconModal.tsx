@@ -61,22 +61,21 @@ const IconModal = ({ icon, deviconBranch, handleClose }: IconModalProps) => {
 
                     <IconImage iconUrl={iconUrl} iconName={icon.name} iconSize={selectedIconSize} />
 
-                    <div className="flex-1 flex flex-col gap-4">
+                    <div className="flex-1 flex flex-col">
                         {icon.tags.length > 0 && (
                             <TagsBar tags={icon.tags} handleCopyClick={handleCopyClick} />
                         )}
-                        <select onChange={handleVersionChange} className="bg-white dark:bg-zinc-900 dark:text-white dark:border-zinc-600 border rounded-lg px-4 py-4">
+                        <select onChange={handleVersionChange} className="mt-6 bg-white dark:bg-zinc-900 dark:text-white dark:border-zinc-600 border rounded-lg px-4 py-4">
                             {icon.versions.svg.map((version, index) => (
                                 <option key={index} value={version}>{version}</option>
                             ))}
                         </select>
 
-                        <select value={selectedIconSize.name} onChange={handleSizeChange} className="bg-white dark:bg-zinc-900 dark:text-white dark:border-zinc-600 border rounded-lg px-4 py-4">
+                        <select value={selectedIconSize.name} onChange={handleSizeChange} className="mt-6 bg-white dark:bg-zinc-900 dark:text-white dark:border-zinc-600 border rounded-lg px-4 py-4">
                             {iconSizeOptions.map((size, index) => (
                                 <option key={index} value={size.name}>{size.name} ({size.height} x {size.width})</option>
                             ))}
                         </select>
-
 
                     </div>
                 </div>

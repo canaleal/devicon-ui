@@ -19,7 +19,7 @@ const IconCode = ({ icon, iconSize, iconUrl, deviconBranch, selectedVersion, han
     const [selectedOption, setSelectedOption] = useState<CodeBlockTypes>("Link")
     const [codeText, setCodeText] = useState<string>("")
     const codeBlockOptions = deviconBranch === "develop" ? codeBlockTypeList.filter((option) => option !== "<i> Tag") : codeBlockTypeList;
-
+   
     const handleClick = (codeType: CodeBlockTypes) => {
         setSelectedOption(codeType)
     }
