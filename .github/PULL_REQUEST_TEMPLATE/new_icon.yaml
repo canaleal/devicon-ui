@@ -1,0 +1,43 @@
+name: Icon Contribution Checklist
+description: Checklist for contributing a new icon or changes to an existing one
+title: '[ICON CONTRIBUTION]: <icon name>'
+labels: ["contribution:icon"]
+body:
+  - type: markdown
+    attributes:
+      value: "## Double check these details before you open a PR"
+      
+  - type: markdown
+    attributes:
+      value: "Tick the checkboxes to ensure you've done everything correctly"
+
+  - type: checkboxes
+    attributes:
+      label: Checklist
+      options:
+        - label: "PR does not match another non-stale PR currently opened"
+          required: true
+        - label: "PR name matches the format *new icon: <i>Icon name</i> (<i>versions separated by comma</i>)*. More details [here](https://github.com/devicons/devicon/wiki/Overview-on-Submitting-Icons)"
+          required: true
+        - label: "PR's base is the `develop` branch."
+          required: true
+        - label: "Your icons are inside a folder as seen [here](https://github.com/devicons/devicon/wiki/Organizing-SVGs)"
+          required: true
+        - label: "SVG matches the standards laid out [here](https://github.com/devicons/devicon/wiki/SVG-Standards)"
+          required: true
+        - label: "A new object is added in the `devicon.json` file at the correct alphabetic position as seen [here](https://github.com/devicons/devicon/wiki/Updating-%60devicon.json%60)"
+          required: true
+
+  - type: markdown
+    attributes:
+      value: "Refer to the [contributing](https://github.com/devicons/devicon/blob/develop/CONTRIBUTING.md#contributing-to-devicon) guidelines for more details."
+
+  - type: textarea
+    id: linkproof
+    attributes:
+      label: "Link to prove your SVG is correct and up-to-date"
+      description: "Link to an official page/wiki goes here. Anything that proves your SVGs are the correct ones."
+      placeholder: "https://..."
+    validations:
+      required: true
+
