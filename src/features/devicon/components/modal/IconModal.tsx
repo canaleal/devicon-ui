@@ -7,6 +7,8 @@ import IconImage from './IconImage';
 import IconCode from './IconCode';
 import { createDeviconIconUrl } from '../../helpers/iconUrl';
 import { iconSizeOptions } from '../../config';
+import AliasNameTable from './AliasNameTable';
+import Tooltip from '../../../../components/ToolTip';
 
 interface IconModalProps {
     icon: IIcon;
@@ -33,7 +35,6 @@ const IconModal = ({ icon, deviconBranch, handleClose }: IconModalProps) => {
     }
 
 
-
     const handleCopyClick = (text: string) => {
         navigator.clipboard.writeText(text);
     }
@@ -50,10 +51,13 @@ const IconModal = ({ icon, deviconBranch, handleClose }: IconModalProps) => {
                 </button>
 
                 <div className="flex flex-row dark:text-white">
-                    <button onClick={() => { handleCopyClick(icon.name) }} title='Copy Name' className='p-2 hover:text-green-600 flex'>
-                        <p className="font-bold text-3xl">{icon.name}</p>
-                        <i className="fa-solid fa-copy text-xl ml-2 my-auto"></i>
-                    </button>
+
+                    <Tooltip content='Copy Icon' position='bottom' flashMessage="Copied!">
+                        <button onClick={() => { handleCopyClick(icon.name) }}  className='p-2 hover:text-green-600 flex'>
+                            <p className="font-bold text-3xl">{icon.name}</p>
+                            <i className="fa-solid fa-copy text-xl ml-2 my-auto"></i>
+                        </button>
+                    </Tooltip>
 
                 </div>
 
@@ -61,21 +65,25 @@ const IconModal = ({ icon, deviconBranch, handleClose }: IconModalProps) => {
 
                     <IconImage iconUrl={iconUrl} iconName={icon.name} iconSize={selectedIconSize} />
 
-                    <div className="flex-1 flex flex-col">
-                        {icon.tags.length > 0 && (
+                    <div className="flex-1 flex flex-col gap-6">
+                        {icon.tags && icon.tags.length > 0 && (
                             <TagsBar tags={icon.tags} handleCopyClick={handleCopyClick} />
                         )}
-                        <select onChange={handleVersionChange} className="mt-6 bg-white dark:bg-zinc-900 dark:text-white dark:border-zinc-600 border rounded-lg px-4 py-4">
+                        <select onChange={handleVersionChange} className="bg-white dark:bg-zinc-900 dark:text-white dark:border-zinc-600 border rounded-lg px-4 py-4">
                             {icon.versions.svg.map((version, index) => (
                                 <option key={index} value={version}>{version}</option>
                             ))}
                         </select>
 
-                        <select value={selectedIconSize.name} onChange={handleSizeChange} className="mt-6 bg-white dark:bg-zinc-900 dark:text-white dark:border-zinc-600 border rounded-lg px-4 py-4">
+                        <select value={selectedIconSize.name} onChange={handleSizeChange} className=" bg-white dark:bg-zinc-900 dark:text-white dark:border-zinc-600 border rounded-lg px-4 py-4">
                             {iconSizeOptions.map((size, index) => (
                                 <option key={index} value={size.name}>{size.name} ({size.height} x {size.width})</option>
                             ))}
                         </select>
+
+                        {icon.aliases && icon.aliases.length > 0 && (
+                            <AliasNameTable aliases={icon.aliases} />
+                        )}
 
                     </div>
                 </div>
@@ -83,10 +91,10 @@ const IconModal = ({ icon, deviconBranch, handleClose }: IconModalProps) => {
                 <IconCode icon={icon} iconSize={selectedIconSize} iconUrl={iconUrl} deviconBranch={deviconBranch} selectedVersion={selectedVersion} handleCopyClick={handleCopyClick} />
 
                 <div className='flex flex-row justify-between mt-4'>
-                    {icon.altnames && (
+                    {icon.altnames && icon.altnames.length > 0 && (
                         <AltNameBar altnames={icon.altnames} />
                     )}
-                    <p className='dark:text-white'>{DEVICON_VERSION_RELEASE}</p>
+                    <p className='dark:text-white'>{deviconBranch === 'master' ? DEVICON_VERSION_RELEASE : 'Development Branch'}</p>
                 </div>
             </div>
         </section>
