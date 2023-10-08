@@ -21,5 +21,3 @@ Please describe the tests that you ran to verify your changes.
 - [ ] I have made corresponding changes to the documentation if required
 - [ ] I have added tests that prove my fix is effective or that my feature works (Optional)
 
-# Need a Template?
-New Icon: Add `?quick_pull=1&template=new_icon.md` to the end of the current URL. 
