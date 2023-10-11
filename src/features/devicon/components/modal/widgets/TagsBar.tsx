@@ -1,15 +1,17 @@
-import Tooltip from "../../../../components/ToolTip";
+import Tooltip from "../../../../../components/ToolTip";
 
-interface AltNameBarProps {
+interface TagBarProps {
     tags: string[];
     handleCopyClick: (text: string) => void;
 }
 
-const TagsBar = ({ tags, handleCopyClick }: AltNameBarProps) => {
+const TagsBar = ({ tags, handleCopyClick }: TagBarProps) => {
+
+    if (!tags.length) return <></>
     return (
         <div className='flex flex-row dark:text-white'>
             <Tooltip content='Copy Categories' position='bottom' flashMessage="Copied!">
-                <button onClick={() => { handleCopyClick(tags.toString()) }} title='Copy Categories' className='p-2 hover:text-green-600 flex'>
+                <button onClick={() => { handleCopyClick(tags.toString()) }}  className='p-2 hover:text-green-600 flex'>
                     <i className="fa-solid fa-folder"></i>
                 </button>
             </Tooltip>
@@ -21,6 +23,5 @@ const TagsBar = ({ tags, handleCopyClick }: AltNameBarProps) => {
         </div>
     )
 }
-
 
 export default TagsBar

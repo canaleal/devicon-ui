@@ -4,6 +4,8 @@ interface AltNameBarProps {
 }
 
 const AltNameBar = ({ altnames }: AltNameBarProps) => {
+    
+    if (!altnames.length) return <></>
     return (
         <div className="flex flex-row dark:text-white">
             <span className="my-auto">Alternate Names:</span>

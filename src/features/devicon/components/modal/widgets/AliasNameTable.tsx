@@ -7,6 +7,7 @@ interface AliasNameBarProps {
 }
 
 const AliasNameTable = ({ aliases }: AliasNameBarProps) => {
+    if (!aliases.length) return <></>
     return (
         <div className="px-4 py-2 flex rounded-lg border-2 overflow-hidden w-full dark:text-white dark:border-zinc-600">
             <table className="table-auto w-full" >

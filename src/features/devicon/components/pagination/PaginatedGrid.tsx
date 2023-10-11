@@ -11,13 +11,17 @@ interface PaginatedGridProps {
 }
 
 const PaginatedGrid: React.FC<PaginatedGridProps> = ({ icons, onSelect, deviconBranch }) => {
+  
   const [paginatedIcons, setPaginatedIcons] = useState<IIcon[]>([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const [iconsPerPage, setIconsPerPage] = useState<number>(48);
+
+  const iconPerPageOptions = [48, 72, 96];
+  const [iconsPerPage, setIconsPerPage] = useState<number>(iconPerPageOptions[0]);
   const totalPages = Math.ceil(icons.length / iconsPerPage);
 
-  const handleIconsPerPageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setIconsPerPage(parseInt(e.target.value));
+  const handleIconsPerPageChange = (elementsPerPage: number) => {
+    if(!elementsPerPage) return;
+    setIconsPerPage(elementsPerPage);
     setCurrentPage(1);
   };
 
@@ -58,7 +62,7 @@ const PaginatedGrid: React.FC<PaginatedGridProps> = ({ icons, onSelect, deviconB
       )}
 
       <div className="flex flex-row justify-between mt-6 ">
-        <PaginationSelection iconsPerPage={iconsPerPage} currentPage={currentPage} totalIcons={icons.length} handleIconsPerPageChange={handleIconsPerPageChange} />
+        <PaginationSelection elementsPerPage={iconsPerPage} currentPage={currentPage} totalIcons={icons.length} elementsPerPageOptions={iconPerPageOptions} handlePerPageChange={handleIconsPerPageChange} />
         <PaginationButtons currentPage={currentPage} setCurrentPage={setCurrentPage} totalPages={totalPages} />
       </div>
     </div>
