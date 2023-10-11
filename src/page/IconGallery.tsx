@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react"
 
-import FilterList from "./components/FilterList"
-import SearchBar from "../../components/SearchBar"
-import { IIconFilter, IIcon, DeviconBranch, IconVersion } from "./types"
-import { filterIconsByName, filterIconsByTag, filterIconsByVersion, populateIconFilters, updateFilters } from "./helpers/iconFilters"
-import IconModal from "./components/modal/IconModal"
-import { createDeviconJsonUrl } from "./helpers/iconUrl"
-import PaginatedGrid from "./components/pagination/PaginatedGrid"
-import { iconVersionMap, initialIconVersionFilters } from "./config"
-import CdnBlock from "./components/CdnBlock"
+import FilterList from "../features/filters/FilterList"
+import SearchBar from "../components/SearchBar"
+import { IIcon, DeviconBranch, IconVersion } from "../types"
+import { filterIconsByName, filterIconsByTag, filterIconsByVersion, populateIconFilters, updateFilters } from "../features/filters/helpers/iconFilters"
+import IconModal from "../features/modal/IconModal"
+import { createDeviconJsonUrl } from "../helpers/iconUrl"
+import PaginatedGrid from "../features/gallery/PaginatedGrid"
+import { iconVersionMap } from "../config"
+import CdnBlock from "../components/cdnBlock/CdnBlock"
+import { IIconFilter } from "../features/filters/types/filterTypes"
 
 
 const IconGallery = () => {
@@ -17,7 +18,7 @@ const IconGallery = () => {
     const [icons, setIcons] = useState<IIcon[]>([])
     const [selectedIcon, setSelectedIcon] = useState<IIcon | null>(null)
     const [filteredIcons, setFilteredIcons] = useState<IIcon[]>([])
-    const [versionFilters, setVersionFilters] = useState<IIconFilter[]>(initialIconVersionFilters)
+    const [versionFilters, setVersionFilters] = useState<IIconFilter[]>([])
     const [tagFilters, setTagFilters] = useState<IIconFilter[]>([]);
     const [searchTerm, setSearchTerm] = useState("");
     const [deviconBranch, setDeviconBranch] = useState<DeviconBranch>("master");

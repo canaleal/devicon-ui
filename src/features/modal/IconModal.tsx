@@ -1,15 +1,15 @@
 import { useState } from 'react';
 import { DEVICON_VERSION_RELEASE } from '../../constants';
-import { DeviconBranch, IIcon, IIconSize, IconVersion } from '../../types';
+import { DeviconBranch, IIcon, IconVersion } from '../../types';
 import AltNameBar from './widgets/AltNameBar';
 import TagsBar from './widgets/TagsBar';
 import IconImage from './widgets/IconImage';
 import IconCode from './widgets/IconCode';
 import { createDeviconIconUrl } from '../../helpers/iconUrl';
-import { iconSizeOptions } from '../../config';
 import AliasNameTable from './widgets/AliasNameTable';
-import Tooltip from '../../../../components/ToolTip';
-import Modal from '../../../../components/Modal';
+import Tooltip from '../../layout/ToolTip';
+import Modal from '../../layout/Modal';
+import { IIconSize, iconSizeOptions } from './types/modalTypes';
 
 interface IconModalProps {
     icon: IIcon;

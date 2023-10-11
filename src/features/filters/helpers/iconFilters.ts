@@ -1,4 +1,5 @@
-import { IIconFilter, IIcon, IconVersion } from "../types";
+import { IIcon, IconVersion } from "../../../types";
+import { IIconFilter } from "../types/filterTypes";
 
 export const populateIconFilters = (icons: IIcon[], filters: IIconFilter[], attribute: 'versions.svg' | 'tags') => {
     filters.forEach((filter: IIconFilter) => {

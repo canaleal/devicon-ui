@@ -1,4 +1,4 @@
-import { DeviconBranch } from '../types';
+import { DeviconBranch } from '../../types';
 
 interface CdnBlockProps {
     deviconBranch: DeviconBranch;

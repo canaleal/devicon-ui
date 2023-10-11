@@ -1,4 +1,4 @@
-import { IIconFilter } from "../types";
+import { IIconFilter } from "./types/filterTypes";
 
 interface FilterListProps {
   title: string,

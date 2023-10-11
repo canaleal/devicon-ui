@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { DeviconBranch, IIcon } from '../../types';
-import IconCard from './IconCard';
-import PaginationButtons from './PaginationButtons';
-import PaginationSelection from './PaginationSelection';
+import PaginationCard from './widgets/PaginationCard';
+import PaginationButtons from './widgets/PaginationButtons';
+import PaginationSelection from './widgets/PaginationSelection';
 
 interface PaginatedGridProps {
   icons: IIcon[];
@@ -51,7 +51,7 @@ const PaginatedGrid: React.FC<PaginatedGridProps> = ({ icons, onSelect, deviconB
       {paginatedIcons.length ? (
         <div className="grid xl:grid-cols-8 gap-4 mt-6">
           {paginatedIcons.map((icon) => (
-            <IconCard key={icon.name} icon={icon} onSelect={onSelect} deviconBranch={deviconBranch} />
+            <PaginationCard key={icon.name} icon={icon} onSelect={onSelect} deviconBranch={deviconBranch} />
           ))}
         </div>
       ) : (
