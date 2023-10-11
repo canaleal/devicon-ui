@@ -1,4 +1,5 @@
-import { CodeBlockTypes, IIcon, IIconSize, IconVersion } from "../types";
+import { IIcon, IconVersion } from "../../../types";
+import { IIconSize, CodeBlockTypes } from "../types/modalTypes";
 
 const fetchIconSVG = async (iconUrl: string) => {
     const response = await fetch(iconUrl);

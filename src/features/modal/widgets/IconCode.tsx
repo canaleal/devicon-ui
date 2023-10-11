@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react"
-import { CodeBlockTypes, DeviconBranch, IIcon, IIconSize, IconVersion } from "../../../types"
-import { createIconCodeBlockText } from "../../../helpers/iconCodeBlock"
-import { codeBlockTypeList } from "../../../config";
-import Tooltip from "../../../../../components/ToolTip";
+import { DeviconBranch, IIcon, IconVersion } from "../../../types"
+import { createIconCodeBlockText } from "../helpers/iconCodeBlock"
+import Tooltip from "../../../layout/ToolTip";
+import { CodeBlockTypes, IIconSize, codeBlockTypeList } from "../types/modalTypes";
 
 
 interface IconCodeProps {

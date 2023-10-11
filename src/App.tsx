@@ -1,7 +1,7 @@
 
 
-import IconGallery from './features/devicon/IconGallery'
-import { Footer } from './components/Footer'
+import IconGallery from './page/IconGallery'
+import { Footer } from './layout/Footer'
 import DarkLightToggle from './components/DarkModeToggle'
 import ScrollButton from './components/ScrollButton'
 
