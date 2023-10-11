@@ -12,7 +12,7 @@ import CdnBlock from "../components/cdnBlock/CdnBlock"
 import { IIconFilter } from "../features/filters/types/filterTypes"
 
 
-const IconGallery = () => {
+const IconPage = () => {
 
 
     const [icons, setIcons] = useState<IIcon[]>([])
@@ -104,4 +104,4 @@ const IconGallery = () => {
     )
 }
 
-export default IconGallery
+export default IconPage

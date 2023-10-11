@@ -1,6 +1,6 @@
 
 
-import IconGallery from './page/IconGallery'
+import IconPage from './page/IconPage'
 import { Footer } from './layout/Footer'
 import DarkLightToggle from './components/DarkModeToggle'
 import ScrollButton from './components/ScrollButton'
@@ -11,7 +11,7 @@ function App() {
     <>
       <DarkLightToggle />
       <ScrollButton />
-      <IconGallery />
+      <IconPage />
       <Footer />
     </>
   )
