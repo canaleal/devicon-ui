@@ -54,7 +54,7 @@ const IconModal = ({ icon, deviconBranch, handleClose }: IconModalProps) => {
 
             </div>
 
-            <div className="flex flex-row my-4 gap-8">
+            <div className="flex flex-col 2xl:flex-row my-4 gap-8">
 
                 <IconImage iconUrl={iconUrl} iconName={icon.name} iconSize={selectedIconSize} />
 
@@ -62,17 +62,21 @@ const IconModal = ({ icon, deviconBranch, handleClose }: IconModalProps) => {
 
                     <TagsBar tags={icon.tags ?? []} handleCopyClick={handleCopyClick} />
 
-                    <select onChange={handleVersionChange} className="bg-white dark:bg-zinc-900 dark:text-white dark:border-zinc-600 border rounded-lg px-4 py-4">
-                        {icon.versions.svg.map((version, index) => (
-                            <option key={index} value={version}>{version}</option>
-                        ))}
-                    </select>
 
-                    <select value={selectedIconSize.name} onChange={handleSizeChange} className=" bg-white dark:bg-zinc-900 dark:text-white dark:border-zinc-600 border rounded-lg px-4 py-4">
-                        {iconSizeOptions.map((size, index) => (
-                            <option key={index} value={size.name}>{size.name} ({size.height} x {size.width})</option>
-                        ))}
-                    </select>
+                    <div className='flex flex-row gap-6 w-full'>
+                        <select onChange={handleVersionChange} className="bg-white dark:bg-zinc-900 dark:text-white dark:border-zinc-600 border rounded-lg px-4 py-4 w-full">
+                            {icon.versions.svg.map((version, index) => (
+                                <option key={index} value={version}>{version}</option>
+                            ))}
+                        </select>
+
+                        <select value={selectedIconSize.name} onChange={handleSizeChange} className=" bg-white dark:bg-zinc-900 dark:text-white dark:border-zinc-600 border rounded-lg px-4 py-4 w-full">
+                            {iconSizeOptions.map((size, index) => (
+                                <option key={index} value={size.name}>{size.name} ({size.height} x {size.width})</option>
+                            ))}
+                        </select>
+                    </div>
+
 
                     <AliasNameTable aliases={icon.aliases ?? []} />
                 </div>
@@ -83,7 +87,7 @@ const IconModal = ({ icon, deviconBranch, handleClose }: IconModalProps) => {
             <div className='flex flex-row justify-between mt-4'>
                 <AltNameBar altnames={icon.altnames ?? []} />
 
-               
+
                 <p className='dark:text-white'>{deviconBranch === 'master' ? DEVICON_VERSION_RELEASE : 'Development Branch'}</p>
             </div>
         </Modal>

@@ -46,7 +46,7 @@ const IconPage = () => {
         setSearchTerm(search);
     }
 
- 
+
     const handleVersionFilter = (category: IIconFilter) => {
         setVersionFilters(updateFilters(versionFilters, category));
     }
@@ -87,15 +87,15 @@ const IconPage = () => {
 
             </section>
 
-            <section className="bg-smoke dark:bg-zinc-800 flex flex-row px-32 py-16  gap-8 ">
-                <div className="flex flex-col w-1/6 gap-8">
+            <section className="bg-smoke dark:bg-zinc-800 flex flex-col 2xl:flex-row px-16 2xl:px-32 py-16  gap-8 ">
+                <div className="flex flex-col w-6/6 2xl:w-1/6 gap-8">
                     <FilterList title="Icon Style" filters={versionFilters} handleFilter={handleVersionFilter} iconMap={iconVersionMap} />
                     <FilterList title="Icon Tags" filters={tagFilters} handleFilter={handleTagFilter} iconMap={iconVersionMap} limit={10} />
-                  
+
                 </div>
 
-                <div className="flex flex-col w-5/6">
-                <CdnBlock deviconBranch={deviconBranch} />
+                <div className="flex flex-col w-6/6 2xl:w-5/6">
+                    <CdnBlock deviconBranch={deviconBranch} />
                     <PaginatedGrid icons={filteredIcons} deviconBranch={deviconBranch} onSelect={setSelectedIcon} />
                 </div>
             </section>

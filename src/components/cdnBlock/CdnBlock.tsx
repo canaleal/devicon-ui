@@ -17,8 +17,8 @@ const CdnBlock = ({ deviconBranch }: CdnBlockProps) => {
             {deviconBranch === "master" ?
                 <div className="bg-zinc-900 text-white shadow-sm  flex flex-row  rounded-lg mb-6">
                     <div className="flex flex-col px-4 py-4 mr-auto">
-                        <p className='mt-auto text-subtitle text-green-600'>Place this in your header (once per HTML file) to use {"<i> tag Icons"}</p>
-                        <p className='whitespace-nowrap '>{cdnLink}</p>
+                        <p className='mt-auto mb-2 text-subtitle text-green-600'>Place this in your header (once per HTML file) to use {"<i> tag Icons"}</p>
+                        <p >{cdnLink}</p>
                     </div>
 
                     <Tooltip content="Copy CDN" position='bottom' flashMessage="Copied!" >

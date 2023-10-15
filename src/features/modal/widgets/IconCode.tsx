@@ -38,7 +38,7 @@ const IconCode = ({ icon, iconSize, iconUrl, deviconBranch, selectedVersion, han
             <div className='flex flex-row bg-zinc-900 '>
                 <div className="flex mr-auto">
                     {codeBlockOptions.map((codeType) => (
-                        <button onClick={() => { handleClick(codeType) }} className={`px-4 py-2  ${codeType === selectedOption ? "bg-green-600" : "bg-zinc-900"} hover:bg-green-700 text-white `}>
+                        <button key={codeType} onClick={() => { handleClick(codeType) }} className={`px-4 py-2  ${codeType === selectedOption ? "bg-green-600" : "bg-zinc-900"} hover:bg-green-700 text-white `}>
                             <span className='font-bold text-sm'>{codeType}</span>
                         </button>
                     ))}
