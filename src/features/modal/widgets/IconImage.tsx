@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import Tooltip from "../../../layout/ToolTip";
+import Tooltip from "../../../components/Layout/ToolTip";
 import { IIconSize } from "../types/modalTypes";
 
 

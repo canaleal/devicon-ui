@@ -1,10 +1,15 @@
+const storageKey = 'dark-mode';
 
-export const getIsDarkModeFromLocalStorage = () => {
-    const isDarkMode = localStorage.getItem('dark-mode');
-    return isDarkMode ? true : false;
-}
+export const darkModeStorage = {
+  getIsDark: () => {
+    return JSON.parse(localStorage.getItem(storageKey) || 'false');
+  },
+  setIsDark: (isDark: boolean) => {
+    localStorage.setItem(storageKey, JSON.stringify(isDark));
+  },
+  clearIsDark: () => {
+    localStorage.removeItem(storageKey);
+  },
+};
 
-export const setIsDarkModeToLocalStorage = (isDarkMode: boolean) => {
-    localStorage.setItem('dark-mode', String(isDarkMode));
-}
-
+export default darkModeStorage;

@@ -1,9 +1,9 @@
 
 
 import IconPage from './page/IconPage'
-import { Footer } from './layout/Footer'
-import DarkLightToggle from './components/DarkModeToggle'
-import ScrollButton from './components/ScrollButton'
+import { Footer } from './components/Layout/Footer'
+import DarkLightToggle from './components/Elements/DarkModeToggle'
+import ScrollButton from './components/Elements/ScrollButton'
 
 function App() {
 

@@ -4,12 +4,12 @@ import React from 'react'
 interface PaginationSelectionProps {
   elementsPerPage: number;
   currentPage: number;
-  totalIcons: number;
+  totalElements: number;
   elementsPerPageOptions: number[];
   handlePerPageChange: (elementsPerPage: number) => void;
 }
 
-const PaginationSelection = ({ elementsPerPage, currentPage, totalIcons, elementsPerPageOptions, handlePerPageChange }: PaginationSelectionProps) => {
+const PaginationSelection = ({ elementsPerPage, currentPage, totalElements, elementsPerPageOptions, handlePerPageChange }: PaginationSelectionProps) => {
 
   const handlePageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     handlePerPageChange(parseInt(e.target.value));
@@ -24,7 +24,7 @@ const PaginationSelection = ({ elementsPerPage, currentPage, totalIcons, element
         ))}
       </select>
       <p className="ml-4 my-auto">
-        {(currentPage - 1) * elementsPerPage + 1}-{Math.min(currentPage * elementsPerPage, totalIcons)} of {totalIcons} icons
+        {(currentPage - 1) * elementsPerPage + 1}-{Math.min(currentPage * elementsPerPage, totalElements)} of {totalElements} icons
       </p>
     </div>
   )

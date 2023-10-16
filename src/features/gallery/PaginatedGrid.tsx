@@ -10,24 +10,24 @@ interface PaginatedGridProps {
   onSelect: (icon: IIcon) => void;
 }
 
-const PaginatedGrid: React.FC<PaginatedGridProps> = ({ icons, onSelect, deviconBranch }) => {
+const PaginatedGrid = ({ icons, onSelect, deviconBranch }: PaginatedGridProps) => {
   
   const [paginatedIcons, setPaginatedIcons] = useState<IIcon[]>([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
 
-  const iconPerPageOptions = [48, 72, 96];
-  const [iconsPerPage, setIconsPerPage] = useState<number>(iconPerPageOptions[0]);
-  const totalPages = Math.ceil(icons.length / iconsPerPage);
+  const elementsPerPageOptions = [48, 72, 96];
+  const [elementsPerPage, setElementsPerPage] = useState<number>(elementsPerPageOptions[0]);
+  const totalPages = Math.ceil(icons.length / elementsPerPage);
 
   const handleIconsPerPageChange = (elementsPerPage: number) => {
     if(!elementsPerPage) return;
-    setIconsPerPage(elementsPerPage);
+    setElementsPerPage(elementsPerPage);
     setCurrentPage(1);
   };
 
   const paginateIcons = () => {
-    const startIndex = (currentPage - 1) * iconsPerPage;
-    const endIndex = startIndex + iconsPerPage;
+    const startIndex = (currentPage - 1) * elementsPerPage;
+    const endIndex = startIndex + elementsPerPage;
     setPaginatedIcons(icons.slice(startIndex, endIndex));
   }
 
@@ -38,7 +38,7 @@ const PaginatedGrid: React.FC<PaginatedGridProps> = ({ icons, onSelect, deviconB
 
   useEffect(() => {
     paginateIcons();
-  }, [currentPage, iconsPerPage]);
+  }, [currentPage, elementsPerPage]);
 
   return (
     <div className="flex flex-col h-full">
@@ -62,7 +62,7 @@ const PaginatedGrid: React.FC<PaginatedGridProps> = ({ icons, onSelect, deviconB
       )}
 
       <div className="flex flex-row justify-between mt-6 ">
-        <PaginationSelection elementsPerPage={iconsPerPage} currentPage={currentPage} totalIcons={icons.length} elementsPerPageOptions={iconPerPageOptions} handlePerPageChange={handleIconsPerPageChange} />
+        <PaginationSelection elementsPerPage={elementsPerPage} currentPage={currentPage} totalElements={icons.length} elementsPerPageOptions={elementsPerPageOptions} handlePerPageChange={handleIconsPerPageChange} />
         <PaginationButtons currentPage={currentPage} setCurrentPage={setCurrentPage} totalPages={totalPages} />
       </div>
     </div>

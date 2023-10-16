@@ -1,11 +1,12 @@
-// SearchBar.tsx
+
 import React, { useState } from 'react';
 
 interface SearchBarProps {
+    placeholder?: string;
     onSearch: (query: string) => void;
 }
 
-const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
+const SearchBar = ({ placeholder = "Search", onSearch }: SearchBarProps) => {
     const [searchTerm, setSearchTerm] = useState<string>("");
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -20,7 +21,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
                 type="text"
                 value={searchTerm}
                 onChange={handleInputChange}
-                placeholder="Search Icons..."
+                placeholder={placeholder}
                 className="flex-grow px-3 py-2 border rounded-lg bg-white dark:bg-zinc-800 dark:border-zinc-600"
             />
         </div>
