@@ -13,6 +13,7 @@ export const Footer = () => {
                 <a href="https://colordesigner.io/tools" target="_blank" className="mt-2 hover:text-green-500 text-green-400">Color Designer</a>
                 <a href="https://react-svgr.com/playground/" target="_blank" className="hover:text-green-500 text-green-400">SVG to JSX</a>
                 <a href="https://www.iloveimg.com/resize-image/resize-svg" target="_blank" className="hover:text-green-500 text-green-400">SVG Resizer</a>
+                <a href="https://www.svgviewer.dev/" target="_blank" className="hover:text-green-500 text-green-400">SVG Viewer</a>
             </div>
 
             <div className='flex-1 flex flex-col'>

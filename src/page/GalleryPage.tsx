@@ -6,14 +6,15 @@ import { IIcon, DeviconBranch, IconVersion } from "../types"
 import { filterIconsByName, filterIconsByTag, filterIconsByVersion, populateIconFilters, updateFilters } from "../features/filters/helpers/iconFilters"
 import IconModal from "../features/modal/IconModal"
 import { createDeviconJsonUrl } from "../helpers/iconUrl"
-import PaginatedGrid from "../features/gallery/PaginatedGrid"
+import PaginatedGrid from "../features/pagination/PaginatedGrid"
 import { iconVersionMap } from "../config"
 
 import { IIconFilter } from "../features/filters/types/filterTypes"
 import Dropdown from "../components/Elements/Dropdown"
+import CodeBlock from "../components/Elements/CodeBlock"
 
 
-const IconPage = () => {
+const GalleryPage = () => {
 
 
     const [icons, setIcons] = useState<IIcon[]>([])
@@ -80,7 +81,6 @@ const IconPage = () => {
 
             <section className="bg-white dark:bg-zinc-900 dark:text-white  px-32 py-8 flex flex-row gap-4">
                 <p className="text-title my-auto text-green-600 mr-auto">Devicon</p>
-
                 <Dropdown selectedOption={deviconBranch} options={["master", "develop"]} onChange={(value) => { setDeviconBranch(value as DeviconBranch) }} />
                 <SearchBar onSearch={handleSearch} />
             </section>
@@ -90,7 +90,8 @@ const IconPage = () => {
                     <FilterList title="Icon Style" filters={versionFilters} handleFilter={handleVersionFilter} iconMap={iconVersionMap} />
                     <FilterList title="Icon Tags" filters={tagFilters} handleFilter={handleTagFilter} iconMap={iconVersionMap} limit={10} />
                 </div>
-                <div className="flex flex-col w-6/6 2xl:w-5/6">
+                <div className="flex flex-col gap-6 w-6/6 2xl:w-5/6">
+                    {deviconBranch === 'master' && <CodeBlock copyCode={true} title="Place this in your header (once per HTML file)" code='<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">' /> }
                     <PaginatedGrid icons={filteredIcons} deviconBranch={deviconBranch} onSelect={setSelectedIcon} />
                 </div>
             </section>
@@ -99,4 +100,4 @@ const IconPage = () => {
     )
 }
 
-export default IconPage
+export default GalleryPage

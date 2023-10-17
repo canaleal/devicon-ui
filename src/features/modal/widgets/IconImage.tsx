@@ -2,6 +2,7 @@ import { useState } from "react";
 
 import Tooltip from "../../../components/Layout/ToolTip";
 import { IIconSize } from "../types/modalTypes";
+import darkModeStorage from "../../../helpers/darkMode";
 
 
 interface IconContainerProps {
@@ -12,18 +13,18 @@ interface IconContainerProps {
 
 const IconImage = ({ iconName, iconSize, iconUrl }: IconContainerProps) => {
 
-    const [isLight, setIsLight] = useState<boolean>(true);
+    const [isDark, setIsDark] = useState<boolean>(darkModeStorage.getIsDark());
     const toggleBackground = () => {
-        setIsLight(!isLight);
+        setIsDark(!isDark);
     }
 
     return (
-        <div className={`flex-1 flex flex-col border-2 rounded-lg p-4  h-[30rem] ${isLight ? "bg-white " : "bg-zinc-900 text-white dark:border-zinc-600 "}`}>
+        <div className={`flex-1 flex flex-col border-2 rounded-lg p-4  h-[30rem] ${isDark ? "bg-zinc-900 text-white dark:border-zinc-600  " : "bg-white"}`}>
             <img className='m-auto' height={iconSize.height} width={iconSize.width} src={iconUrl} alt={iconName} />
             <div className="flex flex-row gap-4">
                 <Tooltip content='Toggle Background' position='top' >
                     <button onClick={toggleBackground} className='p-2 hover:text-yellow-600 flex text-2xl'>
-                        {isLight ? (<i className="fa-solid fa-moon"></i>) : (<i className="fa-solid fa-sun"></i>)}
+                        {isDark ? <i className="fa-solid fa-sun"></i> : <i className="fa-solid fa-moon"></i>}
                     </button>
                 </Tooltip>
             </div>

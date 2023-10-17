@@ -51,7 +51,7 @@ const IconCode = ({ icon, iconSize, iconUrl, deviconBranch, selectedVersion, han
                     </button>
                 </Tooltip>
             </div>
-            <div className='flex flex-row bg-zinc-800  px-4 py-8 text-white '>
+            <div className='flex flex-row bg-zinc-800  px-4 py-8 text-white overflow-auto'>
                 <p className="whitespace-nowrap">{codeText}</p>
             </div>
         </div>

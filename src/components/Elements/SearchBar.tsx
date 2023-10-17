@@ -22,7 +22,7 @@ const SearchBar = ({ placeholder = "Search", onSearch }: SearchBarProps) => {
                 value={searchTerm}
                 onChange={handleInputChange}
                 placeholder={placeholder}
-                className="flex-grow px-3 py-2 border rounded-lg bg-white dark:bg-zinc-800 dark:border-zinc-600"
+                className="flex-grow px-4 border rounded-lg bg-white dark:bg-zinc-800 dark:border-zinc-600"
             />
         </div>
     );

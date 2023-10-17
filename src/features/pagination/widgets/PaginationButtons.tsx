@@ -37,7 +37,6 @@ const PaginationButtons = ({ currentPage, setCurrentPage, totalPages }: Paginati
     }, [currentPage, totalPages]);
     
 
-
     return (
         <div className="flex flex-row dark:text-white">
 
@@ -53,7 +52,7 @@ const PaginationButtons = ({ currentPage, setCurrentPage, totalPages }: Paginati
                 const isNumber = typeof page === "number";
                 const key = isNumber ? page : `${pagesToRender[idx - 1]}-${pagesToRender[idx + 1]}`;
                 return isNumber ? (
-                    <button key={key} className={`${page === currentPage ? 'bg-green-600 text-white' : 'hover:bg-gray-200 hover:shadow-sm dark:hover:bg-zinc-900'} px-4 py-2 rounded-md text-sm`} onClick={() => setCurrentPage(page)}>
+                    <button key={key} className={`px-4 py-2 rounded-md text-sm ${page === currentPage ? 'bg-green-600 text-white' : 'hover:bg-gray-200 hover:shadow-sm dark:hover:bg-zinc-900'}`} onClick={() => setCurrentPage(page)}>
                         {page}
                     </button>
                 ) : (
@@ -63,7 +62,7 @@ const PaginationButtons = ({ currentPage, setCurrentPage, totalPages }: Paginati
 
 
             <button
-                className={`px-4 py-2 rounded-md text-sm ${currentPage === totalPages ? 'text-gray-400': 'hover:bg-gray-200 hover:shadow-sm'}`}
+                className={`px-4 py-2 rounded-md text-sm ${currentPage === totalPages ? 'text-gray-400': 'hover:bg-gray-200 hover:shadow-sm dark:hover:bg-zinc-900'}`}
                 disabled={currentPage === totalPages}
                 onClick={() => setCurrentPage(currentPage+1)}
             >

@@ -1,4 +1,4 @@
-export type CodeBlockTypes = "Link" | "<img> Tag" | "SVG" | "<i> Tag";
+export type CodeBlockTypes = "Link" | "<img> Tag" | "SVG" | "<i> Tag" | 'React';
 export type IconSize = 'X-Small' | 'Small' | 'Medium' | 'Large' | 'X-Large'
 export interface IIconSize {
     name: IconSize;

@@ -35,10 +35,10 @@ const IconModal = ({ icon, deviconBranch, handleClose }: IconModalProps) => {
     return (
         <Modal handleClose={handleClose}>
 
-            <div className="flex flex-row dark:text-white">
+            <div className="flex flex-row ">
 
                 <Tooltip content='Copy Icon' position='bottom' flashMessage="Copied!">
-                    <button onClick={() => { handleCopyClick(icon.name) }} className='p-2 hover:text-green-600 flex'>
+                    <button onClick={() => { handleCopyClick(icon.name) }} className='p-2 hover:text-green-600 flex dark:text-white'>
                         <p className="font-bold text-3xl">{icon.name}</p>
                         <i className="fa-solid fa-copy text-xl ml-2 my-auto"></i>
                     </button>
