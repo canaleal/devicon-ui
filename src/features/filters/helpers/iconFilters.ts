@@ -2,39 +2,28 @@ import { IIcon, IconVersion } from "../../../types";
 import { IIconFilter } from "../types/filterTypes";
 
 export const populateIconFilters = (icons: IIcon[], filters: IIconFilter[], attribute: 'versions.svg' | 'tags') => {
-    // Create a map to store the counts of each filter
-    const filterCounts: { [key: string]: number } = {};
-
-    // Iterate over icons to count filter occurrences
-    icons.forEach((icon: IIcon) => {
-        const items: string[] = attribute === 'versions.svg' ? icon.versions.svg : icon.tags;
-        items.forEach((item: string) => {
-            filterCounts[item] = (filterCounts[item] || 0) + 1;
-        });
-    });
-
-    // Update or add filters based on the counts
     filters.forEach((filter: IIconFilter) => {
-        filter.numberOfIcons = filterCounts[filter.filterName] || 0;
+        filter.numberOfIcons = 0;
     });
 
-    // Add any new filters that don't exist in the initial list
     icons.forEach((icon: IIcon) => {
         const items: string[] = attribute === 'versions.svg' ? icon.versions.svg : icon.tags;
         items.forEach((item: string) => {
-            if (!filters.some((filter) => filter.filterName === item)) {
+            const category = filters.find(category => category.filterName === item);
+            if (category) {
+                category.numberOfIcons++;
+            } else {
                 filters.push({ filterName: item as IconVersion, numberOfIcons: 1, isSelected: false });
             }
         });
     });
 
-    // Sort filters for 'tags' attribute
     if (attribute === 'tags') {
         filters.sort((a, b) => b.numberOfIcons - a.numberOfIcons);
     }
-
     return filters;
 };
+
 
 export const filterIconsByName = (icons: IIcon[], search: string): IIcon[] => {
     return icons.filter(icon => {
