@@ -8,7 +8,7 @@ import { createDeviconIconUrl } from '../../helpers/iconUrl';
 
 import Tooltip from '../../components/Layout/ToolTip';
 import Modal from '../../components/Layout/Modal';
-import { IIconSize, iconSizeOptions } from './types/modalTypes';
+import { IIconSize, ICON_SIZE_OPTIONS, INIT_ICON_SIZE } from './types/modalTypes';
 import Dropdown from '../../components/Elements/Dropdown';
 import GenericTable from '../../components/Elements/Table';
 import TagsBar from './widgets/TagsBar';
@@ -23,10 +23,8 @@ interface IconModalProps {
 const IconModal = ({ icon, deviconBranch, handleClose }: IconModalProps) => {
 
     const [selectedVersion, setSelectedVersion] = useState<IconVersion>(icon.versions.svg[0]);
-    const [selectedIconSize, setSelectedIconSize] = useState<IIconSize>(iconSizeOptions.find((option) => option.name === 'Large')!);
-
+    const [selectedIconSize, setSelectedIconSize] = useState<IIconSize>(INIT_ICON_SIZE);
     const iconUrl = createDeviconIconUrl(icon.name, selectedVersion, deviconBranch);
-
 
     const handleCopyClick = (text: string) => {
         navigator.clipboard.writeText(text);
@@ -34,9 +32,7 @@ const IconModal = ({ icon, deviconBranch, handleClose }: IconModalProps) => {
 
     return (
         <Modal handleClose={handleClose}>
-
             <div className="flex flex-row ">
-
                 <Tooltip content='Copy Icon' position='bottom' flashMessage="Copied!">
                     <button onClick={() => { handleCopyClick(icon.name) }} className='p-2 hover:text-green-600 flex dark:text-white'>
                         <p className="font-bold text-3xl">{icon.name}</p>
@@ -49,16 +45,12 @@ const IconModal = ({ icon, deviconBranch, handleClose }: IconModalProps) => {
             <div className="flex flex-col 2xl:flex-row my-4 gap-8">
 
                 <IconImage iconUrl={iconUrl} iconName={icon.name} iconSize={selectedIconSize} />
-
+                
                 <div className="flex-1 flex flex-col gap-6">
-
                     <TagsBar tags={icon.tags ?? []} />
-
-
                     <div className='flex flex-row gap-6 w-full'>
-
                         <Dropdown classes='w-full' selectedOption={selectedVersion} options={icon.versions.svg} onChange={(value) => { setSelectedVersion(value as IconVersion) }} />
-                        <Dropdown classes='w-full' selectedOption={selectedIconSize.name} options={iconSizeOptions.map((option) => option.name)} onChange={(value) => { setSelectedIconSize(iconSizeOptions.find((option) => option.name === value)!) }} />
+                        <Dropdown classes='w-full' selectedOption={selectedIconSize.name} options={ICON_SIZE_OPTIONS.map((option) => option.name)} onChange={(value) => { setSelectedIconSize(ICON_SIZE_OPTIONS.find((option) => option.name === value)!) }} />
                     </div>
 
                     <GenericTable
@@ -67,13 +59,11 @@ const IconModal = ({ icon, deviconBranch, handleClose }: IconModalProps) => {
                         keyExtractor={(item, index) => `${item}-${index}`}
                         rowRenderer={(item) => [item.base, item.alias]}
                        
-                    />
-
-                   
+                    />  
                 </div>
             </div>
 
-            <IconCode icon={icon} iconSize={selectedIconSize} iconUrl={iconUrl} deviconBranch={deviconBranch} selectedVersion={selectedVersion} handleCopyClick={handleCopyClick} />
+            <IconCode icon={icon} iconSize={selectedIconSize} iconUrl={iconUrl} deviconBranch={deviconBranch} selectedVersion={selectedVersion} />
 
             <div className='flex flex-row justify-between mt-4'>
                 <TextBar title='Alt Names' texts={icon.altnames ?? []} />

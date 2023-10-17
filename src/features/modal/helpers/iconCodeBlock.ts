@@ -44,7 +44,7 @@ const createReactJSXIconCodeBlockText = (
         .replace(/^<svg[^>]*>/i, "")
         .replace(/<\/svg>$/i, "");
 
-    const componentName = `${icon.name}Component`;
+    const componentName = `${icon.name}${selectedVersion}Component`;
     
     const jsx = `import * as React from "react";
     const ${componentName} = (props) => (

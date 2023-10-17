@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { DeviconBranch, IIcon, IconVersion } from "../../../types"
 import { createIconCodeBlockText } from "../helpers/iconCodeBlock"
 import Tooltip from "../../../components/Layout/ToolTip";
-import { CodeBlockTypes, IIconSize, codeBlockTypeList } from "../types/modalTypes";
+import { CodeBlockTypes, IIconSize, CODE_BLOCK_TYPE_LIST } from "../types/modalTypes";
 
 
 interface IconCodeProps {
@@ -11,27 +11,28 @@ interface IconCodeProps {
     iconUrl: string,
     deviconBranch: DeviconBranch,
     selectedVersion: IconVersion
-    handleCopyClick: (text: string) => void
-
 }
 
-const IconCode = ({ icon, iconSize, iconUrl, deviconBranch, selectedVersion, handleCopyClick }: IconCodeProps) => {
-
+const IconCode = ({ icon, iconSize, iconUrl, deviconBranch, selectedVersion }: IconCodeProps) => {
+  
+    const codeBlockOptions = deviconBranch === "develop" ? CODE_BLOCK_TYPE_LIST.filter((option) => option !== "<i> Tag") : CODE_BLOCK_TYPE_LIST;
     const [selectedOption, setSelectedOption] = useState<CodeBlockTypes>("Link")
     const [codeText, setCodeText] = useState<string>("")
-    const codeBlockOptions = deviconBranch === "develop" ? codeBlockTypeList.filter((option) => option !== "<i> Tag") : codeBlockTypeList;
-
+  
     const handleClick = (codeType: CodeBlockTypes) => {
         setSelectedOption(codeType)
     }
 
     useEffect(() => {
         const createCodeText = async () => {
-            const text = await createIconCodeBlockText(icon, iconSize, iconUrl, selectedVersion, selectedOption);
-            setCodeText(text);
+            setCodeText(await createIconCodeBlockText(icon, iconSize, iconUrl, selectedVersion, selectedOption));
         }
         createCodeText()
     }, [deviconBranch, icon, iconSize, iconUrl, selectedOption, selectedVersion])
+
+    const handleCopyClick = (text: string) => {
+        navigator.clipboard.writeText(text);
+    }
 
     return (
         <div className='flex flex-col border-2 dark:border-zinc-600 rounded-lg overflow-hidden'>
