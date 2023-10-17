@@ -3,8 +3,6 @@ import { Footer } from "../components/Layout/Footer"
 import DarkLightToggle from "../components/Elements/DarkModeToggle"
 import ScrollButton from "../components/Elements/ScrollButton"
 
-
-
 const SharedLayout = () => {
     return (
         <>

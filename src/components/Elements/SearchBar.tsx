@@ -16,15 +16,15 @@ const SearchBar = ({ placeholder = "Search", onSearch }: SearchBarProps) => {
     };
 
     return (
-        <div className="flex space-x-4 w-2/6">
+        
             <input
                 type="text"
                 value={searchTerm}
                 onChange={handleInputChange}
                 placeholder={placeholder}
-                className="flex-grow px-4 border rounded-lg bg-white dark:bg-zinc-800 dark:border-zinc-600"
+                className="px-4 w-96 border rounded-lg bg-white dark:bg-zinc-800 dark:border-zinc-600"
             />
-        </div>
+        
     );
 }
 

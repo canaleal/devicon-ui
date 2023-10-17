@@ -79,7 +79,7 @@ const GalleryPage = () => {
                 <IconModal icon={selectedIcon} handleClose={() => setSelectedIcon(null)} deviconBranch={deviconBranch} />
             )}
 
-            <section className="bg-white dark:bg-zinc-900 dark:text-white  px-32 py-8 flex flex-row gap-4">
+            <section className="bg-white dark:bg-zinc-900 dark:text-white  px-32 py-8 flex flex-row gap-4 ">
                 <p className="text-title my-auto text-green-600 mr-auto">Devicon</p>
                 <Dropdown selectedOption={deviconBranch} options={["master", "develop"]} onChange={(value) => { setDeviconBranch(value as DeviconBranch) }} />
                 <SearchBar onSearch={handleSearch} />
