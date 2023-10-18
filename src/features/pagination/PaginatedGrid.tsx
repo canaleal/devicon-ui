@@ -5,7 +5,7 @@ import PaginationButtons from './widgets/PaginationButtons';
 import PaginationSelection from './widgets/PaginationSelection';
 import Table from '../../components/Elements/Table/Table';
 import { createDeviconIconUrl } from '../../helpers/iconUrl';
-import Dropdown from '../../components/Elements/Dropdown';
+import Dropdown from '../../components/Elements/Dropdown/Dropdown';
 
 type PaginationStyle = 'card' | 'table';
 
@@ -51,7 +51,7 @@ const PaginatedGrid = ({ icons, onSelect, deviconBranch }: PaginatedGridProps) =
       <div className="flex w-full  dark:text-white gap-6">
         <p className="font-bold text-2xl my-auto">{icons.length} Icons</p>
         <p className='my-auto ml-auto'>Page {currentPage} of {totalPages || 1}</p>
-        <Dropdown classes='w-32' selectedOption={paginationStyle} options={['card', 'table']} onChange={(value) => { setPaginationStyle(value as PaginationStyle) }} />
+        <Dropdown size={'lg'} selectedOption={paginationStyle} options={['card', 'table']} onChange={(value) => { setPaginationStyle(value as PaginationStyle) }} />
       </div>
 
 

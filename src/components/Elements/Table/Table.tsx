@@ -8,7 +8,7 @@ export interface TableProps<T> {
     onRowClick?: (item: T) => void;
 }
 
-function Table<T>({ data, headers, keyExtractor, rowRenderer, onRowClick }: TableProps<T>) {
+export function Table<T>({ data, headers, keyExtractor, rowRenderer, onRowClick }: TableProps<T>) {
     if (!data.length) return null;
 
     return (

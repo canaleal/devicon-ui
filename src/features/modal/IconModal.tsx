@@ -6,13 +6,13 @@ import IconImage from './widgets/IconImage';
 import IconCode from './widgets/IconCode';
 import { createDeviconIconUrl } from '../../helpers/iconUrl';
 
-import Tooltip from '../../components/Layout/ToolTip';
+import Tooltip from '../../components/Elements/Tooltip/Tooltip';
 import Modal from '../../components/Layout/Modal';
 import { IIconSize, ICON_SIZE_OPTIONS, INIT_ICON_SIZE } from './types/modalTypes';
-import Dropdown from '../../components/Elements/Dropdown';
+import Dropdown from '../../components/Elements/Dropdown/Dropdown';
 import Table from '../../components/Elements/Table/Table';
 import TagsBar from './widgets/TagsBar';
-import TextBar from '../../components/Elements/TextBar';
+import TextBar from '../../components/Elements/TextBar/TextBar';
 
 interface IconModalProps {
     icon: IIcon;
@@ -49,8 +49,8 @@ const IconModal = ({ icon, deviconBranch, handleClose }: IconModalProps) => {
                 <div className="flex-1 flex flex-col gap-6">
                     <TagsBar tags={icon.tags ?? []} />
                     <div className='flex flex-row gap-6 w-full'>
-                        <Dropdown classes='w-full' selectedOption={selectedVersion} options={icon.versions.svg} onChange={(value) => { setSelectedVersion(value as IconVersion) }} />
-                        <Dropdown classes='w-full' selectedOption={selectedIconSize.name} options={ICON_SIZE_OPTIONS.map((option) => option.name)} onChange={(value) => { setSelectedIconSize(ICON_SIZE_OPTIONS.find((option) => option.name === value)!) }} />
+                        <Dropdown size='full' selectedOption={selectedVersion} options={icon.versions.svg} onChange={(value) => { setSelectedVersion(value as IconVersion) }} />
+                        <Dropdown size='full' selectedOption={selectedIconSize.name} options={ICON_SIZE_OPTIONS.map((option) => option.name)} onChange={(value) => { setSelectedIconSize(ICON_SIZE_OPTIONS.find((option) => option.name === value)!) }} />
                     </div>
 
                     <Table

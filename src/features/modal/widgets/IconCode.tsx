@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { DeviconBranch, IIcon, IconVersion } from "../../../types"
 import { createIconCodeBlockText } from "../helpers/iconCodeBlock"
-import Tooltip from "../../../components/Layout/ToolTip";
+import Tooltip from "../../../components/Elements/Tooltip/Tooltip";
 import { CodeBlockTypes, IIconSize, CODE_BLOCK_TYPE_LIST } from "../types/modalTypes";
 
 

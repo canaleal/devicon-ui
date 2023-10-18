@@ -1,8 +1,7 @@
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
-import GalleryPage from '../page/GalleryPage';
-import ErrorPage from '../page/ErrorPage';
-import SharedLayout from '../page/SharedLayout';
-import ExamplePage from '../page/ExamplePage';
+import GalleryPage from '../pages/GalleryPage';
+import ErrorPage from '../pages/ErrorPage';
+import SharedLayout from '../pages/SharedLayout';
 
 const AppRoutes = () => {
   return (
@@ -10,7 +9,6 @@ const AppRoutes = () => {
       <Routes>
         <Route path='/' element={<SharedLayout />}>
           <Route index element={<GalleryPage />} />
-          <Route path="examples" element={<ExamplePage />} /> 
           <Route path='*' element={<ErrorPage />} />
         </Route>
       </Routes>

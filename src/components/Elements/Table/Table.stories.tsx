@@ -1,12 +1,12 @@
 import { Meta, Story } from '@storybook/react';
 
-import Table, { TableProps} from './Table';
+import Table, { TableProps } from './Table';
 
-const meta : Meta = {
+const meta: Meta = {
     title: 'Components/Elements/Table',
     component: Table,
     parameters: {
-      controls: { expanded: true },
+        controls: { expanded: true },
     },
 }
 
@@ -21,7 +21,7 @@ Basic.args = {
         { name: 'John Doe', age: 29, address: '123 Main St.' },
         { name: 'Jane Smith', age: 24, address: '456 Elm St.' }
     ],
-    keyExtractor: (item, index) => index.toString(),
+    keyExtractor: (item, index) => item.name + index,
     rowRenderer: (item) => [item.name, item.age.toString(), item.address],
     onRowClick: (item) => alert(`${item.name} clicked!`)
 };

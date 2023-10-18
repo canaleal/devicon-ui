@@ -1,5 +1,5 @@
 
-interface TextBarProps {
+export interface TextBarProps {
     title: string;
     texts: string[];
 }

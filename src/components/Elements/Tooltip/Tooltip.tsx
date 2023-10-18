@@ -1,16 +1,21 @@
-// Tooltip.tsx
-import React, { useState, ReactNode, useEffect } from 'react';
+import { useState, ReactNode, useEffect } from 'react';
 
 type TooltipPosition = 'left' | 'right' | 'top' | 'bottom';
+const positionClasses: Record<TooltipPosition, string> = {
+    top: '-top-full left-1/2 transform -translate-x-1/2 mb-2',
+    bottom: 'top-full left-1/2 transform -translate-x-1/2 mt-2',
+    left: 'right-full top-1/2 transform -translate-y-1/2 mr-2',
+    right: 'left-full top-1/2 transform -translate-y-1/2 ml-2'
+};
 
-interface TooltipProps {
+export interface TooltipProps {
     children: ReactNode;
-    content: ReactNode;
+    content: string;
     position: TooltipPosition;
-    flashMessage?: ReactNode;
+    flashMessage?: string;
 }
 
-const Tooltip: React.FC<TooltipProps> = ({ children, content, position, flashMessage }) => {
+export const Tooltip = ({ children, content, position, flashMessage }: TooltipProps) => {
     const [visible, setVisible] = useState(false);
     const [flashVisible, setFlashVisible] = useState(false);
 
@@ -57,7 +62,7 @@ const Tooltip: React.FC<TooltipProps> = ({ children, content, position, flashMes
             )}
             {flashVisible && (
                 <div className={`absolute z-10 px-2 py-1 bg-green-600 text-white rounded max-w-xs break-words ${positionClasses[position]}`}>
-                    {flashMessage}
+                    <p>{flashMessage}</p>
                 </div>
             )}
             {children}
@@ -65,11 +70,6 @@ const Tooltip: React.FC<TooltipProps> = ({ children, content, position, flashMes
     );
 };
 
-const positionClasses: Record<TooltipPosition, string> = {
-    top: '-top-full left-1/2 transform -translate-x-1/2 mb-2',
-    bottom: 'top-full left-1/2 transform -translate-x-1/2 mt-2',
-    left: 'right-full top-1/2 transform -translate-y-1/2 mr-2',
-    right: 'left-full top-1/2 transform -translate-y-1/2 ml-2'
-};
+
 
 export default Tooltip;

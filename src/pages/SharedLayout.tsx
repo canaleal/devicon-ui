@@ -1,13 +1,13 @@
 import { Outlet } from "react-router-dom"
 import { Footer } from "../components/Layout/Footer"
-import DarkLightToggle from "../components/Elements/DarkModeToggle"
-import ScrollButton from "../components/Elements/ScrollButton"
+import DarkLightToggle from "../components/Layout/DarkModeToggle"
+import ScrollButton from "../components/Elements/ScrollButton/ScrollButton"
 
 const SharedLayout = () => {
     return (
         <>
             <DarkLightToggle />
-            <ScrollButton />
+            <ScrollButton position={'topRight'} />
             <Outlet />
             <Footer />
         </>

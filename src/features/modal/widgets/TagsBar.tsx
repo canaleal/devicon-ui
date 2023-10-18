@@ -1,4 +1,4 @@
-import Tooltip from "../../../components/Layout/ToolTip";
+import Tooltip from "../../../components/Elements/Tooltip/Tooltip";
 
 interface TagBarProps {
     tags: string[];
