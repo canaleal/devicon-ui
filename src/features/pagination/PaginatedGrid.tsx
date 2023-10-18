@@ -3,7 +3,7 @@ import { DeviconBranch, IIcon } from '../../types';
 import PaginationCard from './widgets/PaginationCard';
 import PaginationButtons from './widgets/PaginationButtons';
 import PaginationSelection from './widgets/PaginationSelection';
-import GenericTable from '../../components/Elements/Table';
+import Table from '../../components/Elements/Table/Table';
 import { createDeviconIconUrl } from '../../helpers/iconUrl';
 import Dropdown from '../../components/Elements/Dropdown';
 
@@ -65,7 +65,7 @@ const PaginatedGrid = ({ icons, onSelect, deviconBranch }: PaginatedGridProps) =
             </div>
           ) : (
             <div className="flex flex-col w-full bg-white dark:dark:bg-zinc-900 rounded-lg">
-              <GenericTable
+              <Table
                 data={paginatedIcons}
                 headers={['Icon', 'Name', 'Tags', 'Styles']}
                 keyExtractor={(item) => item.name}

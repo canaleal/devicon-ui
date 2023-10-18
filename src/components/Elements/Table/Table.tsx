@@ -1,6 +1,6 @@
 import React from 'react';
 
-interface TableProps<T> {
+export interface TableProps<T> {
     data: T[];
     headers: string[];
     keyExtractor: (item: T, index: number) => string;
@@ -8,7 +8,7 @@ interface TableProps<T> {
     onRowClick?: (item: T) => void;
 }
 
-function GenericTable<T>({ data, headers, keyExtractor, rowRenderer, onRowClick }: TableProps<T>) {
+function Table<T>({ data, headers, keyExtractor, rowRenderer, onRowClick }: TableProps<T>) {
     if (!data.length) return null;
 
     return (
@@ -33,8 +33,6 @@ function GenericTable<T>({ data, headers, keyExtractor, rowRenderer, onRowClick 
                                 </td>
                             ))}
                         </tr>
-
-
                     ))}
                 </tbody>
             </table>
@@ -42,4 +40,4 @@ function GenericTable<T>({ data, headers, keyExtractor, rowRenderer, onRowClick 
     );
 }
 
-export default GenericTable;
+export default Table;

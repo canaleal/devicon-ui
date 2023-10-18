@@ -10,7 +10,7 @@ import Tooltip from '../../components/Layout/ToolTip';
 import Modal from '../../components/Layout/Modal';
 import { IIconSize, ICON_SIZE_OPTIONS, INIT_ICON_SIZE } from './types/modalTypes';
 import Dropdown from '../../components/Elements/Dropdown';
-import GenericTable from '../../components/Elements/Table';
+import Table from '../../components/Elements/Table/Table';
 import TagsBar from './widgets/TagsBar';
 import TextBar from '../../components/Elements/TextBar';
 
@@ -53,7 +53,7 @@ const IconModal = ({ icon, deviconBranch, handleClose }: IconModalProps) => {
                         <Dropdown classes='w-full' selectedOption={selectedIconSize.name} options={ICON_SIZE_OPTIONS.map((option) => option.name)} onChange={(value) => { setSelectedIconSize(ICON_SIZE_OPTIONS.find((option) => option.name === value)!) }} />
                     </div>
 
-                    <GenericTable
+                    <Table
                         data={icon.aliases}
                         headers={['Base', 'Alias']}
                         keyExtractor={(item, index) => `${item}-${index}`}

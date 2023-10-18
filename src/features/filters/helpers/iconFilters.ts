@@ -2,10 +2,12 @@ import { IIcon, IconVersion } from "../../../types";
 import { IIconFilter } from "../types/filterTypes";
 
 export const populateIconFilters = (icons: IIcon[], filters: IIconFilter[], attribute: 'versions.svg' | 'tags') => {
+    // Reset filters
     filters.forEach((filter: IIconFilter) => {
         filter.numberOfIcons = 0;
     });
 
+    // Populate filters
     icons.forEach((icon: IIcon) => {
         const items: string[] = attribute === 'versions.svg' ? icon.versions.svg : icon.tags;
         items.forEach((item: string) => {
@@ -18,6 +20,7 @@ export const populateIconFilters = (icons: IIcon[], filters: IIconFilter[], attr
         });
     });
 
+    // Sort filters
     if (attribute === 'tags') {
         filters.sort((a, b) => b.numberOfIcons - a.numberOfIcons);
     }
@@ -26,9 +29,10 @@ export const populateIconFilters = (icons: IIcon[], filters: IIconFilter[], attr
 
 
 export const filterIconsByName = (icons: IIcon[], search: string): IIcon[] => {
+    search = search.trim().toLowerCase();
     return icons.filter(icon => {
-        const names = [icon.name, ...(icon.altnames || [])];
-        return names.some(name => name.toLowerCase().includes(search.toLowerCase()));
+        const names = [icon.name, ...(icon.altnames ?? [])];
+        return names.some(name => name.toLowerCase().includes(search));
     });
 }
 
@@ -40,9 +44,9 @@ export const filterIconsByTag = (icons: IIcon[], tag: string): IIcon[] => {
     return icons.filter(icon => icon.tags.includes(tag));
 }
 
-export const updateFilters = (filters: IIconFilter[], category: IIconFilter) => {
-    const updatedCategories = [...filters];
-    const index = updatedCategories.findIndex((c) => c.filterName === category.filterName);
-    updatedCategories[index].isSelected = !updatedCategories[index].isSelected;
-    return updatedCategories;
+export const updateFilters = (filters: IIconFilter[], filter: IIconFilter) => {
+    const updatedFilters = [...filters];
+    const index = updatedFilters.findIndex((c) => c.filterName === filter.filterName);
+    updatedFilters[index].isSelected = !updatedFilters[index].isSelected;
+    return updatedFilters;
 }
