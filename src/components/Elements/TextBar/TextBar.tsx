@@ -4,7 +4,7 @@ export interface TextBarProps {
     texts: string[];
 }
 
-const TextBar = ({ title, texts }: TextBarProps) => {
+export const TextBar = ({ title, texts }: TextBarProps) => {
 
     if (!texts.length) return <></>
     return (

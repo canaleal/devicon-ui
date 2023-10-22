@@ -1,7 +1,18 @@
 import { useEffect, useState } from 'react';
 import { darkModeStorage } from '../../helpers/darkMode';
 
-function DarkLightToggle() {
+const positions = {
+  topLeft: 'top-8 left-8',
+  topRight: 'top-8 right-8',
+  bottomLeft: 'bottom-8 left-8',
+  bottomRight: 'bottom-8 right-8',
+}
+
+export interface DarkModeProps {
+  position: keyof typeof positions;
+}
+
+const DarkModeToggle = ({position}: DarkModeProps) => {
   const [darkMode, setDarkMode] = useState(darkModeStorage.getIsDark());
 
   useEffect(() => {
@@ -21,7 +32,7 @@ function DarkLightToggle() {
   return (
     <button
       onClick={toggleDarkMode}
-      className="z-50 fixed top-0 right-0 mt-8 mr-8 bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-md"
+      className={`z-50 fixed ${positions[position]} bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-md`}
     >
       {darkMode ? (
         <i className="fa-solid fa-sun"></i>
@@ -32,4 +43,4 @@ function DarkLightToggle() {
   );
 }
 
-export default DarkLightToggle;
+export default DarkModeToggle;

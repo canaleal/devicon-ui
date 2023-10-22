@@ -11,11 +11,11 @@ const sizes = {
 
 export interface SearchBarProps {
     placeholder?: string;
-    size?: keyof typeof sizes;
+    size: keyof typeof sizes;
     onSearch: (query: string) => void;
 }
 
-const SearchBar = ({ placeholder = "Search", size, onSearch }: SearchBarProps) => {
+export const SearchBar = ({ placeholder = "Search", size, onSearch }: SearchBarProps) => {
     const [searchTerm, setSearchTerm] = useState<string>("");
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -30,7 +30,7 @@ const SearchBar = ({ placeholder = "Search", size, onSearch }: SearchBarProps) =
                 value={searchTerm}
                 onChange={handleInputChange}
                 placeholder={placeholder}
-                className={`px-4 ${size} border rounded-lg bg-white dark:bg-zinc-800 dark:border-zinc-600`}
+                className={`px-4 ${sizes[size]} border rounded-lg bg-white dark:bg-zinc-800 dark:border-zinc-600`}
             />
     );
 }

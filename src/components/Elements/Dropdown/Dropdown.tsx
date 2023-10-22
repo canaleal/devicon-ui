@@ -9,12 +9,12 @@ export interface DropdownProps {
     selectedOption: string;
     options: string[];
     onChange: (value: string) => void;
-    size?: keyof typeof sizes
+    size: keyof typeof sizes
 }
 
 export const Dropdown = ({ selectedOption, options, onChange, size }: DropdownProps) => {
     return (
-        <select value={selectedOption} onChange={(e) => { onChange(e.target.value) }} className={`bg-white dark:bg-zinc-900 dark:text-white border dark:border-zinc-600 rounded-lg px-4 py-3 ${size}`}>
+        <select value={selectedOption} onChange={(e) => { onChange(e.target.value) }} className={`bg-white dark:bg-zinc-900 dark:text-white border dark:border-zinc-600 rounded-lg px-4 py-3 ${sizes[size]}`}>
             {options.map((option) => (
                 <option key={option} value={option}>{option}</option>
             ))}
