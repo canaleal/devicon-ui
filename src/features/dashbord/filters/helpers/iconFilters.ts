@@ -21,9 +21,8 @@ export const populateIconFilters = (icons: IIcon[], filters: IIconFilter[], attr
     });
 
     // Sort filters
-    if (attribute === 'tags') {
-        filters.sort((a, b) => b.numberOfIcons - a.numberOfIcons);
-    }
+    filters.sort((a, b) => b.numberOfIcons - a.numberOfIcons);
+    
     return filters;
 };
 
