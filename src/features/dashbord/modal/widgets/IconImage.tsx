@@ -2,8 +2,7 @@ import { useState } from "react";
 
 import Tooltip from "../../../../components/Elements/Tooltip/Tooltip";
 import { IIconSize } from "../types";
-import darkModeStorage from "../../../../helpers/darkMode";
-
+import storage from "../../../../helpers/storage";
 
 interface IconContainerProps {
     iconName: string;
@@ -13,7 +12,7 @@ interface IconContainerProps {
 
 export const IconImage = ({ iconName, iconSize, iconUrl }: IconContainerProps) => {
 
-    const [isDark, setIsDark] = useState<boolean>(darkModeStorage.getIsDark());
+    const [isDark, setIsDark] = useState<boolean>(storage.getToken()['isDark'] ?? false);
     const toggleBackground = () => {
         setIsDark(!isDark);
     }
