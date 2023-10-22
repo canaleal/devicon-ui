@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { darkModeStorage } from '../../helpers/darkMode';
+import storage from '../../helpers/storage';
 
 const positions = {
   topLeft: 'top-8 left-8',
@@ -13,7 +13,7 @@ export interface DarkModeProps {
 }
 
 const DarkModeToggle = ({position}: DarkModeProps) => {
-  const [darkMode, setDarkMode] = useState(darkModeStorage.getIsDark());
+  const [darkMode, setDarkMode] = useState(storage.getToken()['isDark'] ?? false);
 
   useEffect(() => {
     if (darkMode) {
@@ -26,7 +26,13 @@ const DarkModeToggle = ({position}: DarkModeProps) => {
   const toggleDarkMode = () => {
     const newDarkMode = !darkMode;
     setDarkMode(newDarkMode);
-    darkModeStorage.setIsDark(newDarkMode);
+    const token = storage.getToken();
+    storage.setToken(
+      {
+        ...token,
+        isDark: newDarkMode,
+      }
+    );
   };
 
   return (

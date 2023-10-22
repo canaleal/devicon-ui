@@ -11,6 +11,7 @@ import { DEVICON_LINK_TAG } from "../../../constants"
 import { Tooltip } from "../../../components/Elements/Tooltip"
 import { IIconFilter, populateIconFilters, updateFilters, filterIconsByName, filterIconsByVersion, filterIconsByTag, FilterList } from "../filters"
 import Modal from "../../../components/Layout/Modal"
+import storage from "../../../helpers/storage"
 
 
 
@@ -23,7 +24,7 @@ const GalleryPage = () => {
     const [versionFilters, setVersionFilters] = useState<IIconFilter[]>([])
     const [tagFilters, setTagFilters] = useState<IIconFilter[]>([]);
     const [searchTerm, setSearchTerm] = useState("");
-    const [deviconBranch, setDeviconBranch] = useState<DeviconBranch>("master");
+    const [deviconBranch, setDeviconBranch] = useState<DeviconBranch>(storage.getToken().deviconBranch ?? 'master');
 
     useEffect(() => {
         const fetchIconsFromBranch = async (): Promise<IIcon[]> => {
@@ -77,6 +78,19 @@ const GalleryPage = () => {
         navigator.clipboard.writeText(text);
     }
 
+    const handleBranchChange = (branch: DeviconBranch) => {
+
+        const token = storage.getToken();
+        storage.setToken(
+            {
+                ...token,
+                deviconBranch: branch,
+            }
+        );
+
+        setDeviconBranch(branch);
+    }
+
     return (
         <>
             <Modal isOpen={!!selectedIcon} onClose={() => setSelectedIcon(null)}>
@@ -85,7 +99,7 @@ const GalleryPage = () => {
 
             <section className="bg-white dark:bg-zinc-900 dark:text-white  px-32 py-8 flex flex-row gap-4 ">
                 <p className="text-title my-auto text-green-600 mr-auto">Devicon</p>
-                <Dropdown size="lg" selectedOption={deviconBranch} options={["master", "develop"]} onChange={(value) => { setDeviconBranch(value as DeviconBranch) }} />
+                <Dropdown size="lg" selectedOption={deviconBranch} options={["master", "develop"]} onChange={(value) => { handleBranchChange(value as DeviconBranch) }} />
                 <SearchBar size="xl" onSearch={handleSearch} />
             </section>
 

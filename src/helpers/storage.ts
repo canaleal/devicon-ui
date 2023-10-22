@@ -1,8 +1,9 @@
-const storagePrefix = 'devicon_ui_react_';
+import { INIT_STORAGE } from "../config";
 
+const storagePrefix = 'devicon_ui_react_';
 const storage = {
   getToken: () => {
-    return JSON.parse(window.localStorage.getItem(`${storagePrefix}_token`) as string);
+    return JSON.parse(window.localStorage.getItem(`${storagePrefix}_token`) as string) || INIT_STORAGE;
   },
   setToken: (token: string) => {
     window.localStorage.setItem(`${storagePrefix}_token`, JSON.stringify(token));

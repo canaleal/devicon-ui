@@ -9,5 +9,8 @@ export const iconVersionMap: Record<IconVersion, string> = {
     'line-wordmark': 'fa-solid fa-wave-square',
 }
 
-
+export const INIT_STORAGE = {
+    'branch': 'master',
+    'darkMode': false,
+}
 
