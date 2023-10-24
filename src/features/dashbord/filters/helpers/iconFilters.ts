@@ -1,51 +1,58 @@
 import { IIcon, IconVersion } from "../../../../types";
-import { IIconFilter } from "../types";
+import { FilterType, IIconFilter, IIconFilterGroup } from "../types";
 
-export const populateIconFilters = (icons: IIcon[], filters: IIconFilter[], attribute: 'versions.svg' | 'tags') => {
-    // Reset filters
-    filters.forEach((filter: IIconFilter) => {
+const FilterMapRecord: Record<FilterType, string> = {
+    versions: 'versions.svg',
+    color: 'color',
+    tags: 'tags',
+    alias: 'alias',
+    name: 'name'
+};
+
+const getItemsFromPath = (icons: IIcon, path: string): string[] => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const items = path.split('.').reduce((acc: any, curr: string) => acc[curr], icons);
+    return items;
+}
+
+export const populateIconFilters = (icons: IIcon[], filterGroup: IIconFilterGroup) => {
+    const itemsPath = FilterMapRecord[filterGroup.filterType];
+    filterGroup.filters.forEach(filter => {
         filter.numberOfIcons = 0;
     });
 
-    // Populate filters
-    icons.forEach((icon: IIcon) => {
-        const items: string[] = attribute === 'versions.svg' ? icon.versions.svg : icon.tags;
-        items.forEach((item: string) => {
-            const category = filters.find(category => category.filterName === item);
+    icons.forEach(icon => {
+        const items: string[] = getItemsFromPath(icon, itemsPath);
+        items.forEach(item => {
+            const category = filterGroup.filters.find(category => category.filterName === item);
             if (category) {
                 category.numberOfIcons++;
             } else {
-                filters.push({ filterName: item as IconVersion, numberOfIcons: 1, isSelected: false });
+                filterGroup.filters.push({ filterName: item as IconVersion, numberOfIcons: 1, isSelected: false });
             }
         });
     });
 
-    // Sort filters
-    filters.sort((a, b) => b.numberOfIcons - a.numberOfIcons);
-    
-    return filters;
+    filterGroup.filters.sort((a, b) => b.numberOfIcons - a.numberOfIcons);
+    return filterGroup;
 };
 
+const FilterFunctions: Record<FilterType, (icon: IIcon, criterion: string | IconVersion) => boolean> = {
+    name: (icon, name) => [icon.name, ...(icon.altnames ?? [])].some(n => n.toLowerCase().includes(name as string)),
+    versions: (icon, version) => icon.versions.svg.includes(version as IconVersion),
+    tags: (icon, tag) => icon.tags.includes(tag as string),
+    color: () => true, // Placeholder function, update as required
+    alias: () => true  // Placeholder function, update as required
+};
 
-export const filterIconsByName = (icons: IIcon[], search: string): IIcon[] => {
-    search = search.trim().toLowerCase();
-    return icons.filter(icon => {
-        const names = [icon.name, ...(icon.altnames ?? [])];
-        return names.some(name => name.toLowerCase().includes(search));
-    });
+export const filterIcons = (icons: IIcon[], filterType: FilterType, criterion: string | IconVersion): IIcon[] => {
+    return icons.filter(icon => FilterFunctions[filterType](icon, criterion));
 }
 
-export const filterIconsByVersion = (icons: IIcon[], version: IconVersion): IIcon[] => {
-    return icons.filter(icon => icon.versions.svg.includes(version));
-}
-
-export const filterIconsByTag = (icons: IIcon[], tag: string): IIcon[] => {
-    return icons.filter(icon => icon.tags.includes(tag));
-}
-
-export const updateFilters = (filters: IIconFilter[], filter: IIconFilter) => {
-    const updatedFilters = [...filters];
-    const index = updatedFilters.findIndex((c) => c.filterName === filter.filterName);
-    updatedFilters[index].isSelected = !updatedFilters[index].isSelected;
-    return updatedFilters;
+export const updateFilter = (filterGroup: IIconFilterGroup, filter: IIconFilter) => {
+    const tempFilterGroup = { ...filterGroup };
+    const filterIndex = tempFilterGroup.filters.findIndex(item => item.filterName === filter.filterName);
+    if (filterIndex === -1) return filterGroup;
+    tempFilterGroup.filters[filterIndex].isSelected = !filter.isSelected;
+    return tempFilterGroup;
 }
