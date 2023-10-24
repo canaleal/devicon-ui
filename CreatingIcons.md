@@ -1,7 +1,7 @@
 
 ### Resize the SVG and Align Horizontally/ Vertically
 
-1. Inside Inkscape, select File from the toolbar dropdown and select `Document properties`.
+1. Inside Inkscape, select the `File` option from the toolbar and in the dropdown and select `Document properties`.
    
 ![image](https://github.com/canaleal/devicon-ui/assets/49886351/a837d718-01c2-4b31-a132-13625c8677cc)
 
