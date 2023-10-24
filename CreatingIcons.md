@@ -67,7 +67,7 @@
 
 ![image](https://github.com/canaleal/devicon-ui/assets/49886351/59b640d5-b06d-434b-b3db-972f363e5f4b)
  
-2. Go to [SVGOMG](), and on the left side click on `Paste markup`.
+2. Go to [SVGOMG](https://jakearchibald.github.io/svgomg/), and on the left side click on `Paste markup`.
 
 ![image](https://github.com/canaleal/devicon-ui/assets/49886351/3eadc8cb-7daa-4976-8f21-1b28251b2a5b)
 
