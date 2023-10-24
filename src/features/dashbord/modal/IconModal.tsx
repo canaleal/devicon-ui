@@ -8,6 +8,7 @@ import { Dropdown } from '../../../components/Elements/Dropdown';
 import { Table } from '../../../components/Elements/Table';
 import { TextBar } from '../../../components/Elements/TextBar';
 import { IconImage, TagsBar, IconCode } from './widgets';
+import { copyToClipboard } from '../../../helpers/copyToClipboard';
 
 interface IconModalProps {
     icon: IIcon;
@@ -20,15 +21,11 @@ export const IconModal = ({ icon, deviconBranch }: IconModalProps) => {
     const [selectedIconSize, setSelectedIconSize] = useState<IIconSize>(INIT_ICON_SIZE);
     const iconUrl = createDeviconIconUrl(icon.name, selectedVersion, deviconBranch);
 
-    const handleCopyClick = (text: string) => {
-        navigator.clipboard.writeText(text);
-    }
-
     return (
        <>
             <div className="flex flex-row ">
                 <Tooltip content='Copy Icon' position='bottom' flashMessage="Copied!">
-                    <button onClick={() => { handleCopyClick(icon.name) }} className='p-2 hover:text-green-600 flex dark:text-white'>
+                    <button onClick={() => copyToClipboard(icon.name)} className='p-2 hover:text-green-600 flex dark:text-white'>
                         <p className="font-bold text-3xl">{icon.name}</p>
                         <i className="fa-solid fa-copy text-xl ml-2 my-auto"></i>
                     </button>

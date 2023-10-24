@@ -1,4 +1,5 @@
-import Tooltip from "../../../../components/Elements/Tooltip/Tooltip";
+import { Tooltip } from "../../../../components/Elements/Tooltip";
+import { copyToClipboard } from "../../../../helpers/copyToClipboard";
 
 interface TagBarProps {
     tags: string[];
@@ -6,16 +7,12 @@ interface TagBarProps {
 
 export const TagsBar = ({ tags }: TagBarProps) => {
 
-    const handleCopyClick = () => {
-        navigator.clipboard.writeText(tags.toString());
-    }
-
     return (
         <>
             {!tags.length ? <></> :
                 <div className='flex flex-row dark:text-white'>
                     <Tooltip content='Copy Categories' position='bottom' flashMessage="Copied!">
-                        <button onClick={handleCopyClick} className='p-2 hover:text-green-600 flex'>
+                        <button onClick={()=> copyToClipboard(tags.toString())} className='p-2 hover:text-green-600 flex'>
                             <i className="fa-solid fa-folder"></i>
                         </button>
                     </Tooltip>

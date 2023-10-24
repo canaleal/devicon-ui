@@ -3,16 +3,16 @@ import { SearchBar } from "../../../components/Elements/SearchBar"
 import { IIcon, DeviconBranch } from "../../../types"
 import { IconModal } from "../modal"
 import { PaginatedGrid } from "../pagination"
-import { iconVersionMap } from "../../../config"
+import { ICON_VERSION_FA_MAP } from "../../../config"
 import { Dropdown } from "../../../components/Elements/Dropdown"
 import { CodeBlock } from "../../../components/Elements/CodeBlock"
 import { DEVICON_LINK_TAG } from "../../../constants"
 import { Tooltip } from "../../../components/Elements/Tooltip"
-import { IIconFilter, updateFilter, FilterList, IIconFilterGroup } from "../filters"
+import { IIconFilter, updateFilter, FilterList, IIconFilterGroup, useFilterGroups, useFilteredIcons } from "../filters"
 import Modal from "../../../components/Layout/Modal"
 import storage from "../../../helpers/storage"
 import { useFetchIcons } from "../../../hooks"
-import { useFilterGroups, useFilteredIcons } from "../filters/hooks"
+import { copyToClipboard } from "../../../helpers/copyToClipboard"
 
 const GalleryPage = () => {
 
@@ -30,14 +30,10 @@ const GalleryPage = () => {
         setDeviconBranch(branch);
     }
 
-    const handleFilter = (filterGroup: IIconFilterGroup, filter: IIconFilter) => {
+    const handleFilterClick = (filterGroup: IIconFilterGroup, filter: IIconFilter) => {
         const updatedFilterGroup = updateFilter(filterGroup, filter);
         const updatedFilterGroups = filterGroups.map(group => group.filterType === updatedFilterGroup.filterType ? updatedFilterGroup : group);
         setFilterGroups(updatedFilterGroups);
-    }
-
-    const copyText = (text: string) => {
-        navigator.clipboard.writeText(text);
     }
 
     return (
@@ -59,8 +55,8 @@ const GalleryPage = () => {
                             key={group.filterType}
                             title={group.groupName}
                             filterGroup={group}
-                            handleFilter={(filter) => handleFilter(group, filter)}
-                            iconMap={iconVersionMap}
+                            handleFilter={(filter) => handleFilterClick(group, filter)}
+                            iconMap={ICON_VERSION_FA_MAP}
                             isLimited={group.filters.length > 10}
                         />
                     ))}
@@ -69,7 +65,7 @@ const GalleryPage = () => {
                     {deviconBranch === 'master' &&
                         <CodeBlock title="Place this in your header (once per HTML file)" code={DEVICON_LINK_TAG}>
                             <Tooltip content='Copy Code' position='bottom' flashMessage="Copied!">
-                                <button onClick={() => { copyText(DEVICON_LINK_TAG) }} title='Copy Code' className='px-4 py-2 hover:text-green-600 text-white flex ml-auto'>
+                                <button onClick={() => { copyToClipboard(DEVICON_LINK_TAG) }} title='Copy Code' className='px-4 py-2 hover:text-green-600 text-white flex ml-auto'>
                                     <p className="font-bold text-sm my-auto">Copy Code</p>
                                     <i className="fa-solid fa-copy ml-2 my-auto"></i>
                                 </button>

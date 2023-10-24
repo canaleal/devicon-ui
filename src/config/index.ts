@@ -1,6 +1,6 @@
 import { IconVersion } from "../types";
 
-export const iconVersionMap: Record<IconVersion, string> = {
+export const ICON_VERSION_FA_MAP: Record<IconVersion, string> = {
     'original': 'fa-solid fa-square',
     'original-wordmark': 'fa-solid fa-square',
     'plain': 'fa-regular fa-square',

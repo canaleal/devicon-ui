@@ -3,6 +3,7 @@ import { DeviconBranch, IIcon, IconVersion } from "../../../../types"
 import { createIconCodeBlockText } from "../helpers/iconCodeBlock"
 import Tooltip from "../../../../components/Elements/Tooltip/Tooltip";
 import { CodeBlockTypes, IIconSize, CODE_BLOCK_TYPE_LIST } from "../types";
+import { copyToClipboard } from "../../../../helpers/copyToClipboard";
 
 
 interface IconCodeProps {
@@ -30,9 +31,6 @@ export const IconCode = ({ icon, iconSize, iconUrl, deviconBranch, selectedVersi
         createCodeText()
     }, [deviconBranch, icon, iconSize, iconUrl, selectedOption, selectedVersion])
 
-    const handleCopyClick = (text: string) => {
-        navigator.clipboard.writeText(text);
-    }
 
     return (
         <div className='flex flex-col border-2 dark:border-zinc-600 rounded-lg overflow-hidden'>
@@ -46,7 +44,7 @@ export const IconCode = ({ icon, iconSize, iconUrl, deviconBranch, selectedVersi
 
                 </div>
                 <Tooltip content='Copy Code' position='bottom' flashMessage="Copied!">
-                    <button onClick={() => { handleCopyClick(codeText) }} title='Copy Icon' className='px-4 py-2 hover:text-green-600 text-white flex ml-auto'>
+                    <button onClick={() => { copyToClipboard(codeText) }} title='Copy Icon' className='px-4 py-2 hover:text-green-600 text-white flex ml-auto'>
                         <p className="font-bold text-sm my-auto">Copy Icon</p>
                         <i className="fa-solid fa-copy ml-2 my-auto"></i>
                     </button>
