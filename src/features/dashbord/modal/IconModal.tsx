@@ -49,7 +49,7 @@ export const IconModal = ({ icon, deviconBranch }: IconModalProps) => {
                         headers={['Base', 'Alias']}
                         keyExtractor={(item, index) => `${item}-${index}`}
                         rowRenderer={(item) => [item.base, item.alias]}
-
+                        onRowClick={(item)=>{setSelectedVersion(item.base as IconVersion)}}
                     />
                 </div>
             </div>

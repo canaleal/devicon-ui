@@ -65,8 +65,8 @@ const GalleryPage = () => {
                     {deviconBranch === 'master' &&
                         <CodeBlock title="Place this in your header (once per HTML file)" code={DEVICON_LINK_TAG}>
                             <Tooltip content='Copy Code' position='bottom' flashMessage="Copied!">
-                                <button onClick={() => { copyToClipboard(DEVICON_LINK_TAG) }} title='Copy Code' className='px-4 py-2 hover:text-green-600 text-white flex ml-auto'>
-                                    <p className="font-bold text-sm my-auto">Copy Code</p>
+                                <button onClick={() => { copyToClipboard(DEVICON_LINK_TAG) }} title='Copy CDN' className='px-4 py-2 hover:text-green-600 flex ml-auto'>
+                                    <p className="font-bold text-sm my-auto">Copy CDN</p>
                                     <i className="fa-solid fa-copy ml-2 my-auto"></i>
                                 </button>
                             </Tooltip>
