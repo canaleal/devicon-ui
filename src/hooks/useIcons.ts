@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { createDeviconJsonUrl } from '../helpers/iconUrl';
 import { DeviconBranch, IIcon } from '../types';
 
-export const useFetchIcons = (deviconBranch: DeviconBranch): IIcon[] => {
+export const useIcons = (deviconBranch: DeviconBranch): IIcon[] => {
     const [icons, setIcons] = useState<IIcon[]>([]);
 
     useEffect(() => {

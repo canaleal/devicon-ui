@@ -9,9 +9,9 @@ import { CodeBlock } from "../../../components/Elements/CodeBlock"
 import { DEVICON_LINK_TAG } from "../../../constants"
 import { Tooltip } from "../../../components/Elements/Tooltip"
 import { IIconFilter, updateFilter, FilterList, IIconFilterGroup, useFilterGroups, useFilteredIcons } from "../filters"
-import Modal from "../../../components/Layout/Modal"
+import Modal from "../../../components/Elements/Modal/Modal"
 import storage from "../../../helpers/storage"
-import { useFetchIcons } from "../../../hooks"
+import { useIcons } from "../../../hooks"
 import { copyToClipboard } from "../../../helpers/copyToClipboard"
 
 const GalleryPage = () => {
@@ -20,7 +20,7 @@ const GalleryPage = () => {
     const [selectedIcon, setSelectedIcon] = useState<IIcon | null>(null)
     const [searchTerm, setSearchTerm] = useState("");
 
-    const icons = useFetchIcons(deviconBranch);
+    const icons = useIcons(deviconBranch);
     const { filterGroups, setFilterGroups } = useFilterGroups(icons);
     const filteredIcons = useFilteredIcons(icons, filterGroups, searchTerm);
 

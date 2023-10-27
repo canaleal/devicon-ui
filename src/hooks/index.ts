@@ -1,2 +1,2 @@
 
-export * from './IconHooks';
+export * from './useIcons';
