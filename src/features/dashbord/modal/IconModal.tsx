@@ -22,15 +22,15 @@ export const IconModal = ({ icon, deviconBranch }: IconModalProps) => {
     const iconUrl = createDeviconIconUrl(icon.name, selectedVersion, deviconBranch);
 
     return (
-       <>
-            <div className="flex flex-row ">
+        <>
+            <div className="flex flex-row dark:text-white">
+
                 <Tooltip content='Copy Icon' position='bottom' flashMessage="Copied!">
-                    <button onClick={() => copyToClipboard(icon.name)} className='p-2 hover:text-green-600 flex dark:text-white'>
+                    <button onClick={() => copyToClipboard(icon.name)} className='p-2 hover:text-green-600 flex '>
                         <p className="font-bold text-3xl">{icon.name}</p>
                         <i className="fa-solid fa-copy text-xl ml-2 my-auto"></i>
                     </button>
                 </Tooltip>
-
             </div>
 
             <div className="flex flex-col 2xl:flex-row my-4 gap-8">
@@ -49,7 +49,7 @@ export const IconModal = ({ icon, deviconBranch }: IconModalProps) => {
                         headers={['Base', 'Alias']}
                         keyExtractor={(item, index) => `${item}-${index}`}
                         rowRenderer={(item) => [item.base, item.alias]}
-                        onRowClick={(item)=>{setSelectedVersion(item.base as IconVersion)}}
+                        onRowClick={(item) => { setSelectedVersion(item.base as IconVersion) }}
                     />
                 </div>
             </div>
