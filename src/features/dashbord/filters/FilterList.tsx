@@ -6,10 +6,10 @@ interface FilterListProps {
   iconMap: { [key: string]: string };
   isLimited: boolean;
   handleFilter: (filter: IIconFilter) => void;
-  resetFilters?: () => void;
+  resetFilterGroup?: () => void;
 }
 
-export const FilterList = ({ title, filterGroup, iconMap, isLimited, handleFilter, resetFilters }: FilterListProps) => {
+export const FilterList = ({ title, filterGroup, iconMap, isLimited, handleFilter, resetFilterGroup }: FilterListProps) => {
   const selectedFiltersCount = filterGroup.filters.reduce((count, filter) => (filter.isSelected ? count + 1 : count), 0);
   const isSelectedClass = (filter: IIconFilter) =>
     filter.isSelected
@@ -18,14 +18,14 @@ export const FilterList = ({ title, filterGroup, iconMap, isLimited, handleFilte
 
   return (
     <div className="flex flex-col text-gray-800 dark:text-gray-200">
-      <div className="flex flex-row gap-2 mb-2 dark:text-white">
+      <div className="flex flex-row gap-2 mb-2 dark:text-white pr-4">
         <p className="font-bold text-md ">{title}</p>
         <p className="text-sm my-auto">
           ({selectedFiltersCount} / {filterGroup.filters.length})
         </p>
 
-        {resetFilters && (
-          <button className="ml-auto text-sm text-green-600" onClick={resetFilters}>
+        {resetFilterGroup && (
+          <button disabled={!selectedFiltersCount} className="ml-auto text-sm text-green-600"onClick={resetFilterGroup}>
             Reset
           </button>
         )}

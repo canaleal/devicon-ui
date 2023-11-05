@@ -49,10 +49,20 @@ export const filterIcons = (icons: IIcon[], filterType: FilterType, criterion: s
     return icons.filter(icon => FilterFunctions[filterType](icon, criterion));
 }
 
+export const updateFilterGroups = (filterGroups: IIconFilterGroup[], filterGroup: IIconFilterGroup) => {
+    return filterGroups.map(group => group.filterType === filterGroup.filterType ? filterGroup : group);
+}
+
 export const updateFilter = (filterGroup: IIconFilterGroup, filter: IIconFilter) => {
     const tempFilterGroup = { ...filterGroup };
     const filterIndex = tempFilterGroup.filters.findIndex(item => item.filterName === filter.filterName);
     if (filterIndex === -1) return filterGroup;
     tempFilterGroup.filters[filterIndex].isSelected = !filter.isSelected;
+    return tempFilterGroup;
+}
+
+export const resetFilterGroup = (filterGroup: IIconFilterGroup) => {
+    const tempFilterGroup = { ...filterGroup };
+    tempFilterGroup.filters.forEach(filter => filter.isSelected = false);
     return tempFilterGroup;
 }

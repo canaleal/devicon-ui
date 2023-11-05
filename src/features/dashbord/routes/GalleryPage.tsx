@@ -8,7 +8,7 @@ import { Dropdown } from "../../../components/Elements/Dropdown"
 import { CodeBlock } from "../../../components/Elements/CodeBlock"
 import { DEVICON_LINK_TAG } from "../../../constants"
 import { Tooltip } from "../../../components/Elements/Tooltip"
-import { IIconFilter, updateFilter, FilterList, IIconFilterGroup, useFilterGroups, useFilteredIcons } from "../filters"
+import { IIconFilter, updateFilter, FilterList, IIconFilterGroup, useFilterGroups, useFilteredIcons, resetFilterGroup, updateFilterGroups } from "../filters"
 import Modal from "../../../components/Elements/Modal/Modal"
 import storage from "../../../helpers/storage"
 import { useIcons } from "../../../hooks"
@@ -32,7 +32,13 @@ const GalleryPage = () => {
 
     const handleFilterClick = (filterGroup: IIconFilterGroup, filter: IIconFilter) => {
         const updatedFilterGroup = updateFilter(filterGroup, filter);
-        const updatedFilterGroups = filterGroups.map(group => group.filterType === updatedFilterGroup.filterType ? updatedFilterGroup : group);
+        const updatedFilterGroups = updateFilterGroups(filterGroups, updatedFilterGroup);
+        setFilterGroups(updatedFilterGroups);
+    }
+
+    const handleResetFilterGroup = (filterGroup: IIconFilterGroup) => {
+        const updatedFilterGroup = resetFilterGroup(filterGroup)
+        const updatedFilterGroups = updateFilterGroups(filterGroups, updatedFilterGroup);
         setFilterGroups(updatedFilterGroups);
     }
 
@@ -58,6 +64,7 @@ const GalleryPage = () => {
                             handleFilter={(filter) => handleFilterClick(group, filter)}
                             iconMap={ICON_VERSION_FA_MAP}
                             isLimited={group.filters.length > 10}
+                            resetFilterGroup={() => handleResetFilterGroup(group)}
                         />
                     ))}
                 </div>

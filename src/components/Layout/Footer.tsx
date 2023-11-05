@@ -42,7 +42,7 @@ export const Footer = () => {
 
     const FOOTER_ELEMENT_STYLE = "hover:text-green-500 text-green-400 w-fit"
     return (
-        <div className='flex flex-row gap-16 px-16 2xl:px-32 py-16 bg-zinc-900 text-white'>
+        <section className='flex flex-row gap-16 px-16 2xl:px-32 py-16 bg-zinc-900 text-white'>
 
             <div className='flex-1'>
                 <p className="text-title mb-4 text-green-600">Devicon</p>
@@ -53,7 +53,7 @@ export const Footer = () => {
                 <p className="text-subtitle mb-2">Tools</p>
                 {
                     TOOLS.map((tool) => (
-                        <a href={tool.url} target="_blank" className={FOOTER_ELEMENT_STYLE}>{tool.name}</a>
+                        <a key={tool.name} href={tool.url} target="_blank" className={FOOTER_ELEMENT_STYLE}>{tool.name}</a>
                     ))
                 }
             </div>
@@ -62,11 +62,11 @@ export const Footer = () => {
                 <p className="text-subtitle mb-2">Links</p>
                 {
                     PROJECT_LINKS.map((link) => (
-                        <a href={link.url} target="_blank" className={FOOTER_ELEMENT_STYLE}>{link.name}</a>
+                        <a key={link.name} href={link.url} target="_blank" className={FOOTER_ELEMENT_STYLE}>{link.name}</a>
                     ))
                 }
             </div>
 
-        </div>
+        </section>
     )
 }
