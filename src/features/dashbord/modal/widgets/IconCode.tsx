@@ -37,14 +37,14 @@ export const IconCode = ({ icon, iconSize, iconUrl, deviconBranch, selectedVersi
             <div className='flex flex-row bg-zinc-900 '>
                 <div className="flex mr-auto">
                     {codeBlockOptions.map((codeType) => (
-                        <button key={codeType} onClick={() => { handleClick(codeType) }} className={`px-4 py-2  ${codeType === selectedOption ? "bg-green-600" : "bg-zinc-900"} hover:bg-green-700 text-white `}>
+                        <button key={codeType} onClick={() => { handleClick(codeType) }} className={`px-4 py-2  ${codeType === selectedOption ? "bg-primary" : "bg-zinc-900"} hover:bg-primary-dark text-white `}>
                             <span className='font-bold text-sm'>{codeType}</span>
                         </button>
                     ))}
 
                 </div>
-                <Tooltip content='Copy Code' position='bottom' flashMessage="Copied!">
-                    <button onClick={() => { copyToClipboard(codeText) }} title='Copy Icon' className='px-4 py-2 hover:text-green-600 text-white flex ml-auto'>
+                <Tooltip content='Copy Icon' position='bottom' flashMessage="Copied!">
+                    <button onClick={() => { copyToClipboard(codeText) }} className='px-4 py-2 hover:text-primary text-white flex ml-auto'>
                         <p className="font-bold text-sm my-auto">Copy Icon</p>
                         <i className="fa-solid fa-copy ml-2 my-auto"></i>
                     </button>

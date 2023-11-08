@@ -4,7 +4,7 @@ import { DeviconBranch, IIcon, IconVersion } from '../../../types';
 import { createDeviconIconUrl } from '../../../helpers/iconUrl';
 import { Tooltip } from '../../../components/Elements/Tooltip';
 import { IIconSize, ICON_SIZE_OPTIONS, INIT_ICON_SIZE } from './types';
-import { Dropdown } from '../../../components/Elements/Dropdown';
+import { Dropdown } from '../../../components/Form/Dropdown';
 import { Table } from '../../../components/Elements/Table';
 import { TextBar } from '../../../components/Elements/TextBar';
 import { IconImage, TagsBar, IconCode } from './widgets';
@@ -21,12 +21,17 @@ export const IconModal = ({ icon, deviconBranch }: IconModalProps) => {
     const [selectedIconSize, setSelectedIconSize] = useState<IIconSize>(INIT_ICON_SIZE);
     const iconUrl = createDeviconIconUrl(icon.name, selectedVersion, deviconBranch);
 
+    // const [selectedColor, setSelectedColor] = useState(icon.color ?? '#000000')
+    // const handleColorChange = (color: string) => {
+    //     setSelectedColor(color);
+    // };
+
     return (
         <>
             <div className="flex flex-row dark:text-white">
 
                 <Tooltip content='Copy Icon' position='bottom' flashMessage="Copied!">
-                    <button onClick={() => copyToClipboard(icon.name)} className='p-2 hover:text-green-600 flex '>
+                    <button onClick={() => copyToClipboard(icon.name)} className='p-2 hover:text-primary flex '>
                         <p className="font-bold text-3xl">{icon.name}</p>
                         <i className="fa-solid fa-copy text-xl ml-2 my-auto"></i>
                     </button>
@@ -51,6 +56,8 @@ export const IconModal = ({ icon, deviconBranch }: IconModalProps) => {
                         rowRenderer={(item) => [item.base, item.alias]}
                         onRowClick={(item) => { setSelectedVersion(item.base as IconVersion) }}
                     />
+
+                  
                 </div>
             </div>
 

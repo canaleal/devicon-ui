@@ -52,7 +52,7 @@ export const PaginationButtons = ({ currentPage, setCurrentPage, totalPages }: P
                 const isNumber = typeof page === "number";
                 const key = isNumber ? page : `${pagesToRender[idx - 1]}-${pagesToRender[idx + 1]}`;
                 return isNumber ? (
-                    <button key={key} className={`px-4 py-2 rounded-md text-sm ${page === currentPage ? 'bg-green-600 text-white' : 'hover:bg-gray-200 hover:shadow-sm dark:hover:bg-zinc-900'}`} onClick={() => setCurrentPage(page)}>
+                    <button key={key} className={`px-4 py-2 rounded-md text-sm ${page === currentPage ? 'bg-primary text-white' : 'hover:bg-gray-200 hover:shadow-sm dark:hover:bg-zinc-900'}`} onClick={() => setCurrentPage(page)}>
                         {page}
                     </button>
                 ) : (

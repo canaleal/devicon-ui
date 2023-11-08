@@ -4,7 +4,7 @@ import { IIcon, DeviconBranch } from "../../../types"
 import { IconModal } from "../modal"
 import { PaginatedGrid } from "../pagination"
 import { ICON_VERSION_FA_MAP } from "../../../config"
-import { Dropdown } from "../../../components/Elements/Dropdown"
+import { Dropdown } from "../../../components/Form/Dropdown"
 import { CodeBlock } from "../../../components/Elements/CodeBlock"
 import { DEVICON_LINK_TAG } from "../../../constants"
 import { Tooltip } from "../../../components/Elements/Tooltip"
@@ -49,7 +49,7 @@ const GalleryPage = () => {
             </Modal>
 
             <section className="bg-white dark:bg-zinc-900 dark:text-white  px-32 py-8 flex flex-row gap-4 ">
-                <p className="text-title my-auto text-green-600 mr-auto">Devicon</p>
+                <p className="text-title my-auto text-primary mr-auto">Devicon</p>
                 <Dropdown size="lg" selectedOption={deviconBranch} options={["master", "develop"]} onChange={(value) => { handleBranchChange(value as DeviconBranch) }} />
                 <SearchBar size="xl" onSearch={setSearchTerm} />
             </section>
@@ -72,7 +72,7 @@ const GalleryPage = () => {
                     {deviconBranch === 'master' &&
                         <CodeBlock title="Place this in your header (once per HTML file)" code={DEVICON_LINK_TAG}>
                             <Tooltip content='Copy Code' position='bottom' flashMessage="Copied!">
-                                <button onClick={() => { copyToClipboard(DEVICON_LINK_TAG) }} title='Copy CDN' className='px-4 py-2 hover:text-green-600 flex ml-auto'>
+                                <button onClick={() => { copyToClipboard(DEVICON_LINK_TAG) }} title='Copy CDN' className='px-4 py-2 hover:text-primary flex ml-auto'>
                                     <p className="font-bold text-sm my-auto">Copy CDN</p>
                                     <i className="fa-solid fa-copy ml-2 my-auto"></i>
                                 </button>

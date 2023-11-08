@@ -3,7 +3,7 @@ import { DeviconBranch, IIcon } from '../../../types';
 import { PaginationCard, PaginationButtons, PaginationSelection } from './widgets';
 import { Table } from '../../../components/Elements/Table';
 import { createDeviconIconUrl } from '../../../helpers/iconUrl';
-import { Dropdown } from '../../../components/Elements/Dropdown/Dropdown';
+import { Dropdown } from '../../../components/Form/Dropdown/Dropdown';
 
 type PaginationStyle = 'card' | 'table';
 

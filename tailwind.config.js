@@ -8,9 +8,9 @@ export default {
   theme: {
     extend: {
       colors: {
-        'dark': '#141414',
-        'smoke': "#f0f1f3",
-        "devicon-green": '#70a47c'
+        'smoke': "#EAEAEA",
+        "primary": '#27c265',
+        "primary-dark": "#4e6e52",
       }
     },
   },

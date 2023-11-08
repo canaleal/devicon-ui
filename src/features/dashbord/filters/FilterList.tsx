@@ -13,7 +13,7 @@ export const FilterList = ({ title, filterGroup, iconMap, isLimited, handleFilte
   const selectedFiltersCount = filterGroup.filters.reduce((count, filter) => (filter.isSelected ? count + 1 : count), 0);
   const isSelectedClass = (filter: IIconFilter) =>
     filter.isSelected
-      ? "bg-green-600 hover:bg-green-700 text-white dark:bg-zinc-900 dark:hover:bg-zinc-700 shadow-sm"
+      ? "bg-primary hover:bg-primary-dark text-white dark:bg-zinc-900 dark:hover:bg-zinc-700 shadow-sm"
       : "hover:bg-gray-50 dark:hover:bg-zinc-700 hover:shadow-sm";
 
   return (
@@ -25,7 +25,7 @@ export const FilterList = ({ title, filterGroup, iconMap, isLimited, handleFilte
         </p>
 
         {resetFilterGroup && (
-          <button disabled={!selectedFiltersCount} className="ml-auto text-sm text-green-600"onClick={resetFilterGroup}>
+          <button className={`ml-auto text-sm ${selectedFiltersCount ? 'text-primary' : 'hidden'} `} onClick={resetFilterGroup}>
             Reset
           </button>
         )}
