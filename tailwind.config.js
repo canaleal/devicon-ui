@@ -8,8 +8,8 @@ export default {
   theme: {
     extend: {
       colors: {
-        'smoke': "#EAEAEA",
-        "primary": '#27c265',
+        'smoke': "#F7F7F7",
+        "primary": '#0B6E4F',
         "primary-dark": "#4e6e52",
       }
     },
