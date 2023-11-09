@@ -7,12 +7,11 @@ import { ICON_VERSION_FA_MAP } from "../../../config"
 import { Dropdown } from "../../../components/Form/Dropdown"
 import { CodeBlock } from "../../../components/Elements/CodeBlock"
 import { DEVICON_LINK_TAG } from "../../../constants"
-import { Tooltip } from "../../../components/Elements/Tooltip"
+
 import { IIconFilter, updateFilter, FilterList, IIconFilterGroup, useFilterGroups, useFilteredIcons, resetFilterGroup, updateFilterGroups } from "../filters"
 import Modal from "../../../components/Elements/Modal/Modal"
 import storage from "../../../helpers/storage"
 import { useIcons } from "../../../hooks"
-import { copyToClipboard } from "../../../helpers/copyToClipboard"
 
 const GalleryPage = () => {
 
@@ -54,8 +53,8 @@ const GalleryPage = () => {
                 <SearchBar size="xl" onSearch={setSearchTerm} />
             </section>
 
-            <section className="bg-smoke dark:bg-zinc-800 flex flex-col 2xl:flex-row px-16 2xl:px-32 py-16  gap-8 ">
-                <div className="flex flex-col w-6/6 2xl:w-1/6 gap-8">
+            <section className="bg-smoke dark:bg-zinc-800 flex flex-col xl:flex-row px-16 2xl:px-32 py-16  gap-6 w-full">
+                <div className="w-6/6 xl:w-1/6 flex flex-col gap-6">
                     {filterGroups.map(group => (
                         <FilterList
                             key={group.filterType}
@@ -68,16 +67,12 @@ const GalleryPage = () => {
                         />
                     ))}
                 </div>
-                <div className="flex flex-col gap-6 w-6/6 2xl:w-5/6">
+                <div className="w-6/6 xl:w-5/6 flex flex-col gap-6">
                     {deviconBranch === 'master' &&
-                        <CodeBlock title="Place this in your header (once per HTML file)" code={DEVICON_LINK_TAG}>
-                            <Tooltip content='Copy Code' position='bottom' flashMessage="Copied!">
-                                <button onClick={() => { copyToClipboard(DEVICON_LINK_TAG) }} title='Copy CDN' className='px-4 py-2 hover:text-primary flex ml-auto'>
-                                    <p className="font-bold text-sm my-auto">Copy CDN</p>
-                                    <i className="fa-solid fa-copy ml-2 my-auto"></i>
-                                </button>
-                            </Tooltip>
-                        </CodeBlock>}
+                        <CodeBlock code={DEVICON_LINK_TAG}>
+                            <p className="bg-primary px-4 py-2 text-white">Place this in your header (once per HTML file)</p>
+                        </CodeBlock>
+                    }
                     <PaginatedGrid icons={filteredIcons} deviconBranch={deviconBranch} onSelect={setSelectedIcon} />
                 </div>
             </section>

@@ -10,7 +10,7 @@ export default {
       colors: {
         'smoke': "#F7F7F7",
         "primary": '#0B6E4F',
-        "primary-dark": "#4e6e52",
+        "primary-dark": "#09573e",
       }
     },
   },

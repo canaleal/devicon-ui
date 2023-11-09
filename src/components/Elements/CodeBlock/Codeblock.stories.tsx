@@ -16,6 +16,5 @@ const Template: Story<CodeBlockProps> = (args) => <CodeBlock {...args} />;
 export const Default = Template.bind({});
 
 Default.args = {
-    title: 'Code Block Title',
     code: '<div>Code</div>'
 };

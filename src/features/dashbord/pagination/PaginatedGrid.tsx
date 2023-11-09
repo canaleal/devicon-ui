@@ -45,7 +45,7 @@ export const PaginatedGrid = ({ icons, onSelect, deviconBranch }: PaginatedGridP
   }, [currentPage, elementsPerPage]);
 
   return (
-    <div className="flex flex-col h-full gap-6">
+    <div className="flex flex-col gap-6">
       <div className="flex w-full  dark:text-white gap-6">
         <p className="font-bold text-2xl my-auto">{icons.length} Icons</p>
         <p className='my-auto ml-auto'>Page {currentPage} of {totalPages || 1}</p>

@@ -1,19 +1,28 @@
+import { copyToClipboard } from "../../../helpers/copyToClipboard";
+import { Tooltip } from "../Tooltip";
+
+
 export interface CodeBlockProps {
-    title: string;
     code: string;
     children?: React.ReactNode;
 }
 
-export const CodeBlock = ({ title, code, children }: CodeBlockProps) => {
+export const CodeBlock = ({ code, children }: CodeBlockProps) => {
 
     return (
-        <div className={`flex flex-row justify-between bg-white dark:bg-zinc-900 dark:text-white border dark:border-zinc-600   shadow-sm rounded-lg p-4`}>
-            <div className="flex flex-col">
-                <p className="text-subtitle text-primary">{title}</p>
-                <p>{code}</p>
+        <div className={`flex flex-col border-2 dark:border-zinc-600  rounded-lg overflow-hidden h-fit`}>
+            <div className='flex flex-row bg-zinc-900 justify-between'>
+                {children}
+                <Tooltip content='Copy Code' position='bottom' flashMessage="Copied!">
+                    <button onClick={() => { copyToClipboard(code) }} className='px-4 py-2 hover:text-primary text-white flex ml-auto'>
+                        <p className="font-bold text-sm my-auto">Copy Code</p>
+                        <i className="fa-solid fa-copy ml-2 my-auto"></i>
+                    </button>
+                </Tooltip>
             </div>
-
-            {children}
+            <pre className="flex flex-row bg-zinc-800  px-4 py-8 text-white overflow-auto">
+                <code className="language-typescript">{code}</code>
+            </pre>
         </div>
     )
 }
