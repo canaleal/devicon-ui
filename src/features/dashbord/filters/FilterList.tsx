@@ -14,7 +14,7 @@ export const FilterList = ({ title, filterGroup, iconMap, isLimited, handleFilte
   const isSelectedClass = (filter: IIconFilter) =>
     filter.isSelected
       ? "bg-primary hover:bg-primary-dark text-white dark:bg-zinc-900 dark:hover:bg-zinc-700 shadow-sm"
-      : "hover:bg-gray-50 dark:hover:bg-zinc-700 hover:shadow-sm";
+      : "hover:bg-zinc-200 dark:hover:bg-zinc-700 hover:shadow-sm";
 
   return (
     <div className="flex flex-col text-gray-800 dark:text-gray-200">
@@ -25,12 +25,12 @@ export const FilterList = ({ title, filterGroup, iconMap, isLimited, handleFilte
         </p>
 
         {resetFilterGroup && (
-          <button className={`ml-auto text-sm ${selectedFiltersCount ? 'text-primary' : 'hidden'} `} onClick={resetFilterGroup}>
+          <button className={`ml-auto text-sm font-bold ${selectedFiltersCount ? 'text-primary hover:text-primary-dark' : 'hidden'} `} onClick={resetFilterGroup}>
             Reset
           </button>
         )}
       </div>
-      <div className={`flex flex-col gap-2 overflow-y-auto ${isLimited ? 'h-96' : 'h-fit'} pr-2`}>
+      <div className={`flex flex-col gap-2 overflow-y-auto ${isLimited ? 'h-[30rem]' : 'h-fit'} pr-2`}>
         {filterGroup.filters.map((filter, index) => (
           <button
             key={index}

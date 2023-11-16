@@ -20,7 +20,7 @@ export const CodeBlock = ({ code, children }: CodeBlockProps) => {
                     </button>
                 </Tooltip>
             </div>
-            <pre className="flex flex-row bg-zinc-800  px-4 py-8 text-white overflow-auto">
+            <pre className="flex flex-row bg-zinc-800  px-4 py-4 text-white overflow-auto">
                 <code className="language-typescript">{code}</code>
             </pre>
         </div>
