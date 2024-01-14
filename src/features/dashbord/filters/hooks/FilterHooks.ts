@@ -17,23 +17,19 @@ const INIT_FILTER_GROUPS: IIconFilterGroup[] = [
 ]
 
 
-export const useFilterGroups = (icons: IIcon[], initialFilterGroups: IIconFilterGroup[] = INIT_FILTER_GROUPS) => {
+export const useFindFilterGroups = (icons: IIcon[], initialFilterGroups: IIconFilterGroup[] = INIT_FILTER_GROUPS) => {
     const [filterGroups, setFilterGroups] = useState<IIconFilterGroup[]>(initialFilterGroups);
-
     useEffect(() => {
-        if (!icons || icons.length === 0) return;
         setFilterGroups(prevGroups => prevGroups.map(group => populateIconFilters(icons, group)));
     }, [icons]);
     return { filterGroups, setFilterGroups };
 };
 
 
-
-export const useFilteredIcons = (icons: IIcon[], filterGroups: IIconFilterGroup[], searchTerm: string) => {
-    const [filteredIcons, setFilteredIcons] = useState<IIcon[]>(icons);
-
+export const useFilterGroups = (searchedIcons: IIcon[], filterGroups: IIconFilterGroup[]) => {
+    const [filteredIcons, setFilteredIcons] = useState<IIcon[]>(searchedIcons);
     useEffect(() => {
-        let filtered = searchTerm ? filterIcons(icons, 'name', searchTerm) : icons;
+        let filtered = searchedIcons;
         filterGroups.forEach(group => {
             group.filters.forEach(filter => {
                 if (filter.isSelected) {
@@ -42,7 +38,17 @@ export const useFilteredIcons = (icons: IIcon[], filterGroups: IIconFilterGroup[
             });
         });
         setFilteredIcons(filtered);
-    }, [icons, filterGroups, searchTerm]);
-
+    }, [searchedIcons, filterGroups]);
     return filteredIcons;
 };
+
+
+export const useSearchFilter = (icons: IIcon[], searchTerm: string) => {
+    const [filteredIcons, setFilteredIcons] = useState<IIcon[]>(icons);
+    useEffect(() => {
+        const filtered = searchTerm ? filterIcons(icons, 'name', searchTerm) : icons;
+        setFilteredIcons(filtered);
+    }, [icons, searchTerm]);
+
+    return filteredIcons;
+}

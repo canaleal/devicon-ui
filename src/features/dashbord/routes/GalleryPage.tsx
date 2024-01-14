@@ -8,7 +8,7 @@ import { Dropdown } from "../../../components/Form/Dropdown"
 import { CodeBlock } from "../../../components/Elements/CodeBlock"
 import { DEVICON_LINK_TAG } from "../../../constants"
 
-import { IIconFilter, updateFilter, FilterList, IIconFilterGroup, useFilterGroups, useFilteredIcons, resetFilterGroup, updateFilterGroups } from "../filters"
+import { IIconFilter, updateFilter, FilterList, IIconFilterGroup, useFindFilterGroups, useFilterGroups, resetFilterGroup, updateFilterGroups, useSearchFilter } from "../filters"
 import Modal from "../../../components/Elements/Modal/Modal"
 import storage from "../../../helpers/storage"
 import { useIcons } from "../../../hooks"
@@ -20,8 +20,9 @@ const GalleryPage = () => {
     const [searchTerm, setSearchTerm] = useState("");
 
     const icons = useIcons(deviconBranch);
-    const { filterGroups, setFilterGroups } = useFilterGroups(icons);
-    const filteredIcons = useFilteredIcons(icons, filterGroups, searchTerm);
+    const searchedIcons = useSearchFilter(icons, searchTerm);
+    const { filterGroups, setFilterGroups } = useFindFilterGroups(searchedIcons);
+    const filteredIcons = useFilterGroups(searchedIcons, filterGroups);
 
     const handleBranchChange = (branch: DeviconBranch) => {
         const token = storage.getToken();

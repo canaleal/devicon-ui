@@ -1,11 +1,12 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Shrikhand&family=Space+Grotesk&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Shrikhand');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 :root {
 	line-height: 1.75;
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: Inter, sans-serif;
+	font-feature-settings: 'liga' 1, 'calt' 1;
   color: #000000;
   font-size:  16px;
 	font-weight: 400;
