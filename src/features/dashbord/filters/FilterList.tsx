@@ -13,8 +13,8 @@ export const FilterList = ({ title, filterGroup, iconMap, isLimited, handleFilte
   const selectedFiltersCount = filterGroup.filters.reduce((count, filter) => (filter.isSelected ? count + 1 : count), 0);
   const isSelectedClass = (filter: IIconFilter) =>
     filter.isSelected
-      ? "bg-primary hover:bg-primary-dark text-white dark:bg-zinc-900 dark:hover:bg-zinc-700 shadow-sm"
-      : "hover:bg-zinc-200 dark:hover:bg-zinc-700 hover:shadow-sm";
+      ? "bg-primary hover:bg-primary-dark text-white dark:bg-zinc-1000 dark:hover:bg-zinc-800 shadow-sm"
+      : "hover:bg-zinc-200 dark:hover:bg-zinc-800 hover:shadow-sm";
 
   return (
     <div className="flex flex-col text-gray-800 dark:text-gray-200">

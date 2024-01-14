@@ -25,7 +25,7 @@ export function Table<T>({ data, headers, keyExtractor, rowRenderer, onRowClick 
                 </thead>
                 <tbody>
                     {data.map((item, index) => (
-                        <tr key={keyExtractor(item, index)} className={`${onRowClick ? 'hover:bg-primary hover:text-white dark:hover:bg-zinc-700 cursor-pointer' : ''}`}
+                        <tr key={keyExtractor(item, index)} className={`${onRowClick ? 'hover:bg-primary hover:text-white dark:hover:bg-zinc-800 cursor-pointer' : ''}`}
                             onClick={() => onRowClick && onRowClick(item)} >
                             {rowRenderer(item).map((cell, cellIndex) => (
                                 <td key={cellIndex} className="text-left px-4 py-2">

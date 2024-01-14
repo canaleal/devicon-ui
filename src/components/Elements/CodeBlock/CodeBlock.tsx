@@ -11,7 +11,7 @@ export const CodeBlock = ({ code, children }: CodeBlockProps) => {
 
     return (
         <div className={`flex flex-col border-2 dark:border-zinc-600  rounded-lg overflow-hidden h-fit`}>
-            <div className='flex flex-row bg-zinc-900 justify-between'>
+            <div className='flex flex-row bg-zinc-1000 justify-between'>
                 {children}
                 <Tooltip content='Copy Code' position='bottom' flashMessage="Copied!">
                     <button onClick={() => { copyToClipboard(code) }} className='px-4 py-2 hover:text-primary text-white flex ml-auto'>
@@ -20,7 +20,7 @@ export const CodeBlock = ({ code, children }: CodeBlockProps) => {
                     </button>
                 </Tooltip>
             </div>
-            <pre className="flex flex-row bg-zinc-800  px-4 py-4 text-white overflow-auto">
+            <pre className="flex flex-row bg-zinc-900  px-4 py-4 text-white overflow-auto">
                 <code className="language-typescript">{code}</code>
             </pre>
         </div>

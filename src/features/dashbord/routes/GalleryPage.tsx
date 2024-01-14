@@ -48,13 +48,13 @@ const GalleryPage = () => {
                 <IconModal icon={selectedIcon!} deviconBranch={deviconBranch} />
             </Modal>
 
-            <section className="bg-smoke dark:bg-zinc-900 dark:text-white  px-32 py-8 flex flex-row gap-4 ">
+            <section className="bg-smoke dark:bg-zinc-1000 dark:text-white  px-32 py-8 flex flex-row gap-4 ">
                 <p className="text-title my-auto text-primary mr-auto">Devicon</p>
                 <Dropdown size="lg" selectedOption={deviconBranch} options={["master", "develop"]} onChange={(value) => { handleBranchChange(value as DeviconBranch) }} />
                 <SearchBar size="xl" onSearch={setSearchTerm} />
             </section>
 
-            <section className="bg-white dark:bg-zinc-800 flex flex-col xl:flex-row px-16 2xl:px-32 py-16  gap-6 w-full">
+            <section className="bg-white dark:bg-zinc-900 flex flex-col xl:flex-row px-16 2xl:px-32 py-16  gap-6 w-full">
                 <div className="w-6/6 xl:w-1/6 flex flex-col gap-6">
                     {filterGroups.map(group => (
                         <FilterList

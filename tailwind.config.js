@@ -10,7 +10,11 @@ export default {
       colors: {
         'smoke': "#F7F7F8",
         "primary": '#0b8760',
-        "primary-dark": "#09573e"
+        "primary-dark": "#09573e",
+        "zinc": {
+
+          1000: "#09090b"
+        }
       }
     },
   },

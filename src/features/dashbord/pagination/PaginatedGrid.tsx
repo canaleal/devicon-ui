@@ -62,7 +62,7 @@ export const PaginatedGrid = ({ icons, onSelect, deviconBranch }: PaginatedGridP
               ))}
             </div>
           ) : (
-            <div className="flex flex-col w-full bg-white dark:dark:bg-zinc-900 rounded-lg">
+            <div className="flex flex-col w-full bg-white dark:dark:bg-zinc-1000 rounded-lg">
               <Table
                 data={paginatedIcons}
                 headers={['Icon', 'Name', 'Tags', 'Styles']}
