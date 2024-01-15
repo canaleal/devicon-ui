@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { DEVICON_VERSION_RELEASE } from '../../../constants';
-import { DeviconBranch, IIcon, IconVersion } from '../../../types';
+import { DeviconBranch, FONT_VERSIONS, IIcon, IconVersion } from '../../../types';
 import { createDeviconIconUrl } from '../../../helpers/iconUrl';
 import { Tooltip } from '../../../components/Elements/Tooltip';
 import { IIconSize, ICON_SIZE_OPTIONS, INIT_ICON_SIZE } from './types';
@@ -9,6 +9,8 @@ import { Table } from '../../../components/Elements/Table';
 import { TextBar } from '../../../components/Elements/TextBar';
 import { IconImage, TagsBar, IconCode } from './widgets';
 import { copyToClipboard } from '../../../helpers/copyToClipboard';
+import { ColorPicker } from '../../../components/Form/ColorPicker';
+
 
 interface IconModalProps {
     icon: IIcon;
@@ -17,14 +19,17 @@ interface IconModalProps {
 
 export const IconModal = ({ icon, deviconBranch }: IconModalProps) => {
 
+   
     const [selectedVersion, setSelectedVersion] = useState<IconVersion>(icon.versions.svg[0]);
     const [selectedIconSize, setSelectedIconSize] = useState<IIconSize>(INIT_ICON_SIZE);
     const iconUrl = createDeviconIconUrl(icon.name, selectedVersion, deviconBranch);
 
-    // const [selectedColor, setSelectedColor] = useState(icon.color ?? '#000000')
-    // const handleColorChange = (color: string) => {
-    //     setSelectedColor(color);
-    // };
+    // const [selectedColor, setSelectedColor] = useState<string>(icon.color);
+    // const [isFontVersion, setIsFontVersion] = useState(false);
+    // useEffect(() => {
+    //     const isFont = icon.aliases.some((alias)=>{ return alias.base == selectedVersion}) || FONT_VERSIONS.includes(selectedVersion);
+    //     setIsFontVersion(isFont)
+    // }, [selectedVersion])
 
     return (
         <>
@@ -48,7 +53,6 @@ export const IconModal = ({ icon, deviconBranch }: IconModalProps) => {
                         <Dropdown size='full' selectedOption={selectedVersion} options={icon.versions.svg} onChange={(value) => { setSelectedVersion(value as IconVersion) }} />
                         <Dropdown size='full' selectedOption={selectedIconSize.name} options={ICON_SIZE_OPTIONS.map((option) => option.name)} onChange={(value) => { setSelectedIconSize(ICON_SIZE_OPTIONS.find((option) => option.name === value)!) }} />
                     </div>
-
                     <Table
                         data={icon.aliases}
                         headers={['Base', 'Alias']}
@@ -56,8 +60,9 @@ export const IconModal = ({ icon, deviconBranch }: IconModalProps) => {
                         rowRenderer={(item) => [item.base, item.alias]}
                         onRowClick={(item) => { setSelectedVersion(item.base as IconVersion) }}
                     />
-
-                  
+                    {/* {isFontVersion &&
+                        <ColorPicker size='full' defaultColor={icon.color} color={selectedColor} onColorChange={(color) => { setSelectedColor(color) }} />
+                    } */}
                 </div>
             </div>
 

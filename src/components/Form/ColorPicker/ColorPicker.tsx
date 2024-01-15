@@ -1,12 +1,27 @@
+const sizes = {
+    sm: 'w-16',
+    md: 'w-32',
+    lg: 'w-48',
+    full: 'w-full'
+};
+
 
 interface ColorPickerProps {
-    color : string;
+    color: string;
+    defaultColor?: string;
     onColorChange: (color: string) => void;
+    size: keyof typeof sizes
 }
 
-const ColorPicker = ({color, onColorChange}: ColorPickerProps) => {
+export const ColorPicker = ({ defaultColor = "#000", color, onColorChange, size }: ColorPickerProps) => {
     return (
-        <input className="rounded-lg" type='color' value={color} onChange={(e) => { onColorChange(e.target.value) }} />
+        <div className={`flex flex-col gap-2 ${sizes[size]} `}>
+            <input className={`rounded-lg overflow-hidden w-full`} type='color' value={color} onChange={(e) => { onColorChange(e.target.value) }} />
+            <button className={`ml-auto text-sm font-bold ${defaultColor != color ? 'text-primary hover:text-primary-dark' : 'hidden'} `} onClick={() => { onColorChange(defaultColor) }}>
+                Reset Color
+            </button>
+        </div>
+
     )
 }
 export default ColorPicker;
