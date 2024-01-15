@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { DEVICON_VERSION_RELEASE } from '../../../constants';
-import { DeviconBranch, FONT_VERSIONS, IIcon, IconVersion } from '../../../types';
+import { DeviconBranch, IIcon, IconVersion } from '../../../types';
 import { createDeviconIconUrl } from '../../../helpers/iconUrl';
 import { Tooltip } from '../../../components/Elements/Tooltip';
 import { IIconSize, ICON_SIZE_OPTIONS, INIT_ICON_SIZE } from './types';
@@ -9,7 +9,6 @@ import { Table } from '../../../components/Elements/Table';
 import { TextBar } from '../../../components/Elements/TextBar';
 import { IconImage, TagsBar, IconCode } from './widgets';
 import { copyToClipboard } from '../../../helpers/copyToClipboard';
-import { ColorPicker } from '../../../components/Form/ColorPicker';
 
 
 interface IconModalProps {
