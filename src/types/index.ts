@@ -12,8 +12,8 @@ export interface IIcon {
     };
     color: string;
     aliases: {
-        base: string
-        alias: string
+        base: IconVersion
+        alias: IconVersion
     }[]
 }
 

@@ -37,7 +37,7 @@ export const populateIconFilters = (icons: IIcon[], filterGroup: IIconFilterGrou
     return filterGroup;
 };
 
-const FilterFunctions: Record<FilterType, (icon: IIcon, criterion: string | IconVersion) => boolean> = {
+export const FilterFunctions: Record<FilterType, (icon: IIcon, criterion: string | IconVersion) => boolean> = {
     name: (icon, name) => [icon.name, ...(icon.altnames ?? [])].some(n => n.toLowerCase().includes(name as string)),
     versions: (icon, version) => icon.versions.svg.includes(version as IconVersion),
     tags: (icon, tag) => icon.tags.includes(tag as string),
