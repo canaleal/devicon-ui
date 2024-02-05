@@ -1,5 +1,5 @@
 import { IIcon, IconVersion } from "../../../../types";
-import { FilterType, IIconFilter, IIconFilterGroup } from "../types";
+import { FilterType, IIconFilterOption, IIconFilterCategory } from "../types";
 
 const FilterMapRecord: Record<FilterType, string> = {
     versions: 'versions.svg',
@@ -15,7 +15,7 @@ const getItemsFromPath = (icons: IIcon, path: string): string[] => {
     return items;
 }
 
-export const populateIconFilters = (icons: IIcon[], filterGroup: IIconFilterGroup) => {
+export const populateIconFilters = (icons: IIcon[], filterGroup: IIconFilterCategory) => {
     const itemsPath = FilterMapRecord[filterGroup.filterType];
     filterGroup.filters.forEach(filter => {
         filter.numberOfIcons = 0;
@@ -49,11 +49,11 @@ export const filterIcons = (icons: IIcon[], filterType: FilterType, criterion: s
     return icons.filter(icon => FilterFunctions[filterType](icon, criterion));
 }
 
-export const updateFilterGroups = (filterGroups: IIconFilterGroup[], filterGroup: IIconFilterGroup) => {
+export const updateFilterGroups = (filterGroups: IIconFilterCategory[], filterGroup: IIconFilterCategory) => {
     return filterGroups.map(group => group.filterType === filterGroup.filterType ? filterGroup : group);
 }
 
-export const updateFilter = (filterGroup: IIconFilterGroup, filter: IIconFilter) => {
+export const updateFilter = (filterGroup: IIconFilterCategory, filter: IIconFilterOption) => {
     const tempFilterGroup = { ...filterGroup };
     const filterIndex = tempFilterGroup.filters.findIndex(item => item.filterName === filter.filterName);
     if (filterIndex === -1) return filterGroup;
@@ -61,7 +61,7 @@ export const updateFilter = (filterGroup: IIconFilterGroup, filter: IIconFilter)
     return tempFilterGroup;
 }
 
-export const resetFilterGroup = (filterGroup: IIconFilterGroup) => {
+export const resetFilterGroup = (filterGroup: IIconFilterCategory) => {
     const tempFilterGroup = { ...filterGroup };
     tempFilterGroup.filters.forEach(filter => filter.isSelected = false);
     return tempFilterGroup;

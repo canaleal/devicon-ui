@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { DeviconBranch, IIcon, IconVersion } from "../../../../types"
 import { createIconCodeBlockText } from "../helpers/iconCodeBlock"
-import { CodeBlockTypes, IIconSize, CODE_BLOCK_TYPE_LIST } from "../types";
+import { CodeBlockOptionTypes, IIconSize, CODE_BLOCK_OPTIONS } from "../types";
 import { CodeBlock } from "../../../../components/Elements/CodeBlock";
 
 
@@ -15,11 +15,11 @@ interface IconCodeProps {
 
 export const IconCode = ({ icon, iconSize, iconUrl, deviconBranch, selectedVersion }: IconCodeProps) => {
 
-    const codeBlockOptions = deviconBranch === "develop" ? CODE_BLOCK_TYPE_LIST.filter((option) => option !== "<i> Tag") : CODE_BLOCK_TYPE_LIST;
-    const [selectedOption, setSelectedOption] = useState<CodeBlockTypes>("Link")
+    const codeBlockOptions = deviconBranch === "develop" ? CODE_BLOCK_OPTIONS.filter((option) => option !== "<i> Tag") : CODE_BLOCK_OPTIONS;
+    const [selectedOption, setSelectedOption] = useState<CodeBlockOptionTypes>("Link")
     const [codeText, setCodeText] = useState<string>("")
 
-    const handleClick = (codeType: CodeBlockTypes) => {
+    const handleClick = (codeType: CodeBlockOptionTypes) => {
         setSelectedOption(codeType)
     }
 

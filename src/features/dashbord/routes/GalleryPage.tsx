@@ -8,7 +8,7 @@ import { Dropdown } from "../../../components/Form/Dropdown"
 import { CodeBlock } from "../../../components/Elements/CodeBlock"
 import { DEVICON_LINK_TAG } from "../../../constants"
 
-import { IIconFilter, updateFilter, FilterList, IIconFilterGroup, useFindFilterGroups, useFilterGroups, resetFilterGroup, updateFilterGroups, useSearchFilter } from "../filters"
+import { IIconFilterOption, updateFilter, FilterList, IIconFilterCategory, useInitializeFilterGroups, useApplyFilters, resetFilterGroup, updateFilterGroups, useFilterBySearchTerm } from "../filters"
 import Modal from "../../../components/Elements/Modal/Modal"
 import storage from "../../../helpers/storage"
 import { useIcons } from "../../../hooks"
@@ -20,9 +20,9 @@ const GalleryPage = () => {
     const [searchTerm, setSearchTerm] = useState("");
 
     const icons = useIcons(deviconBranch);
-    const searchedIcons = useSearchFilter(icons, searchTerm);
-    const { filterGroups, setFilterGroups } = useFindFilterGroups(searchedIcons);
-    const filteredIcons = useFilterGroups(searchedIcons, filterGroups);
+    const searchedIcons = useFilterBySearchTerm(icons, searchTerm);
+    const { filterGroups, setFilterGroups } = useInitializeFilterGroups(searchedIcons);
+    const filteredIcons = useApplyFilters(searchedIcons, filterGroups);
 
     const handleBranchChange = (branch: DeviconBranch) => {
         const token = storage.getToken();
@@ -30,13 +30,13 @@ const GalleryPage = () => {
         setDeviconBranch(branch);
     }
 
-    const handleFilterClick = (filterGroup: IIconFilterGroup, filter: IIconFilter) => {
+    const handleFilterClick = (filterGroup: IIconFilterCategory, filter: IIconFilterOption) => {
         const updatedFilterGroup = updateFilter(filterGroup, filter);
         const updatedFilterGroups = updateFilterGroups(filterGroups, updatedFilterGroup);
         setFilterGroups(updatedFilterGroups);
     }
 
-    const handleResetFilterGroup = (filterGroup: IIconFilterGroup) => {
+    const handleResetFilterGroup = (filterGroup: IIconFilterCategory) => {
         const updatedFilterGroup = resetFilterGroup(filterGroup)
         const updatedFilterGroups = updateFilterGroups(filterGroups, updatedFilterGroup);
         setFilterGroups(updatedFilterGroups);
@@ -59,12 +59,11 @@ const GalleryPage = () => {
                     {filterGroups.map(group => (
                         <FilterList
                             key={group.filterType}
-                            title={group.groupName}
                             filterGroup={group}
-                            handleFilter={(filter) => handleFilterClick(group, filter)}
+                            handleFilter={handleFilterClick}
                             iconMap={ICON_VERSION_FA_MAP}
-                            isLimited={group.filters.length > 10}
-                            resetFilterGroup={() => handleResetFilterGroup(group)}
+                            hasMaxHeight={group.filters.length > 10}
+                            resetFilterGroup={handleResetFilterGroup}
                         />
                     ))}
                 </div>

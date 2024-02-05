@@ -20,7 +20,7 @@ describe('populateIconFilters', () => {
 
   it('should populate icon filters correctly', () => {
     const mockFilterGroup = {
-      groupName: 'testGroup',
+      categoryName: 'testGroup',
       filterType: 'tags' as FilterType,
       filters: [
         { filterName: 'tag1', numberOfIcons: 0, isSelected: false },
@@ -31,7 +31,7 @@ describe('populateIconFilters', () => {
     const result = populateIconFilters(mockIcons, mockFilterGroup);
 
     // Assertions based on your logic
-    expect(result.groupName).toEqual('testGroup');
+    expect(result.categoryName).toEqual('testGroup');
     expect(result.filters.length).toBeGreaterThan(0);
     // Add more assertions based on your logic and expected behavior
   });

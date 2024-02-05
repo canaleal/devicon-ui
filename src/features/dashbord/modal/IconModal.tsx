@@ -17,23 +17,13 @@ interface IconModalProps {
 }
 
 export const IconModal = ({ icon, deviconBranch }: IconModalProps) => {
-
-   
     const [selectedVersion, setSelectedVersion] = useState<IconVersion>(icon.versions.svg[0]);
     const [selectedIconSize, setSelectedIconSize] = useState<IIconSize>(INIT_ICON_SIZE);
     const iconUrl = createDeviconIconUrl(icon.name, selectedVersion, deviconBranch);
 
-    // const [selectedColor, setSelectedColor] = useState<string>(icon.color);
-    // const [isFontVersion, setIsFontVersion] = useState(false);
-    // useEffect(() => {
-    //     const isFont = icon.aliases.some((alias)=>{ return alias.base == selectedVersion}) || FONT_VERSIONS.includes(selectedVersion);
-    //     setIsFontVersion(isFont)
-    // }, [selectedVersion])
-
     return (
         <>
             <div className="flex flex-row dark:text-white">
-
                 <Tooltip content='Copy Icon' position='bottom' flashMessage="Copied!">
                     <button onClick={() => copyToClipboard(icon.name)} className='p-2 hover:text-primary flex '>
                         <p className="font-bold text-3xl">{icon.name}</p>
@@ -43,9 +33,7 @@ export const IconModal = ({ icon, deviconBranch }: IconModalProps) => {
             </div>
 
             <div className="flex flex-col 2xl:flex-row my-4 gap-8">
-
                 <IconImage iconUrl={iconUrl} iconName={icon.name} iconSize={selectedIconSize} />
-
                 <div className="flex-1 flex flex-col gap-6">
                     <TagsBar tags={icon.tags ?? []} />
                     <div className='flex flex-row gap-6 w-full'>
@@ -59,9 +47,6 @@ export const IconModal = ({ icon, deviconBranch }: IconModalProps) => {
                         rowRenderer={(item) => [item.base, item.alias]}
                         onRowClick={(item) => { setSelectedVersion(item.base as IconVersion) }}
                     />
-                    {/* {isFontVersion &&
-                        <ColorPicker size='full' defaultColor={icon.color} color={selectedColor} onColorChange={(color) => { setSelectedColor(color) }} />
-                    } */}
                 </div>
             </div>
 

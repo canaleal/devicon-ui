@@ -1,14 +1,14 @@
 
 export type FilterType = 'versions' | 'color' | 'tags' | 'alias' | 'name'
 
-export interface IIconFilter {
+export interface IIconFilterOption {
     filterName: string,
     numberOfIcons: number,
     isSelected: boolean
 }
 
-export interface IIconFilterGroup {
-    groupName: string,
+export interface IIconFilterCategory {
+    categoryName: string,
     filterType: FilterType,
-    filters: IIconFilter[]
+    filters: IIconFilterOption[]
 }

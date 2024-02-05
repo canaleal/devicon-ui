@@ -48,7 +48,7 @@ export const Tooltip = ({ children, content, position, flashMessage }: TooltipPr
 
     return (
         <div
-            className="flex relative"
+            className="flex relative w-fit"
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
             onClick={handleClick}

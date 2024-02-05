@@ -1,24 +1,24 @@
 import { useState, useEffect } from 'react';
 import { IIcon, IconVersion } from '../../../../types';
-import { IIconFilterGroup } from '../types';
+import { IIconFilterCategory } from '../types';
 import { filterIcons, populateIconFilters } from '../helpers';
 
-const INIT_FILTER_GROUPS: IIconFilterGroup[] = [
+const INIT_FILTER_GROUPS: IIconFilterCategory[] = [
     {
-        groupName: 'Versions',
+        categoryName: 'Versions',
         filterType: 'versions',
         filters: [],
     },
     {
-        groupName: 'Tags',
+        categoryName: 'Tags',
         filterType: 'tags',
         filters: [],
     }
 ]
 
 
-export const useFindFilterGroups = (icons: IIcon[], initialFilterGroups: IIconFilterGroup[] = INIT_FILTER_GROUPS) => {
-    const [filterGroups, setFilterGroups] = useState<IIconFilterGroup[]>(initialFilterGroups);
+export const useInitializeFilterGroups = (icons: IIcon[], initialFilterGroups: IIconFilterCategory[] = INIT_FILTER_GROUPS) => {
+    const [filterGroups, setFilterGroups] = useState<IIconFilterCategory[]>(initialFilterGroups);
     useEffect(() => {
         setFilterGroups(prevGroups => prevGroups.map(group => populateIconFilters(icons, group)));
     }, [icons]);
@@ -26,7 +26,7 @@ export const useFindFilterGroups = (icons: IIcon[], initialFilterGroups: IIconFi
 };
 
 
-export const useFilterGroups = (searchedIcons: IIcon[], filterGroups: IIconFilterGroup[]) => {
+export const useApplyFilters = (searchedIcons: IIcon[], filterGroups: IIconFilterCategory[]) => {
     const [filteredIcons, setFilteredIcons] = useState<IIcon[]>(searchedIcons);
     useEffect(() => {
         let filtered = searchedIcons;
@@ -43,12 +43,12 @@ export const useFilterGroups = (searchedIcons: IIcon[], filterGroups: IIconFilte
 };
 
 
-export const useSearchFilter = (icons: IIcon[], searchTerm: string) => {
-    const [filteredIcons, setFilteredIcons] = useState<IIcon[]>(icons);
+export const useFilterBySearchTerm = (allIcons: IIcon[], searchTerm: string) => {
+    const [filteredIcons, setFilteredIcons] = useState<IIcon[]>(allIcons);
     useEffect(() => {
-        const filtered = searchTerm ? filterIcons(icons, 'name', searchTerm) : icons;
+        const filtered = searchTerm ? filterIcons(allIcons, 'name', searchTerm) : allIcons;
         setFilteredIcons(filtered);
-    }, [icons, searchTerm]);
+    }, [allIcons, searchTerm]);
 
     return filteredIcons;
 }
