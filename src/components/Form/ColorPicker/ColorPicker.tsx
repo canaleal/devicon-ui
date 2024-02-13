@@ -17,7 +17,7 @@ export const ColorPicker = ({ defaultColor = "#000", color, onColorChange, size 
     return (
         <div className={`flex flex-col gap-2 ${sizes[size]} `}>
             <input className={`rounded-lg overflow-hidden w-full`} type='color' value={color} onChange={(e) => { onColorChange(e.target.value) }} />
-            <button className={`ml-auto text-sm font-bold ${defaultColor != color ? 'text-primary hover:text-primary-dark' : 'hidden'} `} onClick={() => { onColorChange(defaultColor) }}>
+            <button className={`ml-auto text-sm font-bold ${defaultColor != color ? 'text-indigo-600 hover:text-indigo-800' : 'hidden'} `} onClick={() => { onColorChange(defaultColor) }}>
                 Reset Color
             </button>
         </div>

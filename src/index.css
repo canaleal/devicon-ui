@@ -22,13 +22,32 @@ html {
 }
 
 
+@keyframes gradientChange {
+	0% {
+		background-position: 0% 50%;
+	}
 
-.text-title {
-  font-family: 'Shrikhand', cursive;
-  font-size: 2.5rem;
-  line-height: 25px;
-  font-weight: 400;
+	50% {
+		background-position: 100% 50%;
+	}
+
+	100% {
+		background-position: 0% 50%;
+	}
 }
+
+/* Apply the animation to the text */
+.changing-gradient-text {
+	background: linear-gradient(90deg, #4f46e5 0%, #1d4ed8 100%);
+	-webkit-background-clip: text;
+	background-clip: text;
+	-webkit-text-fill-color: transparent;
+	animation: gradientChange 5s infinite;
+	background-size: 200% 100%;
+  font-family: 'Shrikhand', cursive;
+}
+
+
 
 .text-subtitle {
   font-size: 1.2rem;

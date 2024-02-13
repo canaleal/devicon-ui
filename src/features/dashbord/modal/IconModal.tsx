@@ -25,7 +25,7 @@ export const IconModal = ({ icon, deviconBranch }: IconModalProps) => {
         <>
             <div className="flex flex-row dark:text-white">
                 <Tooltip content='Copy Icon' position='bottom' flashMessage="Copied!">
-                    <button onClick={() => copyToClipboard(icon.name)} className='p-2 hover:text-primary flex '>
+                    <button onClick={() => copyToClipboard(icon.name)} className='p-2 hover:text-indigo-600 flex '>
                         <p className="font-bold text-3xl">{icon.name}</p>
                         <i className="fa-solid fa-copy text-xl ml-2 my-auto"></i>
                     </button>

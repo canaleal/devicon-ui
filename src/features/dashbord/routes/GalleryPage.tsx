@@ -49,7 +49,7 @@ const GalleryPage = () => {
             </Modal>
 
             <section className="bg-smoke dark:bg-zinc-1000 dark:text-white  px-32 py-8 flex flex-row gap-4 ">
-                <p className="text-title my-auto text-primary mr-auto">Devicon</p>
+                <p className="my-auto text-5xl font-bold changing-gradient-text mr-auto">Devicon</p>
                 <Dropdown size="lg" selectedOption={deviconBranch} options={["master", "develop"]} onChange={(value) => { handleBranchChange(value as DeviconBranch) }} />
                 <SearchBar size="xl" onSearch={setSearchTerm} />
             </section>
@@ -70,7 +70,7 @@ const GalleryPage = () => {
                 <div className="w-6/6 xl:w-5/6 flex flex-col gap-6">
                     {deviconBranch === 'master' &&
                         <CodeBlock code={DEVICON_LINK_TAG}>
-                            <p className="bg-primary px-4 py-2 text-white">Place this in your header (once per HTML file)</p>
+                            <p className="bg-indigo-600 px-4 py-2 text-white">Place this in your header (once per HTML file)</p>
                         </CodeBlock>
                     }
                     <PaginatedGrid icons={filteredIcons} deviconBranch={deviconBranch} onSelect={setSelectedIcon} />

@@ -9,7 +9,7 @@ interface FilterButtonProps {
 export const FilterButton: React.FC<FilterButtonProps> = ({ filter, icon, handleFilter }) => {
 
     const isSelectedClass = filter.isSelected
-            ? "bg-primary hover:bg-primary-dark text-white dark:bg-zinc-1000 dark:hover:bg-zinc-800 shadow-sm"
+            ? "bg-indigo-600 hover:bg-indigo-800 text-white dark:bg-zinc-1000 dark:hover:bg-zinc-800 shadow-sm"
             : "hover:bg-zinc-200 dark:hover:bg-zinc-800 hover:shadow-sm";
 
     return (

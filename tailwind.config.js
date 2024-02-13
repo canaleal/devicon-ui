@@ -9,7 +9,7 @@ export default {
     extend: {
       colors: {
         'smoke': "#F7F7F8",
-        "primary": '#0b8760',
+        "primary": '#0d9488',
         "primary-dark": "#09573e",
         "zinc": {
 

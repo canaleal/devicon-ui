@@ -36,7 +36,7 @@ export const IconCode = ({ icon, iconSize, iconUrl, deviconBranch, selectedVersi
         <CodeBlock code={codeText}>
             <div className="flex mr-auto">
                 {codeBlockOptions.map((codeType) => (
-                    <button key={codeType} onClick={() => { handleClick(codeType) }} className={`px-4 py-2  ${codeType === selectedOption ? "bg-primary" : "bg-zinc-1000"} hover:bg-primary-dark text-white `}>
+                    <button key={codeType} onClick={() => { handleClick(codeType) }} className={`px-4 py-2  ${codeType === selectedOption ? "bg-indigo-600" : "bg-zinc-1000"} hover:bg-indigo-800 text-white `}>
                         <span className='font-bold text-sm'>{codeType}</span>
                     </button>
                 ))}
