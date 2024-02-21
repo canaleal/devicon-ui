@@ -23,7 +23,7 @@ export const PaginationCard = ({ icon, deviconBranch, onSelect }: PaginationCard
       className={`${cardClasses.base} ${cardClasses.border} ${cardClasses.color}`}
     >
       <img className="mx-auto" width={50} height={'auto'} src={iconUrl} alt={icon.name} />
-      <p className="text-sm mt-4">{icon.name}</p>
+      <p className="text-sm mt-4 dark:text-white">{icon.name}</p>
 
       {icon.versions.svg.length > 4 && (
         <div className="absolute top-0 right-0 bg-indigo-600 text-white p-2 rounded-bl-lg">
