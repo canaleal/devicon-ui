@@ -38,13 +38,13 @@ html {
 
 /* Apply the animation to the text */
 .changing-gradient-text {
-	background: linear-gradient(90deg, #4f46e5 0%, #1d4ed8 100%);
+	background: linear-gradient(90deg, #4f46e5 0%, #7c3aed 100%);
 	-webkit-background-clip: text;
 	background-clip: text;
 	-webkit-text-fill-color: transparent;
 	animation: gradientChange 5s infinite;
 	background-size: 200% 100%;
-  font-family: 'Shrikhand', cursive;
+  	font-family: 'Shrikhand', cursive;
 }
 
 

@@ -6,6 +6,8 @@ const sizes = {
     md: 'w-32',
     lg: 'w-48',
     xl: 'w-96',
+    xxl: 'w-[24rem]',
+    xxxl: 'w-[32rem]',
     full: 'w-full'
 };
 
