@@ -8,10 +8,6 @@ export const Footer = () => {
 
     const TOOLS: FooterItem[] = [
         {
-            name: "Color Designer",
-            url: "https://colordesigner.io/tools"
-        },
-        {
             name: "SVG to JSX",
             url: "https://react-svgr.com/playground/"
         },
