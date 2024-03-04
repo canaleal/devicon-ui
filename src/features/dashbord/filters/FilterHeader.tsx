@@ -13,7 +13,7 @@ export const FilterHeader: React.FC<FilterHeaderProps> = ({ categoryName, number
         </p>
         {resetFilterGroup && (
             <button
-                className={`ml-auto text-sm font-bold ${numberOfActiveFilters ? 'text-indigo-600 hover:text-indigo-800' : 'hidden'}`}
+                className={`ml-auto text-sm font-bold ${numberOfActiveFilters ? 'text-green-600 hover:text-green-800' : 'hidden'}`}
                 onClick={resetFilterGroup}
             >
                 Reset

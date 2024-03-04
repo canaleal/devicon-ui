@@ -26,7 +26,7 @@ export const PaginationCard = ({ icon, deviconBranch, onSelect }: PaginationCard
       <p className="text-sm mt-4 dark:text-white">{icon.name}</p>
 
       {icon.versions.svg.length > 4 && (
-        <div className="absolute top-0 right-0 bg-indigo-600 text-white p-2 rounded-bl-lg">
+        <div className="absolute top-0 right-0 bg-green-600 text-white p-2 rounded-bl-lg">
           <p className="text-sm">{icon.versions.svg.length}</p>
         </div>
       )}

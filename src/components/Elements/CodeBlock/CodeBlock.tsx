@@ -14,26 +14,26 @@ export const CodeBlock = ({ code, children }: CodeBlockProps) => {
         margin: '0rem',
         padding: '0.75rem 1rem ',
         borderRadius: '0rem',
-
+        "white-space": "nowrap"
     }
+
+    // remove new llines and spaces so its 1 line
+    const codeString = code.replace(/(\r\n|\n|\r)/gm, "");
 
     return (
         <div className={`flex flex-col border-2 dark:border-zinc-600  rounded-lg overflow-hidden h-fit`}>
             <div className='flex flex-row bg-zinc-1000 justify-between'>
                 {children}
                 <Tooltip content='Copy Code' position='bottom' flashMessage="Copied!">
-                    <button onClick={() => { copyToClipboard(code) }} className='px-4 py-2 hover:text-indigo-600 text-white flex ml-auto'>
+                    <button onClick={() => { copyToClipboard(codeString) }} className='px-4 py-2 hover:text-green-600 text-white flex ml-auto'>
                         <p className="font-bold text-sm my-auto">Copy Code</p>
                         <i className="fa-solid fa-copy ml-2 my-auto"></i>
                     </button>
                 </Tooltip>
             </div>
-            {/* <pre className="flex flex-row bg-zinc-900  px-4 py-4 text-white overflow-auto">
-                <code className="language-typescript whitespace-nowrap">{code}</code>
-            </pre> */}
 
             <SyntaxHighlighter customStyle={customStyle} language="javascript" style={a11yDark} wrapLongLines={false}>
-                {code}
+                {codeString}
             </SyntaxHighlighter>
         </div>
     )

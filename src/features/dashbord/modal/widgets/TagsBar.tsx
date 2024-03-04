@@ -12,7 +12,7 @@ export const TagsBar = ({ tags }: TagBarProps) => {
             {tags.length > 0 && (
                 <div className='flex flex-row dark:text-white'>
                     <Tooltip content='Copy Categories' position='bottom' flashMessage="Copied!">
-                        <button onClick={() => copyToClipboard(tags.toString())} className='p-2 hover:text-indigo-600 flex'>
+                        <button onClick={() => copyToClipboard(tags.toString())} className='p-2 hover:text-green-600 flex'>
                             <i className="fa-solid fa-folder"></i>
                         </button>
                     </Tooltip>

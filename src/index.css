@@ -38,25 +38,11 @@ html {
 
 /* Apply the animation to the text */
 .changing-gradient-text {
-	background: linear-gradient(90deg, #4f46e5 0%, #7c3aed 100%);
+	background: linear-gradient(90deg, #22c55e 0%, #16a34a 100%);
 	-webkit-background-clip: text;
 	background-clip: text;
 	-webkit-text-fill-color: transparent;
 	animation: gradientChange 5s infinite;
 	background-size: 200% 100%;
   	font-family: 'Shrikhand', cursive;
-}
-
-
-
-.text-subtitle {
-  font-size: 1.2rem;
-  line-height: 25px;
-  font-weight: 600;
-}
-
-
-.text-decor{
-  line-height: 25px;
-  font-weight: 400;
 }
