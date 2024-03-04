@@ -12,7 +12,7 @@ export const CodeBlock = ({ code, children }: CodeBlockProps) => {
 
     const customStyle = {
         margin: '0rem',
-        padding: '1rem',
+        padding: '0.75rem 1rem ',
         borderRadius: '0rem',
 
     }
