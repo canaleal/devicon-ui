@@ -62,11 +62,11 @@ const GalleryPage = () => {
 
             <section className="bg-white dark:bg-zinc-1000 flex flex-col xl:flex-row px-16 2xl:px-32 py-8  gap-4 ">
                 <p className="my-auto text-5xl font-bold changing-gradient-text mr-auto">Devicon</p>
-                <Dropdown size="lg" selectedOption={deviconBranch} options={["master", "develop"]} onChange={(value) => { handleBranchChange(value as DeviconBranch) }} />
-                <SearchBar size="xxxl" onSearch={setSearchTerm} />
+                <div className="flex flex-row gap-4">
+                    <Dropdown size="lg" selectedOption={deviconBranch} options={["master", "develop"]} onChange={(value) => { handleBranchChange(value as DeviconBranch) }} />
+                    <SearchBar size="xxxl" onSearch={setSearchTerm} />
+                </div>
             </section>
-
-
 
             <section className="bg-smoke dark:bg-zinc-900 flex flex-col xl:flex-row px-16 2xl:px-32 py-16  gap-6 w-full">
                 <div className="w-6/6 xl:w-1/6 flex flex-col gap-6">
