@@ -60,7 +60,7 @@ const GalleryPage = () => {
                 <IconModal icon={selectedIcon!} deviconBranch={deviconBranch} />
             </Modal>
 
-            <section className="bg-white dark:bg-zinc-1000 flex flex-col xl:flex-row px-16 2xl:px-32 py-8  gap-4 ">
+            <section className="bg-white dark:bg-zinc-1000 flex flex-col xl:flex-row px-16 2xl:px-32 py-8  gap-4 border-b dark:border-zinc-600">
                 <p className="my-auto text-5xl font-bold changing-gradient-text mr-auto">Devicon</p>
                 <div className="flex flex-row gap-4">
                     <Dropdown size="lg" selectedOption={deviconBranch} options={["master", "develop"]} onChange={(value) => { handleBranchChange(value as DeviconBranch) }} />

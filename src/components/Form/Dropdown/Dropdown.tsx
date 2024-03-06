@@ -6,19 +6,23 @@ const sizes = {
 };
 
 export interface DropdownProps {
+    title?: string;
     selectedOption: string;
     options: string[];
     onChange: (value: string) => void;
     size: keyof typeof sizes
 }
 
-export const Dropdown = ({ selectedOption, options, onChange, size }: DropdownProps) => {
+export const Dropdown = ({ title, selectedOption, options, onChange, size }: DropdownProps) => {
     return (
-        <select value={selectedOption} onChange={(e) => { onChange(e.target.value) }} className={`bg-white dark:bg-zinc-1000 dark:text-white border dark:border-zinc-600 rounded-lg px-4 py-3 ${sizes[size]}`}>
-            {options.map((option) => (
-                <option key={option} value={option}>{option}</option>
-            ))}
-        </select>
+        <div className={`flex flex-col gap-2 ${sizes[size]}`}>
+            {title && <p className="font-bold text-sm">{title}</p>}
+            <select value={selectedOption} onChange={(e) => { onChange(e.target.value) }} className={`bg-white dark:bg-zinc-1000 dark:text-white border dark:border-zinc-600 rounded-lg px-4 py-3 w-full`}>
+                {options.map((option) => (
+                    <option key={option} value={option}>{option}</option>
+                ))}
+            </select>
+        </div>
     )
 }
 

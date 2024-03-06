@@ -37,16 +37,19 @@ export const IconModal = ({ icon, deviconBranch }: IconModalProps) => {
                 <div className="flex-1 flex flex-col gap-6">
                     <TagsBar tags={icon.tags ?? []} />
                     <div className='flex flex-row gap-6 w-full'>
-                        <Dropdown size='full' selectedOption={selectedVersion} options={icon.versions.svg} onChange={(value) => { setSelectedVersion(value as IconVersion) }} />
-                        <Dropdown size='full' selectedOption={selectedIconSize.name} options={ICON_SIZE_OPTIONS.map((option) => option.name)} onChange={(value) => { setSelectedIconSize(ICON_SIZE_OPTIONS.find((option) => option.name === value)!) }} />
+                        <Dropdown title='Version' size='full' selectedOption={selectedVersion} options={icon.versions.svg} onChange={(value) => { setSelectedVersion(value as IconVersion) }} />
+                        <Dropdown title='Size' size='full' selectedOption={selectedIconSize.name} options={ICON_SIZE_OPTIONS.map((option) => option.name)} onChange={(value) => { setSelectedIconSize(ICON_SIZE_OPTIONS.find((option) => option.name === value)!) }} />
                     </div>
                     <Table
+                        title='Aliases'
                         data={icon.aliases}
                         headers={['Base', 'Alias']}
                         keyExtractor={(item, index) => `${item}-${index}`}
                         rowRenderer={(item) => [item.base, item.alias]}
                         onRowClick={(item) => { setSelectedVersion(item.base as IconVersion) }}
+                        size='full'
                     />
+                    
                 </div>
             </div>
 

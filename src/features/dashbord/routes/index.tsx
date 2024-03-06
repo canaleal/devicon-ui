@@ -4,7 +4,7 @@ import GalleryPage from './GalleryPage';
 export const DashboardRoutes = () => {
   return (
     <Routes>
-      <Route path="/" element={<GalleryPage />} />
+      <Route path="/*" element={<GalleryPage />} />
     </Routes>
   );
 };

@@ -13,11 +13,9 @@ export const CodeBlock = ({ code, children }: CodeBlockProps) => {
     const customStyle = {
         margin: '0rem',
         padding: '0.75rem 1rem ',
-        borderRadius: '0rem',
-        "white-space": "nowrap"
+        borderRadius: '0rem'
     }
 
-    // remove new llines and spaces so its 1 line
     const codeString = code.replace(/(\r\n|\n|\r)/gm, "");
 
     return (

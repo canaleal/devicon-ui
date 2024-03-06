@@ -5,10 +5,10 @@ import MainLayout from "../components/Layout/MainLayout";
 
 export const publicRoutes = [
   {
-    path: '/',
+    path: '/*',
     element: <MainLayout />,
     children: [
-      { path: '/', element: <DashboardRoutes /> },
+      { path: '/*', element: <DashboardRoutes /> },
       { path: '*', element: <NotFound /> },
     ],
   },
