@@ -74,6 +74,7 @@ export const PaginatedGrid = ({ icons, onSelect, deviconBranch }: PaginatedGridP
                   item.versions.svg.join(', ')
                 ]}
                 onRowClick={onSelect}
+                size='full'
 
 
               />
