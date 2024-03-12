@@ -84,7 +84,7 @@ const GalleryPage = () => {
                 <div className="w-6/6 xl:w-5/6 flex flex-col gap-6">
                     {deviconBranch === 'master' &&
                         <CodeBlock code={DEVICON_LINK_TAG}>
-                            <p className="bg-green-600 px-4 py-2 text-white">Place this in your header (once per HTML file)</p>
+                            <p className="px-4 py-2 text-white">Place this in your header (once per HTML file)</p>
                         </CodeBlock>
                     }
                     <PaginatedGrid icons={filteredIcons} deviconBranch={deviconBranch} onSelect={setNewSelectedIcon} />

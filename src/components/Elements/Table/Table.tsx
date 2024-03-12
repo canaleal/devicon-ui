@@ -23,9 +23,9 @@ export function Table<T>({ title, data, headers, keyExtractor, rowRenderer, onRo
     return (
         <div className={`flex flex-col gap-2 ${sizes[size]}`}>
             {title && <p className="font-bold text-sm dark:text-white">{title}</p>}
-            <div className="px-4 py-2 flex rounded-lg border-2 overflow-hidden w-full dark:text-white dark:border-zinc-600">
+            <div className="flex rounded-lg border-2 overflow-hidden w-full dark:text-white dark:border-zinc-600  bg-white dark:bg-zinc-800 ">
                 <table className="table-auto w-full">
-                    <thead className="border-b-2 dark:border-zinc-600">
+                    <thead className="border-b-2 dark:border-zinc-600 dark:bg-zinc-1000 dark:text-white">
                         <tr>
                             {headers.map((header, index) => (
                                 <th key={index} className="text-left px-4 py-2">
