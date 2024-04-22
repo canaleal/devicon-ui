@@ -60,15 +60,15 @@ const GalleryPage = () => {
                 <IconModal icon={selectedIcon!} deviconBranch={deviconBranch} />
             </Modal>
 
-            <section className="bg-white dark:bg-zinc-1000 flex flex-col xl:flex-row px-16 2xl:px-32 py-8  gap-4 border-b dark:border-zinc-600">
-                <p className="my-auto text-5xl font-bold changing-gradient-text mr-auto">Devicon</p>
+            <section className="bg-dark-600 flex flex-col xl:flex-row px-16 2xl:px-32 py-8  gap-4 border-b dark:border-zinc-600">
+                <p className="my-auto text-3xl font-extrabold mr-auto text-white">Dashboard</p>
                 <div className="flex flex-row gap-4">
                     <Dropdown size="lg" selectedOption={deviconBranch} options={["master", "develop"]} onChange={(value) => { handleBranchChange(value as DeviconBranch) }} />
                     <SearchBar size="xxxl" onSearch={setSearchTerm} />
                 </div>
             </section>
 
-            <section className="bg-smoke dark:bg-zinc-900 flex flex-col xl:flex-row px-16 2xl:px-32 py-16  gap-6 w-full">
+            <section className="bg-smoke dark:bg-dark-900 flex flex-col xl:flex-row px-16 2xl:px-32 py-16  gap-6 w-full">
                 <div className="w-6/6 xl:w-1/6 flex flex-col gap-6">
                     {filterGroups.map(group => (
                         <FilterList
@@ -81,7 +81,7 @@ const GalleryPage = () => {
                         />
                     ))}
                 </div>
-                <div className="w-6/6 xl:w-5/6 flex flex-col gap-6">
+                <div className="w-6/6 xl:w-5/6 flex flex-col gap-4">
                     {deviconBranch === 'master' &&
                         <CodeBlock code={DEVICON_LINK_TAG}>
                             <p className="px-4 py-2 text-white">Place this in your header (once per HTML file)</p>

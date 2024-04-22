@@ -55,13 +55,13 @@ export const Tooltip = ({ children, content, position, flashMessage }: TooltipPr
         >
             {visible && !flashVisible && (
                 <div
-                    className={`absolute z-10 px-2 py-1 bg-zinc-1000 text-white rounded max-w-xs break-words ${positionClasses[position]}`}
+                    className={`absolute z-10 px-2 py-1 bg-dark-900 text-white rounded max-w-xs break-words ${positionClasses[position]}`}
                 >
                     <p className='whitespace-nowrap'>{content}</p>
                 </div>
             )}
             {flashVisible && (
-                <div className={`absolute z-10 px-2 py-1 bg-green-600 text-white rounded max-w-xs break-words ${positionClasses[position]}`}>
+                <div className={`absolute z-10 px-2 py-1 bg-primary-600 text-white rounded max-w-xs break-words ${positionClasses[position]}`}>
                     <p>{flashMessage}</p>
                 </div>
             )}

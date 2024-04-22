@@ -10,7 +10,7 @@ interface PaginationCardProps {
 const cardClasses = {
   base: "flex flex-col justify-center align-middle h-[10rem] text-center rounded-lg w-full overflow-hidden relative shadow-sm",
   border: "border dark:border-zinc-600",
-  color: "bg-white dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-900 dark:hover:text-white",
+  color: "bg-white  hover:bg-zinc-200 dark:bg-dark-600 dark:hover:bg-dark-900 dark:text-white",
 };
 
 export const PaginationCard = ({ icon, deviconBranch, onSelect }: PaginationCardProps) => {
@@ -23,10 +23,10 @@ export const PaginationCard = ({ icon, deviconBranch, onSelect }: PaginationCard
       className={`${cardClasses.base} ${cardClasses.border} ${cardClasses.color}`}
     >
       <img className="mx-auto" width={50} height={'auto'} src={iconUrl} alt={icon.name} />
-      <p className="text-sm mt-4 dark:text-white">{icon.name}</p>
+      <p className="text-sm mt-6">{icon.name}</p>
 
       {icon.versions.svg.length > 4 && (
-        <div className="absolute top-0 right-0 bg-green-600 text-white p-2 rounded-bl-lg">
+        <div className="absolute top-0 right-0 bg-primary-600 text-white p-2 rounded-bl-lg">
           <p className="text-sm">{icon.versions.svg.length}</p>
         </div>
       )}

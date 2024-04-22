@@ -1,20 +1,20 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Shrikhand');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 :root {
 	line-height: 1.75;
-  font-family: Inter, sans-serif;
+	font-family: Inter, sans-serif;
 	font-feature-settings: 'liga' 1, 'calt' 1;
-  color: #000000;
-  font-size:  16px;
+	color: #221d21;
+	font-size: 16px;
 	font-weight: 400;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
-  
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-text-size-adjust: 100%;
+
 }
 
 html {
@@ -36,13 +36,3 @@ html {
 	}
 }
 
-/* Apply the animation to the text */
-.changing-gradient-text {
-	background: linear-gradient(90deg, #22c55e 0%, #16a34a 100%);
-	-webkit-background-clip: text;
-	background-clip: text;
-	-webkit-text-fill-color: transparent;
-	animation: gradientChange 5s infinite;
-	background-size: 200% 100%;
-  	font-family: 'Shrikhand', cursive;
-}

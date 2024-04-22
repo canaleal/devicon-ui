@@ -45,10 +45,10 @@ export const PaginatedGrid = ({ icons, onSelect, deviconBranch }: PaginatedGridP
   }, [currentPage, elementsPerPage]);
 
   return (
-    <div className="flex flex-col gap-6">
-      <div className="flex w-full  dark:text-white gap-6">
-        <p className="font-bold text-2xl my-auto">{icons.length} Icons</p>
-        <p className='my-auto ml-auto'>Page {currentPage} of {totalPages || 1}</p>
+    <section className="flex flex-col gap-6">
+      <div className="flex w-full dark:text-white gap-6 items-center">
+        <p className="font-bold text-2xl">{icons.length} Icons</p>
+        <p className='ml-auto'>Page {currentPage} of {totalPages || 1}</p>
         <Dropdown size={'lg'} selectedOption={paginationStyle} options={['card', 'table']} onChange={(value) => { setPaginationStyle(value as PaginationStyle) }} />
       </div>
 
@@ -82,9 +82,9 @@ export const PaginatedGrid = ({ icons, onSelect, deviconBranch }: PaginatedGridP
           )}
         </>
       ) : (
-        <div className="flex flex-col items-center justify-center min-h-screen">
-          <p className="text-2xl text-gray-500">No icons found</p>
-          <p className="text-gray-500">Try a different search term or change filters</p>
+        <div className="flex flex-col items-center justify-center min-h-screen text-gray-500">
+          <p className="text-2xl">No icons found</p>
+          <p>Try a different search term or change filters</p>
         </div>
       )}
 
@@ -92,7 +92,7 @@ export const PaginatedGrid = ({ icons, onSelect, deviconBranch }: PaginatedGridP
         <PaginationSelection elementsPerPage={elementsPerPage} currentPage={currentPage} totalElements={icons.length} elementsPerPageOptions={elementsPerPageOptions} handlePerPageChange={handleIconsPerPageChange} />
         <PaginationButtons currentPage={currentPage} setCurrentPage={setCurrentPage} totalPages={totalPages} />
       </div>
-    </div>
+    </section>
   );
 };
 

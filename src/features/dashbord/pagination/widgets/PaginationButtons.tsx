@@ -41,7 +41,7 @@ export const PaginationButtons = ({ currentPage, setCurrentPage, totalPages }: P
         <div className="flex flex-row dark:text-white">
 
             <button
-                className={`px-4 py-2 rounded-md text-sm ${currentPage === 1 ? 'text-gray-400': 'hover:bg-gray-200 hover:shadow-sm dark:hover:bg-zinc-1000'}`}
+                className={`px-4 py-2 rounded-md text-sm ${currentPage === 1 ? 'text-gray-400': 'hover:bg-gray-200 hover:shadow-sm dark:hover:bg-dark-600'}`}
                 disabled={currentPage === 1}
                 onClick={() => setCurrentPage(currentPage-1)}
             >
@@ -52,7 +52,7 @@ export const PaginationButtons = ({ currentPage, setCurrentPage, totalPages }: P
                 const isNumber = typeof page === "number";
                 const key = isNumber ? page : `${pagesToRender[idx - 1]}-${pagesToRender[idx + 1]}`;
                 return isNumber ? (
-                    <button key={key} className={`px-4 py-2 rounded-md text-sm ${page === currentPage ? 'bg-green-600 text-white' : 'hover:bg-gray-200 hover:shadow-sm dark:hover:bg-zinc-1000'}`} onClick={() => setCurrentPage(page)}>
+                    <button key={key} className={`px-4 py-2 rounded-md text-sm ${page === currentPage ? 'bg-primary-600 text-white' : 'hover:bg-gray-200 hover:shadow-sm dark:hover:bg-dark-600'}`} onClick={() => setCurrentPage(page)}>
                         {page}
                     </button>
                 ) : (
@@ -62,7 +62,7 @@ export const PaginationButtons = ({ currentPage, setCurrentPage, totalPages }: P
 
 
             <button
-                className={`px-4 py-2 rounded-md text-sm ${currentPage === totalPages ? 'text-gray-400': 'hover:bg-gray-200 hover:shadow-sm dark:hover:bg-zinc-1000'}`}
+                className={`px-4 py-2 rounded-md text-sm ${currentPage === totalPages ? 'text-gray-400': 'hover:bg-gray-200 hover:shadow-sm dark:hover:bg-dark-600'}`}
                 disabled={currentPage === totalPages}
                 onClick={() => setCurrentPage(currentPage+1)}
             >

@@ -8,22 +8,22 @@ export interface CodeBlockProps {
     children?: React.ReactNode;
 }
 
-export const CodeBlock = ({ code, children }: CodeBlockProps) => {
+const customStyle = {
+    margin: '0rem',
+    padding: '0.75rem 1rem ',
+    borderRadius: '0rem'
+}
 
-    const customStyle = {
-        margin: '0rem',
-        padding: '0.75rem 1rem ',
-        borderRadius: '0rem'
-    }
+export const CodeBlock = ({ code, children }: CodeBlockProps) => {
 
     const codeString = code.replace(/(\r\n|\n|\r)/gm, "");
 
     return (
         <div className={`flex flex-col border-2 dark:border-zinc-600  rounded-lg overflow-hidden h-fit`}>
-            <div className='flex flex-row bg-zinc-1000 justify-between'>
+            <div className='flex flex-row bg-dark-600 justify-between border-b  border-zinc-600'>
                 {children}
                 <Tooltip content='Copy Code' position='bottom' flashMessage="Copied!">
-                    <button onClick={() => { copyToClipboard(codeString) }} className='px-4 py-2 hover:text-green-600 text-white flex ml-auto'>
+                    <button onClick={() => { copyToClipboard(codeString) }} className='px-4 py-3 hover:text-primary-600 text-white flex ml-auto'>
                         <p className="font-bold text-sm my-auto">Copy Code</p>
                         <i className="fa-solid fa-copy ml-2 my-auto"></i>
                     </button>
