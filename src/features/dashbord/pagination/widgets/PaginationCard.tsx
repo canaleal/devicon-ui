@@ -8,9 +8,9 @@ interface PaginationCardProps {
 }
 
 const cardClasses = {
-  base: "flex flex-col justify-center align-middle h-[10rem] text-center rounded-lg w-full overflow-hidden relative shadow-sm",
-  border: "border dark:border-zinc-600",
-  color: "bg-white  hover:bg-zinc-200 dark:bg-dark-600 dark:hover:bg-dark-900 dark:text-white",
+  base: "flex flex-col justify-center align-middle h-[10rem] text-center rounded-lg w-full overflow-hidden relative shadow-md",
+  border: "border dark:border-dark-500",
+  color: "bg-white  hover:bg-dark-100 dark:bg-dark-900 dark:hover:bg-dark-600 dark:text-white",
 };
 
 export const PaginationCard = ({ icon, deviconBranch, onSelect }: PaginationCardProps) => {
@@ -22,7 +22,7 @@ export const PaginationCard = ({ icon, deviconBranch, onSelect }: PaginationCard
       aria-label={`Select icon: ${icon.name}`}
       className={`${cardClasses.base} ${cardClasses.border} ${cardClasses.color}`}
     >
-      <img className="mx-auto" width={50} height={'auto'} src={iconUrl} alt={icon.name} />
+      <img className="mx-auto" width={55} height={'auto'} src={iconUrl} alt={icon.name} />
       <p className="text-sm mt-6">{icon.name}</p>
 
       {icon.versions.svg.length > 4 && (

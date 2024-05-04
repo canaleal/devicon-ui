@@ -16,9 +16,9 @@ export const PaginationSelection = ({ elementsPerPage, currentPage, totalElement
   }
 
   return (
-    <div className="flex flex-row dark:text-white gap-2">
+    <div className="hidden md:flex flex-row dark:text-white gap-2">
       <p className="my-auto">Items Per Page</p>
-      <select value={elementsPerPage} onChange={handlePageChange} className=" bg-white dark:bg-dark-900 dark:border-zinc-600 border rounded-lg px-2 py-2">
+      <select value={elementsPerPage} onChange={handlePageChange} className=" bg-white dark:bg-dark-900 dark:border-dark-500 border rounded-lg px-2 py-2">
         {elementsPerPageOptions.map((option: number) => (
           <option key={option} value={option}>{option}</option>
         ))}

@@ -19,8 +19,8 @@ export const CodeBlock = ({ code, children }: CodeBlockProps) => {
     const codeString = code.replace(/(\r\n|\n|\r)/gm, "");
 
     return (
-        <div className={`flex flex-col border-2 dark:border-zinc-600  rounded-lg overflow-hidden h-fit`}>
-            <div className='flex flex-row bg-dark-600 justify-between border-b  border-zinc-600'>
+        <div className={`flex flex-col border-2 dark:border-dark-500  rounded-lg overflow-hidden h-fit`}>
+            <div className='flex flex-row bg-dark-600 justify-between border-b  border-dark-500'>
                 {children}
                 <Tooltip content='Copy Code' position='bottom' flashMessage="Copied!">
                     <button onClick={() => { copyToClipboard(codeString) }} className='px-4 py-3 hover:text-primary-600 text-white flex ml-auto'>

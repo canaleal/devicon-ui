@@ -23,9 +23,9 @@ export function Table<T>({ title, data, headers, keyExtractor, rowRenderer, onRo
     return (
         <div className={`flex flex-col gap-2 ${sizes[size]}`}>
             {title && <p className="font-bold text-sm dark:text-white">{title}</p>}
-            <div className="flex rounded-lg border-2 overflow-hidden w-full dark:text-white dark:border-zinc-600  bg-white dark:bg-dark-900 ">
+            <div className="flex rounded-lg border-2 overflow-hidden w-full dark:text-white dark:border-dark-500  bg-white dark:bg-dark-900 ">
                 <table className="table-auto w-full">
-                    <thead className="border-b-2 dark:border-zinc-600 bg-dark-600 text-white">
+                    <thead className="border-b-2 dark:border-dark-500 bg-dark-600 text-white">
                         <tr>
                             {headers.map((header, index) => (
                                 <th key={index} className="text-left px-4 py-3">
@@ -36,7 +36,7 @@ export function Table<T>({ title, data, headers, keyExtractor, rowRenderer, onRo
                     </thead>
                     <tbody>
                         {data.map((item, index) => (
-                            <tr key={keyExtractor(item, index)} className={` hover:bg-dark-50 dark:hover:bg-dark-600 cursor-pointer `}
+                            <tr key={keyExtractor(item, index)} className=" hover:bg-dark-100 dark:hover:bg-dark-600 cursor-pointer"
                                 onClick={() => onRowClick && onRowClick(item)} >
                                 {rowRenderer(item).map((cell, cellIndex) => (
                                     <td key={cellIndex} className="text-left px-4 py-2">

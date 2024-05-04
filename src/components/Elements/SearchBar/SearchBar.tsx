@@ -32,7 +32,7 @@ export const SearchBar = ({ placeholder = "Search", size, onSearch }: SearchBarP
             value={searchTerm}
             onChange={handleInputChange}
             placeholder={placeholder}
-            className={`px-4 ${sizes[size]} border rounded-lg bg-white dark:bg-dark-900 dark:border-zinc-600 dark:text-white`}
+            className={`px-4 ${sizes[size]} border rounded-lg bg-white dark:bg-dark-900 dark:border-dark-500 dark:text-white`}
         />
     );
 }

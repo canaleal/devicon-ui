@@ -48,15 +48,15 @@ export const PaginatedGrid = ({ icons, onSelect, deviconBranch }: PaginatedGridP
     <section className="flex flex-col gap-6">
       <div className="flex w-full dark:text-white gap-6 items-center">
         <p className="font-bold text-2xl">{icons.length} Icons</p>
-        <p className='ml-auto'>Page {currentPage} of {totalPages || 1}</p>
-        <Dropdown size={'lg'} selectedOption={paginationStyle} options={['card', 'table']} onChange={(value) => { setPaginationStyle(value as PaginationStyle) }} />
+        <p className='ml-auto hidden md:inline-block'>Page {currentPage} of {totalPages || 1}</p>
+        <Dropdown extraClasses='hidden md:inline-block' size={'lg'} selectedOption={paginationStyle} options={['card', 'table']} onChange={(value) => { setPaginationStyle(value as PaginationStyle) }} />
       </div>
 
 
       {paginatedIcons.length ? (
         <>
           {paginationStyle === 'card' ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 2xl:grid-cols-8 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-6 2xl:grid-cols-8 gap-4">
               {paginatedIcons.map((icon) => (
                 <PaginationCard key={icon.name} icon={icon} onSelect={onSelect} deviconBranch={deviconBranch} />
               ))}
@@ -88,7 +88,7 @@ export const PaginatedGrid = ({ icons, onSelect, deviconBranch }: PaginatedGridP
         </div>
       )}
 
-      <div className="flex flex-row justify-between ">
+      <div className="flex flex-row justify-center md:justify-between ">
         <PaginationSelection elementsPerPage={elementsPerPage} currentPage={currentPage} totalElements={icons.length} elementsPerPageOptions={elementsPerPageOptions} handlePerPageChange={handleIconsPerPageChange} />
         <PaginationButtons currentPage={currentPage} setCurrentPage={setCurrentPage} totalPages={totalPages} />
       </div>
