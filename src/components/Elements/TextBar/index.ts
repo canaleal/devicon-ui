@@ -1,1 +1,1 @@
-export * from './TextBar'
+export * from './TextBar';

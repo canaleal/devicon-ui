@@ -1,6 +1,6 @@
 import { FilterType } from '../..';
 import { IIcon } from '../../../../../types';
-import { FilterFunctions, filterIcons, populateIconFilters} from '../index'; // replace 'yourModule' with the actual module path
+import { FilterFunctions, filterIcons, populateIconFilters } from '../index'; // replace 'yourModule' with the actual module path
 
 describe('populateIconFilters', () => {
   const mockIcons: IIcon[] = [
@@ -39,8 +39,6 @@ describe('populateIconFilters', () => {
   // Add more test cases as needed
 });
 
-
-
 describe('filterIcons', () => {
   const mockIcons: IIcon[] = [
     {
@@ -71,7 +69,11 @@ describe('filterIcons', () => {
     expect(result.length).toBeGreaterThan(0);
     // Add more assertions based on your logic and expected behavior
 
-    const result2 = filterIcons(mockIcons, 'versions' as FilterType, 'nonexistent');
+    const result2 = filterIcons(
+      mockIcons,
+      'versions' as FilterType,
+      'nonexistent',
+    );
     expect(result2.length).toBe(0);
   });
 

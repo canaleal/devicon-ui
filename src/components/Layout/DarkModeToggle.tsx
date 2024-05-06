@@ -6,14 +6,16 @@ const positions = {
   topRight: 'top-8 right-8',
   bottomLeft: 'bottom-8 left-8',
   bottomRight: 'bottom-8 right-8',
-}
+};
 
 export interface DarkModeProps {
   position: keyof typeof positions;
 }
 
 const DarkModeToggle = ({ position }: DarkModeProps) => {
-  const [darkMode, setDarkMode] = useState(storage.getToken()['isDark'] ?? false);
+  const [darkMode, setDarkMode] = useState(
+    storage.getToken()['isDark'] ?? false,
+  );
 
   useEffect(() => {
     if (darkMode) {
@@ -27,12 +29,10 @@ const DarkModeToggle = ({ position }: DarkModeProps) => {
     const newDarkMode = !darkMode;
     const token = storage.getToken();
     if (!token) return;
-    storage.setToken(
-      {
-        ...token,
-        isDark: newDarkMode,
-      }
-    );
+    storage.setToken({
+      ...token,
+      isDark: newDarkMode,
+    });
     setDarkMode(newDarkMode);
   };
 
@@ -48,6 +48,6 @@ const DarkModeToggle = ({ position }: DarkModeProps) => {
       )}
     </button>
   );
-}
+};
 
 export default DarkModeToggle;

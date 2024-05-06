@@ -1,31 +1,30 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-	line-height: 1.75;
-	font-family: Inter, sans-serif;
-	font-feature-settings: 'liga' 1, 'calt' 1;
-	color: #221d21;
-	font-size: 16px;
-	font-weight: 400;
-	text-rendering: optimizeLegibility;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-	-webkit-text-size-adjust: 100%;
-
+  line-height: 1.75;
+  font-family: Inter, sans-serif;
+  font-feature-settings:
+    'liga' 1,
+    'calt' 1;
+  color: #221d21;
+  font-size: 16px;
+  font-weight: 400;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
 }
 
 html {
-	scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 
-
 .clamped-text {
-	display: inline-block;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	max-width: 100%; /* Or specify your desired max-width */
-  }
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%; /* Or specify your desired max-width */
+}

@@ -1,1 +1,1 @@
-export * from './FilterHooks'
+export * from './FilterHooks';
