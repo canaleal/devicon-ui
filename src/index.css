@@ -28,3 +28,19 @@ html {
   text-overflow: ellipsis;
   max-width: 100%; /* Or specify your desired max-width */
 }
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F2F2F2;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #BDBDBD;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #6E6E6E;
+}

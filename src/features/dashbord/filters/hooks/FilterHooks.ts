@@ -23,8 +23,8 @@ export const useInitializeFilterGroups = (
   const [filterGroups, setFilterGroups] =
     useState<IIconFilterCategory[]>(initialFilterGroups);
   useEffect(() => {
-    setFilterGroups(prevGroups =>
-      prevGroups.map(group => populateIconFilters(icons, group)),
+    setFilterGroups((prevGroups) =>
+      prevGroups.map((group) => populateIconFilters(icons, group)),
     );
   }, [icons]);
   return { filterGroups, setFilterGroups };
@@ -37,8 +37,8 @@ export const useApplyFilters = (
   const [filteredIcons, setFilteredIcons] = useState<IIcon[]>(searchedIcons);
   useEffect(() => {
     let filtered = searchedIcons;
-    filterGroups.forEach(group => {
-      group.filters.forEach(filter => {
+    filterGroups.forEach((group) => {
+      group.filters.forEach((filter) => {
         if (filter.isSelected) {
           filtered = filterIcons(
             filtered,

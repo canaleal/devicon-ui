@@ -8,7 +8,7 @@ export const TextBar = ({ title, texts }: TextBarProps) => {
   return (
     <div className="flex flex-row dark:text-white items-center text-sm">
       <p className="font-bold">{title}:</p>
-      {texts.map(text => (
+      {texts.map((text) => (
         <span key={text} className="underline ml-2">
           {text}
         </span>

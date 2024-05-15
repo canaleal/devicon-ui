@@ -21,7 +21,7 @@ export const IconCode = ({
 }: IconCodeProps) => {
   const codeBlockOptions =
     deviconBranch === 'develop'
-      ? CODE_BLOCK_OPTIONS.filter(option => option !== '<i> Tag')
+      ? CODE_BLOCK_OPTIONS.filter((option) => option !== '<i> Tag')
       : CODE_BLOCK_OPTIONS;
   const [selectedOption, setSelectedOption] =
     useState<CodeBlockOptionTypes>('Link');
@@ -49,7 +49,7 @@ export const IconCode = ({
   return (
     <CodeBlock code={codeText}>
       <div className="flex mr-auto">
-        {codeBlockOptions.map(codeType => (
+        {codeBlockOptions.map((codeType) => (
           <button
             key={codeType}
             onClick={() => {

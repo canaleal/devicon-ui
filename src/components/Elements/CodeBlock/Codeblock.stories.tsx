@@ -12,7 +12,7 @@ const meta: Meta = {
 
 export default meta;
 
-const Template: Story<CodeBlockProps> = args => <CodeBlock {...args} />;
+const Template: Story<CodeBlockProps> = (args) => <CodeBlock {...args} />;
 export const Default = Template.bind({});
 
 Default.args = {

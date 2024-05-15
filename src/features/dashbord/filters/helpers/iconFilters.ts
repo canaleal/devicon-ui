@@ -22,15 +22,15 @@ export const populateIconFilters = (
   filterGroup: IIconFilterCategory,
 ) => {
   const itemsPath = FilterMapRecord[filterGroup.filterType];
-  filterGroup.filters.forEach(filter => {
+  filterGroup.filters.forEach((filter) => {
     filter.numberOfIcons = 0;
   });
 
-  icons.forEach(icon => {
+  icons.forEach((icon) => {
     const items: string[] = getItemsFromPath(icon, itemsPath);
-    items.forEach(item => {
+    items.forEach((item) => {
       const category = filterGroup.filters.find(
-        category => category.filterName === item,
+        (category) => category.filterName === item,
       );
       if (category) {
         category.numberOfIcons++;
@@ -53,7 +53,7 @@ export const FilterFunctions: Record<
   (icon: IIcon, criterion: string | IconVersion) => boolean
 > = {
   name: (icon, name) =>
-    [icon.name, ...(icon.altnames ?? [])].some(n =>
+    [icon.name, ...(icon.altnames ?? [])].some((n) =>
       n.toLowerCase().includes(name as string),
     ),
   versions: (icon, version) =>
@@ -68,14 +68,14 @@ export const filterIcons = (
   filterType: FilterType,
   criterion: string | IconVersion,
 ): IIcon[] => {
-  return icons.filter(icon => FilterFunctions[filterType](icon, criterion));
+  return icons.filter((icon) => FilterFunctions[filterType](icon, criterion));
 };
 
 export const updateFilterGroups = (
   filterGroups: IIconFilterCategory[],
   filterGroup: IIconFilterCategory,
 ) => {
-  return filterGroups.map(group =>
+  return filterGroups.map((group) =>
     group.filterType === filterGroup.filterType ? filterGroup : group,
   );
 };
@@ -86,7 +86,7 @@ export const updateFilter = (
 ) => {
   const tempFilterGroup = { ...filterGroup };
   const filterIndex = tempFilterGroup.filters.findIndex(
-    item => item.filterName === filter.filterName,
+    (item) => item.filterName === filter.filterName,
   );
   if (filterIndex === -1) return filterGroup;
   tempFilterGroup.filters[filterIndex].isSelected = !filter.isSelected;
@@ -95,6 +95,6 @@ export const updateFilter = (
 
 export const resetFilterGroup = (filterGroup: IIconFilterCategory) => {
   const tempFilterGroup = { ...filterGroup };
-  tempFilterGroup.filters.forEach(filter => (filter.isSelected = false));
+  tempFilterGroup.filters.forEach((filter) => (filter.isSelected = false));
   return tempFilterGroup;
 };

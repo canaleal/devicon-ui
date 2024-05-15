@@ -29,7 +29,7 @@ export const useSelectedIcon = (icons: IIcon[]) => {
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     if (params.has('icon')) {
-      const icon = icons.find(i => i.name === params.get('icon'));
+      const icon = icons.find((i) => i.name === params.get('icon'));
       if (icon) setSelectedIcon(icon);
     }
   }, [icons]);

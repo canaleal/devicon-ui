@@ -12,7 +12,7 @@ const meta: Meta = {
 
 export default meta;
 
-const Template: Story<TooltipProps> = args => <Tooltip {...args} />;
+const Template: Story<TooltipProps> = (args) => <Tooltip {...args} />;
 export const Default = Template.bind({});
 
 Default.args = {

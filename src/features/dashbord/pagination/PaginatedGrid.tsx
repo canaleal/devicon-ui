@@ -66,7 +66,7 @@ export const PaginatedGrid = ({
           size={'lg'}
           selectedOption={paginationStyle}
           options={['card', 'table']}
-          onChange={value => {
+          onChange={(value) => {
             setPaginationStyle(value as PaginationStyle);
           }}
         />
@@ -76,7 +76,7 @@ export const PaginatedGrid = ({
         <>
           {paginationStyle === 'card' ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-6 2xl:grid-cols-8 gap-4">
-              {paginatedIcons.map(icon => (
+              {paginatedIcons.map((icon) => (
                 <PaginationCard
                   key={icon.name}
                   icon={icon}
@@ -90,8 +90,8 @@ export const PaginatedGrid = ({
               <Table
                 data={paginatedIcons}
                 headers={['Icon', 'Name', 'Tags', 'Styles']}
-                keyExtractor={item => item.name}
-                rowRenderer={item => [
+                keyExtractor={(item) => item.name}
+                rowRenderer={(item) => [
                   <img
                     className="my-2"
                     width={30}

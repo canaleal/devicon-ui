@@ -18,7 +18,7 @@ const meta: Meta = {
 
 export default meta;
 
-const Template: Story<ScrollButtonProps> = args => <ScrollButton {...args} />;
+const Template: Story<ScrollButtonProps> = (args) => <ScrollButton {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {};

@@ -12,14 +12,14 @@ const meta: Meta = {
 
 export default meta;
 
-const Template: Story<DropdownProps> = args => <Dropdown {...args} />;
+const Template: Story<DropdownProps> = (args) => <Dropdown {...args} />;
 
 export const Default = Template.bind({});
 
 Default.args = {
   selectedOption: 'Option 1',
   options: ['Option 1', 'Option 2', 'Option 3'],
-  onChange: value => alert(`Selected ${value}`),
+  onChange: (value) => alert(`Selected ${value}`),
 };
 
 export const Small = Template.bind({});

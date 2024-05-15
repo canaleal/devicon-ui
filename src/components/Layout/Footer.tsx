@@ -38,7 +38,7 @@ export const Footer = () => {
 
       <div className="flex-1 flex flex-col gap-4">
         <p className="text-lg font-extrabold">Links</p>
-        {PROJECT_LINKS.map(link => (
+        {PROJECT_LINKS.map((link) => (
           <a
             key={link.name}
             href={link.url}

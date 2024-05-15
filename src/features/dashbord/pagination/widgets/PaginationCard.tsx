@@ -38,7 +38,7 @@ export const PaginationCard = ({
         src={iconUrl}
         alt={icon.name}
       />
-      <p className="text-sm mt-6">{icon.name}</p>
+      <p className="text-sm mt-6  mx-auto">{icon.name}</p>
 
       {icon.versions.svg.length > 4 && (
         <div className="absolute top-0 right-0 bg-primary-600 text-white p-2 rounded-bl-lg">

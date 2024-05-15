@@ -12,7 +12,7 @@ const meta: Meta = {
 
 export default meta;
 
-const Template: Story<TextBarProps> = args => <TextBar {...args} />;
+const Template: Story<TextBarProps> = (args) => <TextBar {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {

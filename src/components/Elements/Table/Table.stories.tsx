@@ -13,7 +13,7 @@ const meta: Meta = {
 export default meta;
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const Template: Story<TableProps<any>> = args => <Table {...args} />;
+const Template: Story<TableProps<any>> = (args) => <Table {...args} />;
 
 export const Basic = Template.bind({});
 Basic.args = {
@@ -23,6 +23,6 @@ Basic.args = {
     { name: 'Jane Smith', age: 24, address: '456 Elm St.' },
   ],
   keyExtractor: (item, index) => item.name + index,
-  rowRenderer: item => [item.name, item.age.toString(), item.address],
-  onRowClick: item => alert(`${item.name} clicked!`),
+  rowRenderer: (item) => [item.name, item.age.toString(), item.address],
+  onRowClick: (item) => alert(`${item.name} clicked!`),
 };

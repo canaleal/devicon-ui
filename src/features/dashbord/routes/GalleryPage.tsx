@@ -90,7 +90,7 @@ const GalleryPage = () => {
             size="lg"
             selectedOption={deviconBranch}
             options={['master', 'develop']}
-            onChange={value => {
+            onChange={(value) => {
               handleBranchChange(value as DeviconBranch);
             }}
           />
@@ -100,7 +100,7 @@ const GalleryPage = () => {
 
       <section className="bg-smoke dark:bg-dark-600 flex flex-col xl:flex-row px-8 md:px-16 2xl:px-32 py-16  gap-6 w-full">
         <div className="w-6/6 xl:w-1/6 flex flex-col gap-6">
-          {filterGroups.map(group => (
+          {filterGroups.map((group) => (
             <FilterList
               key={group.filterType}
               filterGroup={group}
