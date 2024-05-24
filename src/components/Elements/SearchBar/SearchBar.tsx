@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'
 
 const sizes = {
   sm: 'w-16',
@@ -7,37 +7,33 @@ const sizes = {
   xl: 'w-96',
   xxl: 'w-[24rem]',
   xxxl: 'w-[32rem]',
-  full: 'w-full',
-};
-
-export interface SearchBarProps {
-  placeholder?: string;
-  size: keyof typeof sizes;
-  onSearch: (query: string) => void;
+  full: 'w-full'
 }
 
-export const SearchBar = ({
-  placeholder = 'Search',
-  size,
-  onSearch,
-}: SearchBarProps) => {
-  const [searchTerm, setSearchTerm] = useState<string>('');
+export interface SearchBarProps {
+  placeholder?: string
+  size: keyof typeof sizes
+  onSearch: (query: string) => void
+}
+
+export const SearchBar = ({ placeholder = 'Search', size, onSearch }: SearchBarProps) => {
+  const [searchTerm, setSearchTerm] = useState<string>('')
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { value } = e.target;
-    setSearchTerm(value);
-    onSearch(value);
-  };
+    const { value } = e.target
+    setSearchTerm(value)
+    onSearch(value)
+  }
 
   return (
     <input
-      type="text"
+      type='text'
       value={searchTerm}
       onChange={handleInputChange}
       placeholder={placeholder}
-      className={`px-4 ${sizes[size]} border rounded-lg bg-white dark:bg-dark-900 dark:border-dark-500 dark:text-white`}
+      className={`${sizes[size]} border h-12 px-4 py-3 rounded-lg bg-white dark:bg-dark-900 dark:border-dark-500 dark:text-white`}
     />
-  );
-};
+  )
+}
 
-export default SearchBar;
+export default SearchBar

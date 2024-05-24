@@ -34,13 +34,13 @@ html {
 }
 
 ::-webkit-scrollbar-track {
-  background: #F2F2F2;
+  background: #f2f2f2;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #BDBDBD;
+  background: #bdbdbd;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #6E6E6E;
+  background: #6e6e6e;
 }

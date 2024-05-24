@@ -1,45 +1,45 @@
-import { Meta, Story } from '@storybook/react';
+import { Meta, Story } from '@storybook/react'
 
-import Tooltip, { TooltipProps } from './Tooltip';
+import Tooltip, { TooltipProps } from './Tooltip'
 
 const meta: Meta = {
   title: 'Components/Elements/Tooltip',
   component: Tooltip,
   parameters: {
-    controls: { expanded: true },
-  },
-};
+    controls: { expanded: true }
+  }
+}
 
-export default meta;
+export default meta
 
-const Template: Story<TooltipProps> = (args) => <Tooltip {...args} />;
-export const Default = Template.bind({});
+const Template: Story<TooltipProps> = (args) => <Tooltip {...args} />
+export const Default = Template.bind({})
 
 Default.args = {
   children: <button>Hover me</button>,
-  content: 'Tooltip content',
-};
+  content: 'Tooltip content'
+}
 
-export const Top = Template.bind({});
+export const Top = Template.bind({})
 Top.args = {
   ...Default.args,
-  position: 'top',
-};
+  position: 'top'
+}
 
-export const Bottom = Template.bind({});
+export const Bottom = Template.bind({})
 Bottom.args = {
   ...Default.args,
-  position: 'bottom',
-};
+  position: 'bottom'
+}
 
-export const Left = Template.bind({});
+export const Left = Template.bind({})
 Left.args = {
   ...Default.args,
-  position: 'left',
-};
+  position: 'left'
+}
 
-export const Right = Template.bind({});
+export const Right = Template.bind({})
 Right.args = {
   ...Default.args,
-  position: 'right',
-};
+  position: 'right'
+}

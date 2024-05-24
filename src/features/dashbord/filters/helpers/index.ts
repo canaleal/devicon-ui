@@ -1,1 +1,1 @@
-export * from './iconFilters';
+export * from './iconFilters'

@@ -1,47 +1,47 @@
-import { Meta, Story } from '@storybook/react';
+import { Meta, Story } from '@storybook/react'
 
-import Dropdown, { DropdownProps } from './Dropdown';
+import Dropdown, { DropdownProps } from './Dropdown'
 
 const meta: Meta = {
   title: 'Components/Elements/Dropdown',
   component: Dropdown,
   parameters: {
-    controls: { expanded: true },
-  },
-};
+    controls: { expanded: true }
+  }
+}
 
-export default meta;
+export default meta
 
-const Template: Story<DropdownProps> = (args) => <Dropdown {...args} />;
+const Template: Story<DropdownProps> = (args) => <Dropdown {...args} />
 
-export const Default = Template.bind({});
+export const Default = Template.bind({})
 
 Default.args = {
   selectedOption: 'Option 1',
   options: ['Option 1', 'Option 2', 'Option 3'],
-  onChange: (value) => alert(`Selected ${value}`),
-};
+  onChange: (value) => alert(`Selected ${value}`)
+}
 
-export const Small = Template.bind({});
+export const Small = Template.bind({})
 Small.args = {
   ...Default.args,
-  size: 'sm',
-};
+  size: 'sm'
+}
 
-export const Medium = Template.bind({});
+export const Medium = Template.bind({})
 Medium.args = {
   ...Default.args,
-  size: 'md',
-};
+  size: 'md'
+}
 
-export const Large = Template.bind({});
+export const Large = Template.bind({})
 Large.args = {
   ...Default.args,
-  size: 'lg',
-};
+  size: 'lg'
+}
 
-export const Full = Template.bind({});
+export const Full = Template.bind({})
 Full.args = {
   ...Default.args,
-  size: 'full',
-};
+  size: 'full'
+}

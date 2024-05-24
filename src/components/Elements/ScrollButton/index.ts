@@ -1,1 +1,1 @@
-export * from './ScrollButton';
+export * from './ScrollButton'

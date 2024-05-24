@@ -1,42 +1,42 @@
-import { useState } from 'react';
+import { useState } from 'react'
 
 const positions = {
   topLeft: 'top-8 left-8',
   topRight: 'top-8 right-8',
   bottomLeft: 'bottom-8 left-8',
-  bottomRight: 'bottom-8 right-8',
-};
+  bottomRight: 'bottom-8 right-8'
+}
 
 export interface ScrollButtonProps {
-  position: keyof typeof positions;
+  position: keyof typeof positions
 }
 
 const ScrollButton = ({ position }: ScrollButtonProps) => {
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState(false)
 
   const toggleVisible = () => {
-    const scrolled = document.documentElement.scrollTop;
-    scrolled > 300 ? setVisible(true) : setVisible(false);
-  };
+    const scrolled = document.documentElement.scrollTop
+    scrolled > 300 ? setVisible(true) : setVisible(false)
+  }
 
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: 'smooth',
-    });
-  };
+      behavior: 'smooth'
+    })
+  }
 
-  window.addEventListener('scroll', toggleVisible);
+  window.addEventListener('scroll', toggleVisible)
 
   return (
     <button
       onClick={scrollToTop}
-      className={`fixed ${positions[position]} bg-primary-600 hover:bg-primary-800 text-white font-bold py-2 px-4 rounded-md z-20`}
+      className={`fixed ${positions[position]} bg-primary-600 hover:bg-primary-800 text-white font-bold h-12  w-12 rounded-md z-20`}
       style={{ display: visible ? 'inline' : 'none' }}
     >
-      <i className="fa fa-arrow-up" aria-hidden="true"></i>
+      <i className='fa fa-arrow-up' aria-hidden='true'></i>
     </button>
-  );
-};
+  )
+}
 
-export default ScrollButton;
+export default ScrollButton

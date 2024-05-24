@@ -1,11 +1,11 @@
-import React from 'react';
+import React from 'react'
 
 interface PaginationSelectionProps {
-  elementsPerPage: number;
-  currentPage: number;
-  totalElements: number;
-  elementsPerPageOptions: number[];
-  handlePerPageChange: (elementsPerPage: number) => void;
+  elementsPerPage: number
+  currentPage: number
+  totalElements: number
+  elementsPerPageOptions: number[]
+  handlePerPageChange: (elementsPerPage: number) => void
 }
 
 export const PaginationSelection = ({
@@ -13,19 +13,19 @@ export const PaginationSelection = ({
   currentPage,
   totalElements,
   elementsPerPageOptions,
-  handlePerPageChange,
+  handlePerPageChange
 }: PaginationSelectionProps) => {
   const handlePageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    handlePerPageChange(parseInt(e.target.value));
-  };
+    handlePerPageChange(parseInt(e.target.value))
+  }
 
   return (
-    <div className="hidden md:flex flex-row dark:text-white gap-2">
-      <p className="my-auto">Items Per Page</p>
+    <div className='hidden lg:flex flex-row dark:text-white gap-2'>
+      <p className='my-auto'>Items Per Page</p>
       <select
         value={elementsPerPage}
         onChange={handlePageChange}
-        className=" bg-white dark:bg-dark-900 dark:border-dark-500 border rounded-md px-2 py-2"
+        className=' bg-white dark:bg-dark-900 dark:border-dark-500 border rounded-md px-2 py-2'
       >
         {elementsPerPageOptions.map((option: number) => (
           <option key={option} value={option}>
@@ -33,13 +33,12 @@ export const PaginationSelection = ({
           </option>
         ))}
       </select>
-      <p className="my-auto">
-        {(currentPage - 1) * elementsPerPage + 1}-
-        {Math.min(currentPage * elementsPerPage, totalElements)} of{' '}
+      <p className='my-auto'>
+        {(currentPage - 1) * elementsPerPage + 1}-{Math.min(currentPage * elementsPerPage, totalElements)} of{' '}
         {totalElements} icons
       </p>
     </div>
-  );
-};
+  )
+}
 
-export default PaginationSelection;
+export default PaginationSelection

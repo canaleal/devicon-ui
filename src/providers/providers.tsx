@@ -1,8 +1,8 @@
-import { HelmetProvider } from 'react-helmet-async';
-import { BrowserRouter } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async'
+import { BrowserRouter } from 'react-router-dom'
 
 interface AppProviderProps {
-  children: React.ReactNode;
+  children: React.ReactNode
 }
 
 export const AppProvider = ({ children }: AppProviderProps) => {
@@ -10,5 +10,5 @@ export const AppProvider = ({ children }: AppProviderProps) => {
     <HelmetProvider>
       <BrowserRouter>{children}</BrowserRouter>
     </HelmetProvider>
-  );
-};
+  )
+}

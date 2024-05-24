@@ -1,3 +1,3 @@
-export * from './IconCode';
-export * from './TagsBar';
-export * from './IconImage';
+export * from './IconCode'
+export * from './TagsBar'
+export * from './IconImage'
