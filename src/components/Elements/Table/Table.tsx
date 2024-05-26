@@ -35,10 +35,10 @@ export function Table<T>({
       {title && <p className='font-bold text-sm dark:text-white'>{title}</p>}
       <div className='flex rounded-lg border-2 overflow-hidden w-full dark:text-white dark:border-dark-500  bg-white dark:bg-dark-900 '>
         <table className='table-auto w-full'>
-          <thead className='border-b-2 dark:border-dark-500 bg-dark-600 text-white'>
+          <thead className='border-b-2 dark:border-dark-500 bg-dark-600 text-white '>
             <tr>
               {headers.map((header, index) => (
-                <th key={index} className='text-left px-4 py-3'>
+                <th key={index} className='text-left px-4 py-2 h-12'>
                   {header}
                 </th>
               ))}

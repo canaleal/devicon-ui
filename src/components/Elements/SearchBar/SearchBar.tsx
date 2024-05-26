@@ -31,7 +31,7 @@ export const SearchBar = ({ placeholder = 'Search', size, onSearch }: SearchBarP
       value={searchTerm}
       onChange={handleInputChange}
       placeholder={placeholder}
-      className={`${sizes[size]} border h-12 px-4 py-3 rounded-lg bg-white dark:bg-dark-900 dark:border-dark-500 dark:text-white`}
+      className={`${sizes[size]} border h-12 px-4 py-2 rounded-lg bg-white dark:bg-dark-900 dark:border-dark-500 dark:text-white`}
     />
   )
 }

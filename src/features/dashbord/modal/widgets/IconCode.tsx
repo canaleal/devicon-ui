@@ -14,12 +14,12 @@ interface IconCodeProps {
 
 export const IconCode = ({ icon, iconSize, iconUrl, deviconBranch, selectedVersion }: IconCodeProps) => {
   const codeBlockOptions =
-    deviconBranch === 'develop' ? CODE_BLOCK_OPTIONS.filter((option) => option !== '<i> Tag') : CODE_BLOCK_OPTIONS
+    deviconBranch === 'develop' ? CODE_BLOCK_OPTIONS.filter((option) => option !== 'Icon') : CODE_BLOCK_OPTIONS
   const [selectedOption, setSelectedOption] = useState<CodeBlockOptionTypes>('Link')
   const [codeText, setCodeText] = useState<string>('')
 
-  const handleClick = (codeType: CodeBlockOptionTypes) => {
-    setSelectedOption(codeType)
+  const handleClick = (codeType: string) => {
+    setSelectedOption(codeType as CodeBlockOptionTypes)
   }
 
   useEffect(() => {
@@ -30,21 +30,7 @@ export const IconCode = ({ icon, iconSize, iconUrl, deviconBranch, selectedVersi
   }, [deviconBranch, icon, iconSize, iconUrl, selectedOption, selectedVersion])
 
   return (
-    <CodeBlock code={codeText}>
-      <div className='flex mr-auto'>
-        {codeBlockOptions.map((codeType) => (
-          <button
-            key={codeType}
-            onClick={() => {
-              handleClick(codeType)
-            }}
-            className={`px-4 py-2  ${codeType === selectedOption ? 'bg-primary-600' : 'bg-dark-900'} hover:bg-primary-800 text-white `}
-          >
-            <span className='font-bold text-sm'>{codeType}</span>
-          </button>
-        ))}
-      </div>
-    </CodeBlock>
+    <CodeBlock code={codeText} codeBlockOptions={codeBlockOptions} selectedOption={selectedOption} onClickCodeBlockOption={handleClick} />
   )
 }
 
