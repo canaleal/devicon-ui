@@ -25,7 +25,7 @@ export const PaginationSelection = ({
       <select
         value={elementsPerPage}
         onChange={handlePageChange}
-        className=' bg-white dark:bg-dark-900 dark:border-dark-500 border rounded-md px-2 py-2'
+        className=' bg-white hover:cursor-pointer dark:bg-dark-900 dark:border-dark-500 border rounded-md px-2 py-2'
       >
         {elementsPerPageOptions.map((option: number) => (
           <option key={option} value={option}>

@@ -22,7 +22,7 @@ export const CodeBlock = ({ code, selectedOption, codeBlockOptions, onClickCodeB
 
   return (
     <div className={`flex flex-col border-2 dark:border-dark-500  rounded-lg overflow-hidden h-fit`}>
-      <div className='flex flex-row bg-dark-600 justify-between border-b  border-dark-500'>
+      <div className='flex flex-row bg-dark-900 justify-between border-b  border-dark-500'>
 
         {codeBlockOptions && onClickCodeBlockOption && (
           <div className='flex flex-row mr-auto'>

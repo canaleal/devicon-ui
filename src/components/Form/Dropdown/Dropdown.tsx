@@ -23,7 +23,7 @@ export const Dropdown = ({ title, selectedOption, options, onChange, size, extra
         onChange={(e) => {
           onChange(e.target.value)
         }}
-        className='bg-white h-12 dark:bg-dark-900 text-md dark:text-white border dark:border-dark-500 rounded-lg px-4 py-2 w-full'
+        className='bg-white h-12 hover:cursor-pointer dark:bg-dark-900 text-md dark:text-white border dark:border-dark-500 rounded-lg px-4 py-2 w-full'
       >
         {options.map((option) => (
           <option key={option} value={option}>
