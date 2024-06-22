@@ -1,6 +1,6 @@
-import FilterButton from './FilterButton'
 import FilterHeader from './FilterHeader'
 import { IIconFilterOption, IIconFilterCategory } from './types'
+import { FilterContainer, FilterItem } from './FilterContainer'
 
 interface FilterListProps {
   filterGroup: IIconFilterCategory
@@ -24,16 +24,16 @@ export const FilterList = ({ filterGroup, iconMap, hasMaxHeight, handleFilter, r
         totalFilters={filterGroup.filters.length}
         resetFilterGroup={() => resetFilterGroup(filterGroup)}
       />
-      <div className={`flex flex-col gap-2 overflow-y-auto ${hasMaxHeight ? 'h-[30rem]' : 'h-fit'} pr-2`}>
+      <FilterContainer hasMaxHeight={hasMaxHeight} >
         {filterGroup.filters.map((filter, index) => (
-          <FilterButton
+          <FilterItem
             key={index}
             filter={filter}
             icon={iconMap[filter.filterName] ?? 'fa-solid fa-square'}
             handleFilter={() => handleFilter(filterGroup, filter)}
           />
         ))}
-      </div>
+      </FilterContainer>
     </div>
   )
 }
