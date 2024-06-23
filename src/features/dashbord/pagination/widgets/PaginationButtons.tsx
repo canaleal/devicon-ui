@@ -9,12 +9,20 @@ interface PaginationButtonsProps {
 
 const BUTTON_STYLE = {
   base: 'px-4 py-2 rounded-md text-sm',
-  active: '',
-  hover: '',
-  disabled: ''
+  active: 'bg-frog-700 hover:bg-frog-800 text-smoke-100',
+  hover: 'hover:bg-smoke-200',
+  disabled: 'text-smoke-400 hover:bg-smoke-100'
 }
 
-const NavButton = ({ disabled, onClick, direction }: { disabled: boolean, onClick: () => void, direction: 'left' | 'right' }) => (
+const NavButton = ({
+  disabled,
+  onClick,
+  direction
+}: {
+  disabled: boolean
+  onClick: () => void
+  direction: 'left' | 'right'
+}) => (
   <button
     className={`${BUTTON_STYLE.base} ${BUTTON_STYLE.hover} ${disabled ? BUTTON_STYLE.disabled : ''}`}
     disabled={disabled}
@@ -24,7 +32,15 @@ const NavButton = ({ disabled, onClick, direction }: { disabled: boolean, onClic
   </button>
 )
 
-const PageButton = ({ page, currentPage, setCurrentPage }: { page: number, currentPage: number, setCurrentPage: (page: number) => void }) => (
+const PageButton = ({
+  page,
+  currentPage,
+  setCurrentPage
+}: {
+  page: number
+  currentPage: number
+  setCurrentPage: (page: number) => void
+}) => (
   <button
     key={page}
     className={`${BUTTON_STYLE.base} ${page === currentPage ? BUTTON_STYLE.active : BUTTON_STYLE.hover}`}
@@ -35,7 +51,7 @@ const PageButton = ({ page, currentPage, setCurrentPage }: { page: number, curre
 )
 
 const Ellipsis = ({ key }: { key: string }) => (
-  <span key={key} className={`${BUTTON_STYLE.base} ${BUTTON_STYLE.hover}`}>
+  <span key={key} className={`${BUTTON_STYLE.base} ${BUTTON_STYLE.disabled}`}>
     ...
   </span>
 )
@@ -48,12 +64,8 @@ export const PaginationButtons = ({ currentPage, setCurrentPage, totalPages }: P
   }, [currentPage, totalPages])
 
   return (
-    <div className='flex flex-row dark:text-white'>
-      <NavButton
-        disabled={currentPage === 1}
-        onClick={() => setCurrentPage(currentPage - 1)}
-        direction='left'
-      />
+    <div className='flex flex-row '>
+      <NavButton disabled={currentPage === 1} onClick={() => setCurrentPage(currentPage - 1)} direction='left' />
 
       {pagesToRender.map((page, idx) => {
         const isNumber = typeof page === 'number'

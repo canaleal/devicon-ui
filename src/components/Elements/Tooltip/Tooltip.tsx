@@ -49,22 +49,18 @@ export const Tooltip = ({ children, content, position, flashMessage }: TooltipPr
 
   return (
     <div
-      className='flex relative w-fit'
+      className='flex relative w-fit '
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       onClick={handleClick}
     >
       {visible && !flashVisible && (
-        <div
-          className={`absolute z-10 px-2 py-1 rounded max-w-xs break-words ${positionClasses[position]}`}
-        >
+        <div className={`absolute z-10 px-2 py-1 rounded-lg max-w-xs break-words ${positionClasses[position]} border border-dark-400 bg-frog-800 text-smoke-100`}>
           <p className='whitespace-nowrap'>{content}</p>
         </div>
       )}
       {flashVisible && (
-        <div
-          className={`absolute z-10 px-2 py-1 rounded max-w-xs break-words ${positionClasses[position]}`}
-        >
+        <div className={`absolute z-10 px-2 py-1 rounded-lg max-w-xs break-words ${positionClasses[position]} border border-dark-400 bg-frog-800 text-smoke-100`}>
           <p>{flashMessage}</p>
         </div>
       )}

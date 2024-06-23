@@ -37,9 +37,9 @@ export const createIconCodeBlockText = async (
 ) => {
   const codeClockFormats: Record<CodeBlockOptionTypes, () => string | Promise<string>> = {
     Link: () => iconUrl,
-    'IMG': () => getImageTag(icon, iconUrl, iconSize),
+    IMG: () => getImageTag(icon, iconUrl, iconSize),
     SVG: async () => adjustSVGAttributes(await fetchIconSVG(iconUrl), iconSize),
-    'Icon': () => getITag(icon, selectedVersion)
+    Icon: () => getITag(icon, selectedVersion)
   }
 
   return codeClockFormats[selectedCodeBlockFormat] ? await codeClockFormats[selectedCodeBlockFormat]() : ''

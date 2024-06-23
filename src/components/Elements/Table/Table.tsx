@@ -35,7 +35,7 @@ export function Table<T>({
       {title && <p className='font-bold text-sm '>{title}</p>}
       <div className='flex rounded-lg border-2 overflow-hidden w-full  '>
         <table className='table-auto w-full'>
-          <thead className='border-b-2 '>
+          <thead className='border-b-2 bg-dark-900 text-smoke-100'>
             <tr>
               {headers.map((header, index) => (
                 <th key={index} className='text-left px-4 py-2 h-12'>
@@ -48,7 +48,7 @@ export function Table<T>({
             {data.map((item, index) => (
               <tr
                 key={keyExtractor(item, index)}
-                className=' cursor-pointer'
+                className='hover:bg-smoke-200 cursor-pointer'
                 onClick={() => onRowClick && onRowClick(item)}
               >
                 {rowRenderer(item).map((cell, cellIndex) => (

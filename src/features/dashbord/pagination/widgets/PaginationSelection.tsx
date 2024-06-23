@@ -20,7 +20,7 @@ export const PaginationSelection = ({
   }
 
   return (
-    <div className='hidden lg:flex flex-row gap-2'>
+    <div className='hidden lg:flex flex-row gap-2 text-sm'>
       <p className='my-auto'>Items Per Page</p>
       <select
         value={elementsPerPage}

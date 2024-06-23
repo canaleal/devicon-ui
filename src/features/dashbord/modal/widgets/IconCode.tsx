@@ -30,7 +30,12 @@ export const IconCode = ({ icon, iconSize, iconUrl, deviconBranch, selectedVersi
   }, [deviconBranch, icon, iconSize, iconUrl, selectedOption, selectedVersion])
 
   return (
-    <CodeBlock code={codeText} codeBlockOptions={codeBlockOptions} selectedOption={selectedOption} onClickCodeBlockOption={handleClick} />
+    <CodeBlock
+      code={codeText}
+      codeBlockOptions={codeBlockOptions}
+      selectedOption={selectedOption}
+      onClickCodeBlockOption={handleClick}
+    />
   )
 }
 

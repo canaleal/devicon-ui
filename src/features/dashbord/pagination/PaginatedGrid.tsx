@@ -3,7 +3,7 @@ import { DeviconBranch, IIcon } from '../../../types'
 import { PaginationCard, PaginationButtons, PaginationSelection } from './widgets'
 import { Table } from '../../../components/Elements/Table'
 import { createDeviconIconUrl } from '../../../helpers/iconUrl'
-import { Dropdown } from '../../../components/Form/Dropdown/Dropdown'
+import { Dropdown } from '../../../components/Elements/Dropdown/Dropdown'
 
 type PaginationStyle = 'card' | 'table'
 
@@ -18,7 +18,7 @@ export const PaginatedGrid = ({ icons, onSelect, deviconBranch }: PaginatedGridP
 
   const [paginatedIcons, setPaginatedIcons] = useState<IIcon[]>([])
   const [currentPage, setCurrentPage] = useState<number>(1)
-  const elementsPerPageOptions = [48, 72, 96]
+  const elementsPerPageOptions = [54, 72, 81]
   const [elementsPerPage, setElementsPerPage] = useState<number>(elementsPerPageOptions[0])
   const totalPages = Math.ceil(icons.length / elementsPerPage)
 
@@ -64,13 +64,12 @@ export const PaginatedGrid = ({ icons, onSelect, deviconBranch }: PaginatedGridP
       {paginatedIcons.length ? (
         <>
           {paginationStyle === 'card' ? (
-            <div className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-6 2xl:grid-cols-8 gap-4'>
+            <div className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 2xl:grid-cols-9 gap-4'>
               {paginatedIcons.map((icon) => (
                 <PaginationCard key={icon.name} icon={icon} onSelect={onSelect} deviconBranch={deviconBranch} />
               ))}
             </div>
           ) : (
-
             <Table
               data={paginatedIcons}
               headers={['Icon', 'Name', 'Tags', 'Styles']}
@@ -90,7 +89,6 @@ export const PaginatedGrid = ({ icons, onSelect, deviconBranch }: PaginatedGridP
               onRowClick={onSelect}
               size='full'
             />
-
           )}
         </>
       ) : (

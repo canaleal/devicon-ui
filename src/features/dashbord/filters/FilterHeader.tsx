@@ -12,7 +12,7 @@ export const FilterHeader: React.FC<FilterHeaderProps> = ({
   resetFilterGroup
 }) => (
   <div className='flex flex-row gap-2 mb-2 pr-4 items-center'>
-    <p className='font-bold text-lg'>{categoryName}</p>
+    <p className='font-bold text-md'>{categoryName}</p>
     <p className='text-sm'>
       ({numberOfActiveFilters} / {totalFilters})
     </p>

@@ -24,7 +24,7 @@ export const FilterList = ({ filterGroup, iconMap, hasMaxHeight, handleFilter, r
         totalFilters={filterGroup.filters.length}
         resetFilterGroup={() => resetFilterGroup(filterGroup)}
       />
-      <FilterContainer hasMaxHeight={hasMaxHeight} >
+      <FilterContainer hasMaxHeight={hasMaxHeight}>
         {filterGroup.filters.map((filter, index) => (
           <FilterItem
             key={index}

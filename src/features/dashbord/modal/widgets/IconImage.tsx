@@ -17,9 +17,7 @@ export const IconImage = ({ iconName, iconSize, iconUrl }: IconContainerProps) =
   }
 
   return (
-    <div
-      className={`flex-1 flex flex-col border-2 rounded-lg p-4  h-[30rem] ${isDark ? ' ' : ''}`}
-    >
+    <div className={`flex-1 flex flex-col border rounded-lg p-4  h-[30rem] ${isDark ? 'bg-dark-900 text-smoke-100' : ''}`}>
       <img className='m-auto' height={iconSize.height} width={iconSize.width} src={iconUrl} alt={iconName} />
       <Tooltip content='Toggle Background' position='top'>
         <button onClick={toggleBackground} className='p-2 hover:text-yellow-300 flex text-2xl'>

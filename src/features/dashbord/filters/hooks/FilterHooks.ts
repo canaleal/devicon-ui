@@ -16,10 +16,7 @@ const INIT_FILTER_GROUPS: IFilterGroup[] = [
   }
 ]
 
-export const useInitializeFilterGroups = (
-  icons: IIcon[],
-  initialFilterGroups: IFilterGroup[] = INIT_FILTER_GROUPS
-) => {
+export const useInitializeFilterGroups = (icons: IIcon[], initialFilterGroups: IFilterGroup[] = INIT_FILTER_GROUPS) => {
   const [filterGroups, setFilterGroups] = useState<IFilterGroup[]>(initialFilterGroups)
   useEffect(() => {
     setFilterGroups((prevGroups) => prevGroups.map((group) => populateIconFilters(icons, group)))

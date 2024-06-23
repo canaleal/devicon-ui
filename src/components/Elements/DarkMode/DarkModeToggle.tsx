@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import storage from '../../helpers/storage'
+import storage from '../../../helpers/storage'
 
 const positions = {
   topLeft: 'top-8 left-8',
@@ -37,7 +37,7 @@ const DarkModeToggle = ({ position }: DarkModeProps) => {
   return (
     <button
       onClick={toggleDarkMode}
-      className={`z-50 fixed ${positions[position]} font-bold h-12  w-12 rounded-md z-20 border`}
+      className={` ${positions[position]} fixed  font-bold h-12  w-12 rounded-md z-20  bg-frog-700 hover:bg-frog-800 text-smoke-100  transition-colors`}
     >
       {darkMode ? <i className='fa-solid fa-sun'></i> : <i className='fa-solid fa-moon'></i>}
     </button>

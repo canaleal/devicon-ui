@@ -31,7 +31,7 @@ const ScrollButton = ({ position }: ScrollButtonProps) => {
   return (
     <button
       onClick={scrollToTop}
-      className={`fixed ${positions[position]}  font-bold h-12  w-12 rounded-md z-20 border`}
+      className={` ${positions[position]} fixed  font-bold h-12  w-12 rounded-md z-20  bg-frog-700 hover:bg-frog-800 text-smoke-100 transition-colors`}
       style={{ display: visible ? 'inline' : 'none' }}
     >
       <i className='fa fa-arrow-up' aria-hidden='true'></i>

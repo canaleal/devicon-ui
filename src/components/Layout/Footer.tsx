@@ -1,4 +1,4 @@
-import DeviconLogo from "../Elements/DeviconLogo/DeviconLogo"
+import DeviconLogo from '../Elements/DeviconLogo/DeviconLogo'
 
 interface FooterItem {
   name: string
@@ -18,7 +18,7 @@ export const Footer = () => {
   ]
 
   return (
-    <section className='flex flex-col xl:flex-row px-8 md:px-12 lg:px-24 py-8  gap-4   border-t'>
+    <footer className='flex flex-col xl:flex-row px-8 md:px-12 lg:px-24 py-8  gap-4  border-t border-dark-400 bg-dark-900 text-smoke-100'>
       <div className='flex-1 flex flex-col gap-4'>
         <DeviconLogo />
         <p className='text-sm lg:w-3/5'>
@@ -41,6 +41,6 @@ export const Footer = () => {
           </a>
         ))}
       </div>
-    </section>
+    </footer>
   )
 }

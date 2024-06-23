@@ -1,7 +1,8 @@
 import { Outlet } from 'react-router-dom'
-import ScrollButton from './ScrollButton'
-import DarkModeToggle from './DarkModeToggle'
+import ScrollButton from '../Elements/ScrollButton/ScrollButton'
+import DarkModeToggle from '../Elements/DarkMode/DarkModeToggle'
 import { Footer } from './Footer'
+import Navbar from './Navbar'
 
 export const MainLayout = () => {
   return (
@@ -11,6 +12,7 @@ export const MainLayout = () => {
         <ScrollButton position={'bottomRight'} />
       </div>
 
+      <Navbar/>
       <Outlet />
       <Footer />
     </section>

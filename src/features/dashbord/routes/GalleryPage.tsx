@@ -4,12 +4,11 @@ import { IIcon, DeviconBranch } from '../../../types'
 import { IconModal } from '../modal'
 import { PaginatedGrid } from '../pagination'
 
-import { Dropdown } from '../../../components/Form/Dropdown'
+import { Dropdown } from '../../../components/Elements/Dropdown'
 
 import {
   IFilterItem,
   updateFilter,
-
   IFilterGroup,
   useInitializeFilterGroups,
   useApplyFilters,
@@ -21,8 +20,8 @@ import Modal from '../../../components/Elements/Modal/Modal'
 import storage from '../../../helpers/storage'
 import { useDeviconBranch, useIcons, useSelectedIcon } from '../../../hooks'
 import { CodeBlockLink } from '../code/CodeBlockLink'
-import Filters from '../filters/Filters'
-import DeviconLogo from '../../../components/Elements/DeviconLogo/DeviconLogo'
+
+import FilterDropdown from '../filters/Filters'
 
 const GalleryPage = () => {
   const [searchTerm, setSearchTerm] = useState('')
@@ -70,30 +69,30 @@ const GalleryPage = () => {
         <IconModal icon={selectedIcon!} deviconBranch={deviconBranch} />
       </Modal>
 
-      <section className='flex flex-col xl:flex-row px-8 md:px-12 lg:px-24 py-4  gap-4  w-full border-b'>
-        <DeviconLogo />
-        <div className='flex flex-col md:flex-row gap-4'>
+      <section className='flex flex-col xl:flex-row px-8 md:px-12 lg:px-24 py-4  gap-4  w-full border-b border-dark-600 bg-dark-800'>
+        <div className='flex-1 flex flex-col md:flex-row gap-4 mr-auto'>
           <Dropdown
-            size='full'
+            size='lg'
             selectedOption={deviconBranch}
             options={['master', 'develop']}
             onChange={(value) => {
               handleBranchChange(value as DeviconBranch)
             }}
           />
-          <SearchBar size='full' onSearch={setSearchTerm} />
+          <SearchBar size='xl' onSearch={setSearchTerm} />
         </div>
+
+        <FilterDropdown
+          filterGroups={filterGroups}
+          handleFilterClick={handleFilterClick}
+          handleResetFilterGroup={handleResetFilterGroup}
+          size='xl'
+        />
       </section>
 
-      <section className='flex flex-col xl:flex-row px-8 md:px-12 lg:px-24 py-8  gap-4 w-full'>
-        <div className='w-6/6 xl:w-1/6'>
-          <Filters filterGroups={filterGroups} handleFilterClick={handleFilterClick} handleResetFilterGroup={handleResetFilterGroup} />
-        </div>
-        <div className='w-6/6 xl:w-5/6 flex flex-col gap-4'>
-          <CodeBlockLink deviconBranch={deviconBranch} />
-
-          <PaginatedGrid icons={filteredIcons} deviconBranch={deviconBranch} onSelect={setNewSelectedIcon} />
-        </div>
+      <section className='flex flex-col px-8 md:px-12 lg:px-24 py-8 gap-4 w-full '>
+        <CodeBlockLink deviconBranch={deviconBranch} />
+        <PaginatedGrid icons={filteredIcons} deviconBranch={deviconBranch} onSelect={setNewSelectedIcon} />
       </section>
     </>
   )
