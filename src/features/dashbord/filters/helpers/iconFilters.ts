@@ -1,5 +1,5 @@
 import { IIcon, IconVersion } from '../../../../types'
-import { FilterType, IIconFilterOption, IIconFilterCategory } from '../types'
+import { FilterType, IFilterItem, IFilterGroup } from '../types'
 
 const FilterMapRecord: Record<FilterType, string> = {
   versions: 'versions.svg',
@@ -15,7 +15,7 @@ const getItemsFromPath = (icons: IIcon, path: string): string[] => {
   return items
 }
 
-export const populateIconFilters = (icons: IIcon[], filterGroup: IIconFilterCategory) => {
+export const populateIconFilters = (icons: IIcon[], filterGroup: IFilterGroup) => {
   const itemsPath = FilterMapRecord[filterGroup.filterType]
   filterGroup.filters.forEach((filter) => {
     filter.numberOfIcons = 0
@@ -53,11 +53,11 @@ export const filterIcons = (icons: IIcon[], filterType: FilterType, criterion: s
   return icons.filter((icon) => FilterFunctions[filterType](icon, criterion))
 }
 
-export const updateFilterGroups = (filterGroups: IIconFilterCategory[], filterGroup: IIconFilterCategory) => {
+export const updateFilterGroups = (filterGroups: IFilterGroup[], filterGroup: IFilterGroup) => {
   return filterGroups.map((group) => (group.filterType === filterGroup.filterType ? filterGroup : group))
 }
 
-export const updateFilter = (filterGroup: IIconFilterCategory, filter: IIconFilterOption) => {
+export const updateFilter = (filterGroup: IFilterGroup, filter: IFilterItem) => {
   const tempFilterGroup = { ...filterGroup }
   const filterIndex = tempFilterGroup.filters.findIndex((item) => item.filterName === filter.filterName)
   if (filterIndex === -1) return filterGroup
@@ -65,7 +65,7 @@ export const updateFilter = (filterGroup: IIconFilterCategory, filter: IIconFilt
   return tempFilterGroup
 }
 
-export const resetFilterGroup = (filterGroup: IIconFilterCategory) => {
+export const resetFilterGroup = (filterGroup: IFilterGroup) => {
   const tempFilterGroup = { ...filterGroup }
   tempFilterGroup.filters.forEach((filter) => (filter.isSelected = false))
   return tempFilterGroup

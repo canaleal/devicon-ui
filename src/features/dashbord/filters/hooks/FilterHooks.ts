@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react'
 import { IIcon, IconVersion } from '../../../../types'
-import { IIconFilterCategory } from '../types'
+import { IFilterGroup } from '../types'
 import { filterIcons, populateIconFilters } from '../helpers'
 
-const INIT_FILTER_GROUPS: IIconFilterCategory[] = [
+const INIT_FILTER_GROUPS: IFilterGroup[] = [
   {
     categoryName: 'Versions',
     filterType: 'versions',
@@ -18,16 +18,16 @@ const INIT_FILTER_GROUPS: IIconFilterCategory[] = [
 
 export const useInitializeFilterGroups = (
   icons: IIcon[],
-  initialFilterGroups: IIconFilterCategory[] = INIT_FILTER_GROUPS
+  initialFilterGroups: IFilterGroup[] = INIT_FILTER_GROUPS
 ) => {
-  const [filterGroups, setFilterGroups] = useState<IIconFilterCategory[]>(initialFilterGroups)
+  const [filterGroups, setFilterGroups] = useState<IFilterGroup[]>(initialFilterGroups)
   useEffect(() => {
     setFilterGroups((prevGroups) => prevGroups.map((group) => populateIconFilters(icons, group)))
   }, [icons])
   return { filterGroups, setFilterGroups }
 }
 
-export const useApplyFilters = (searchedIcons: IIcon[], filterGroups: IIconFilterCategory[]) => {
+export const useApplyFilters = (searchedIcons: IIcon[], filterGroups: IFilterGroup[]) => {
   const [filteredIcons, setFilteredIcons] = useState<IIcon[]>(searchedIcons)
   useEffect(() => {
     let filtered = searchedIcons

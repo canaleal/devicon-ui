@@ -32,10 +32,10 @@ export function Table<T>({
 
   return (
     <div className={`flex flex-col gap-2 ${sizes[size]} ${extraClasses}`}>
-      {title && <p className='font-bold text-sm dark:text-white'>{title}</p>}
-      <div className='flex rounded-lg border-2 overflow-hidden w-full dark:text-white dark:border-dark-500  bg-white dark:bg-dark-900 '>
+      {title && <p className='font-bold text-sm '>{title}</p>}
+      <div className='flex rounded-lg border-2 overflow-hidden w-full  '>
         <table className='table-auto w-full'>
-          <thead className='border-b-2 dark:border-dark-500 bg-dark-900 text-white '>
+          <thead className='border-b-2 '>
             <tr>
               {headers.map((header, index) => (
                 <th key={index} className='text-left px-4 py-2 h-12'>
@@ -48,7 +48,7 @@ export function Table<T>({
             {data.map((item, index) => (
               <tr
                 key={keyExtractor(item, index)}
-                className=' hover:bg-dark-100 dark:hover:bg-dark-600 cursor-pointer'
+                className=' cursor-pointer'
                 onClick={() => onRowClick && onRowClick(item)}
               >
                 {rowRenderer(item).map((cell, cellIndex) => (

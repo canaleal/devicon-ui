@@ -9,9 +9,9 @@ interface PaginationButtonsProps {
 
 const BUTTON_STYLE = {
   base: 'px-4 py-2 rounded-md text-sm',
-  active: 'bg-primary-600 text-white',
-  hover: 'hover:bg-gray-200 hover:shadow-sm dark:hover:bg-dark-600',
-  disabled: 'text-gray-400'
+  active: '',
+  hover: '',
+  disabled: ''
 }
 
 const NavButton = ({ disabled, onClick, direction }: { disabled: boolean, onClick: () => void, direction: 'left' | 'right' }) => (

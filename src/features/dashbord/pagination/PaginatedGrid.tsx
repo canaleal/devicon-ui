@@ -44,9 +44,9 @@ export const PaginatedGrid = ({ icons, onSelect, deviconBranch }: PaginatedGridP
   }, [currentPage, elementsPerPage])
 
   return (
-    <section className='flex flex-col gap-6'>
-      <div className='flex w-full dark:text-white gap-6 items-center'>
-        <p className='font-bold text-2xl'>{icons.length} Icons</p>
+    <section className='flex flex-col gap-4'>
+      <div className='flex w-full gap-4 items-center'>
+        <p className='font-bold text-xl'>{icons.length} Icons</p>
         <p className='ml-auto hidden md:inline-block'>
           Page {currentPage} of {totalPages || 1}
         </p>
@@ -70,37 +70,37 @@ export const PaginatedGrid = ({ icons, onSelect, deviconBranch }: PaginatedGridP
               ))}
             </div>
           ) : (
-            <div className='flex flex-col w-full rounded-lg'>
-              <Table
-                data={paginatedIcons}
-                headers={['Icon', 'Name', 'Tags', 'Styles']}
-                keyExtractor={(item) => item.name}
-                rowRenderer={(item) => [
-                  <img
-                    className='my-2'
-                    width={30}
-                    height={'auto'}
-                    src={createDeviconIconUrl(item.name, item.versions.svg[0], deviconBranch)}
-                    alt={item.name}
-                  />,
-                  item.name,
-                  item.tags?.join(', ') ?? '',
-                  item.versions.svg.join(', ')
-                ]}
-                onRowClick={onSelect}
-                size='full'
-              />
-            </div>
+
+            <Table
+              data={paginatedIcons}
+              headers={['Icon', 'Name', 'Tags', 'Styles']}
+              keyExtractor={(item) => item.name}
+              rowRenderer={(item) => [
+                <img
+                  className='my-2'
+                  width={30}
+                  height={'auto'}
+                  src={createDeviconIconUrl(item.name, item.versions.svg[0], deviconBranch)}
+                  alt={item.name}
+                />,
+                item.name,
+                item.tags?.join(', ') ?? '',
+                item.versions.svg.join(', ')
+              ]}
+              onRowClick={onSelect}
+              size='full'
+            />
+
           )}
         </>
       ) : (
-        <div className='flex flex-col items-center justify-center min-h-screen text-gray-500'>
-          <p className='text-2xl'>No icons found</p>
+        <div className='flex flex-col items-center justify-center min-h-screen'>
+          <p className='text-xl'>No icons found</p>
           <p>Try a different search term or change filters</p>
         </div>
       )}
 
-      <div className='flex flex-row justify-center lg:justify-between '>
+      <div className='flex flex-row justify-center lg:justify-between'>
         <PaginationSelection
           elementsPerPage={elementsPerPage}
           currentPage={currentPage}

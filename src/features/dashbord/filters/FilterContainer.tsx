@@ -1,25 +1,28 @@
-import { IIconFilterOption } from "./types"
+import { IFilterItem } from "./types"
 
 interface FilterItemProps {
-    filter: IIconFilterOption
+    filter: IFilterItem
     icon: string
     handleFilter: () => void
 }
 
+const BUTTON_STYLE = {
+    base: 'rounded-md flex px-4 py-2 text-sm',
+    selected: '',
+    unselected: ''
+}
+
 export const FilterItem: React.FC<FilterItemProps> = ({ filter, icon, handleFilter }) => {
-    const isSelectedClass = filter.isSelected
-        ? 'bg-primary-600 hover:bg-primary-800 text-white shadow-sm'
-        : 'hover:bg-dark-100 dark:hover:bg-dark-900 hover:shadow-md'
+    const isSelectedClass = filter.isSelected ? BUTTON_STYLE.selected : BUTTON_STYLE.unselected
 
     return (
-        <button className={`${isSelectedClass} rounded-md  flex px-4 py-2 text-sm`} onClick={handleFilter}>
+        <button className={`${BUTTON_STYLE.base} ${isSelectedClass}`} onClick={handleFilter}>
             <i className={`${icon} my-auto`} />
             <p className='ml-2 clamped-text'>{filter.filterName}</p>
             <p className='ml-auto'>{filter.numberOfIcons}</p>
         </button>
     )
 }
-
 
 interface FilterContainerProps {
     children: React.ReactNode

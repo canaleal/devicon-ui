@@ -37,7 +37,7 @@ const DarkModeToggle = ({ position }: DarkModeProps) => {
   return (
     <button
       onClick={toggleDarkMode}
-      className={`z-50 fixed ${positions[position]} bg-primary-600 hover:bg-primary-800 text-white font-bold h-12  w-12 rounded-md z-20`}
+      className={`z-50 fixed ${positions[position]} font-bold h-12  w-12 rounded-md z-20 border`}
     >
       {darkMode ? <i className='fa-solid fa-sun'></i> : <i className='fa-solid fa-moon'></i>}
     </button>

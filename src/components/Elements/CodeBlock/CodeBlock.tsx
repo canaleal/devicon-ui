@@ -21,8 +21,8 @@ export const CodeBlock = ({ code, selectedOption, codeBlockOptions, onClickCodeB
   const codeString = code.replace(/(\r\n|\n|\r)/gm, '')
 
   return (
-    <div className={`flex flex-col border-2 dark:border-dark-500  rounded-lg overflow-hidden h-fit`}>
-      <div className='flex flex-row bg-dark-900 justify-between border-b  border-dark-500'>
+    <div className={`flex flex-col border-2   rounded-lg overflow-hidden h-fit`}>
+      <div className='flex flex-row justify-between border-b  '>
 
         {codeBlockOptions && onClickCodeBlockOption && (
           <div className='flex flex-row mr-auto'>
@@ -32,7 +32,7 @@ export const CodeBlock = ({ code, selectedOption, codeBlockOptions, onClickCodeB
                 onClick={() => {
                   onClickCodeBlockOption(codeType)
                 }}
-                className={`px-4 py-2 h-12   ${codeType === selectedOption ? 'bg-primary-600' : 'bg-dark-900'} hover:bg-primary-800 text-white `}
+                className={`px-4 py-2 h-12   ${codeType === selectedOption ? '' : ''}  `}
               >
                 <span className='font-bold text-sm'>{codeType}</span>
               </button>
@@ -45,7 +45,7 @@ export const CodeBlock = ({ code, selectedOption, codeBlockOptions, onClickCodeB
             onClick={() => {
               copyToClipboard(codeString)
             }}
-            className='px-4 py-3 h-12 hover:text-primary-800 text-white flex ml-auto'
+            className='px-4 py-3 h-12  flex ml-auto'
           >
             <p className='font-bold text-sm my-auto'>Copy Code</p>
             <i className='fa-solid fa-copy ml-2 my-auto'></i>

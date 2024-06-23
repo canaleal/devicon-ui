@@ -3,16 +3,14 @@ import { SearchBar } from '../../../components/Elements/SearchBar'
 import { IIcon, DeviconBranch } from '../../../types'
 import { IconModal } from '../modal'
 import { PaginatedGrid } from '../pagination'
-import { ICON_VERSION_FA_MAP } from '../../../config'
+
 import { Dropdown } from '../../../components/Form/Dropdown'
-import { CodeBlock } from '../../../components/Elements/CodeBlock'
-import { DEVICON_LINK_TAG } from '../../../constants'
 
 import {
-  IIconFilterOption,
+  IFilterItem,
   updateFilter,
-  FilterList,
-  IIconFilterCategory,
+
+  IFilterGroup,
   useInitializeFilterGroups,
   useApplyFilters,
   resetFilterGroup,
@@ -22,6 +20,9 @@ import {
 import Modal from '../../../components/Elements/Modal/Modal'
 import storage from '../../../helpers/storage'
 import { useDeviconBranch, useIcons, useSelectedIcon } from '../../../hooks'
+import { CodeBlockLink } from '../code/CodeBlockLink'
+import Filters from '../filters/Filters'
+import DeviconLogo from '../../../components/Elements/DeviconLogo/DeviconLogo'
 
 const GalleryPage = () => {
   const [searchTerm, setSearchTerm] = useState('')
@@ -51,13 +52,13 @@ const GalleryPage = () => {
     setDeviconBranch(branch)
   }
 
-  const handleFilterClick = (filterGroup: IIconFilterCategory, filter: IIconFilterOption) => {
+  const handleFilterClick = (filterGroup: IFilterGroup, filter: IFilterItem) => {
     const updatedFilterGroup = updateFilter(filterGroup, filter)
     const updatedFilterGroups = updateFilterGroups(filterGroups, updatedFilterGroup)
     setFilterGroups(updatedFilterGroups)
   }
 
-  const handleResetFilterGroup = (filterGroup: IIconFilterCategory) => {
+  const handleResetFilterGroup = (filterGroup: IFilterGroup) => {
     const updatedFilterGroup = resetFilterGroup(filterGroup)
     const updatedFilterGroups = updateFilterGroups(filterGroups, updatedFilterGroup)
     setFilterGroups(updatedFilterGroups)
@@ -69,13 +70,9 @@ const GalleryPage = () => {
         <IconModal icon={selectedIcon!} deviconBranch={deviconBranch} />
       </Modal>
 
-      <section className='bg-dark-900 border-b dark:border-dark-500 shadow-md flex flex-col xl:flex-row px-6 md:px-12 lg:px-24 py-8   gap-6 w-full '>
-        <div className='flex flex-row gap-2 my-auto mr-auto text-3xl text-white'>
-          <p className='font-thin'>DEVICON</p>
-          <p className='font-bold'>UI</p>
-        </div>
-
-        <div className='flex flex-col md:flex-row gap-6'>
+      <section className='flex flex-col xl:flex-row px-8 md:px-12 lg:px-24 py-4  gap-4  w-full border-b'>
+        <DeviconLogo />
+        <div className='flex flex-col md:flex-row gap-4'>
           <Dropdown
             size='full'
             selectedOption={deviconBranch}
@@ -88,25 +85,13 @@ const GalleryPage = () => {
         </div>
       </section>
 
-      <section className='bg-smoke dark:bg-dark-600 flex flex-col xl:flex-row px-6 md:px-12 lg:px-24 py-8 md:py-16  gap-6 w-full'>
-        <div className='w-6/6 xl:w-1/6 flex flex-col gap-6'>
-          {filterGroups.map((group) => (
-            <FilterList
-              key={group.filterType}
-              filterGroup={group}
-              handleFilter={handleFilterClick}
-              iconMap={ICON_VERSION_FA_MAP}
-              hasMaxHeight={group.filters.length > 10}
-              resetFilterGroup={handleResetFilterGroup}
-            />
-          ))}
+      <section className='flex flex-col xl:flex-row px-8 md:px-12 lg:px-24 py-8  gap-4 w-full'>
+        <div className='w-6/6 xl:w-1/6'>
+          <Filters filterGroups={filterGroups} handleFilterClick={handleFilterClick} handleResetFilterGroup={handleResetFilterGroup} />
         </div>
         <div className='w-6/6 xl:w-5/6 flex flex-col gap-4'>
-          {deviconBranch === 'master' && (
-            <CodeBlock code={DEVICON_LINK_TAG}>
-              <p className='px-6 py-2 text-white'>Place this in your header (once per HTML file)</p>
-            </CodeBlock>
-          )}
+          <CodeBlockLink deviconBranch={deviconBranch} />
+
           <PaginatedGrid icons={filteredIcons} deviconBranch={deviconBranch} onSelect={setNewSelectedIcon} />
         </div>
       </section>

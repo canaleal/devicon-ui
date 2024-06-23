@@ -1,5 +1,5 @@
 import { Outlet } from 'react-router-dom'
-import ScrollButton from '../Elements/ScrollButton/ScrollButton'
+import ScrollButton from './ScrollButton'
 import DarkModeToggle from './DarkModeToggle'
 import { Footer } from './Footer'
 

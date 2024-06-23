@@ -8,9 +8,9 @@ interface TagBarProps {
 export const TagsBar = ({ tags }: TagBarProps) => {
   if (!tags || tags.length === 0) return null
   return (
-    <div className='flex flex-row dark:text-white'>
+    <div className='flex flex-row'>
       <Tooltip content='Copy Categories' position='bottom' flashMessage='Copied!'>
-        <button onClick={() => copyToClipboard(tags.toString())} className='p-2 hover:text-primary-600 flex'>
+        <button onClick={() => copyToClipboard(tags.toString())} className='p-2 flex'>
           <i className='fa-solid fa-folder'></i>
         </button>
       </Tooltip>

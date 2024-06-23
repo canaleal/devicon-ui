@@ -1,13 +1,13 @@
 import FilterHeader from './FilterHeader'
-import { IIconFilterOption, IIconFilterCategory } from './types'
+import { IFilterItem, IFilterGroup } from './types'
 import { FilterContainer, FilterItem } from './FilterContainer'
 
 interface FilterListProps {
-  filterGroup: IIconFilterCategory
+  filterGroup: IFilterGroup
   iconMap: { [key: string]: string }
   hasMaxHeight: boolean
-  handleFilter: (filterGroup: IIconFilterCategory, filter: IIconFilterOption) => void
-  resetFilterGroup: (filterGroup: IIconFilterCategory) => void
+  handleFilter: (filterGroup: IFilterGroup, filter: IFilterItem) => void
+  resetFilterGroup: (filterGroup: IFilterGroup) => void
 }
 
 export const FilterList = ({ filterGroup, iconMap, hasMaxHeight, handleFilter, resetFilterGroup }: FilterListProps) => {
@@ -17,7 +17,7 @@ export const FilterList = ({ filterGroup, iconMap, hasMaxHeight, handleFilter, r
   )
 
   return (
-    <div className='flex flex-col text-gray-800 dark:text-gray-200'>
+    <div className='flex flex-col'>
       <FilterHeader
         categoryName={filterGroup.filterType}
         numberOfActiveFilters={numberOfActiveFilters}
