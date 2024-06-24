@@ -48,7 +48,7 @@ describe('createIconCodeBlockText', () => {
     const iconSize: IIconSize = { name: 'Small', width: 100, height: 100 }
     const iconUrl = 'https://example.com/icon.svg'
     const selectedVersion = 'plain'
-    const selectedCodeBlockFormat = 'Link'
+    const selectedCodeBlockFormat = 'LINK'
     const codeBlockText = await createIconCodeBlockText(
       icon,
       iconSize,
