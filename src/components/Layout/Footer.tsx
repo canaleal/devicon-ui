@@ -26,10 +26,12 @@ export const Footer = () => {
           names used in this website are for identification purposes only.
         </p>
         <div className='flex flex-row gap-2'>
-          <div className='w-4 h-4 bg-purple-500' />
-          <div className='w-4 h-4 bg-teal-600' />
-          <div className='w-4 h-4 bg-yellow-500' />
-          <div className='w-4 h-4 bg-red-500' />
+          <div className='w-4 h-4 rounded-full bg-rose' />
+          <div className='w-4 h-4 rounded-full bg-orange' />
+          <div className='w-4 h-4 rounded-full bg-yellow' />
+          <div className='w-4 h-4 rounded-full bg-green' />
+          <div className='w-4 h-4 rounded-full bg-cyan' />
+          <div className='w-4 h-4 rounded-full bg-frog-600' />
         </div>
       </div>
 

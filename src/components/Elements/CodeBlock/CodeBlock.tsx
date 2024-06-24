@@ -17,7 +17,15 @@ const customStyle = {
   borderRadius: '0rem'
 }
 
-const CodeBlockOption = ({ codeType, selectedOption, onClickCodeBlockOption }: { codeType: string; selectedOption: string | undefined; onClickCodeBlockOption: (codeType: string) => void }) => {
+const CodeBlockOption = ({
+  codeType,
+  selectedOption,
+  onClickCodeBlockOption
+}: {
+  codeType: string
+  selectedOption: string | undefined
+  onClickCodeBlockOption: (codeType: string) => void
+}) => {
   return (
     <button
       key={codeType}
@@ -32,9 +40,8 @@ const CodeBlockOption = ({ codeType, selectedOption, onClickCodeBlockOption }: {
 }
 
 const CopyCodeButton = ({ codeString }: { codeString: string }) => {
-
   return (
-    <Tooltip content='Copy Code' position='bottom' flashMessage='Copied!'>
+    <Tooltip content='Copy Code' position='top' flashMessage='Copied!'>
       <button
         onClick={() => {
           copyToClipboard(codeString)
@@ -52,12 +59,17 @@ export const CodeBlock = ({ code, selectedOption, codeBlockOptions, onClickCodeB
   const codeString = code.replace(/(\r\n|\n|\r)/gm, '')
 
   return (
-    <div className={`flex flex-col border border-dark-400 rounded-lg overflow-hidden h-fit`}>
+    <div className={`flex flex-col border border-dark-400 rounded-lg h-fit`}>
       <div className='flex flex-row justify-between border-b  border-dark-400 bg-dark-900 '>
         {codeBlockOptions && onClickCodeBlockOption && (
           <div className='flex flex-row mr-auto'>
             {codeBlockOptions.map((codeType) => (
-              <CodeBlockOption key={codeType} codeType={codeType} selectedOption={selectedOption} onClickCodeBlockOption={onClickCodeBlockOption} />
+              <CodeBlockOption
+                key={codeType}
+                codeType={codeType}
+                selectedOption={selectedOption}
+                onClickCodeBlockOption={onClickCodeBlockOption}
+              />
             ))}
           </div>
         )}

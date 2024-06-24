@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react'
+import { DROPDOWN_POPUP_STYLE, DROPDOWN_STYLE } from './dropdownStyle'
 
 const sizes = {
   sm: 'w-16',
@@ -43,25 +44,18 @@ export const Dropdown = ({ title, selectedOption, options, onChange, size, extra
   }, [])
 
   return (
-    <div className={`relative ${sizes[size]} ${extraClasses} gap-2 text-sm `} ref={dropdownRef}>
+    <div className={`relative ${sizes[size]} ${extraClasses} gap-2 text-sm`} ref={dropdownRef}>
       {title && <p className='font-bold mb-1'>{title}</p>}
 
-      <button
-        onClick={toggleDropdown}
-        className='h-12 hover:cursor-pointer  border rounded-lg px-4 py-2 w-full flex justify-between items-center bg-white '
-      >
+      <button onClick={toggleDropdown} className={`${DROPDOWN_STYLE.base}`}>
         <span>{selectedOption}</span>
         <i className={`fas ${isOpen ? 'fa-chevron-up' : 'fa-chevron-down'} ml-auto my-auto`} />
       </button>
 
       {isOpen && (
-        <ul className='absolute mt-1 w-full bg-white border rounded-lg shadow-lg z-50'>
+        <ul className={`${DROPDOWN_POPUP_STYLE.base}`}>
           {options.map((option) => (
-            <li
-              key={option}
-              onClick={() => handleOptionClick(option)}
-              className='px-4 py-2 hover:bg-gray-200 cursor-pointer'
-            >
+            <li key={option} onClick={() => handleOptionClick(option)} className={`${DROPDOWN_POPUP_STYLE.item}`}>
               {option}
             </li>
           ))}

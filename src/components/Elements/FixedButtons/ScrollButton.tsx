@@ -1,14 +1,8 @@
 import { useState } from 'react'
-
-const positions = {
-  topLeft: 'top-8 left-8',
-  topRight: 'top-8 right-8',
-  bottomLeft: 'bottom-8 left-8',
-  bottomRight: 'bottom-8 right-8'
-}
+import { FIXED_BUTTON_POSITIONS, FIXED_BUTTON_STYLE } from './FixedButtonStyles'
 
 export interface ScrollButtonProps {
-  position: keyof typeof positions
+  position: keyof typeof FIXED_BUTTON_POSITIONS
 }
 
 const ScrollButton = ({ position }: ScrollButtonProps) => {
@@ -31,8 +25,7 @@ const ScrollButton = ({ position }: ScrollButtonProps) => {
   return (
     <button
       onClick={scrollToTop}
-      className={` ${positions[position]} fixed  font-bold h-12  w-12 rounded-md z-20  bg-frog-700 hover:bg-frog-800 text-smoke-100 transition-colors`}
-      style={{ display: visible ? 'inline' : 'none' }}
+      className={`${FIXED_BUTTON_POSITIONS[position]} ${FIXED_BUTTON_STYLE.base} ${FIXED_BUTTON_STYLE.light} ${visible ? FIXED_BUTTON_STYLE.visible : FIXED_BUTTON_STYLE.hidden}`}
     >
       <i className='fa fa-arrow-up' aria-hidden='true'></i>
     </button>

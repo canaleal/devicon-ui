@@ -14,8 +14,8 @@ interface IconCodeProps {
 
 export const IconCode = ({ icon, iconSize, iconUrl, deviconBranch, selectedVersion }: IconCodeProps) => {
   const codeBlockOptions =
-    deviconBranch === 'develop' ? CODE_BLOCK_OPTIONS.filter((option) => option !== 'Icon') : CODE_BLOCK_OPTIONS
-  const [selectedOption, setSelectedOption] = useState<CodeBlockOptionTypes>('Link')
+    deviconBranch === 'develop' ? CODE_BLOCK_OPTIONS.filter((option) => option !== 'ICON') : CODE_BLOCK_OPTIONS
+  const [selectedOption, setSelectedOption] = useState<CodeBlockOptionTypes>('LINK')
   const [codeText, setCodeText] = useState<string>('')
 
   const handleClick = (codeType: string) => {

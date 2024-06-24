@@ -1,4 +1,5 @@
 import React from 'react'
+import { DROPDOWN_STYLE } from '../../../../components/Elements/Dropdown/dropdownStyle'
 
 interface PaginationSelectionProps {
   elementsPerPage: number
@@ -6,6 +7,7 @@ interface PaginationSelectionProps {
   totalElements: number
   elementsPerPageOptions: number[]
   handlePerPageChange: (elementsPerPage: number) => void
+  extraClasses?: string
 }
 
 export const PaginationSelection = ({
@@ -13,30 +15,26 @@ export const PaginationSelection = ({
   currentPage,
   totalElements,
   elementsPerPageOptions,
-  handlePerPageChange
+  handlePerPageChange,
+  extraClasses
 }: PaginationSelectionProps) => {
   const handlePageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     handlePerPageChange(parseInt(e.target.value))
   }
 
+  const TOTAL_ELEMENTS_TEXT = `${(currentPage - 1) * elementsPerPage + 1}-${Math.min(currentPage * elementsPerPage, totalElements)} of ${totalElements} icons`
+
   return (
-    <div className='hidden lg:flex flex-row gap-2 text-sm'>
-      <p className='my-auto'>Items Per Page</p>
-      <select
-        value={elementsPerPage}
-        onChange={handlePageChange}
-        className=' hover:cursor-pointer  border rounded-md px-2 py-2'
-      >
+    <div className={`flex flex-row gap-2 text-sm items-center ${extraClasses}`}>
+      <p>Items Per Page</p>
+      <select value={elementsPerPage} onChange={handlePageChange} className={`${DROPDOWN_STYLE.baseSmall}`}>
         {elementsPerPageOptions.map((option: number) => (
           <option key={option} value={option}>
             {option}
           </option>
         ))}
       </select>
-      <p className='my-auto'>
-        {(currentPage - 1) * elementsPerPage + 1}-{Math.min(currentPage * elementsPerPage, totalElements)} of{' '}
-        {totalElements} icons
-      </p>
+      <p>{TOTAL_ELEMENTS_TEXT}</p>
     </div>
   )
 }

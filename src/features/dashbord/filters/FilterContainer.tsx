@@ -7,9 +7,9 @@ interface FilterItemProps {
 }
 
 const BUTTON_STYLE = {
-  base: 'rounded-md flex px-4 py-2 text-sm px-4 py-2 hover:bg-gray-200 cursor-pointer',
-  selected: '',
-  unselected: ''
+  base: 'rounded-md flex px-4 py-2 text-sm px-4 py-2  cursor-pointer',
+  selected: 'bg-frog-700 text-smoke-100',
+  unselected: 'hover:bg-gray-200'
 }
 
 export const FilterItem: React.FC<FilterItemProps> = ({ filter, icon, handleFilter }) => {

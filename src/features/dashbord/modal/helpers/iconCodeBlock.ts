@@ -36,10 +36,10 @@ export const createIconCodeBlockText = async (
   selectedCodeBlockFormat: CodeBlockOptionTypes
 ) => {
   const codeClockFormats: Record<CodeBlockOptionTypes, () => string | Promise<string>> = {
-    Link: () => iconUrl,
+    LINK: () => iconUrl,
     IMG: () => getImageTag(icon, iconUrl, iconSize),
     SVG: async () => adjustSVGAttributes(await fetchIconSVG(iconUrl), iconSize),
-    Icon: () => getITag(icon, selectedVersion)
+    ICON: () => getITag(icon, selectedVersion)
   }
 
   return codeClockFormats[selectedCodeBlockFormat] ? await codeClockFormats[selectedCodeBlockFormat]() : ''

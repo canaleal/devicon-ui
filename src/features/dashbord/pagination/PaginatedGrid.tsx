@@ -13,6 +13,13 @@ interface PaginatedGridProps {
   onSelect: (icon: IIcon) => void
 }
 
+export const NoIconsFound = () => (
+  <div className='flex flex-col items-center justify-center min-h-screen'>
+    <p className='text-xl'>No icons found</p>
+    <p>Try a different search term or change filters</p>
+  </div>
+)
+
 export const PaginatedGrid = ({ icons, onSelect, deviconBranch }: PaginatedGridProps) => {
   const [paginationStyle, setPaginationStyle] = useState<PaginationStyle>('card')
 
@@ -92,10 +99,7 @@ export const PaginatedGrid = ({ icons, onSelect, deviconBranch }: PaginatedGridP
           )}
         </>
       ) : (
-        <div className='flex flex-col items-center justify-center min-h-screen'>
-          <p className='text-xl'>No icons found</p>
-          <p>Try a different search term or change filters</p>
-        </div>
+        <NoIconsFound />
       )}
 
       <div className='flex flex-row justify-center lg:justify-between'>
@@ -105,6 +109,7 @@ export const PaginatedGrid = ({ icons, onSelect, deviconBranch }: PaginatedGridP
           totalElements={icons.length}
           elementsPerPageOptions={elementsPerPageOptions}
           handlePerPageChange={handleIconsPerPageChange}
+          extraClasses='hidden lg:flex'
         />
         <PaginationButtons currentPage={currentPage} setCurrentPage={setCurrentPage} totalPages={totalPages} />
       </div>

@@ -12,5 +12,5 @@ export const ICON_SIZE_OPTIONS: IIconSize[] = [
 ]
 export const INIT_ICON_SIZE = ICON_SIZE_OPTIONS[2]
 
-export type CodeBlockOptionTypes = 'Link' | 'IMG' | 'SVG' | 'Icon'
-export const CODE_BLOCK_OPTIONS: CodeBlockOptionTypes[] = ['Link', 'SVG', 'IMG', 'Icon']
+export type CodeBlockOptionTypes = 'LINK' | 'IMG' | 'SVG' | 'ICON'
+export const CODE_BLOCK_OPTIONS: CodeBlockOptionTypes[] = ['LINK', 'SVG', 'IMG', 'ICON']

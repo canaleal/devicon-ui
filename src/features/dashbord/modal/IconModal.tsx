@@ -22,21 +22,17 @@ export const IconModal = ({ icon, deviconBranch }: IconModalProps) => {
 
   return (
     <>
-      <div className='flex flex-row'>
-        <Tooltip content='Copy Icon' position='bottom' flashMessage='Copied!'>
-          <button onClick={() => copyToClipboard(icon.name)} className='p-2 flex '>
-            <p className='font-bold text-3xl'>{icon.name}</p>
-            <i className='fa-solid fa-copy text-xl ml-2 my-auto'></i>
-          </button>
-        </Tooltip>
-      </div>
+      <Tooltip content='Copy Name' position='bottom' flashMessage='Copied!'>
+        <button onClick={() => copyToClipboard(icon.name)} className='p-2 flex hover:text-frog-600 transition-colors'>
+          <p className='font-bold text-3xl'>{icon.name}</p>
+          <i className='fa-solid fa-copy text-xl ml-2 my-auto'></i>
+        </button>
+      </Tooltip>
 
       <div className='flex flex-col 2xl:flex-row my-4 gap-8'>
-        <IconImage iconUrl={iconUrl} iconName={icon.name} iconSize={selectedIconSize} />
+        <IconImage iconUrl={iconUrl} iconName={icon.name} iconSize={selectedIconSize} extraClasses='flex-1' />
         <div className='flex-1 flex flex-col gap-4'>
-          <div className='hidden lg:flex'>
-            <TagsBar tags={icon.tags ?? []} />
-          </div>
+          <TagsBar tags={icon.tags ?? []} extraClasses='hidden lg:flex' />
           <div className='flex flex-row gap-4 w-full'>
             <Dropdown
               title='Version'

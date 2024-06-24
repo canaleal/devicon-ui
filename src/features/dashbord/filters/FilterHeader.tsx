@@ -5,6 +5,21 @@ interface FilterHeaderProps {
   resetFilterGroup?: () => void
 }
 
+const FilterResetButton = ({
+  resetFilterGroup,
+  numberOfActiveFilters
+}: {
+  resetFilterGroup?: () => void
+  numberOfActiveFilters: number
+}) => {
+  if (!resetFilterGroup || !numberOfActiveFilters) return null
+  return (
+    <button className='ml-auto text-sm font-bold hover:text-frog-600' onClick={resetFilterGroup}>
+      <i className='fas fa-undo-alt text-lg' />
+    </button>
+  )
+}
+
 export const FilterHeader: React.FC<FilterHeaderProps> = ({
   categoryName,
   numberOfActiveFilters,
@@ -16,14 +31,7 @@ export const FilterHeader: React.FC<FilterHeaderProps> = ({
     <p className='text-sm'>
       ({numberOfActiveFilters} / {totalFilters})
     </p>
-    {resetFilterGroup && (
-      <button
-        className={`ml-auto text-sm font-bold ${numberOfActiveFilters ? '' : 'hidden'}`}
-        onClick={resetFilterGroup}
-      >
-        <i className='fas fa-undo-alt text-lg' />
-      </button>
-    )}
+    <FilterResetButton resetFilterGroup={resetFilterGroup} numberOfActiveFilters={numberOfActiveFilters} />
   </div>
 )
 
