@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { SearchBar } from '../../../components/Elements/SearchBar'
 import { IIcon, DeviconBranch } from '../../../types'
 import { IconModal } from '../modal'
-import { PaginatedGrid } from '../pagination'
+import { Pagination } from '../pagination'
 
 import { Dropdown } from '../../../components/Elements/Dropdown'
 
@@ -27,6 +27,7 @@ const GalleryPage = () => {
   const [searchTerm, setSearchTerm] = useState('')
   const { deviconBranch, setDeviconBranch } = useDeviconBranch()
   const icons = useIcons(deviconBranch)
+  const searchAutoCompleteOptions = icons.map((icon) => [icon.name, ...icon.altnames]).flat()
   const { selectedIcon, setSelectedIcon } = useSelectedIcon(icons)
   const searchedIcons = useFilterBySearchTerm(icons, searchTerm)
   const { filterGroups, setFilterGroups } = useInitializeFilterGroups(searchedIcons)
@@ -69,7 +70,7 @@ const GalleryPage = () => {
         <IconModal icon={selectedIcon!} deviconBranch={deviconBranch} />
       </Modal>
 
-      <section className='flex flex-col xl:flex-row px-8 md:px-12 lg:px-24 py-4  gap-4  w-full border-b border-dark-600 bg-dark-800'>
+      <section className='flex flex-col xl:flex-row px-8 md:px-12 lg:px-24 py-4 gap-4 w-full border-b border-dark-600 bg-dark-800'>
         <div className='flex-1 flex flex-col md:flex-row gap-4 mr-auto'>
           <Dropdown
             size='lg'
@@ -79,7 +80,7 @@ const GalleryPage = () => {
               handleBranchChange(value as DeviconBranch)
             }}
           />
-          <SearchBar size='xl' onSearch={setSearchTerm} />
+          <SearchBar size='xl' onSearch={setSearchTerm} autoCompleteOptions={searchAutoCompleteOptions} />
         </div>
 
         <FilterDropdown
@@ -90,9 +91,9 @@ const GalleryPage = () => {
         />
       </section>
 
-      <section className='flex flex-col px-8 md:px-12 lg:px-24 py-8 gap-4 w-full '>
+      <section className='flex flex-col px-8 md:px-12 lg:px-24 py-8 gap-4 w-full  dark:bg-dark-700 dark:text-smoke-100'>
         <CodeBlockLink deviconBranch={deviconBranch} />
-        <PaginatedGrid icons={filteredIcons} deviconBranch={deviconBranch} onSelect={setNewSelectedIcon} />
+        <Pagination icons={filteredIcons} deviconBranch={deviconBranch} onSelect={setNewSelectedIcon} />
       </section>
     </>
   )

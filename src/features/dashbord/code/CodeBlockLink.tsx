@@ -8,5 +8,5 @@ interface CodeBlockLinkProps {
 
 export const CodeBlockLink = ({ deviconBranch }: CodeBlockLinkProps) => {
   if (deviconBranch !== 'master') return null
-  return <CodeBlock code={DEVICON_LINK_TAG} />
+  return <CodeBlock title='Place this in your header (once per HTML file)' code={DEVICON_LINK_TAG} />
 }

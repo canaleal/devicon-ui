@@ -7,8 +7,9 @@ import { IIconSize, ICON_SIZE_OPTIONS, INIT_ICON_SIZE } from './types'
 import { Dropdown } from '../../../components/Elements/Dropdown'
 import { Table } from '../../../components/Elements/Table'
 import { TextBar } from '../../../components/Elements/TextBar'
-import { IconImage, TagsBar, IconCode } from './widgets'
+import { IconImage, TagList, IconCode } from './widgets'
 import { copyToClipboard } from '../../../helpers/copyToClipboard'
+import { BUTTON_STYLES } from '../../../components/Elements/Button/ButtonStyles'
 
 interface IconModalProps {
   icon: IIcon
@@ -23,16 +24,16 @@ export const IconModal = ({ icon, deviconBranch }: IconModalProps) => {
   return (
     <>
       <Tooltip content='Copy Name' position='bottom' flashMessage='Copied!'>
-        <button onClick={() => copyToClipboard(icon.name)} className='p-2 flex hover:text-frog-600 transition-colors'>
+        <button onClick={() => copyToClipboard(icon.name)} className={BUTTON_STYLES.base}>
           <p className='font-bold text-3xl'>{icon.name}</p>
-          <i className='fa-solid fa-copy text-xl ml-2 my-auto'></i>
+          <i className='fa-solid fa-copy text-xl'></i>
         </button>
       </Tooltip>
 
       <div className='flex flex-col 2xl:flex-row my-4 gap-8'>
         <IconImage iconUrl={iconUrl} iconName={icon.name} iconSize={selectedIconSize} extraClasses='flex-1' />
         <div className='flex-1 flex flex-col gap-4'>
-          <TagsBar tags={icon.tags ?? []} extraClasses='hidden lg:flex' />
+          <TagList tags={icon.tags ?? []} extraClasses='hidden lg:flex' />
           <div className='flex flex-row gap-4 w-full'>
             <Dropdown
               title='Version'
@@ -63,7 +64,6 @@ export const IconModal = ({ icon, deviconBranch }: IconModalProps) => {
             onRowClick={(item) => {
               setSelectedVersion(item.base as IconVersion)
             }}
-            size='full'
           />
         </div>
       </div>

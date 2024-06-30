@@ -1,1 +1,1 @@
-export * from './PaginatedGrid'
+export * from './Pagination'

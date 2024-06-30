@@ -2,82 +2,107 @@ import { copyToClipboard } from '../../../helpers/copyToClipboard'
 import { Tooltip } from '../Tooltip'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { a11yDark } from 'react-syntax-highlighter/dist/esm/styles/prism'
+import { CODE_BLOCK_BUTTON_STYLE, CODE_BLOCK_STYLE } from './CodeButtonStyles'
 
 export interface CodeBlockProps {
   code: string
+  title?: string
   selectedOption?: string
   codeBlockOptions?: string[]
   onClickCodeBlockOption?: (codeType: string) => void
   children?: React.ReactNode
 }
 
-const customStyle = {
+const SYNTAX_HIGHLIGHTER_STYLE = {
   margin: '0rem',
   padding: '0.75rem 1rem ',
   borderRadius: '0rem'
 }
 
-const CodeBlockOption = ({
-  codeType,
-  selectedOption,
-  onClickCodeBlockOption
-}: {
+interface CodeBlockOptionProps {
   codeType: string
-  selectedOption: string | undefined
+  isSelected: boolean
   onClickCodeBlockOption: (codeType: string) => void
-}) => {
+}
+
+const CodeBlockOption = ({ codeType, isSelected, onClickCodeBlockOption }: CodeBlockOptionProps) => {
+
+  const codeButtonClick = () => {
+    onClickCodeBlockOption(codeType)
+  }
+
   return (
     <button
       key={codeType}
-      onClick={() => {
-        onClickCodeBlockOption(codeType)
-      }}
-      className={`px-4 py-2 h-12 hover:bg-frog-800 text-smoke-100 transition-colors  ${codeType === selectedOption ? 'bg-frog-800 text-smoke-100' : ''}  `}
+      onClick={codeButtonClick}
+      className={`${CODE_BLOCK_BUTTON_STYLE.base} ${isSelected ? CODE_BLOCK_BUTTON_STYLE.selected : CODE_BLOCK_BUTTON_STYLE.hover}  `}
     >
-      <span className='font-bold text-sm'>{codeType}</span>
+      <span>{codeType}</span>
     </button>
   )
 }
 
-const CopyCodeButton = ({ codeString }: { codeString: string }) => {
+interface CopyCodeButtonProps {
+  codeString: string
+}
+
+const CopyCodeButton = ({ codeString }: CopyCodeButtonProps) => {
+
+  const copyButtonClick = () => {
+    copyToClipboard(codeString)
+  }
+
   return (
     <Tooltip content='Copy Code' position='top' flashMessage='Copied!'>
       <button
-        onClick={() => {
-          copyToClipboard(codeString)
-        }}
-        className='px-4 py-3 h-12  flex ml-auto hover:bg-frog-800 text-smoke-100 transition-colors'
+        onClick={copyButtonClick}
+        className={`ml-auto ${CODE_BLOCK_BUTTON_STYLE.base} ${CODE_BLOCK_BUTTON_STYLE.hover}`}
       >
-        <p className='font-bold text-sm my-auto'>Copy Code</p>
-        <i className='fa-solid fa-copy ml-2 my-auto'></i>
+        <span>Copy Code</span>
+        <i className='fa-solid fa-copy'></i>
       </button>
     </Tooltip>
   )
 }
 
-export const CodeBlock = ({ code, selectedOption, codeBlockOptions, onClickCodeBlockOption }: CodeBlockProps) => {
+const CodeTitle = ({ title }: { title: string }) => {
+  return <p  className={`${CODE_BLOCK_BUTTON_STYLE.base} ${CODE_BLOCK_BUTTON_STYLE.selected}`}>{title}</p>
+}
+
+export const CodeBlock = ({
+  title,
+  code,
+  selectedOption,
+  codeBlockOptions,
+  onClickCodeBlockOption
+}: CodeBlockProps) => {
   const codeString = code.replace(/(\r\n|\n|\r)/gm, '')
 
   return (
-    <div className={`flex flex-col border border-dark-400 rounded-lg h-fit`}>
-      <div className='flex flex-row justify-between border-b  border-dark-400 bg-dark-900 '>
+    <div className={CODE_BLOCK_STYLE.background}>
+      <div className={CODE_BLOCK_STYLE.base}>
+        {title && <CodeTitle title={title} />}
         {codeBlockOptions && onClickCodeBlockOption && (
           <div className='flex flex-row mr-auto'>
             {codeBlockOptions.map((codeType) => (
               <CodeBlockOption
                 key={codeType}
                 codeType={codeType}
-                selectedOption={selectedOption}
+                isSelected={codeType === selectedOption}
                 onClickCodeBlockOption={onClickCodeBlockOption}
               />
             ))}
           </div>
         )}
-
         <CopyCodeButton codeString={codeString} />
       </div>
 
-      <SyntaxHighlighter customStyle={customStyle} language='javascript' style={a11yDark} wrapLongLines={false}>
+      <SyntaxHighlighter
+        customStyle={SYNTAX_HIGHLIGHTER_STYLE}
+        language='javascript'
+        style={a11yDark}
+        wrapLongLines={false}
+      >
         {codeString}
       </SyntaxHighlighter>
     </div>

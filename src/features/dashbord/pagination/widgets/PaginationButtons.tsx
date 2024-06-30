@@ -1,18 +1,12 @@
 import { useEffect, useState } from 'react'
 import { getPaginationButtons } from '../helpers/paginationHelpers'
 import { v4 as uuidv4 } from 'uuid'
+import { BUTTON_STYLES } from '../../../../components/Elements/Button/ButtonStyles'
 
 interface PaginationButtonsProps {
   currentPage: number
   setCurrentPage: (page: number) => void
   totalPages: number
-}
-
-const BUTTON_STYLE = {
-  base: 'px-4 py-2 rounded-md text-sm',
-  active: 'bg-frog-700 hover:bg-frog-800 text-smoke-100',
-  hover: 'hover:bg-smoke-200',
-  disabled: 'text-smoke-400 hover:bg-smoke-100'
 }
 
 interface NavButtonProps {
@@ -22,9 +16,12 @@ interface NavButtonProps {
 }
 
 const NavButton = ({ disabled, onClick, direction }: NavButtonProps) => {
-  const NAV_BUTTON_STYLE = `${BUTTON_STYLE.base} ${disabled ? BUTTON_STYLE.disabled : BUTTON_STYLE.hover}`
   return (
-    <button className={NAV_BUTTON_STYLE} disabled={disabled} onClick={onClick}>
+    <button
+      className={`${BUTTON_STYLES.baseSmall} ${disabled ? BUTTON_STYLES.disabled : BUTTON_STYLES.hover}`}
+      disabled={disabled}
+      onClick={onClick}
+    >
       <i className={`fa fa-arrow-${direction}`}></i>
     </button>
   )
@@ -37,18 +34,19 @@ interface PageButtonProps {
 }
 
 const PageButton = ({ page, currentPage, setCurrentPage }: PageButtonProps) => {
-  const PAGE_BUTTON_STYLE = `${BUTTON_STYLE.base} ${currentPage === page ? BUTTON_STYLE.active : BUTTON_STYLE.hover}`
   return (
-    <button className={PAGE_BUTTON_STYLE} onClick={() => setCurrentPage(page)}>
+    <button
+      className={`${BUTTON_STYLES.baseSmall} ${currentPage === page ? BUTTON_STYLES.active : BUTTON_STYLES.hover}`}
+      onClick={() => setCurrentPage(page)}
+    >
       {page}
     </button>
   )
 }
 
 const Ellipsis = () => {
-  const ELLIPSIS_STYLE = `${BUTTON_STYLE.base} ${BUTTON_STYLE.hover}`
   return (
-    <span className={ELLIPSIS_STYLE}>
+    <span className={`${BUTTON_STYLES.baseSmall} ${BUTTON_STYLES.hover}`}>
       <i className='fa fa-ellipsis-h'></i>
     </span>
   )

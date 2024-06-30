@@ -6,12 +6,11 @@ import Navbar from './Navbar'
 
 export const MainLayout = () => {
   return (
-    <section>
+    <section className='flex flex-col min-h-screen'>
       <div className='hidden xl:flex'>
         <DarkModeToggle position={'topRight'} />
         <ScrollButton position={'bottomRight'} />
       </div>
-
       <Navbar />
       <Outlet />
       <Footer />

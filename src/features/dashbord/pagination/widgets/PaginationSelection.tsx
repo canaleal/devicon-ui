@@ -1,5 +1,5 @@
 import React from 'react'
-import { DROPDOWN_STYLE } from '../../../../components/Elements/Dropdown/dropdownStyle'
+import { DROPDOWN_STYLE } from '../../../../components/Elements/Dropdown/dropdownStyles'
 
 interface PaginationSelectionProps {
   elementsPerPage: number
@@ -27,7 +27,11 @@ export const PaginationSelection = ({
   return (
     <div className={`flex flex-row gap-2 text-sm items-center ${extraClasses}`}>
       <p>Items Per Page</p>
-      <select value={elementsPerPage} onChange={handlePageChange} className={`${DROPDOWN_STYLE.baseSmall}`}>
+      <select
+        value={elementsPerPage}
+        onChange={handlePageChange}
+        className={`${DROPDOWN_STYLE.baseSmall} ${DROPDOWN_STYLE.light} ${DROPDOWN_STYLE.dark}`}
+      >
         {elementsPerPageOptions.map((option: number) => (
           <option key={option} value={option}>
             {option}

@@ -1,19 +1,12 @@
 import { useState, useRef, useEffect } from 'react'
-import { DROPDOWN_POPUP_STYLE, DROPDOWN_STYLE } from './dropdownStyle'
-
-const sizes = {
-  sm: 'w-16',
-  md: 'w-32',
-  lg: 'w-48',
-  full: 'w-full'
-}
+import { DROPDOWN_POPUP_STYLE, DROPDOWN_SIZES, DROPDOWN_STYLE } from './dropdownStyles'
 
 export interface DropdownProps {
   title?: string
   selectedOption: string
   options: string[]
   onChange: (value: string) => void
-  size: keyof typeof sizes
+  size: keyof typeof DROPDOWN_SIZES
   extraClasses?: string
 }
 
@@ -44,14 +37,15 @@ export const Dropdown = ({ title, selectedOption, options, onChange, size, extra
   }, [])
 
   return (
-    <div className={`relative ${sizes[size]} ${extraClasses} gap-2 text-sm`} ref={dropdownRef}>
+    <div className={`relative ${DROPDOWN_SIZES[size]} ${extraClasses}`} ref={dropdownRef}>
       {title && <p className='font-bold mb-1'>{title}</p>}
-
-      <button onClick={toggleDropdown} className={`${DROPDOWN_STYLE.base}`}>
+      <button
+        onClick={toggleDropdown}
+        className={`${DROPDOWN_STYLE.base} ${DROPDOWN_STYLE.light} ${DROPDOWN_STYLE.dark}`}
+      >
         <span>{selectedOption}</span>
-        <i className={`fas ${isOpen ? 'fa-chevron-up' : 'fa-chevron-down'} ml-auto my-auto`} />
+        <i className={`fas ${isOpen ? 'fa-chevron-up' : 'fa-chevron-down'}`} />
       </button>
-
       {isOpen && (
         <ul className={`${DROPDOWN_POPUP_STYLE.base}`}>
           {options.map((option) => (

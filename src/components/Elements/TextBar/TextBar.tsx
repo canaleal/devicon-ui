@@ -6,7 +6,7 @@ export interface TextBarProps {
 export const TextBar = ({ title, texts }: TextBarProps) => {
   if (!texts.length) return <></>
   return (
-    <div className='flex flex-row  items-center text-sm'>
+    <div className='flex flex-row items-center text-sm'>
       <p className='font-bold'>{title}:</p>
       {texts.map((text) => (
         <span key={text} className='underline ml-2'>

@@ -7,7 +7,7 @@ import { Dropdown } from '../../../components/Elements/Dropdown/Dropdown'
 
 type PaginationStyle = 'card' | 'table'
 
-interface PaginatedGridProps {
+interface PaginationProps {
   icons: IIcon[]
   deviconBranch: DeviconBranch
   onSelect: (icon: IIcon) => void
@@ -20,7 +20,17 @@ export const NoIconsFound = () => (
   </div>
 )
 
-export const PaginatedGrid = ({ icons, onSelect, deviconBranch }: PaginatedGridProps) => {
+export const PaginationGrid = ({ icons, onSelect, deviconBranch }: PaginationProps) => {
+  return (
+    <div className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-7 3xl:grid-cols-9 gap-4'>
+      {icons.map((icon) => (
+        <PaginationCard key={icon.name} icon={icon} onSelect={onSelect} deviconBranch={deviconBranch} />
+      ))}
+    </div>
+  )
+}
+
+export const Pagination = ({ icons, onSelect, deviconBranch }: PaginationProps) => {
   const [paginationStyle, setPaginationStyle] = useState<PaginationStyle>('card')
 
   const [paginatedIcons, setPaginatedIcons] = useState<IIcon[]>([])
@@ -71,11 +81,7 @@ export const PaginatedGrid = ({ icons, onSelect, deviconBranch }: PaginatedGridP
       {paginatedIcons.length ? (
         <>
           {paginationStyle === 'card' ? (
-            <div className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 2xl:grid-cols-9 gap-4'>
-              {paginatedIcons.map((icon) => (
-                <PaginationCard key={icon.name} icon={icon} onSelect={onSelect} deviconBranch={deviconBranch} />
-              ))}
-            </div>
+            <PaginationGrid icons={paginatedIcons} onSelect={onSelect} deviconBranch={deviconBranch} />
           ) : (
             <Table
               data={paginatedIcons}
@@ -94,7 +100,6 @@ export const PaginatedGrid = ({ icons, onSelect, deviconBranch }: PaginatedGridP
                 item.versions.svg.join(', ')
               ]}
               onRowClick={onSelect}
-              size='full'
             />
           )}
         </>
@@ -117,4 +122,4 @@ export const PaginatedGrid = ({ icons, onSelect, deviconBranch }: PaginatedGridP
   )
 }
 
-export default PaginatedGrid
+export default Pagination
