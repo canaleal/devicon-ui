@@ -4,7 +4,7 @@ const TABLE_STYLES = {
   background: 'flex border-2 dark:border-dark-400 overflow-hidden w-full',
   thead: 'border-b-2 dark:border-dark-400 bg-dark-900 text-smoke-100',
   tElement: 'text-left px-4 py-2 h-12',
-  tRow: 'hover:bg-smoke-200 dark:bg-dark-800 dark:hover:bg-dark-900 cursor-pointer'
+  tRow: 'hover:bg-smoke-200 dark:bg-dark-800 dark:hover:bg-dark-900 cursor-pointer text-sm'
 }
 
 export interface TableProps<T> {
