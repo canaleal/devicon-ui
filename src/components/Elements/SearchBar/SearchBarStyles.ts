@@ -5,7 +5,7 @@ export const SEARCHBAR_STYLE = {
 }
 
 export const SEARCHBAR_AUTO_STYLE = {
-  base: 'absolute mt-1 w-full bg-white dark:text-dark-900  border  shadow-lg z-50',
+  base: 'absolute mt-1 w-full bg-white dark:text-dark-900  border  shadow-lg z-30',
   item: 'px-4 py-2 hover:bg-gray-200 cursor-pointer text-sm'
 }
 
