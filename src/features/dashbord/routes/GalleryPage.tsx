@@ -71,7 +71,13 @@ const GalleryPage = () => {
       </Modal>
 
       <section className='flex flex-col xl:flex-row px-8 md:px-12 lg:px-24 py-4 gap-4 w-full border-b border-dark-600 bg-dark-800'>
-        <div className='flex-1 flex flex-col md:flex-row gap-4 mr-auto'>
+        <FilterDropdown
+          filterGroups={filterGroups}
+          handleFilterClick={handleFilterClick}
+          handleResetFilterGroup={handleResetFilterGroup}
+          size='xl'
+        />
+        <div className='flex-1 flex flex-col md:flex-row gap-4 justify-end'>
           <Dropdown
             size='lg'
             selectedOption={deviconBranch}
@@ -82,16 +88,9 @@ const GalleryPage = () => {
           />
           <SearchBar size='xl' onSearch={setSearchTerm} autoCompleteOptions={searchAutoCompleteOptions} />
         </div>
-
-        <FilterDropdown
-          filterGroups={filterGroups}
-          handleFilterClick={handleFilterClick}
-          handleResetFilterGroup={handleResetFilterGroup}
-          size='xl'
-        />
       </section>
 
-      <section className='flex flex-col px-8 md:px-12 lg:px-24 py-8 gap-4 w-full  dark:bg-dark-700 dark:text-smoke-100'>
+      <section className='flex flex-col px-8 md:px-12 lg:px-24 py-8 gap-4 w-full dark:bg-dark-700 dark:text-smoke-100'>
         <CodeBlockLink deviconBranch={deviconBranch} />
         <Pagination icons={filteredIcons} deviconBranch={deviconBranch} onSelect={setNewSelectedIcon} />
       </section>

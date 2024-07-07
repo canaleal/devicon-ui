@@ -64,7 +64,7 @@ export const Pagination = ({ icons, onSelect, deviconBranch }: PaginationProps) 
     <section className='flex flex-col gap-4'>
       <div className='flex w-full gap-4 items-center'>
         <p className='font-bold text-xl'>{icons.length} Icons</p>
-        <p className='ml-auto hidden md:inline-block'>
+        <p className='ml-auto hidden md:inline-block text-sm'>
           Page {currentPage} of {totalPages || 1}
         </p>
         <Dropdown

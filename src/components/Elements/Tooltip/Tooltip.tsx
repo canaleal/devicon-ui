@@ -10,8 +10,8 @@ const TOOLTIP_POSITIONS: Record<TooltipPosition, string> = {
 
 const TOOLTIPS_STYLE = {
   base: 'flex relative w-fit',
-  tooltipBase: 'absolute z-10 px-2 py-1  max-w-xs break-words border shadow-md fade-in',
-  tooltipLight: 'border-dark-400 bg-frog-800 text-dark-900'
+  tooltipBase: 'absolute z-10 px-2 py-1  max-w-xs break-words  shadow-md fade-in rounded-md font-bold text-sm',
+  tooltipLight: 'bg-frog-800 text-white'
 }
 
 export interface TooltipProps {

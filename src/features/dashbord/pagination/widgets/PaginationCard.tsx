@@ -8,15 +8,15 @@ interface PaginationCardProps {
 }
 
 const CARD_STYLE = {
-  base: 'flex flex-col align-middle text-center gap-8 w-full overflow-hidden relative p-8 text-sm border hover:shadow-md transition-shadow ',
-  light: 'bg-white border-gray-300 hover:border-frog-800',
+  base: 'flex flex-col align-middle text-center gap-8 w-full overflow-hidden relative p-8 text-sm border  hover:scale-105 transition-all rounded-md',
+  light: 'bg-white  hover:border-frog-800 shadow-md',
   dark: 'dark:bg-dark-900 dark:border-dark-400 dark:hover:border-frog-800'
 }
 
 const VERSION_CARD_STYLE = {
-  base: 'absolute top-0 right-0 p-2.5 ',
-  primary: 'bg-frog-700 text-dark-900',
-  secondary: 'bg-rose text-dark-900'
+  base: 'absolute top-0 right-0 p-2 text-xs rounded-bl-md font-bold',
+  primary: 'bg-frog-700 text-white',
+  secondary: 'bg-dark-900 text-white'
 }
 
 const VersionCountIndicator = ({ count }: { count: number }) => {
@@ -40,7 +40,7 @@ export const PaginationCard = ({ icon, deviconBranch, onSelect }: PaginationCard
       aria-label={`Select icon: ${icon.name}`}
       className={`${CARD_STYLE.base} ${CARD_STYLE.dark} ${CARD_STYLE.light}`}
     >
-      <img className='mx-auto' width={55} height={'auto'} src={iconUrl} alt={icon.name} />
+      <img className='mx-auto' width={40} height={'auto'} src={iconUrl} alt={icon.name} />
       <p className='text-xs mx-auto'>{icon.name}</p>
       <VersionCountIndicator count={totalVersions} />
     </button>

@@ -53,7 +53,7 @@ const CopyCodeButton = ({ codeString }: CopyCodeButtonProps) => {
   }
 
   return (
-    <Tooltip content='Copy Code' position='top' flashMessage='Copied!'>
+    <Tooltip content='Copy Code' position='bottom' flashMessage='Copied!'>
       <button
         onClick={copyButtonClick}
         className={`ml-auto ${CODE_BLOCK_BUTTON_STYLE.base} ${CODE_BLOCK_BUTTON_STYLE.hover}`}

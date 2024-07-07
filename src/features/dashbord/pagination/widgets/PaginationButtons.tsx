@@ -46,7 +46,7 @@ const PageButton = ({ page, currentPage, setCurrentPage }: PageButtonProps) => {
 
 const Ellipsis = () => {
   return (
-    <span className={`${BUTTON_STYLES.baseSmall} ${BUTTON_STYLES.hover}`}>
+    <span className={`${BUTTON_STYLES.baseSmall} ${BUTTON_STYLES.disabled}`}>
       <i className='fa fa-ellipsis-h'></i>
     </span>
   )

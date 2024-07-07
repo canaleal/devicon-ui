@@ -38,7 +38,7 @@ export const Dropdown = ({ title, selectedOption, options, onChange, size, extra
 
   return (
     <div className={`relative ${DROPDOWN_SIZES[size]} ${extraClasses}`} ref={dropdownRef}>
-      {title && <p className='font-bold mb-1'>{title}</p>}
+      {title && <p className='font-bold text-sm mb-1'>{title}</p>}
       <button
         onClick={toggleDropdown}
         className={`${DROPDOWN_STYLE.base} ${DROPDOWN_STYLE.light} ${DROPDOWN_STYLE.dark}`}

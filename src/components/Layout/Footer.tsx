@@ -16,7 +16,7 @@ export const Footer = () => {
         </div>
         <p className='text-sm lg:w-3/5 mb-2'>
           All product names, logos, and brands are property of their respective owners. All company, product and service
-          names used in this website are for identification purposes only.
+          names used in this website are for identification purposes only. Use of these names, logos, and brands does not imply endorsement.
         </p>
       </div>
 

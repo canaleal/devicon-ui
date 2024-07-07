@@ -25,7 +25,7 @@ export const IconModal = ({ icon, deviconBranch }: IconModalProps) => {
     <>
       <Tooltip content='Copy Name' position='bottom' flashMessage='Copied!'>
         <button onClick={() => copyToClipboard(icon.name)} className={BUTTON_STYLES.base}>
-          <p className='font-bold text-3xl'>{icon.name}</p>
+          <p className='font-bold text-2xl'>{icon.name}</p>
           <i className='fa-solid fa-copy text-xl'></i>
         </button>
       </Tooltip>
@@ -78,7 +78,7 @@ export const IconModal = ({ icon, deviconBranch }: IconModalProps) => {
 
       <div className='hidden lg:flex flex-row justify-between mt-4'>
         <TextBar title='Alt Names' texts={icon.altnames ?? []} />
-        <p>{deviconBranch === 'master' ? DEVICON_VERSION_RELEASE : 'Development Branch'}</p>
+        <p className='text-sm'>{deviconBranch === 'master' ? DEVICON_VERSION_RELEASE : 'Development Branch'}</p>
       </div>
     </>
   )
