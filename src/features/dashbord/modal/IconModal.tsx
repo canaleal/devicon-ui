@@ -7,9 +7,12 @@ import { IIconSize, ICON_SIZE_OPTIONS, INIT_ICON_SIZE } from './types'
 import { Dropdown } from '../../../components/Elements/Dropdown'
 import { Table } from '../../../components/Elements/Table'
 import { TextBar } from '../../../components/Elements/TextBar'
-import { IconImage, TagList, IconCode } from './widgets'
+
 import { copyToClipboard } from '../../../helpers/copyToClipboard'
 import { BUTTON_STYLES } from '../../../components/Elements/Button/ButtonStyles'
+import IconCode from './IconCode'
+import IconImage from './IconImage'
+import TagList from './IconTagList'
 
 interface IconModalProps {
   icon: IIcon
@@ -77,7 +80,7 @@ export const IconModal = ({ icon, deviconBranch }: IconModalProps) => {
       />
 
       <div className='hidden lg:flex flex-row justify-between mt-4'>
-        <TextBar title='Alt Names' texts={icon.altnames ?? []} />
+        <TextBar title='Alt Names' content={icon.altnames ?? []} />
         <p className='text-sm'>{deviconBranch === 'master' ? DEVICON_VERSION_RELEASE : 'Development Branch'}</p>
       </div>
     </>

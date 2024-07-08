@@ -8,15 +8,15 @@ import {
   DROPDOWN_STYLE
 } from '../../../components/Elements/Dropdown/dropdownStyles'
 
-interface FiltersProps {
+interface FiltersPopupProps {
   filterGroups: IFilterGroup[]
   handleFilterClick: (filterGroup: IFilterGroup, filter: IFilterItem) => void
   handleResetFilterGroup: (filterType: IFilterGroup) => void
 }
 
-const Filters = ({ filterGroups, handleFilterClick, handleResetFilterGroup }: FiltersProps) => {
+const FiltersPopup = ({ filterGroups, handleFilterClick, handleResetFilterGroup }: FiltersPopupProps) => {
   return (
-    <div className={`${DROPDOWN_POPUP_STYLE.base} ${DROPDOWN_POPUP_STYLE.customItem}`}>
+    <div className={`${DROPDOWN_POPUP_STYLE.container} ${DROPDOWN_POPUP_STYLE.customItem}`}>
       {filterGroups.map((group) => (
         <FilterList
           key={group.filterType}
@@ -31,7 +31,7 @@ const Filters = ({ filterGroups, handleFilterClick, handleResetFilterGroup }: Fi
   )
 }
 
-interface FilterDropdownProps extends FiltersProps {
+interface FilterDropdownProps extends FiltersPopupProps {
   size: keyof typeof DROPDOWN_SIZES
   extraClasses?: string
 }
@@ -65,15 +65,12 @@ const FilterDropdown = ({
 
   return (
     <div className={`relative ${DROPDOWN_SIZES[size]} ${extraClasses}`} ref={dropdownRef}>
-      <button
-        onClick={toggleDropdown}
-        className={`${DROPDOWN_STYLE.base} ${DROPDOWN_STYLE.light} ${DROPDOWN_STYLE.dark}`}
-      >
+      <button onClick={toggleDropdown} className={`${DROPDOWN_STYLE.input} ${DROPDOWN_STYLE.colors}`}>
         <span>Filters</span>
         <i className={`fas ${isOpen ? 'fa-chevron-up' : 'fa-chevron-down'}`} />
       </button>
       {isOpen && (
-        <Filters
+        <FiltersPopup
           filterGroups={filterGroups}
           handleFilterClick={handleFilterClick}
           handleResetFilterGroup={handleResetFilterGroup}

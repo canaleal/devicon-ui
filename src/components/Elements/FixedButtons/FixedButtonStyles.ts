@@ -1,7 +1,6 @@
 export const FIXED_BUTTON_STYLE = {
   base: 'fixed font-bold h-12 w-12  z-20 transition-colors  rounded-md',
-  light: 'bg-frog-700 hover:bg-frog-800 text-white',
-  dark: '',
+  colors: 'bg-frog-700 hover:bg-frog-800 text-white',
   hidden: 'hidden',
   visible: 'inline'
 }

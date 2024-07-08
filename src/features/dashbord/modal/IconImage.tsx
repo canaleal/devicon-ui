@@ -1,8 +1,8 @@
 import { useState } from 'react'
 
-import Tooltip from '../../../../components/Elements/Tooltip/Tooltip'
-import { IIconSize } from '../types'
-import { BUTTON_STYLES } from '../../../../components/Elements/Button/ButtonStyles'
+import Tooltip from '../../../components/Elements/Tooltip/Tooltip'
+import { IIconSize } from './types'
+import { BUTTON_STYLES } from '../../../components/Elements/Button/ButtonStyles'
 
 interface IconContainerProps {
   iconName: string

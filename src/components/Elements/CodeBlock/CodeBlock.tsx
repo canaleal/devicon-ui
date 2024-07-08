@@ -26,7 +26,6 @@ interface CodeBlockOptionProps {
 }
 
 const CodeBlockOption = ({ codeType, isSelected, onClickCodeBlockOption }: CodeBlockOptionProps) => {
-
   const codeButtonClick = () => {
     onClickCodeBlockOption(codeType)
   }
@@ -35,7 +34,7 @@ const CodeBlockOption = ({ codeType, isSelected, onClickCodeBlockOption }: CodeB
     <button
       key={codeType}
       onClick={codeButtonClick}
-      className={`${CODE_BLOCK_BUTTON_STYLE.base} ${isSelected ? CODE_BLOCK_BUTTON_STYLE.selected : CODE_BLOCK_BUTTON_STYLE.hover}  `}
+      className={`${CODE_BLOCK_BUTTON_STYLE.button} ${isSelected ? CODE_BLOCK_BUTTON_STYLE.selected : CODE_BLOCK_BUTTON_STYLE.colors}  `}
     >
       <span>{codeType}</span>
     </button>
@@ -47,7 +46,6 @@ interface CopyCodeButtonProps {
 }
 
 const CopyCodeButton = ({ codeString }: CopyCodeButtonProps) => {
-
   const copyButtonClick = () => {
     copyToClipboard(codeString)
   }
@@ -56,7 +54,7 @@ const CopyCodeButton = ({ codeString }: CopyCodeButtonProps) => {
     <Tooltip content='Copy Code' position='bottom' flashMessage='Copied!'>
       <button
         onClick={copyButtonClick}
-        className={`ml-auto ${CODE_BLOCK_BUTTON_STYLE.base} ${CODE_BLOCK_BUTTON_STYLE.hover}`}
+        className={`ml-auto ${CODE_BLOCK_BUTTON_STYLE.button} ${CODE_BLOCK_BUTTON_STYLE.colors}`}
       >
         <span>Copy Code</span>
         <i className='fa-solid fa-copy'></i>
@@ -66,7 +64,7 @@ const CopyCodeButton = ({ codeString }: CopyCodeButtonProps) => {
 }
 
 const CodeTitle = ({ title }: { title: string }) => {
-  return <p  className={`${CODE_BLOCK_BUTTON_STYLE.base} ${CODE_BLOCK_BUTTON_STYLE.selected}`}>{title}</p>
+  return <p className={`${CODE_BLOCK_BUTTON_STYLE.button} ${CODE_BLOCK_BUTTON_STYLE.selected}`}>{title}</p>
 }
 
 export const CodeBlock = ({
@@ -79,8 +77,8 @@ export const CodeBlock = ({
   const codeString = code.replace(/(\r\n|\n|\r)/gm, '')
 
   return (
-    <div className={CODE_BLOCK_STYLE.background}>
-      <div className={CODE_BLOCK_STYLE.base}>
+    <div className={CODE_BLOCK_STYLE.container}>
+      <div className={CODE_BLOCK_STYLE.header}>
         {title && <CodeTitle title={title} />}
         {codeBlockOptions && onClickCodeBlockOption && (
           <div className='flex flex-row mr-auto'>

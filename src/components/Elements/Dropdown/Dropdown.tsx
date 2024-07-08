@@ -39,15 +39,12 @@ export const Dropdown = ({ title, selectedOption, options, onChange, size, extra
   return (
     <div className={`relative ${DROPDOWN_SIZES[size]} ${extraClasses}`} ref={dropdownRef}>
       {title && <p className='font-bold text-sm mb-1'>{title}</p>}
-      <button
-        onClick={toggleDropdown}
-        className={`${DROPDOWN_STYLE.base} ${DROPDOWN_STYLE.light} ${DROPDOWN_STYLE.dark}`}
-      >
+      <button onClick={toggleDropdown} className={`${DROPDOWN_STYLE.input} ${DROPDOWN_STYLE.colors}`}>
         <span>{selectedOption}</span>
         <i className={`fas ${isOpen ? 'fa-chevron-up' : 'fa-chevron-down'}`} />
       </button>
       {isOpen && (
-        <ul className={`${DROPDOWN_POPUP_STYLE.base}`}>
+        <ul className={`${DROPDOWN_POPUP_STYLE.container}`}>
           {options.map((option) => (
             <li key={option} onClick={() => handleOptionClick(option)} className={`${DROPDOWN_POPUP_STYLE.item}`}>
               {option}

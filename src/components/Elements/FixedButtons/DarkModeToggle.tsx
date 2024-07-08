@@ -31,7 +31,7 @@ const DarkModeToggle = ({ position }: DarkModeProps) => {
   return (
     <button
       onClick={toggleDarkMode}
-      className={` ${FIXED_BUTTON_POSITIONS[position]} ${FIXED_BUTTON_STYLE.base} ${FIXED_BUTTON_STYLE.light}`}
+      className={` ${FIXED_BUTTON_POSITIONS[position]} ${FIXED_BUTTON_STYLE.base} ${FIXED_BUTTON_STYLE.colors}`}
     >
       {darkMode ? <i className='fa-solid fa-sun'></i> : <i className='fa-solid fa-moon'></i>}
     </button>

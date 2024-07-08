@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
-import { DeviconBranch, IIcon, IconVersion } from '../../../../types'
-import { createIconCodeBlockText } from '../helpers/iconCodeBlock'
-import { CodeBlockOptionTypes, IIconSize, CODE_BLOCK_OPTIONS } from '../types'
-import { CodeBlock } from '../../../../components/Elements/CodeBlock'
+import { DeviconBranch, IIcon, IconVersion } from '../../../types'
+import { createIconCodeBlockText } from './helpers/iconCodeBlock'
+import { CodeBlockOptionTypes, IIconSize, CODE_BLOCK_OPTIONS } from './types'
+import { CodeBlock } from '../../../components/Elements/CodeBlock'
 
 interface IconCodeProps {
   icon: IIcon
@@ -13,7 +13,10 @@ interface IconCodeProps {
 }
 
 export const IconCode = ({ icon, iconSize, iconUrl, deviconBranch, selectedVersion }: IconCodeProps) => {
-  const codeBlockOptions = (deviconBranch === 'develop' || !icon.versions.font.includes(selectedVersion)) ? CODE_BLOCK_OPTIONS.filter((option) => option !== 'ICON') : CODE_BLOCK_OPTIONS;
+  const codeBlockOptions =
+    deviconBranch === 'develop' || !icon.versions.font.includes(selectedVersion)
+      ? CODE_BLOCK_OPTIONS.filter((option) => option !== 'ICON')
+      : CODE_BLOCK_OPTIONS
   const [selectedOption, setSelectedOption] = useState<CodeBlockOptionTypes>('LINK')
   const [codeText, setCodeText] = useState<string>('')
 
@@ -29,9 +32,9 @@ export const IconCode = ({ icon, iconSize, iconUrl, deviconBranch, selectedVersi
   }, [deviconBranch, icon, iconSize, iconUrl, selectedOption, selectedVersion])
 
   useEffect(() => {
-    if (codeBlockOptions.includes(selectedOption)) return;
+    if (codeBlockOptions.includes(selectedOption)) return
     setSelectedOption('LINK')
-  }, [codeBlockOptions]);
+  }, [codeBlockOptions])
 
   return (
     <CodeBlock

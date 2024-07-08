@@ -1,9 +1,12 @@
 import { useEffect, useState } from 'react'
 import { DeviconBranch, IIcon } from '../../../types'
-import { PaginationCard, PaginationButtons, PaginationSelection } from './widgets'
+
 import { Table } from '../../../components/Elements/Table'
 import { createDeviconIconUrl } from '../../../helpers/iconUrl'
 import { Dropdown } from '../../../components/Elements/Dropdown/Dropdown'
+import PaginationButtons from './PaginationButtons'
+import PaginationCard from './PaginationCard'
+import PaginationSelection from './PaginationSelection'
 
 type PaginationStyle = 'card' | 'table'
 

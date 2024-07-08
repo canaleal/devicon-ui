@@ -1,15 +1,15 @@
 export interface TextBarProps {
   title: string
-  texts: string[]
+  content: string[]
 }
 
-export const TextBar = ({ title, texts }: TextBarProps) => {
-  if (!texts.length) return <></>
+export const TextBar = ({ title, content }: TextBarProps) => {
+  if (!content.length) return null
   return (
-    <div className='flex flex-row items-center text-sm'>
+    <div className='flex flex-row gap-2 items-center text-sm'>
       <p className='font-bold'>{title}:</p>
-      {texts.map((text) => (
-        <span key={text} className='underline ml-2'>
+      {content.map((text) => (
+        <span key={text} className='underline'>
           {text}
         </span>
       ))}

@@ -9,9 +9,9 @@ const TOOLTIP_POSITIONS: Record<TooltipPosition, string> = {
 }
 
 const TOOLTIPS_STYLE = {
-  base: 'flex relative w-fit',
+  container: 'flex relative w-fit',
   tooltipBase: 'absolute z-10 px-2 py-1  max-w-xs break-words  shadow-md fade-in rounded-md font-bold text-sm',
-  tooltipLight: 'bg-frog-800 text-white'
+  colors: 'bg-frog-800 text-white'
 }
 
 export interface TooltipProps {
@@ -33,13 +33,12 @@ export const Tooltip = ({ children, content, position, flashMessage }: TooltipPr
     setVisible(false)
   }
 
-  let timeoutId: number | null = null // Change the type to number
+  let timeoutId: number | null = null
 
   const handleClick = () => {
     if (flashMessage) {
       setFlashVisible(true)
       timeoutId = window.setTimeout(() => {
-        // Use window.setTimeout for clarity, though it's optional
         setFlashVisible(false)
       }, 2000)
     }
@@ -53,11 +52,11 @@ export const Tooltip = ({ children, content, position, flashMessage }: TooltipPr
     }
   }, [])
 
-  const TOOLTIP_STYLE = `${TOOLTIPS_STYLE.tooltipBase} ${TOOLTIPS_STYLE.tooltipLight} ${TOOLTIP_POSITIONS[position]}`
+  const TOOLTIP_STYLE = `${TOOLTIPS_STYLE.tooltipBase} ${TOOLTIPS_STYLE.colors} ${TOOLTIP_POSITIONS[position]}`
 
   return (
     <div
-      className={TOOLTIPS_STYLE.base}
+      className={TOOLTIPS_STYLE.container}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       onClick={handleClick}

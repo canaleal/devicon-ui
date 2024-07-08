@@ -1,7 +1,6 @@
 export const SEARCHBAR_STYLE = {
   base: 'h-12 text-sm px-4  flex justify-between items-center border rounded-md',
-  light: 'bg-white text-dark-900',
-  dark: 'dark:bg-dark-900 dark:text-smoke-100 dark:border-dark-400'
+  colors: 'bg-white text-dark-900 dark:bg-dark-900 dark:text-smoke-100 dark:border-dark-400'
 }
 
 export const SEARCHBAR_AUTO_STYLE = {

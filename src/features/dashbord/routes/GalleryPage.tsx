@@ -21,7 +21,7 @@ import storage from '../../../helpers/storage'
 import { useDeviconBranch, useIcons, useSelectedIcon } from '../../../hooks'
 import { CodeBlockLink } from '../code/CodeBlockLink'
 
-import FilterDropdown from '../filters/Filters'
+import FilterDropdown from '../filters/FilterDropdown'
 
 const GalleryPage = () => {
   const [searchTerm, setSearchTerm] = useState('')

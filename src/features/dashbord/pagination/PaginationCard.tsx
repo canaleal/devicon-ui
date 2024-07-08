@@ -1,5 +1,5 @@
-import { DeviconBranch, IIcon } from '../../../../types'
-import { createDeviconIconUrl } from '../../../../helpers/iconUrl'
+import { DeviconBranch, IIcon } from '../../../types'
+import { createDeviconIconUrl } from '../../../helpers/iconUrl'
 
 interface PaginationCardProps {
   icon: IIcon
@@ -9,8 +9,7 @@ interface PaginationCardProps {
 
 const CARD_STYLE = {
   base: 'flex flex-col align-middle text-center gap-8 w-full overflow-hidden relative p-8 text-sm border  hover:scale-105 transition-all rounded-md',
-  light: 'bg-white  hover:border-frog-800 shadow-md',
-  dark: 'dark:bg-dark-900 dark:border-dark-400 dark:hover:border-frog-800'
+  colors: 'bg-white  hover:border-frog-800 shadow-md dark:bg-dark-900 dark:border-dark-400 dark:hover:border-frog-800'
 }
 
 const VERSION_CARD_STYLE = {
@@ -21,11 +20,12 @@ const VERSION_CARD_STYLE = {
 
 const VersionCountIndicator = ({ count }: { count: number }) => {
   if (count < 5) return null
+
+  const indicatorStyle = count === 6 ? VERSION_CARD_STYLE.primary : VERSION_CARD_STYLE.secondary
+
   return (
-    <div
-      className={`${VERSION_CARD_STYLE.base} ${count == 6 ? VERSION_CARD_STYLE.primary : VERSION_CARD_STYLE.secondary}`}
-    >
-      <p className='text-sm'>{count}</p>
+    <div className={`${VERSION_CARD_STYLE.base} ${indicatorStyle}`}>
+      <p className='text-xs'>{count}</p>
     </div>
   )
 }
@@ -38,7 +38,7 @@ export const PaginationCard = ({ icon, deviconBranch, onSelect }: PaginationCard
     <button
       onClick={() => onSelect(icon)}
       aria-label={`Select icon: ${icon.name}`}
-      className={`${CARD_STYLE.base} ${CARD_STYLE.dark} ${CARD_STYLE.light}`}
+      className={`${CARD_STYLE.base} ${CARD_STYLE.colors}`}
     >
       <img className='mx-auto' width={40} height={'auto'} src={iconUrl} alt={icon.name} />
       <p className='text-xs mx-auto'>{icon.name}</p>

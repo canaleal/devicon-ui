@@ -1,6 +1,6 @@
-import { BUTTON_STYLES } from '../../../../components/Elements/Button/ButtonStyles'
-import { Tooltip } from '../../../../components/Elements/Tooltip'
-import { copyToClipboard } from '../../../../helpers/copyToClipboard'
+import { BUTTON_STYLES } from "../../../components/Elements/Button/ButtonStyles"
+import { Tooltip } from "../../../components/Elements/Tooltip"
+import { copyToClipboard } from "../../../helpers/copyToClipboard"
 
 interface TagListProps {
   tags: string[]
