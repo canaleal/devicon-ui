@@ -8,34 +8,23 @@ interface FilterHeaderProps {
   resetFilterGroup?: () => void
 }
 
-interface FilterResetButtonProps {
-  resetFilterGroup?: () => void
-  numberOfActiveFilters: number
-}
+const FilterHeader = ({ categoryName, numberOfActiveFilters, totalFilters, resetFilterGroup }: FilterHeaderProps) => {
+  const shouldShowResetButton = resetFilterGroup && numberOfActiveFilters > 0;
 
-const FilterResetButton = ({ resetFilterGroup, numberOfActiveFilters }: FilterResetButtonProps) => {
-  if (!resetFilterGroup || !numberOfActiveFilters) return null
   return (
-    <button className={BUTTON_STYLES.icon} onClick={resetFilterGroup}>
-      <i className='fas fa-undo-alt' />
-    </button>
+    <div className='flex flex-row gap-2 pr-4 items-center'>
+      <span className='font-bold text-md'>{categoryName}</span>
+      <span className='text-sm mr-auto'>
+        ({numberOfActiveFilters} / {totalFilters})
+      </span>
+      {shouldShowResetButton && (
+        <button className={BUTTON_STYLES.icon} onClick={resetFilterGroup}>
+          <i className='fas fa-undo-alt' />
+        </button>
+      )}
+    </div>
   )
 }
-
-export const FilterHeader = ({
-  categoryName,
-  numberOfActiveFilters,
-  totalFilters,
-  resetFilterGroup
-}: FilterHeaderProps) => (
-  <div className='flex flex-row gap-2 pr-4 items-center'>
-    <p className='font-bold text-md'>{categoryName}</p>
-    <p className='text-sm mr-auto'>
-      ({numberOfActiveFilters} / {totalFilters})
-    </p>
-    <FilterResetButton resetFilterGroup={resetFilterGroup} numberOfActiveFilters={numberOfActiveFilters} />
-  </div>
-)
 
 interface FilterItemProps {
   filter: IFilterItem
@@ -44,31 +33,22 @@ interface FilterItemProps {
 }
 
 const FILTER_ITEM_STYLES = {
-  base: ' flex px-4 py-2 text-sm cursor-pointer',
+  base: 'flex px-4 py-2 text-sm cursor-pointer',
   selected: 'bg-frog-700 text-smoke-100',
   unselected: 'hover:bg-gray-200'
 }
 
-export const FilterItem = ({ filter, icon, handleFilter }: FilterItemProps) => {
+const FilterItem = ({ filter, icon, handleFilter }: FilterItemProps) => {
   const isSelectedClass = filter.isSelected ? FILTER_ITEM_STYLES.selected : FILTER_ITEM_STYLES.unselected
 
   return (
     <button className={`${FILTER_ITEM_STYLES.base} ${isSelectedClass}`} onClick={handleFilter}>
       <i className={`${icon} my-auto`} />
-      <p className='ml-2 clamped-text'>{filter.filterName}</p>
-      <p className='ml-auto'>{filter.numberOfIcons}</p>
+      <span className='ml-2 clamped-text'>{filter.filterName}</span>
+      <span className='ml-auto'>{filter.numberOfIcons}</span>
     </button>
   )
 }
-
-interface FilterContainerProps {
-  children: React.ReactNode
-  hasMaxHeight: boolean
-}
-
-export const FilterContainer = ({ children, hasMaxHeight }: FilterContainerProps) => (
-  <div className={`flex flex-col gap-2 overflow-y-auto ${hasMaxHeight ? 'h-[30rem]' : 'h-fit'} pr-2`}>{children}</div>
-)
 
 interface FilterListProps {
   filterGroup: IFilterGroup
@@ -78,7 +58,7 @@ interface FilterListProps {
   resetFilterGroup: (filterGroup: IFilterGroup) => void
 }
 
-export const FilterList = ({ filterGroup, iconMap, hasMaxHeight, handleFilter, resetFilterGroup }: FilterListProps) => {
+const FilterList = ({ filterGroup, iconMap, hasMaxHeight, handleFilter, resetFilterGroup }: FilterListProps) => {
   const numberOfActiveFilters = filterGroup.filters.reduce(
     (count, filter) => (filter.isSelected ? count + 1 : count),
     0
@@ -92,7 +72,7 @@ export const FilterList = ({ filterGroup, iconMap, hasMaxHeight, handleFilter, r
         totalFilters={filterGroup.filters.length}
         resetFilterGroup={() => resetFilterGroup(filterGroup)}
       />
-      <FilterContainer hasMaxHeight={hasMaxHeight}>
+      <div className={`flex flex-col gap-2 overflow-y-auto ${hasMaxHeight ? 'h-[30rem]' : 'h-fit'} pr-2`}>
         {filterGroup.filters.map((filter, index) => (
           <FilterItem
             key={index}
@@ -101,7 +81,7 @@ export const FilterList = ({ filterGroup, iconMap, hasMaxHeight, handleFilter, r
             handleFilter={() => handleFilter(filterGroup, filter)}
           />
         ))}
-      </FilterContainer>
+      </div>
     </div>
   )
 }

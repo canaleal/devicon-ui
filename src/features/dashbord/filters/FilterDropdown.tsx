@@ -14,7 +14,7 @@ interface FiltersPopupProps {
   handleResetFilterGroup: (filterType: IFilterGroup) => void
 }
 
-const FiltersPopup = ({ filterGroups, handleFilterClick, handleResetFilterGroup }: FiltersPopupProps) => {
+const FilterPopup = ({ filterGroups, handleFilterClick, handleResetFilterGroup }: FiltersPopupProps) => {
   return (
     <div className={`${DROPDOWN_POPUP_STYLE.container} ${DROPDOWN_POPUP_STYLE.customItem}`}>
       {filterGroups.map((group) => (
@@ -45,6 +45,12 @@ const FilterDropdown = ({
 }: FilterDropdownProps) => {
   const [isOpen, setIsOpen] = useState(false)
   const dropdownRef = useRef<HTMLDivElement>(null)
+  const totalFilters = filterGroups.reduce((count, group) => count + group.filters.length, 0)
+  const totalActiveFilters = filterGroups.reduce(
+    (count, group) =>
+      count + group.filters.reduce((filterCount, filter) => (filter.isSelected ? filterCount + 1 : filterCount), 0),
+    0
+  )
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen)
@@ -66,11 +72,20 @@ const FilterDropdown = ({
   return (
     <div className={`relative ${DROPDOWN_SIZES[size]} ${extraClasses}`} ref={dropdownRef}>
       <button onClick={toggleDropdown} className={`${DROPDOWN_STYLE.input} ${DROPDOWN_STYLE.colors}`}>
-        <span>Filters</span>
+        <span className='flex flex-row gap-2 items-center'>
+          <span>Filters</span>
+          {totalActiveFilters ? (
+            <span className='text-xs'>
+              ({totalActiveFilters}/{totalFilters})
+            </span>
+          ) : (
+            <></>
+          )}
+        </span>
         <i className={`fas ${isOpen ? 'fa-chevron-up' : 'fa-chevron-down'}`} />
       </button>
       {isOpen && (
-        <FiltersPopup
+        <FilterPopup
           filterGroups={filterGroups}
           handleFilterClick={handleFilterClick}
           handleResetFilterGroup={handleResetFilterGroup}

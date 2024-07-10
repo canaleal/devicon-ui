@@ -11,7 +11,7 @@ interface ContactIconsProps {
 
 const ContactIcons: React.FC<ContactIconsProps> = ({ extraClasses = '' }) => {
   return (
-    <div className={`flex flex-col gap-4 w-fit text-sm ${extraClasses}`}>
+    <article className={`flex flex-col gap-4 w-fit text-sm ${extraClasses}`}>
       {CONTACT_ITEMS.map((contact, index) => (
         <a
           key={index}
@@ -19,12 +19,12 @@ const ContactIcons: React.FC<ContactIconsProps> = ({ extraClasses = '' }) => {
           target='_blank'
           rel='noreferrer'
           title={contact.title}
-          className="hover:text-frog-800 transition-all"
+          className='hover:text-frog-800 transition-all'
         >
-          <p>{contact.title}</p>
+          <span>{contact.title}</span>
         </a>
       ))}
-    </div>
+    </article>
   )
 }
 

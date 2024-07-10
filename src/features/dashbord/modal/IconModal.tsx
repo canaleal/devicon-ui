@@ -12,7 +12,6 @@ import { copyToClipboard } from '../../../helpers/copyToClipboard'
 import { BUTTON_STYLES } from '../../../components/Elements/Button/ButtonStyles'
 import IconCode from './IconCode'
 import IconImage from './IconImage'
-import TagList from './IconTagList'
 
 interface IconModalProps {
   icon: IIcon
@@ -33,10 +32,10 @@ export const IconModal = ({ icon, deviconBranch }: IconModalProps) => {
         </button>
       </Tooltip>
 
-      <div className='flex flex-col 2xl:flex-row my-4 gap-8'>
+      <section className='flex flex-col 2xl:flex-row my-4 gap-8'>
         <IconImage iconUrl={iconUrl} iconName={icon.name} iconSize={selectedIconSize} extraClasses='flex-1' />
         <div className='flex-1 flex flex-col gap-4'>
-          <TagList tags={icon.tags ?? []} extraClasses='hidden lg:flex' />
+          <TextBar icon={{ icon: 'fa-solid fa-folder', copyTitle: 'Copy Tags' }} content={[icon.name]} />
           <div className='flex flex-row gap-4 w-full'>
             <Dropdown
               title='Version'
@@ -69,7 +68,7 @@ export const IconModal = ({ icon, deviconBranch }: IconModalProps) => {
             }}
           />
         </div>
-      </div>
+      </section>
 
       <IconCode
         icon={icon}
@@ -81,7 +80,7 @@ export const IconModal = ({ icon, deviconBranch }: IconModalProps) => {
 
       <div className='hidden lg:flex flex-row justify-between mt-4'>
         <TextBar title='Alt Names' content={icon.altnames ?? []} />
-        <p className='text-sm'>{deviconBranch === 'master' ? DEVICON_VERSION_RELEASE : 'Development Branch'}</p>
+        <span className='text-sm'>{deviconBranch === 'master' ? DEVICON_VERSION_RELEASE : 'Development Branch'}</span>
       </div>
     </>
   )

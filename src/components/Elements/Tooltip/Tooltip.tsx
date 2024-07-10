@@ -63,12 +63,12 @@ export const Tooltip = ({ children, content, position, flashMessage }: TooltipPr
     >
       {visible && !flashVisible && (
         <div className={`${TOOLTIP_STYLE} ${TOOLTIP_POSITIONS[position]}`}>
-          <p className='whitespace-nowrap'>{content}</p>
+          <span className='whitespace-nowrap'>{content}</span>
         </div>
       )}
       {flashVisible && (
         <div className={`${TOOLTIP_STYLE} ${TOOLTIP_POSITIONS[position]}`}>
-          <p>{flashMessage}</p>
+          <span>{flashMessage}</span>
         </div>
       )}
       {children}

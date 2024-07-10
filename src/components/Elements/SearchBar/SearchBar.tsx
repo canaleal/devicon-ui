@@ -20,7 +20,6 @@ const SEARCHBAR_SIZES = {
   full: 'w-full'
 }
 
-
 export interface SearchBarProps {
   placeholder?: string
   autoCompleteOptions?: string[]
@@ -70,7 +69,7 @@ export const SearchBar = ({ placeholder = 'Search', autoCompleteOptions = [], si
   }, [])
 
   return (
-    <div className='relative' ref={searchRef}>
+    <article className='relative' ref={searchRef}>
       <input
         type='text'
         value={searchTerm}
@@ -88,7 +87,7 @@ export const SearchBar = ({ placeholder = 'Search', autoCompleteOptions = [], si
           ))}
         </ul>
       )}
-    </div>
+    </article>
   )
 }
 
