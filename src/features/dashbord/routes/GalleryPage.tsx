@@ -3,9 +3,7 @@ import { SearchBar } from '../../../components/Elements/SearchBar'
 import { IIcon, DeviconBranch } from '../../../types'
 import { IconModal } from '../modal'
 import { Pagination } from '../pagination'
-
 import { Dropdown } from '../../../components/Elements/Dropdown'
-
 import {
   IFilterItem,
   updateFilter,
@@ -72,14 +70,21 @@ const GalleryPage = () => {
 
       <section className='flex flex-col xl:flex-row px-8 md:px-12 lg:px-24 py-4 gap-4 w-full border-b border-dark-600 bg-dark-800'>
         <FilterDropdown
-          filterGroups={filterGroups}
+          filterGroup={filterGroups[0]}
           handleFilterClick={handleFilterClick}
           handleResetFilterGroup={handleResetFilterGroup}
-          size='xl'
+          size='xxl'
+        />
+        <FilterDropdown
+          filterGroup={filterGroups[1]}
+          handleFilterClick={handleFilterClick}
+          handleResetFilterGroup={handleResetFilterGroup}
+          size='xxl'
         />
         <div className='flex-1 flex flex-col md:flex-row gap-4 justify-end'>
           <Dropdown
-            size='lg'
+            size='md'
+            isDisabled={false}
             selectedOption={deviconBranch}
             options={['master', 'develop']}
             onChange={(value) => {

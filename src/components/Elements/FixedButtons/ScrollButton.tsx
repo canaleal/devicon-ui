@@ -1,12 +1,13 @@
 import { useState } from 'react'
-import { FIXED_BUTTON_POSITIONS, FIXED_BUTTON_STYLE } from './FixedButtonStyles'
+import { FIXED_BUTTON_POSITIONS } from './FixedButtonSize'
+import './styles/fixedButton.css'
 
 export interface ScrollButtonProps {
   position: keyof typeof FIXED_BUTTON_POSITIONS
   extraClasses?: string
 }
 
-const ScrollButton = ({ position, extraClasses = '' }: ScrollButtonProps) => {
+export const ScrollButton = ({ position, extraClasses = '' }: ScrollButtonProps) => {
   const [visible, setVisible] = useState(false)
 
   const toggleVisible = () => {
@@ -26,7 +27,7 @@ const ScrollButton = ({ position, extraClasses = '' }: ScrollButtonProps) => {
   return (
     <button
       onClick={scrollToTop}
-      className={`${FIXED_BUTTON_POSITIONS[position]} ${FIXED_BUTTON_STYLE.base} ${FIXED_BUTTON_STYLE.colors} ${visible ? FIXED_BUTTON_STYLE.visible : FIXED_BUTTON_STYLE.hidden} ${extraClasses}`}
+      className={` fixed-button ${!visible ? 'fixed-button--hidden' : ''} ${FIXED_BUTTON_POSITIONS[position]} ${extraClasses}`}
     >
       <i className='fa fa-arrow-up' aria-hidden='true'></i>
     </button>

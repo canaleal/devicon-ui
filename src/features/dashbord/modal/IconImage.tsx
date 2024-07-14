@@ -12,7 +12,7 @@ interface IconContainerProps {
 }
 
 const ICON_IMAGE_STYLES = {
-  base: 'flex-1 flex flex-col  p-4 h-[30rem]',
+  base: 'flex-1 flex flex-col  p-4 h-[30rem] rounded-md',
   light: 'bg-white text-dark-900 border',
   dark: 'bg-dark-900 text-smoke-100 border border-dark-400'
 }

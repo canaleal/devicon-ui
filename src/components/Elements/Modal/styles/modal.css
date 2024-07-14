@@ -1,0 +1,13 @@
+.modal {
+  @apply fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-90 overflow-auto;
+  max-width: 100vw;
+  max-height: 100vh;
+}
+.modal__container {
+  @apply relative p-8 w-11/12 md:w-5/6 lg:w-5/6;
+  @apply bg-white rounded-md overflow-hidden dark:bg-dark-900 dark:text-smoke-100;
+}
+.modal__close-button {
+  @apply absolute top-0 right-0 p-4 text-2xl leading-none transition-colors rounded-bl-md;
+  @apply bg-frog-700 hover:bg-frog-800 text-white;
+}/*# sourceMappingURL=modal.css.map */

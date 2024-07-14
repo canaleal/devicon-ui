@@ -8,7 +8,7 @@ interface PaginationCardProps {
 }
 
 const CARD_STYLE = {
-  base: 'flex flex-col align-middle text-center gap-8 w-full overflow-hidden relative p-8 text-sm border  hover:scale-105 transition-all rounded-md',
+  base: 'flex flex-col align-middle text-center gap-8 w-full overflow-hidden relative p-8 text-sm border  hover:scale-105 transition-transform rounded-md',
   colors: 'bg-white  hover:border-frog-800 shadow-md dark:bg-dark-900 dark:border-dark-400 dark:hover:border-frog-800'
 }
 

@@ -1,0 +1,8 @@
+.fixed-button {
+  @apply fixed font-bold h-12 w-12 z-20 transition-colors rounded-md;
+  @apply bg-frog-700 hover:bg-frog-800 text-white;
+  @apply hidden xl:inline;
+}
+.fixed-button--hidden {
+  @apply hidden;
+} /*# sourceMappingURL=fixedButton.css.map */

@@ -1,24 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
+import './styles/searchBar.css'
+import { SEARCHBAR_SIZES } from './SearchBarSizes'
 
-const SEARCHBAR_STYLE = {
-  input: 'h-12 text-sm px-4  flex justify-between items-center border rounded-md',
-  colors: 'bg-white text-dark-900 dark:bg-dark-900 dark:text-smoke-100 dark:border-dark-400'
-}
-
-const SEARCHBAR_AUTOFILL_POPUP_STYLE = {
-  container: 'absolute mt-1 w-full bg-white dark:text-dark-900  border  shadow-lg z-30 rounded-md',
-  item: 'px-4 py-2 hover:bg-gray-200 cursor-pointer text-sm'
-}
-
-const SEARCHBAR_SIZES = {
-  sm: 'w-16',
-  md: 'w-32',
-  lg: 'w-48',
-  xl: 'w-96',
-  xxl: 'w-[24rem]',
-  xxxl: 'w-[32rem]',
-  full: 'w-full'
-}
 
 export interface SearchBarProps {
   placeholder?: string
@@ -75,13 +58,13 @@ export const SearchBar = ({ placeholder = 'Search', autoCompleteOptions = [], si
         value={searchTerm}
         onChange={handleInputChange}
         placeholder={placeholder}
-        className={`${SEARCHBAR_SIZES[size]} ${SEARCHBAR_STYLE.input} ${SEARCHBAR_STYLE.colors}`}
+        className={`${SEARCHBAR_SIZES[size]} searchbar`}
       />
 
       {showOptions && (
-        <ul className={SEARCHBAR_AUTOFILL_POPUP_STYLE.container}>
+        <ul className="searchbar__popup">
           {filteredOptions.slice(0, 10).map((option, index) => (
-            <li key={index} className={SEARCHBAR_AUTOFILL_POPUP_STYLE.item} onClick={() => handleOptionClick(option)}>
+            <li key={index} className="searchbar__popup__item" onClick={() => handleOptionClick(option)}>
               {option}
             </li>
           ))}

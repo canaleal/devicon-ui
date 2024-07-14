@@ -1,5 +1,4 @@
 import React from 'react'
-import { DROPDOWN_STYLE } from '../../../components/Elements/Dropdown/dropdownStyles'
 
 interface PaginationSelectionProps {
   elementsPerPage: number
@@ -32,7 +31,7 @@ const PaginationSelection: React.FC<PaginationSelectionProps> = ({
       <select
         value={elementsPerPage}
         onChange={handlePageChange}
-        className={`${DROPDOWN_STYLE.inputSmall} ${DROPDOWN_STYLE.colors}`}
+        className="dropdown dropdown--small"
       >
         {elementsPerPageOptions.map((option: number) => (
           <option key={option} value={option}>

@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react'
 import storage from '../../../helpers/storage'
-import { FIXED_BUTTON_POSITIONS, FIXED_BUTTON_STYLE } from './FixedButtonStyles'
+import { FIXED_BUTTON_POSITIONS } from './FixedButtonSize'
+import './styles/fixedButton.css'
 
 export interface DarkModeProps {
   position: keyof typeof FIXED_BUTTON_POSITIONS
   extraClasses?: string
 }
 
-const DarkModeToggle = ({ position, extraClasses = '' }: DarkModeProps) => {
+export const DarkModeToggle = ({ position, extraClasses = '' }: DarkModeProps) => {
   const [darkMode, setDarkMode] = useState(storage.getToken()['isDark'] ?? false)
 
   useEffect(() => {
@@ -30,10 +31,7 @@ const DarkModeToggle = ({ position, extraClasses = '' }: DarkModeProps) => {
   }
 
   return (
-    <button
-      onClick={toggleDarkMode}
-      className={` ${FIXED_BUTTON_POSITIONS[position]} ${FIXED_BUTTON_STYLE.visible} ${FIXED_BUTTON_STYLE.base} ${FIXED_BUTTON_STYLE.colors} ${extraClasses}`}
-    >
+    <button onClick={toggleDarkMode} className={`fixed-button ${FIXED_BUTTON_POSITIONS[position]} ${extraClasses}`}>
       {darkMode ? <i className='fa-solid fa-sun'></i> : <i className='fa-solid fa-moon'></i>}
     </button>
   )

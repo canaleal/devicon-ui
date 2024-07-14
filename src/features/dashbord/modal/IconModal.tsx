@@ -12,6 +12,7 @@ import { copyToClipboard } from '../../../helpers/copyToClipboard'
 import { BUTTON_STYLES } from '../../../components/Elements/Button/ButtonStyles'
 import IconCode from './IconCode'
 import IconImage from './IconImage'
+import ColorPickerDropdown from '../../../components/Elements/Dropdown/ColorPickerDropdown'
 
 interface IconModalProps {
   icon: IIcon
@@ -21,6 +22,7 @@ interface IconModalProps {
 export const IconModal = ({ icon, deviconBranch }: IconModalProps) => {
   const [selectedVersion, setSelectedVersion] = useState<IconVersion>(icon.versions.svg[0])
   const [selectedIconSize, setSelectedIconSize] = useState<IIconSize>(INIT_ICON_SIZE)
+  const [selectedColor, setSelectedColor] = useState<string>(icon.color)
   const iconUrl = createDeviconIconUrl(icon.name, selectedVersion, deviconBranch)
 
   return (
@@ -39,6 +41,7 @@ export const IconModal = ({ icon, deviconBranch }: IconModalProps) => {
           <div className='flex flex-row gap-4 w-full'>
             <Dropdown
               title='Version'
+              isDisabled={false}
               size='full'
               selectedOption={selectedVersion}
               options={icon.versions.svg}
@@ -48,11 +51,22 @@ export const IconModal = ({ icon, deviconBranch }: IconModalProps) => {
             />
             <Dropdown
               title='Size'
+              isDisabled={false}
               size='full'
               selectedOption={selectedIconSize.name}
               options={ICON_SIZE_OPTIONS.map((option) => option.name)}
               onChange={(value) => {
                 setSelectedIconSize(ICON_SIZE_OPTIONS.find((option) => option.name === value)!)
+              }}
+            />
+            <ColorPickerDropdown
+              title='Color'
+              isDisabled={!icon.versions.font.includes(selectedVersion)}
+              size='full'
+              defaultColor={icon.color}
+              selectedColor={selectedColor}
+              onChange={(color) => {
+                setSelectedColor(color)
               }}
             />
           </div>

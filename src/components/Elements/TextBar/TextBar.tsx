@@ -1,16 +1,15 @@
-import { copyToClipboard } from "../../../helpers/copyToClipboard";
-import { BUTTON_STYLES } from "../Button/ButtonStyles";
-import { Tooltip } from "../Tooltip";
+import { copyToClipboard } from '../../../helpers/copyToClipboard'
+import { BUTTON_STYLES } from '../Button/ButtonStyles'
+import { Tooltip } from '../Tooltip'
 
 interface ITextBarIcon {
-  icon: string;
-  copyTitle: string;
-
+  icon: string
+  copyTitle: string
 }
 
 export interface TextBarProps {
-  title?: string;
-  icon?: ITextBarIcon;
+  title?: string
+  icon?: ITextBarIcon
   content: string[]
 }
 

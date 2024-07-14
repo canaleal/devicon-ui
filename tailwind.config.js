@@ -26,11 +26,13 @@ export default {
           700: '#1a24c2',
           800: '#22289f'
         },
-        rose: '#ff6189',
-        orange: '#fc9867',
-        yellow: '#ffd866',
-        cyan: '#77dce8',
-        green: '#a9dc77'
+        rose: '#f44336',
+        orange: '#ff9800',
+        yellow: '#ffc107',
+        cyan: '#00bcd4',
+        green: '#4caf50',
+        brown: '#795548',
+        purple: '#673ab7'
       },
       screens: {
         sm: '640px',

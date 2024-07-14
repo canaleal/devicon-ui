@@ -1,92 +1,75 @@
 import { useEffect, useRef, useState } from 'react'
-import FilterList from './FilterList'
 import { ICON_VERSION_FA_MAP } from '../../../config'
 import { IFilterGroup, IFilterItem } from './types'
-import {
-  DROPDOWN_POPUP_STYLE,
-  DROPDOWN_SIZES,
-  DROPDOWN_STYLE
-} from '../../../components/Elements/Dropdown/dropdownStyles'
+import { DROPDOWN_SIZES } from '../../../components/Elements/Dropdown'
+import { IconVersion } from '../../../types'
 
-interface FiltersPopupProps {
-  filterGroups: IFilterGroup[]
-  handleFilterClick: (filterGroup: IFilterGroup, filter: IFilterItem) => void
-  handleResetFilterGroup: (filterType: IFilterGroup) => void
+interface FilterItemProps {
+  filter: IFilterItem
+  icon: string
+  handleFilter: () => void
 }
 
-const FilterPopup = ({ filterGroups, handleFilterClick, handleResetFilterGroup }: FiltersPopupProps) => {
+const FilterItem = ({ filter, icon, handleFilter }: FilterItemProps) => {
   return (
-    <div className={`${DROPDOWN_POPUP_STYLE.container} ${DROPDOWN_POPUP_STYLE.customItem}`}>
-      {filterGroups.map((group) => (
-        <FilterList
-          key={group.filterType}
-          filterGroup={group}
-          handleFilter={handleFilterClick}
-          iconMap={ICON_VERSION_FA_MAP}
-          hasMaxHeight={group.filters.length > 10}
-          resetFilterGroup={handleResetFilterGroup}
-        />
-      ))}
-    </div>
+    <button className={`dropdown-item ${filter.isSelected ? 'dropdown-item--selected' : ''}`} onClick={handleFilter}>
+      <i className={`${icon} my-auto`} />
+      <span className='ml-2 clamped-text'>{filter.filterName}</span>
+      <span className='ml-auto'>{filter.numberOfIcons}</span>
+    </button>
   )
 }
 
-interface FilterDropdownProps extends FiltersPopupProps {
+interface FiltersPopupProps {
+  filterGroup: IFilterGroup
+  handleFilterClick: (filterGroup: IFilterGroup, filter: IFilterItem) => void
+  handleResetFilterGroup: (filterGroup: IFilterGroup) => void
   size: keyof typeof DROPDOWN_SIZES
   extraClasses?: string
 }
 
 const FilterDropdown = ({
-  filterGroups,
+  filterGroup,
   handleFilterClick,
   handleResetFilterGroup,
   size,
   extraClasses = ''
-}: FilterDropdownProps) => {
+}: FiltersPopupProps) => {
   const [isOpen, setIsOpen] = useState(false)
   const dropdownRef = useRef<HTMLDivElement>(null)
-  const totalFilters = filterGroups.reduce((count, group) => count + group.filters.length, 0)
-  const totalActiveFilters = filterGroups.reduce(
-    (count, group) =>
-      count + group.filters.reduce((filterCount, filter) => (filter.isSelected ? filterCount + 1 : filterCount), 0),
-    0
-  )
 
-  const toggleDropdown = () => {
-    setIsOpen(!isOpen)
-  }
-
-  const handleClickOutside = (event: MouseEvent) => {
-    if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-      setIsOpen(false)
-    }
-  }
+  const totalFilters = filterGroup.filters.length
+  const totalActiveFilters = filterGroup.filters.reduce((count, filter) => (filter.isSelected ? count + 1 : count), 0)
+  const hasMaxHeight = filterGroup.filters.length > 10
 
   useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsOpen(false)
+      }
+    }
+
     document.addEventListener('mousedown', handleClickOutside)
     return () => {
       document.removeEventListener('mousedown', handleClickOutside)
     }
   }, [])
 
+  const toggleDropdown = () => setIsOpen(!isOpen)
+
   return (
     <div className={`relative ${DROPDOWN_SIZES[size]} ${extraClasses}`} ref={dropdownRef}>
-      <button onClick={toggleDropdown} className={`${DROPDOWN_STYLE.input} ${DROPDOWN_STYLE.colors}`}>
-        <span className='flex flex-row gap-2 items-center'>
-          <span>Filters</span>
-          {totalActiveFilters ? (
-            <span className='text-xs'>
-              ({totalActiveFilters}/{totalFilters})
-            </span>
-          ) : (
-            <></>
-          )}
-        </span>
-        <i className={`fas ${isOpen ? 'fa-chevron-up' : 'fa-chevron-down'}`} />
-      </button>
+      <DropdownButton
+        categoryName={filterGroup.categoryName}
+        totalActiveFilters={totalActiveFilters}
+        totalFilters={totalFilters}
+        isOpen={isOpen}
+        toggleDropdown={toggleDropdown}
+      />
       {isOpen && (
-        <FilterPopup
-          filterGroups={filterGroups}
+        <DropdownMenu
+          filterGroup={filterGroup}
+          hasMaxHeight={hasMaxHeight}
           handleFilterClick={handleFilterClick}
           handleResetFilterGroup={handleResetFilterGroup}
         />
@@ -94,5 +77,68 @@ const FilterDropdown = ({
     </div>
   )
 }
+
+const DropdownButton = ({
+  categoryName,
+  totalActiveFilters,
+  totalFilters,
+  isOpen,
+  toggleDropdown
+}: {
+  categoryName: string
+  totalActiveFilters: number
+  totalFilters: number
+  isOpen: boolean
+  toggleDropdown: () => void
+}) => (
+  <button onClick={toggleDropdown} className='dropdown'>
+    <span className='flex flex-row gap-2 items-center'>
+      <span>{categoryName}</span>
+      {totalActiveFilters > 0 && (
+        <span className='text-sm'>
+          ({totalActiveFilters}/{totalFilters})
+        </span>
+      )}
+    </span>
+    <i className={`fas ${isOpen ? 'fa-chevron-up' : 'fa-chevron-down'}`} />
+  </button>
+)
+
+const DropdownMenu = ({
+  filterGroup,
+  hasMaxHeight,
+  handleFilterClick,
+  handleResetFilterGroup
+}: {
+  filterGroup: IFilterGroup
+  hasMaxHeight: boolean
+  handleFilterClick: (filterGroup: IFilterGroup, filter: IFilterItem) => void
+  handleResetFilterGroup: (filterGroup: IFilterGroup) => void
+}) => {
+
+  const isResetButtonDisabled = filterGroup.filters.every((filter) => !filter.isSelected);
+
+  return (
+  <div className='dropdown-popup'>
+    <div className={`flex flex-col mb-4 overflow-y-auto ${hasMaxHeight ? 'h-[30rem]' : 'h-fit'}`}>
+      {filterGroup.filters.map((filter, index) => (
+        <FilterItem
+          key={index}
+          filter={filter}
+          icon={ICON_VERSION_FA_MAP[filter.filterName as IconVersion] ?? 'fa-solid fa-square'}
+          handleFilter={() => handleFilterClick(filterGroup, filter)}
+        />
+      ))}
+    </div>
+    <button
+      disabled={isResetButtonDisabled}
+      className={`dropdown-item dropdown-item--reset ${isResetButtonDisabled ? 'dropdown-item--disabled' : ''}`}
+      onClick={() => handleResetFilterGroup(filterGroup)}
+    >
+      <i className='fas fa-undo-alt' />
+      Reset Filters
+    </button>
+  </div>
+)}
 
 export default FilterDropdown
