@@ -7,7 +7,7 @@ export interface DropdownProps {
   isDisabled: boolean
   defaultColor: string
   selectedColor: string
-  onChange: (value: string) => void
+  onColorChange: (value: string) => void
   size: keyof typeof DROPDOWN_SIZES
   extraClasses?: string
 }
@@ -27,7 +27,7 @@ const ColorPickerDropdown = ({
   isDisabled,
   defaultColor,
   selectedColor,
-  onChange,
+  onColorChange,
   size,
   extraClasses = ''
 }: DropdownProps) => {
@@ -62,8 +62,8 @@ const ColorPickerDropdown = ({
         <DropdownMenu
           selectedColor={selectedColor}
           defaultColor={defaultColor}
-          onColorChange={onChange}
-          resetColor={() => onChange(defaultColor)}
+          onColorChange={onColorChange}
+          resetColor={() => onColorChange(defaultColor)}
         />
       )}
     </div>
@@ -84,8 +84,8 @@ const DropdownButton = ({
   const BUTTON_STYLE = `dropdown ${isDisabled ? 'dropdown--disabled' : ''}`
   return (
     <button disabled={isDisabled} onClick={toggleDropdown} className={BUTTON_STYLE}>
-      <span className='flex gap-2 items-center'>
-        <span className='w-8 h-6 rounded-md inline-block' style={{ backgroundColor: selectedColor }} />
+      <span className='dropdown__placeholder'>
+        <span className='dropdown__color-picker__mark' style={{ backgroundColor: selectedColor }} />
         {selectedColor}
       </span>
       <i className={`fas ${isOpen ? 'fa-chevron-up' : 'fa-chevron-down'}`} />
@@ -107,13 +107,13 @@ const DropdownMenu = ({
   
   const isResetButtonDisabled = selectedColor === defaultColor;
   return (
-  <div className='dropdown-popup'>
-    <div className='p-4 flex flex-col gap-2'>
+  <div className='dropdown__popup'>
+    <div className='flex flex-col gap-2 p-4'>
       <ColorInput selectedColor={selectedColor} onColorChange={onColorChange} />
       <ColorPalette onColorChange={onColorChange} />
     </div>
-    <button disabled={isResetButtonDisabled} className={`dropdown-item dropdown-item--reset ${isResetButtonDisabled ? 'dropdown-item--disabled' : ''}`} onClick={resetColor}>
-      <span className='w-8 h-6 rounded-md inline-block' style={{ backgroundColor: defaultColor }} />
+    <button disabled={isResetButtonDisabled} className={`dropdown__item dropdown__item--reset ${isResetButtonDisabled ? 'dropdown__item--disabled' : ''}`} onClick={resetColor}>
+      <span className='dropdown__color-picker__mark' style={{ backgroundColor: defaultColor }} />
       Reset Color
     </button>
   </div>
@@ -129,7 +129,7 @@ const ColorInput = ({
   <input
     type='color'
     value={selectedColor}
-    className='h-12 w-full cursor-pointer rounded-md border-0'
+    className='dropdown__color-picker__input'
     onChange={(e) => onColorChange(e.target.value)}
   />
 )
@@ -139,7 +139,7 @@ const ColorPalette = ({ onColorChange }: { onColorChange: (color: string) => voi
     {Object.values(PALLET_COLORS).map((color) => (
       <div
         key={color}
-        className='h-6 w-full cursor-pointer rounded-md border-0 hover:scale-110 transition-transform'
+        className='dropdown__color-picker__item'
         style={{ backgroundColor: color }}
         onClick={() => onColorChange(color)}
       />

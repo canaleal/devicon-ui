@@ -5,7 +5,7 @@ import { Table } from '../../../components/Elements/Table'
 import { createDeviconIconUrl } from '../../../helpers/iconUrl'
 import { Dropdown } from '../../../components/Elements/Dropdown/Dropdown'
 import PaginationButtons from './PaginationButtons'
-import PaginationCard from './PaginationCard'
+import PaginationCard from './paginationCard/PaginationCard'
 import PaginationSelection from './PaginationSelection'
 
 type PaginationStyle = 'card' | 'table'
@@ -71,6 +71,7 @@ export const Pagination = ({ icons, onSelect, deviconBranch }: PaginationProps) 
           Page {currentPage} of {totalPages || 1}
         </p>
         <Dropdown
+          isDisabled={false}
           extraClasses='hidden md:inline-block'
           size={'lg'}
           selectedOption={paginationStyle}

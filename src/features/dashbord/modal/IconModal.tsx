@@ -9,9 +9,9 @@ import { Table } from '../../../components/Elements/Table'
 import { TextBar } from '../../../components/Elements/TextBar'
 
 import { copyToClipboard } from '../../../helpers/copyToClipboard'
-import { BUTTON_STYLES } from '../../../components/Elements/Button/ButtonStyles'
+
 import IconCode from './IconCode'
-import IconImage from './IconImage'
+import IconImage from './iconImage/IconImage'
 import ColorPickerDropdown from '../../../components/Elements/Dropdown/ColorPickerDropdown'
 
 interface IconModalProps {
@@ -28,7 +28,7 @@ export const IconModal = ({ icon, deviconBranch }: IconModalProps) => {
   return (
     <>
       <Tooltip content='Copy Name' position='bottom' flashMessage='Copied!'>
-        <button onClick={() => copyToClipboard(icon.name)} className={BUTTON_STYLES.base}>
+        <button onClick={() => copyToClipboard(icon.name)} className="button button--icon">
           <p className='font-bold text-2xl'>{icon.name}</p>
           <i className='fa-solid fa-copy text-xl'></i>
         </button>
@@ -65,7 +65,8 @@ export const IconModal = ({ icon, deviconBranch }: IconModalProps) => {
               size='full'
               defaultColor={icon.color}
               selectedColor={selectedColor}
-              onChange={(color) => {
+              onColorChange={(color) => {
+                if(color != selectedColor)
                 setSelectedColor(color)
               }}
             />

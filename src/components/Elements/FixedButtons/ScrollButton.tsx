@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { FIXED_BUTTON_POSITIONS } from './FixedButtonSize'
+import { FIXED_BUTTON_POSITIONS } from './FixedButtonPositions'
 import './styles/fixedButton.css'
 
 export interface ScrollButtonProps {

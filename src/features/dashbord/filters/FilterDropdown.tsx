@@ -12,9 +12,9 @@ interface FilterItemProps {
 
 const FilterItem = ({ filter, icon, handleFilter }: FilterItemProps) => {
   return (
-    <button className={`dropdown-item ${filter.isSelected ? 'dropdown-item--selected' : ''}`} onClick={handleFilter}>
+    <button className={`dropdown__item ${filter.isSelected ? 'dropdown__item--selected' : ''}`} onClick={handleFilter}>
       <i className={`${icon} my-auto`} />
-      <span className='ml-2 clamped-text'>{filter.filterName}</span>
+      <span className='clamped-text'>{filter.filterName}</span>
       <span className='ml-auto'>{filter.numberOfIcons}</span>
     </button>
   )
@@ -92,7 +92,7 @@ const DropdownButton = ({
   toggleDropdown: () => void
 }) => (
   <button onClick={toggleDropdown} className='dropdown'>
-    <span className='flex flex-row gap-2 items-center'>
+    <span className='dropdown__placeholder'>
       <span>{categoryName}</span>
       {totalActiveFilters > 0 && (
         <span className='text-sm'>
@@ -119,7 +119,7 @@ const DropdownMenu = ({
   const isResetButtonDisabled = filterGroup.filters.every((filter) => !filter.isSelected);
 
   return (
-  <div className='dropdown-popup'>
+  <div className='dropdown__popup'>
     <div className={`flex flex-col mb-4 overflow-y-auto ${hasMaxHeight ? 'h-[30rem]' : 'h-fit'}`}>
       {filterGroup.filters.map((filter, index) => (
         <FilterItem
@@ -132,7 +132,7 @@ const DropdownMenu = ({
     </div>
     <button
       disabled={isResetButtonDisabled}
-      className={`dropdown-item dropdown-item--reset ${isResetButtonDisabled ? 'dropdown-item--disabled' : ''}`}
+      className={`dropdown__item dropdown__item--reset ${isResetButtonDisabled ? 'dropdown__item--disabled' : ''}`}
       onClick={() => handleResetFilterGroup(filterGroup)}
     >
       <i className='fas fa-undo-alt' />

@@ -1,0 +1,10 @@
+.link {
+  @apply transition-all;
+}
+.link:hover {
+  @apply text-frog-800;
+}
+
+.links-container {
+  @apply flex flex-col gap-4 w-fit text-sm;
+}/*# sourceMappingURL=links.css.map */

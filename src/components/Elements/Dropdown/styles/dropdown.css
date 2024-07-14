@@ -1,28 +1,60 @@
 .dropdown {
-  @apply h-12 hover:cursor-pointer text-sm px-4 w-full flex justify-between items-center border rounded-md;
+  @apply h-12 text-sm px-4 w-full flex justify-between items-center border rounded-md;
   @apply bg-white text-dark-900 dark:bg-dark-900 dark:text-smoke-100 dark:border-dark-400;
+}
+.dropdown:hover {
+  @apply cursor-pointer;
 }
 .dropdown--small {
   @apply h-8 px-2;
+  width: -moz-fit-content;
+  width: fit-content;
 }
 .dropdown--disabled {
-  @apply bg-gray-100 text-gray-400 dark:bg-dark-800 dark:text-dark-400 dark:border-dark-400 hover:cursor-auto;
+  @apply bg-gray-100 text-gray-400 dark:bg-dark-800 dark:text-dark-400 dark:border-dark-400;
 }
-
-.dropdown-popup {
+.dropdown--disabled:hover {
+  @apply cursor-auto;
+}
+.dropdown__placeholder {
+  @apply flex gap-2 items-center;
+}
+.dropdown__popup {
   @apply absolute mt-1 w-full bg-white dark:text-dark-900 border shadow-lg z-30 rounded-md overflow-hidden;
 }
-
-.dropdown-item {
-  @apply px-4 py-2 cursor-pointer text-sm text-left items-center flex gap-2;
-  @apply hover:bg-gray-100;
+.dropdown__item {
+  @apply px-4 py-2 text-sm text-left items-center flex gap-2;
 }
-.dropdown-item--reset {
+.dropdown__item:hover {
+  @apply bg-gray-100 cursor-pointer;
+}
+.dropdown__item--reset {
   @apply py-4 border-t w-full;
 }
-.dropdown-item--selected {
-  @apply bg-frog-800 hover:bg-frog-800 text-smoke-100;
+.dropdown__item--selected {
+  @apply bg-frog-800 text-smoke-100;
 }
-.dropdown-item--disabled {
-  @apply bg-gray-100 text-gray-400 dark:bg-dark-800 dark:text-dark-400 dark:border-dark-400 hover:cursor-auto;
+.dropdown__item--selected:hover {
+  @apply bg-frog-800;
+}
+.dropdown__item--disabled {
+  @apply bg-gray-100 text-gray-400 dark:bg-dark-800 dark:text-dark-400 dark:border-dark-400;
+}
+.dropdown__item--disabled:hover {
+  @apply cursor-auto;
+}
+.dropdown__color-picker__mark {
+  @apply w-8 h-6 rounded-md inline-block;
+}
+.dropdown__color-picker__input {
+  @apply h-12 w-full rounded-md border-0;
+}
+.dropdown__color-picker__input:hover {
+  @apply cursor-pointer;
+}
+.dropdown__color-picker__item {
+  @apply h-6 w-full rounded-md border-0 transition-transform;
+}
+.dropdown__color-picker__item:hover {
+  @apply scale-110 cursor-pointer;
 }/*# sourceMappingURL=dropdown.css.map */

@@ -1,0 +1,19 @@
+.icon-image {
+  @apply flex-1 flex flex-col p-4 h-[30rem] rounded-md;
+}
+.icon-image--light {
+  @apply bg-white text-dark-900 border;
+}
+.icon-image--dark {
+  @apply bg-dark-900 text-smoke-100 border border-dark-400;
+}
+
+.view-box {
+  @apply m-auto;
+}
+.view-box--light {
+  @apply border border-dotted border-dark-900;
+}
+.view-box--dark {
+  @apply border border-dotted border-dark-100;
+}/*# sourceMappingURL=iconImage.css.map */

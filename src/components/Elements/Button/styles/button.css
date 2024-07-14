@@ -1,0 +1,35 @@
+.button {
+  @apply flex gap-2 items-center px-2 py-2 transition-colors rounded-md;
+}
+.button:hover {
+  @apply bg-smoke-200 dark:bg-dark-900;
+}
+.button--small {
+  @apply px-4 py-2 text-sm rounded-md;
+}
+.button--icon:hover {
+  @apply text-frog-800;
+  background-color: transparent;
+}
+.button--selected {
+  @apply bg-frog-700 text-white font-bold;
+}
+.button--selected:hover {
+  @apply bg-frog-800;
+}
+.button--disabled {
+  @apply text-smoke-400 bg-transparent;
+}
+.button--disabled:hover {
+  @apply bg-transparent;
+}
+
+.icon--lg {
+  @apply text-lg;
+}
+.icon--xl {
+  @apply text-xl;
+}
+.icon--xxl {
+  @apply text-2xl;
+}/*# sourceMappingURL=button.css.map */

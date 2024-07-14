@@ -1,26 +1,15 @@
 import { useState } from 'react'
 
-import Tooltip from '../../../components/Elements/Tooltip/Tooltip'
-import { IIconSize } from './types'
-import { BUTTON_STYLES } from '../../../components/Elements/Button/ButtonStyles'
+import Tooltip from '../../../../components/Elements/Tooltip/Tooltip'
+import { IIconSize } from '../types'
+import '../../../../components/Elements/Button/styles/button.css'
+import './styles/iconImage.css'
 
 interface IconContainerProps {
   iconName: string
   iconSize: IIconSize
   iconUrl: string
   extraClasses?: string
-}
-
-const ICON_IMAGE_STYLES = {
-  base: 'flex-1 flex flex-col  p-4 h-[30rem] rounded-md',
-  light: 'bg-white text-dark-900 border',
-  dark: 'bg-dark-900 text-smoke-100 border border-dark-400'
-}
-
-const VIEW_BOX_STYLES = {
-  viewBoxBase: 'm-auto',
-  viewBoxLight: 'border border-dotted border-dark-900 ',
-  viewBoxDark: 'border border-dotted border-dark-100'
 }
 
 export const IconImage = ({ iconName, iconSize, iconUrl, extraClasses }: IconContainerProps) => {
@@ -35,21 +24,21 @@ export const IconImage = ({ iconName, iconSize, iconUrl, extraClasses }: IconCon
     setShowViewBox(!showViewBox)
   }
 
-  const ICON_IMAGE_STYLE = `${ICON_IMAGE_STYLES.base} ${isDark ? ICON_IMAGE_STYLES.dark : ICON_IMAGE_STYLES.light} ${extraClasses}`
-  const VIEW_BOX_STYLE = `${VIEW_BOX_STYLES.viewBoxBase} ${showViewBox ? (isDark ? VIEW_BOX_STYLES.viewBoxDark : VIEW_BOX_STYLES.viewBoxLight) : ''}`
+  const ICON_IMAGE_STYLE = `icon-image  ${isDark ? "icon-image--dark" : "icon-image--light"} ${extraClasses}`
+  const VIEW_BOX_STYLE = `view-box ${showViewBox ? (isDark ? "view-box--dark" : "view-box--light"): ""}`
 
   return (
     <div className={ICON_IMAGE_STYLE}>
       <img className={VIEW_BOX_STYLE} height={iconSize.height} width={iconSize.width} src={iconUrl} alt={iconName} />
       <div className='flex flex-row justify-between'>
         <Tooltip content={`${isDark ? 'Light' : 'Dark'} Background`} position='top'>
-          <button onClick={toggleBackground} className={`${BUTTON_STYLES.base} ${BUTTON_STYLES.extraLarge}`}>
+          <button onClick={toggleBackground} className="button button--icon icon--xxl">
             {isDark ? <i className='fa-solid fa-sun'></i> : <i className='fa-solid fa-moon'></i>}
           </button>
         </Tooltip>
 
         <Tooltip content={`${showViewBox ? 'Hide' : 'Show'} ViewBox`} position='top'>
-          <button onClick={toggleViewBox} className={`${BUTTON_STYLES.base} ${BUTTON_STYLES.extraLarge}`}>
+          <button onClick={toggleViewBox} className="button button--icon icon--xxl">
             {showViewBox ? <i className='fa-solid fa-eye-slash'></i> : <i className='fa-solid fa-eye'></i>}
           </button>
         </Tooltip>

@@ -1,11 +1,6 @@
 import React from 'react'
+import './styles/table.css'
 
-const TABLE_STYLES = {
-  background: 'flex border-2 dark:border-dark-400 overflow-hidden w-full rounded-md',
-  thead: 'border-b-2 dark:border-dark-400 bg-dark-900 text-smoke-100',
-  tElement: 'text-left px-4 py-2 h-12',
-  tRow: 'hover:bg-smoke-200 dark:bg-dark-800 dark:hover:bg-dark-900 cursor-pointer text-sm'
-}
 
 export interface TableProps<T> {
   title?: string
@@ -23,12 +18,12 @@ export function Table<T>({ title, data, headers, keyExtractor, rowRenderer, onRo
   return (
     <div className={`flex flex-col gap-2 ${extraClasses}`}>
       {title && <p className='font-bold text-sm'>{title}</p>}
-      <div className={TABLE_STYLES.background}>
-        <table className='table-auto w-full'>
-          <thead className={TABLE_STYLES.thead}>
+      <div className="table">
+        <table>
+          <thead className="table__head">
             <tr>
               {headers.map((header, index) => (
-                <th key={index} className={TABLE_STYLES.tElement}>
+                <th key={index} className="table__element">
                   {header}
                 </th>
               ))}
@@ -38,11 +33,11 @@ export function Table<T>({ title, data, headers, keyExtractor, rowRenderer, onRo
             {data.map((item, index) => (
               <tr
                 key={keyExtractor(item, index)}
-                className={TABLE_STYLES.tRow}
+                className="table__row"
                 onClick={() => onRowClick && onRowClick(item)}
               >
                 {rowRenderer(item).map((cell, cellIndex) => (
-                  <td key={cellIndex} className={TABLE_STYLES.tElement}>
+                  <td key={cellIndex} className="table__element">
                     {cell}
                   </td>
                 ))}

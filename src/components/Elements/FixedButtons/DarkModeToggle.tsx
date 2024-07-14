@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import storage from '../../../helpers/storage'
-import { FIXED_BUTTON_POSITIONS } from './FixedButtonSize'
+import { FIXED_BUTTON_POSITIONS } from './FixedButtonPositions'
 import './styles/fixedButton.css'
 
 export interface DarkModeProps {

@@ -1,4 +1,4 @@
-import ContactIcons from '../Elements/Contact/ContactIcons'
+import ContactLinks from '../Elements/Link/ContactLinks'
 import DeviconLogo from '../Elements/DeviconLogo/DeviconLogo'
 
 export const Footer = () => {
@@ -23,7 +23,7 @@ export const Footer = () => {
 
       <div className='flex-1 flex flex-col gap-4'>
         <p className='text-lg font-bold'>Links</p>
-        <ContactIcons />
+        <ContactLinks />
       </div>
     </footer>
   )

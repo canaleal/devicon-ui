@@ -1,6 +1,6 @@
 import { copyToClipboard } from '../../../helpers/copyToClipboard'
-import { BUTTON_STYLES } from '../Button/ButtonStyles'
 import { Tooltip } from '../Tooltip'
+import '../Button/styles/button.css'
 
 interface ITextBarIcon {
   icon: string
@@ -20,7 +20,7 @@ export const TextBar = ({ title, icon, content }: TextBarProps) => {
       {title && <span className='font-bold'>{title}:</span>}
       {icon && (
         <Tooltip content={icon.copyTitle} position='top' flashMessage='Copied!'>
-          <button onClick={() => copyToClipboard(content.toString())} className={`${BUTTON_STYLES.base}`}>
+          <button onClick={() => copyToClipboard(content.toString())} className="button">
             <i className={icon.icon}></i>
           </button>
         </Tooltip>

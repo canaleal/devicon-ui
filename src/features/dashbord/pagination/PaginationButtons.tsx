@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import { getPaginationButtons } from './helpers/paginationHelpers'
 import { v4 as uuidv4 } from 'uuid'
-import { BUTTON_STYLES } from '../../../components/Elements/Button/ButtonStyles'
 
 interface PaginationButtonsProps {
   currentPage: number
@@ -16,10 +15,8 @@ interface ArrowButtonProps {
 }
 
 const ArrowButton: React.FC<ArrowButtonProps> = ({ disabled, onClick, direction }) => {
-  const buttonStyle = disabled ? BUTTON_STYLES.disabled : BUTTON_STYLES.hover
-
   return (
-    <button className={`${BUTTON_STYLES.small} ${buttonStyle}`} disabled={disabled} onClick={onClick}>
+    <button className={`button button--small ${ disabled ? "button--disabled" : ""}`} disabled={disabled} onClick={onClick}>
       <i className={`fa fa-arrow-${direction}`}></i>
     </button>
   )
@@ -32,10 +29,8 @@ interface PageNumberButtonProps {
 }
 
 const PageNumberButton: React.FC<PageNumberButtonProps> = ({ page, currentPage, setCurrentPage }) => {
-  const buttonStyle = currentPage === page ? BUTTON_STYLES.selected : BUTTON_STYLES.hover
-
   return (
-    <button className={`${BUTTON_STYLES.small} ${buttonStyle}`} onClick={() => setCurrentPage(page)}>
+    <button className={`button button--small ${currentPage === page ? "button--selected" : "" }`} onClick={() => setCurrentPage(page)}>
       {page}
     </button>
   )
@@ -43,7 +38,7 @@ const PageNumberButton: React.FC<PageNumberButtonProps> = ({ page, currentPage, 
 
 const EllipsisButton: React.FC = () => {
   return (
-    <span className={`${BUTTON_STYLES.small} ${BUTTON_STYLES.disabled}`}>
+    <span className="button button--small button--disabled">
       <i className='fa fa-ellipsis-h'></i>
     </span>
   )

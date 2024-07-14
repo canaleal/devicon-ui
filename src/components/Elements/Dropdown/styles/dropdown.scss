@@ -1,33 +1,82 @@
 .dropdown {
-  @apply h-12 hover:cursor-pointer text-sm px-4 w-full flex justify-between items-center border rounded-md;
+  @apply h-12 text-sm px-4 w-full flex justify-between items-center border rounded-md;
   @apply bg-white text-dark-900 dark:bg-dark-900 dark:text-smoke-100 dark:border-dark-400;
+
+  &:hover {
+    @apply cursor-pointer;
+  }
 
   &--small {
     @apply h-8 px-2;
+    width: fit-content;
   }
 
   &--disabled {
-    @apply bg-gray-100 text-gray-400 dark:bg-dark-800 dark:text-dark-400 dark:border-dark-400 hover:cursor-auto;
+    @apply bg-gray-100 text-gray-400 dark:bg-dark-800 dark:text-dark-400 dark:border-dark-400;
+
+    &:hover {
+      @apply cursor-auto;
+    }
+  }
+
+  &__placeholder {
+    @apply flex gap-2 items-center;
+  }
+
+  &__popup {
+    @apply absolute mt-1 w-full bg-white dark:text-dark-900 border shadow-lg z-30 rounded-md overflow-hidden;
+  }
+
+  &__item {
+    @apply px-4 py-2 text-sm text-left items-center flex gap-2;
+
+    &:hover {
+      @apply bg-gray-100 cursor-pointer;
+    }
+
+    &--reset {
+      @apply py-4 border-t w-full;
+    }
+
+    &--selected {
+      @apply bg-frog-800 text-smoke-100;
+
+      &:hover {
+        @apply bg-frog-800;
+      }
+    }
+
+    &--disabled {
+      @apply bg-gray-100 text-gray-400 dark:bg-dark-800 dark:text-dark-400 dark:border-dark-400;
+
+      &:hover {
+        @apply cursor-auto;
+      }
+    }
+  }
+
+  &__color-picker {
+    
+    &__mark {
+      @apply w-8 h-6 rounded-md inline-block
+    }
+
+    &__input {
+      @apply h-12 w-full rounded-md border-0;
+  
+      &:hover {
+        @apply cursor-pointer;
+      }
+    }
+  
+    &__item {
+      @apply h-6 w-full rounded-md border-0 transition-transform;
+  
+      &:hover {
+        @apply scale-110 cursor-pointer;
+      }
+    }
+  
   }
 }
 
-.dropdown-popup {
-  @apply absolute mt-1 w-full bg-white dark:text-dark-900 border shadow-lg z-30 rounded-md overflow-hidden;
-}
-
-.dropdown-item {
-  @apply px-4 py-2 cursor-pointer text-sm text-left items-center flex gap-2;
-  @apply hover:bg-gray-100;
-
-  &--reset {
-    @apply py-4 border-t w-full;
-  }
-
-  &--selected {
-    @apply bg-frog-800 hover:bg-frog-800 text-smoke-100;
-  }
-
-  &--disabled {
-    @apply bg-gray-100 text-gray-400 dark:bg-dark-800 dark:text-dark-400 dark:border-dark-400 hover:cursor-auto;
-  }
-}

@@ -1,0 +1,21 @@
+.code-block {
+    @apply flex flex-col border border-dark-400 h-fit rounded-md overflow-hidden;
+
+    &__header {
+        @apply flex flex-row justify-between border-b border-dark-400 bg-dark-900;
+    }
+
+
+    &__button {
+        @apply flex gap-2 items-center px-4 h-12 transition-colors font-bold text-sm;
+        @apply text-smoke-100;
+
+        &:hover {
+            @apply bg-frog-800 text-white;
+        }
+
+        &--selected {
+            @apply bg-frog-800 text-white;
+        }
+    }
+}

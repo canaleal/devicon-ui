@@ -75,7 +75,7 @@ const DropdownButton = ({
   const BUTTON_STYLE = `dropdown ${isDisabled ? 'dropdown--disabled' : ''}`
   return (
     <button onClick={toggleDropdown} className={BUTTON_STYLE}>
-      <span>{selectedOption}</span>
+      <span className='dropdown__placeholder'>{selectedOption}</span>
       <i className={`fas ${isOpen ? 'fa-chevron-up' : 'fa-chevron-down'}`} />
     </button>
   )
@@ -88,9 +88,9 @@ const DropdownMenu = ({
   options: string[]
   handleOptionClick: (option: string) => void
 }) => (
-  <ul className='dropdown-popup'>
+  <ul className='dropdown__popup'>
     {options.map((option) => (
-      <li key={option} onClick={() => handleOptionClick(option)} className={'dropdown-item'}>
+      <li key={option} onClick={() => handleOptionClick(option)} className={'dropdown__item'}>
         {option}
       </li>
     ))}

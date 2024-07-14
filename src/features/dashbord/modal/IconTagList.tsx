@@ -1,4 +1,4 @@
-import { BUTTON_STYLES } from '../../../components/Elements/Button/ButtonStyles'
+
 import { Tooltip } from '../../../components/Elements/Tooltip'
 import { copyToClipboard } from '../../../helpers/copyToClipboard'
 
@@ -12,7 +12,7 @@ export const TagList = ({ tags, extraClasses }: TagListProps) => {
   return (
     <div className={`flex flex-row gap-2 items-center ${extraClasses}`}>
       <Tooltip content='Copy Categories' position='top' flashMessage='Copied!'>
-        <button onClick={() => copyToClipboard(tags.toString())} className={`${BUTTON_STYLES.base}`}>
+        <button onClick={() => copyToClipboard(tags.toString())} className="button button--icon">
           <i className='fa-solid fa-folder'></i>
         </button>
       </Tooltip>

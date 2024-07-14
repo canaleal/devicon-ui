@@ -2,7 +2,7 @@ import { copyToClipboard } from '../../../helpers/copyToClipboard'
 import { Tooltip } from '../Tooltip'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { a11yDark } from 'react-syntax-highlighter/dist/esm/styles/prism'
-import { CODE_BLOCK_BUTTON_STYLE, CODE_BLOCK_STYLE } from './CodeButtonStyles'
+import "./styles/codeBlock.css"
 
 export interface CodeBlockProps {
   code: string
@@ -34,7 +34,7 @@ const CodeBlockOption = ({ codeType, isSelected, onClickCodeBlockOption }: CodeB
     <button
       key={codeType}
       onClick={codeButtonClick}
-      className={`${CODE_BLOCK_BUTTON_STYLE.button} ${isSelected ? CODE_BLOCK_BUTTON_STYLE.selected : CODE_BLOCK_BUTTON_STYLE.colors}  `}
+      className={`code-block__button ${isSelected ? "code-block__button--selected" : ""}`}
     >
       <span>{codeType}</span>
     </button>
@@ -54,7 +54,7 @@ const CopyCodeButton = ({ codeString }: CopyCodeButtonProps) => {
     <Tooltip content='Copy Code' position='bottom' flashMessage='Copied!'>
       <button
         onClick={copyButtonClick}
-        className={`ml-auto ${CODE_BLOCK_BUTTON_STYLE.button} ${CODE_BLOCK_BUTTON_STYLE.colors}`}
+        className={`code-block__button ml-auto `}
       >
         <span>Copy Code</span>
         <i className='fa-solid fa-copy'></i>
@@ -64,7 +64,7 @@ const CopyCodeButton = ({ codeString }: CopyCodeButtonProps) => {
 }
 
 const CodeTitle = ({ title }: { title: string }) => {
-  return <p className={`${CODE_BLOCK_BUTTON_STYLE.button} ${CODE_BLOCK_BUTTON_STYLE.selected}`}>{title}</p>
+  return <p className="code-block__button code-block__button--selected">{title}</p>
 }
 
 export const CodeBlock = ({
@@ -77,8 +77,8 @@ export const CodeBlock = ({
   const codeString = code.replace(/(\r\n|\n|\r)/gm, '')
 
   return (
-    <div className={CODE_BLOCK_STYLE.container}>
-      <div className={CODE_BLOCK_STYLE.header}>
+    <div className="code-block">
+      <div className="code-block__header">
         {title && <CodeTitle title={title} />}
         {codeBlockOptions && onClickCodeBlockOption && (
           <div className='flex flex-row mr-auto'>
