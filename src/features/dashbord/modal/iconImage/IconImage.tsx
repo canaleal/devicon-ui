@@ -5,6 +5,7 @@ import { IIconSize } from '../types'
 import '../../../../components/Elements/Button/styles/button.css'
 import './styles/iconImage.css'
 import { IconVersion, IIcon } from '../../../../types'
+import { createStyleMap } from '../helpers/iconImage'
 
 interface IconContainerProps {
   icon: IIcon,
@@ -29,29 +30,18 @@ export const IconImage = ({ icon, selectedIconSize, selectedColor, selectedVersi
 
   const ICON_IMAGE_STYLE = `icon-image ${isDark ? 'icon-image--dark' : 'icon-image--light'} ${extraClasses}`
   const VIEW_BOX_STYLE = `view-box ${showViewBox ? (isDark ? 'view-box--dark' : 'view-box--light') : ''}`
-
-  const createStyleMap = () => {
-    const styleMap = {
-      WebkitMaskImage: `url(${iconUrl})`,
-      maskImage: `url(${iconUrl})`,
-      background: selectedColor
-    }
-    return styleMap;
-  }
-  const USE_MASK = icon.versions.font.includes(selectedVersion);
-  const STYLE_MAP = USE_MASK && createStyleMap()
+  const STYLE_MAP = createStyleMap(icon, selectedVersion, selectedColor, iconUrl)
 
   return (
     <div className={ICON_IMAGE_STYLE}>
       <div className={VIEW_BOX_STYLE}>
-        {USE_MASK ? (
+        {STYLE_MAP ? (
           <div style={{ height: selectedIconSize.height, width: selectedIconSize.width, ...STYLE_MAP }} />
         ) : (
           <img
             height={selectedIconSize.height}
             width={selectedIconSize.width}
             src={iconUrl}
-            alt={icon.name}
           />
         )}
       </div>

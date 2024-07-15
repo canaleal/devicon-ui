@@ -12,6 +12,7 @@ export const fetchIconSVG = async (iconUrl: string) => {
   const response = await fetch(iconUrl)
   return response.text()
 }
+
 export const adjustSVGAttributes = (
   icon: IIcon,
   svgContent: string,
@@ -37,10 +38,8 @@ export const adjustSVGAttributes = (
   };
 
   let updatedSvgContent = svgContent;
-  if (iconSize.name !== 'Medium') {
-    updatedSvgContent = replaceOrAddAttribute(updatedSvgContent, 'width');
-    updatedSvgContent = replaceOrAddAttribute(updatedSvgContent, 'height');
-  }
+  updatedSvgContent = replaceOrAddAttribute(updatedSvgContent, 'width');
+  updatedSvgContent = replaceOrAddAttribute(updatedSvgContent, 'height');
   updatedSvgContent = replaceOrAddFillColors(updatedSvgContent);
   return updatedSvgContent;
 };
@@ -76,20 +75,21 @@ export const getIconTag = (icon: IIcon, selectedVersion: IconVersion, iconSize: 
 };
 
 
-export const createIconCodeBlockText = async (
+export const createIconCodeBlockText = (
   icon: IIcon,
   iconSize: IIconSize,
   iconUrl: string,
+  svgContent: string,
   selectedVersion: IconVersion,
   selectedColor: string,
   selectedCodeBlockFormat: CodeBlockOptionTypes
 ) => {
-  const codeClockFormats: Record<CodeBlockOptionTypes, () => string | Promise<string>> = {
+  const codeClockFormats: Record<CodeBlockOptionTypes, () => string> = {
     LINK: () => iconUrl,
     IMG: () => getImageTag(icon, iconUrl, iconSize),
-    SVG: async () => adjustSVGAttributes(icon, await fetchIconSVG(iconUrl), iconSize,selectedColor),
-    ICON: () => getIconTag(icon, selectedVersion, iconSize, selectedColor)
+    ICON: () => getIconTag(icon, selectedVersion, iconSize, selectedColor),
+    SVG: () => adjustSVGAttributes(icon, svgContent, iconSize, selectedColor)
   }
 
-  return codeClockFormats[selectedCodeBlockFormat] ? await codeClockFormats[selectedCodeBlockFormat]() : ''
+  return codeClockFormats[selectedCodeBlockFormat]();
 }

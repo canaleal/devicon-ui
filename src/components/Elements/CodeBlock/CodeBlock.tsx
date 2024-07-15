@@ -16,7 +16,8 @@ export interface CodeBlockProps {
 const SYNTAX_HIGHLIGHTER_STYLE = {
   margin: '0rem',
   padding: '0.75rem 1rem ',
-  borderRadius: '0rem'
+  borderRadius: '0rem',
+  height: '3rem'
 }
 
 interface CodeBlockOptionProps {

@@ -1,10 +1,10 @@
 .icon-image {
     @apply flex-1 flex flex-col p-4 h-[30rem] rounded-md;
-   
+
     &--light {
         @apply bg-white text-dark-900 border;
     }
-  
+
     &--dark {
         @apply bg-dark-900 text-smoke-100 border border-dark-400;
     }
@@ -13,7 +13,6 @@
 
 .view-box {
     @apply m-auto;
-    mask: url(var(--image)) no-repeat center / contain;
 
     &--light {
         @apply border border-dotted border-dark-900;

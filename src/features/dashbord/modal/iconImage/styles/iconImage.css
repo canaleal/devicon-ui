@@ -10,8 +10,6 @@
 
 .view-box {
   @apply m-auto;
-  -webkit-mask: url(var(--image)) no-repeat center/contain;
-          mask: url(var(--image)) no-repeat center/contain;
 }
 .view-box--light {
   @apply border border-dotted border-dark-900;

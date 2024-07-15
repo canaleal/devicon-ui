@@ -11,7 +11,7 @@ import { copyToClipboard } from '../../../helpers/copyToClipboard'
 import IconImage from './iconImage/IconImage'
 import ColorPickerDropdown from '../../../components/Elements/Dropdown/ColorPickerDropdown'
 import { CodeBlock } from '../../../components/Elements/CodeBlock'
-import { createIconCodeBlockText, getCodeBlockOptions } from './helpers/codeBlockContent'
+import {  createIconCodeBlockText, fetchIconSVG, getCodeBlockOptions } from './helpers/codeBlockContent'
 
 interface IconModalProps {
   icon: IIcon
@@ -22,7 +22,9 @@ export const IconModal = ({ icon, deviconBranch }: IconModalProps) => {
   const [selectedVersion, setSelectedVersion] = useState<IconVersion>(icon.versions.svg[0])
   const [selectedIconSize, setSelectedIconSize] = useState<IIconSize>(INIT_ICON_SIZE)
   const [selectedColor, setSelectedColor] = useState<string>(icon.color)
+
   const iconUrl = createDeviconIconUrl(icon.name, selectedVersion, deviconBranch)
+  const [rawSvgContent, setRawSvgContent] = useState<string>('')
   const [codeBlockOptions, setCodeBlockOptions] = useState<CodeBlockOptionTypes[]>([])
   const [selectedOption, setSelectedOption] = useState<CodeBlockOptionTypes>('LINK')
   const [codeText, setCodeText] = useState<string>('')
@@ -32,11 +34,8 @@ export const IconModal = ({ icon, deviconBranch }: IconModalProps) => {
   }
 
   useEffect(() => {
-    const createCodeText = async () => {
-      setCodeText(await createIconCodeBlockText(icon, selectedIconSize, iconUrl, selectedVersion, selectedColor, selectedOption))
-    }
-    createCodeText()
-  }, [selectedIconSize, iconUrl, selectedOption, selectedVersion, selectedColor])
+    setCodeText(createIconCodeBlockText(icon, selectedIconSize, iconUrl, rawSvgContent, selectedVersion, selectedColor, selectedOption))
+  }, [rawSvgContent, selectedOption, selectedIconSize, selectedVersion, selectedColor])
 
   useEffect(() => {
     const tempCodeBlockOptions = getCodeBlockOptions(deviconBranch, icon, selectedVersion)
@@ -45,6 +44,14 @@ export const IconModal = ({ icon, deviconBranch }: IconModalProps) => {
     }
     setCodeBlockOptions(tempCodeBlockOptions)
   }, [selectedVersion])
+
+  useEffect(() => {
+    const getRawSVGContent = async () => {
+      const rawSVG = await fetchIconSVG(iconUrl);
+      setRawSvgContent(rawSVG);
+    }
+    getRawSVGContent()
+  }, [iconUrl])
 
 
   return (
