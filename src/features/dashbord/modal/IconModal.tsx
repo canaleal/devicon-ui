@@ -1,18 +1,17 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { DEVICON_VERSION_RELEASE } from '../../../constants'
 import { DeviconBranch, IIcon, IconVersion } from '../../../types'
 import { createDeviconIconUrl } from '../../../helpers/iconUrl'
 import { Tooltip } from '../../../components/Elements/Tooltip'
-import { IIconSize, ICON_SIZE_OPTIONS, INIT_ICON_SIZE } from './types'
+import { IIconSize, ICON_SIZE_OPTIONS, INIT_ICON_SIZE, CodeBlockOptionTypes } from './types'
 import { Dropdown } from '../../../components/Elements/Dropdown'
 import { Table } from '../../../components/Elements/Table'
 import { TextBar } from '../../../components/Elements/TextBar'
-
 import { copyToClipboard } from '../../../helpers/copyToClipboard'
-
-import IconCode from './IconCode'
 import IconImage from './iconImage/IconImage'
 import ColorPickerDropdown from '../../../components/Elements/Dropdown/ColorPickerDropdown'
+import { CodeBlock } from '../../../components/Elements/CodeBlock'
+import { createIconCodeBlockText, getCodeBlockOptions } from './helpers/codeBlockContent'
 
 interface IconModalProps {
   icon: IIcon
@@ -24,6 +23,29 @@ export const IconModal = ({ icon, deviconBranch }: IconModalProps) => {
   const [selectedIconSize, setSelectedIconSize] = useState<IIconSize>(INIT_ICON_SIZE)
   const [selectedColor, setSelectedColor] = useState<string>(icon.color)
   const iconUrl = createDeviconIconUrl(icon.name, selectedVersion, deviconBranch)
+  const [codeBlockOptions, setCodeBlockOptions] = useState<CodeBlockOptionTypes[]>([])
+  const [selectedOption, setSelectedOption] = useState<CodeBlockOptionTypes>('LINK')
+  const [codeText, setCodeText] = useState<string>('')
+
+  const handleClick = (codeType: string) => {
+    setSelectedOption(codeType as CodeBlockOptionTypes)
+  }
+
+  useEffect(() => {
+    const createCodeText = async () => {
+      setCodeText(await createIconCodeBlockText(icon, selectedIconSize, iconUrl, selectedVersion, selectedColor, selectedOption))
+    }
+    createCodeText()
+  }, [selectedIconSize, iconUrl, selectedOption, selectedVersion, selectedColor])
+
+  useEffect(() => {
+    const tempCodeBlockOptions = getCodeBlockOptions(deviconBranch, icon, selectedVersion)
+    if (!tempCodeBlockOptions.includes(selectedOption)) {
+      setSelectedOption(tempCodeBlockOptions[0])
+    }
+    setCodeBlockOptions(tempCodeBlockOptions)
+  }, [selectedVersion])
+
 
   return (
     <>
@@ -35,7 +57,7 @@ export const IconModal = ({ icon, deviconBranch }: IconModalProps) => {
       </Tooltip>
 
       <section className='flex flex-col 2xl:flex-row my-4 gap-8'>
-        <IconImage iconUrl={iconUrl} iconName={icon.name} iconSize={selectedIconSize} extraClasses='flex-1' />
+        <IconImage icon={icon} iconUrl={iconUrl} selectedIconSize={selectedIconSize} selectedVersion={selectedVersion} selectedColor={selectedColor} extraClasses='flex-1' />
         <div className='flex-1 flex flex-col gap-4'>
           <TextBar icon={{ icon: 'fa-solid fa-folder', copyTitle: 'Copy Tags' }} content={[icon.name]} />
           <div className='flex flex-row gap-4 w-full'>
@@ -66,8 +88,8 @@ export const IconModal = ({ icon, deviconBranch }: IconModalProps) => {
               defaultColor={icon.color}
               selectedColor={selectedColor}
               onColorChange={(color) => {
-                if(color != selectedColor)
-                setSelectedColor(color)
+                if (color != selectedColor)
+                  setSelectedColor(color)
               }}
             />
           </div>
@@ -84,15 +106,12 @@ export const IconModal = ({ icon, deviconBranch }: IconModalProps) => {
           />
         </div>
       </section>
-
-      <IconCode
-        icon={icon}
-        iconSize={selectedIconSize}
-        iconUrl={iconUrl}
-        deviconBranch={deviconBranch}
-        selectedVersion={selectedVersion}
+      <CodeBlock
+        code={codeText}
+        codeBlockOptions={codeBlockOptions}
+        selectedOption={selectedOption}
+        onClickCodeBlockOption={handleClick}
       />
-
       <div className='hidden lg:flex flex-row justify-between mt-4'>
         <TextBar title='Alt Names' content={icon.altnames ?? []} />
         <span className='text-sm'>{deviconBranch === 'master' ? DEVICON_VERSION_RELEASE : 'Development Branch'}</span>

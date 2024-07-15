@@ -13,6 +13,7 @@
 
 .view-box {
     @apply m-auto;
+    mask: url(var(--image)) no-repeat center / contain;
 
     &--light {
         @apply border border-dotted border-dark-900;

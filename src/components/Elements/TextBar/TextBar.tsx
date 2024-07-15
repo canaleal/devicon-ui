@@ -20,7 +20,7 @@ export const TextBar = ({ title, icon, content }: TextBarProps) => {
       {title && <span className='font-bold'>{title}:</span>}
       {icon && (
         <Tooltip content={icon.copyTitle} position='top' flashMessage='Copied!'>
-          <button onClick={() => copyToClipboard(content.toString())} className="button">
+          <button onClick={() => copyToClipboard(content.toString())} className="button button--icon">
             <i className={icon.icon}></i>
           </button>
         </Tooltip>

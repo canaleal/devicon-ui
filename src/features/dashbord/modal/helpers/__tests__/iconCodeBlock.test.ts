@@ -1,7 +1,7 @@
 // Assuming you have Jest configured and installed
 
 import { IIconSize } from '../../types'
-import { adjustSVGAttributes, getImageTag, getITag, createIconCodeBlockText } from '../iconCodeBlock'
+import { adjustSVGAttributes, getImageTag, getITag, createIconCodeBlockText } from '../codeBlockContent'
 import { MOCK_EXAMPLE_ICON } from './mocks'
 
 describe('adjustSVGAttributes', () => {
