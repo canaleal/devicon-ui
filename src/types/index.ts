@@ -16,3 +16,9 @@ export interface IIcon {
     alias: IconVersion
   }[]
 }
+
+export interface IException {
+  name: string;
+  message: string;
+}
+

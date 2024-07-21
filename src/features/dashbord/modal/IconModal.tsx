@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { DEVICON_VERSION_RELEASE } from '../../../constants'
-import { DeviconBranch, IIcon, IconVersion } from '../../../types'
+import { DeviconBranch, IException, IIcon, IconVersion } from '../../../types'
 import { createDeviconIconUrl } from '../../../helpers/iconUrl'
 import { Tooltip } from '../../../components/Elements/Tooltip'
 import { IIconSize, ICON_SIZE_OPTIONS, INIT_ICON_SIZE, CodeBlockOptionTypes } from './types'
@@ -11,7 +11,9 @@ import { copyToClipboard } from '../../../helpers/copyToClipboard'
 import IconImage from './iconImage/IconImage'
 import ColorPickerDropdown from '../../../components/Elements/Dropdown/ColorPickerDropdown'
 import { CodeBlock } from '../../../components/Elements/CodeBlock'
-import {  createIconCodeBlockText, fetchIconSVG, getCodeBlockOptions } from './helpers/codeBlockContent'
+import { createIconCodeBlockText, fetchIconSVG, getCodeBlockOptions } from './helpers/codeBlockContent'
+import { ExceptionBar } from '../../../components/Elements/ExceptionBar/ExceptionBar'
+import { getSvgExceptions } from '../../../helpers/svgCheck'
 
 interface IconModalProps {
   icon: IIcon
@@ -22,36 +24,37 @@ export const IconModal = ({ icon, deviconBranch }: IconModalProps) => {
   const [selectedVersion, setSelectedVersion] = useState<IconVersion>(icon.versions.svg[0])
   const [selectedIconSize, setSelectedIconSize] = useState<IIconSize>(INIT_ICON_SIZE)
   const [selectedColor, setSelectedColor] = useState<string>(icon.color)
-
-  const iconUrl = createDeviconIconUrl(icon.name, selectedVersion, deviconBranch)
-  const [rawSvgContent, setRawSvgContent] = useState<string>('')
   const [codeBlockOptions, setCodeBlockOptions] = useState<CodeBlockOptionTypes[]>([])
   const [selectedOption, setSelectedOption] = useState<CodeBlockOptionTypes>('LINK')
   const [codeText, setCodeText] = useState<string>('')
+  const [iconExceptions, setIconExceptions] = useState<IException[]>([])
+  const [svgContent, setSvgContent] = useState<string>('')
+  const [iconUrl, setIconUrl] = useState<string>('')
 
-  const handleClick = (codeType: string) => {
-    setSelectedOption(codeType as CodeBlockOptionTypes)
-  }
-
-  useEffect(() => {
-    setCodeText(createIconCodeBlockText(icon, selectedIconSize, iconUrl, rawSvgContent, selectedVersion, selectedColor, selectedOption))
-  }, [rawSvgContent, selectedOption, selectedIconSize, selectedVersion, selectedColor])
 
   useEffect(() => {
+    setCodeText(createIconCodeBlockText(icon, selectedIconSize, iconUrl, svgContent, selectedVersion, selectedColor, selectedOption))
+  }, [selectedOption, selectedIconSize, selectedColor])
+
+
+  useEffect(() => {
+    const link = createDeviconIconUrl(icon.name, selectedVersion, deviconBranch)
+    setIconUrl(link)
+
     const tempCodeBlockOptions = getCodeBlockOptions(deviconBranch, icon, selectedVersion)
-    if (!tempCodeBlockOptions.includes(selectedOption)) {
-      setSelectedOption(tempCodeBlockOptions[0])
-    }
     setCodeBlockOptions(tempCodeBlockOptions)
-  }, [selectedVersion])
+    if (!tempCodeBlockOptions.includes(selectedOption)) setSelectedOption(tempCodeBlockOptions[0])
+    
 
-  useEffect(() => {
-    const getRawSVGContent = async () => {
-      const rawSVG = await fetchIconSVG(iconUrl);
-      setRawSvgContent(rawSVG);
+    const getInitialData = async () => {
+      const tempSvgContent = await fetchIconSVG(link)
+      setSvgContent(tempSvgContent);
+      setCodeText(createIconCodeBlockText(icon, selectedIconSize, link, tempSvgContent, selectedVersion, selectedColor, selectedOption))
+      setIconExceptions(getSvgExceptions(icon, selectedVersion, tempSvgContent));
     }
-    getRawSVGContent()
-  }, [iconUrl])
+    getInitialData();
+
+  }, [icon, selectedVersion, deviconBranch])
 
 
   return (
@@ -111,13 +114,14 @@ export const IconModal = ({ icon, deviconBranch }: IconModalProps) => {
               setSelectedVersion(item.base as IconVersion)
             }}
           />
+          <ExceptionBar exceptions={iconExceptions} extraClasses='fade-in' />
         </div>
       </section>
       <CodeBlock
         code={codeText}
         codeBlockOptions={codeBlockOptions}
         selectedOption={selectedOption}
-        onClickCodeBlockOption={handleClick}
+        onClickCodeBlockOption={(codeType) => setSelectedOption(codeType as CodeBlockOptionTypes)}
       />
       <div className='hidden lg:flex flex-row justify-between mt-4'>
         <TextBar title='Alt Names' content={icon.altnames ?? []} />

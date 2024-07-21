@@ -94,6 +94,7 @@ const GalleryPage = () => {
           <SearchBar size='xl' onSearch={setSearchTerm} autoCompleteOptions={searchAutoCompleteOptions} />
         </div>
       </section>
+      
 
       <section className='flex flex-col px-8 md:px-12 lg:px-24 py-8 gap-4 w-full dark:bg-dark-700 dark:text-smoke-100'>
         <CodeBlockLink deviconBranch={deviconBranch} />

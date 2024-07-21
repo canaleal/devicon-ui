@@ -4,15 +4,6 @@ import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { a11yDark } from 'react-syntax-highlighter/dist/esm/styles/prism'
 import "./styles/codeBlock.css"
 
-export interface CodeBlockProps {
-  code: string
-  title?: string
-  selectedOption?: string
-  codeBlockOptions?: string[]
-  onClickCodeBlockOption?: (codeType: string) => void
-  children?: React.ReactNode
-}
-
 const SYNTAX_HIGHLIGHTER_STYLE = {
   margin: '0rem',
   padding: '0.75rem 1rem ',
@@ -21,56 +12,34 @@ const SYNTAX_HIGHLIGHTER_STYLE = {
 }
 
 interface CodeBlockOptionProps {
-  codeType: string
-  isSelected: boolean
+  optionName: string
+  isOptionSelected: boolean
   onClickCodeBlockOption: (codeType: string) => void
 }
 
-const CodeBlockOption = ({ codeType, isSelected, onClickCodeBlockOption }: CodeBlockOptionProps) => {
-  const codeButtonClick = () => {
-    onClickCodeBlockOption(codeType)
-  }
-
+const CodeBlockOption = ({ optionName, isOptionSelected, onClickCodeBlockOption }: CodeBlockOptionProps) => {
   return (
     <button
-      key={codeType}
-      onClick={codeButtonClick}
-      className={`code-block__button ${isSelected ? "code-block__button--selected" : ""}`}
+      key={optionName}
+      onClick={() => onClickCodeBlockOption(optionName)}
+      className={`code-block__button ${isOptionSelected ? "code-block__button--selected" : ""}`}
     >
-      <span>{codeType}</span>
+      <span>{optionName}</span>
     </button>
   )
 }
 
-interface CopyCodeButtonProps {
-  codeString: string
-}
-
-const CopyCodeButton = ({ codeString }: CopyCodeButtonProps) => {
-  const copyButtonClick = () => {
-    copyToClipboard(codeString)
-  }
-
-  return (
-    <Tooltip content='Copy Code' position='bottom' flashMessage='Copied!'>
-      <button
-        onClick={copyButtonClick}
-        className={`code-block__button ml-auto `}
-      >
-        <span>Copy Code</span>
-        <i className='fa-solid fa-copy'></i>
-      </button>
-    </Tooltip>
-  )
-}
-
-const CodeTitle = ({ title }: { title: string }) => {
-  return <p className="code-block__button code-block__button--selected">{title}</p>
+export interface CodeBlockProps {
+  code: string
+  title?: string
+  selectedOption?: string
+  codeBlockOptions?: string[]
+  onClickCodeBlockOption?: (codeType: string) => void
 }
 
 export const CodeBlock = ({
-  title,
   code,
+  title,
   selectedOption,
   codeBlockOptions,
   onClickCodeBlockOption
@@ -80,20 +49,28 @@ export const CodeBlock = ({
   return (
     <div className="code-block">
       <div className="code-block__header">
-        {title && <CodeTitle title={title} />}
+        {title && <p className="code-block__button code-block__button--no-hover">{title}</p>}
         {codeBlockOptions && onClickCodeBlockOption && (
           <div className='flex flex-row mr-auto'>
             {codeBlockOptions.map((codeType) => (
               <CodeBlockOption
                 key={codeType}
-                codeType={codeType}
-                isSelected={codeType === selectedOption}
+                optionName={codeType}
+                isOptionSelected={codeType === selectedOption}
                 onClickCodeBlockOption={onClickCodeBlockOption}
               />
             ))}
           </div>
         )}
-        <CopyCodeButton codeString={codeString} />
+        <Tooltip content='Copy Code' position='bottom' flashMessage='Copied!'>
+          <button
+            onClick={() => copyToClipboard(codeString)}
+            className="code-block__button ml-auto"
+          >
+            <span>Copy Code</span>
+            <i className='fa-solid fa-copy'></i>
+          </button>
+        </Tooltip>
       </div>
 
       <SyntaxHighlighter

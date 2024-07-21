@@ -1,0 +1,12 @@
+.exception-container {
+  @apply flex flex-col gap-2;
+}
+.exception-container__element {
+  @apply flex flex-row gap-2 text-red-500 items-center;
+}
+.exception-container__element i {
+  @apply text-lg;
+}
+.exception-container__element span {
+  @apply text-sm;
+}/*# sourceMappingURL=exceptionBar.css.map */

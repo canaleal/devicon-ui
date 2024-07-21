@@ -1,11 +1,10 @@
 .card {
   @apply flex flex-col align-middle justify-center text-center gap-4 w-full overflow-hidden relative h-40 text-sm border;
-  @apply rounded-md;
-  @apply bg-white shadow-md dark:bg-dark-900 dark:border-dark-400;
+  @apply rounded-md shadow-sm;
+  @apply bg-white  dark:bg-dark-900 dark:border-dark-400;
 }
 .card:hover {
-  @apply scale-105;
-  @apply border-frog-800 dark:border-frog-800;
+  @apply border-frog-800 dark:border-frog-800 shadow-md;
 }
 .card__version-mark {
   @apply absolute top-0 right-0 p-2 text-xs rounded-bl-md font-bold;

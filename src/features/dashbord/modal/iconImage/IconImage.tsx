@@ -17,45 +17,43 @@ interface IconContainerProps {
 }
 
 export const IconImage = ({ icon, selectedIconSize, selectedColor, selectedVersion, iconUrl, extraClasses }: IconContainerProps) => {
-  const [isDark, setIsDark] = useState<boolean>(false)
-  const [showViewBox, setShowViewBox] = useState<boolean>(false)
-
-  const toggleBackground = () => {
-    setIsDark(!isDark)
+  const styleMap = createStyleMap(icon, selectedVersion, selectedColor, iconUrl)
+  const [isDarkBackground, setIsDarkBackground] = useState<boolean>(false)
+  const [isViewBoxVisible, setIsViewBoxVisible] = useState<boolean>(false)
+ 
+  const handleToggleBackground = () => {
+    setIsDarkBackground(!isDarkBackground)
   }
 
-  const toggleViewBox = () => {
-    setShowViewBox(!showViewBox)
+  const handleToggleViewBox = () => {
+    setIsViewBoxVisible(!isViewBoxVisible)
   }
-
-  const ICON_IMAGE_STYLE = `icon-image ${isDark ? 'icon-image--dark' : 'icon-image--light'} ${extraClasses}`
-  const VIEW_BOX_STYLE = `view-box ${showViewBox ? (isDark ? 'view-box--dark' : 'view-box--light') : ''}`
-  const STYLE_MAP = createStyleMap(icon, selectedVersion, selectedColor, iconUrl)
 
   return (
-    <div className={ICON_IMAGE_STYLE}>
-      <div className={VIEW_BOX_STYLE}>
-        {STYLE_MAP ? (
-          <div style={{ height: selectedIconSize.height, width: selectedIconSize.width, ...STYLE_MAP }} />
+    <div className={`icon-image ${isDarkBackground ? 'icon-image--dark' : 'icon-image--light'} ${extraClasses}`}>
+      <div className={`view-box  ${isViewBoxVisible ? (isDarkBackground ? 'view-box--dark' : 'view-box--light') : ''}`}>
+        {styleMap ? (
+          <div className='fade-in' style={{ height: selectedIconSize.height, width: selectedIconSize.width, ...styleMap }} />
         ) : (
           <img
             height={selectedIconSize.height}
             width={selectedIconSize.width}
             src={iconUrl}
+            className='fade-in'
           />
         )}
       </div>
 
       <div className='flex flex-row justify-between'>
-        <Tooltip content={`${isDark ? 'Light' : 'Dark'} Background`} position='top'>
-          <button onClick={toggleBackground} className='button button--icon icon--xxl'>
-            {isDark ? <i className='fa-solid fa-sun'></i> : <i className='fa-solid fa-moon'></i>}
+        <Tooltip content={`${isDarkBackground ? 'Light' : 'Dark'} Background`} position='top'>
+          <button onClick={handleToggleBackground} className='button button--icon icon--xxl'>
+            {isDarkBackground ? <i className='fa-solid fa-sun'></i> : <i className='fa-solid fa-moon'></i>}
           </button>
         </Tooltip>
 
-        <Tooltip content={`${showViewBox ? 'Hide' : 'Show'} ViewBox`} position='top'>
-          <button onClick={toggleViewBox} className='button button--icon icon--xxl'>
-            {showViewBox ? <i className='fa-solid fa-eye-slash'></i> : <i className='fa-solid fa-eye'></i>}
+        <Tooltip content={`${isViewBoxVisible ? 'Hide' : 'Show'} ViewBox`} position='top'>
+          <button onClick={handleToggleViewBox} className='button button--icon icon--xxl'>
+            {isViewBoxVisible ? <i className='fa-solid fa-eye-slash'></i> : <i className='fa-solid fa-eye'></i>}
           </button>
         </Tooltip>
       </div>

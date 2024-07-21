@@ -20,6 +20,7 @@ export const adjustSVGAttributes = (
   selectedColor: string
 ) => {
   const replaceOrAddAttribute = (content: string, attr: 'width' | 'height'): string => {
+    if (iconSize[attr] === 128) return content;
     const pattern = new RegExp(`${attr}="[^"]*"`);
     const replacement = `${attr}="${iconSize[attr]}"`;
     return content.includes(`${attr}=`)

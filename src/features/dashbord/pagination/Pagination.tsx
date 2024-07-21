@@ -25,7 +25,7 @@ export const NoIconsFound = () => (
 
 export const PaginationGrid = ({ icons, onSelect, deviconBranch }: PaginationProps) => {
   return (
-    <div className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-7 3xl:grid-cols-9 gap-4'>
+    <div className='grid grid-cols-2 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 2xl:grid-cols-8 3xl:grid-cols-9 gap-4'>
       {icons.map((icon) => (
         <PaginationCard key={icon.name} icon={icon} onSelect={onSelect} deviconBranch={deviconBranch} />
       ))}
