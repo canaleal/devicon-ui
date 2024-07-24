@@ -9,7 +9,7 @@
 }
 .button--icon:hover {
   @apply text-frog-800;
-  background-color: transparent;
+  @apply bg-transparent dark:bg-transparent;
 }
 .button--selected {
   @apply bg-frog-700 text-white font-bold;

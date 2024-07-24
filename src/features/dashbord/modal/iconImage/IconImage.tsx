@@ -39,7 +39,6 @@ export const IconImage = ({ icon, selectedIconSize, selectedColor, selectedVersi
             height={selectedIconSize.height}
             width={selectedIconSize.width}
             src={iconUrl}
-            className='fade-in'
           />
         )}
       </div>

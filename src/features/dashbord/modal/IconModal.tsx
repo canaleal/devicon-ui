@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { DEVICON_VERSION_RELEASE } from '../../../constants'
-import { DeviconBranch, IException, IIcon, IconVersion } from '../../../types'
+import { DeviconBranch, IIcon, IconVersion } from '../../../types'
 import { createDeviconIconUrl } from '../../../helpers/iconUrl'
 import { Tooltip } from '../../../components/Elements/Tooltip'
 import { IIconSize, ICON_SIZE_OPTIONS, INIT_ICON_SIZE, CodeBlockOptionTypes } from './types'
@@ -11,9 +11,7 @@ import { copyToClipboard } from '../../../helpers/copyToClipboard'
 import IconImage from './iconImage/IconImage'
 import ColorPickerDropdown from '../../../components/Elements/Dropdown/ColorPickerDropdown'
 import { CodeBlock } from '../../../components/Elements/CodeBlock'
-import { createIconCodeBlockText, fetchIconSVG, getCodeBlockOptions } from './helpers/codeBlockContent'
-import { ExceptionBar } from '../../../components/Elements/ExceptionBar/ExceptionBar'
-import { getSvgExceptions } from '../../../helpers/svgCheck'
+import { createIconCodeBlockText, getCodeBlockOptions } from './helpers/codeBlockContent'
 
 interface IconModalProps {
   icon: IIcon
@@ -27,33 +25,24 @@ export const IconModal = ({ icon, deviconBranch }: IconModalProps) => {
   const [codeBlockOptions, setCodeBlockOptions] = useState<CodeBlockOptionTypes[]>([])
   const [selectedOption, setSelectedOption] = useState<CodeBlockOptionTypes>('LINK')
   const [codeText, setCodeText] = useState<string>('')
-  const [iconExceptions, setIconExceptions] = useState<IException[]>([])
-  const [svgContent, setSvgContent] = useState<string>('')
   const [iconUrl, setIconUrl] = useState<string>('')
 
 
   useEffect(() => {
-    setCodeText(createIconCodeBlockText(icon, selectedIconSize, iconUrl, svgContent, selectedVersion, selectedColor, selectedOption))
-  }, [selectedOption, selectedIconSize, selectedColor])
+
+    const getCodeText = async () => {
+      const code = await createIconCodeBlockText(icon, selectedIconSize, iconUrl, selectedVersion, selectedColor, selectedOption)
+      setCodeText(code)
+    }
+    getCodeText()
+  }, [iconUrl, selectedOption, selectedVersion, selectedIconSize, selectedColor])
 
 
   useEffect(() => {
-    const link = createDeviconIconUrl(icon.name, selectedVersion, deviconBranch)
-    setIconUrl(link)
-
+    setIconUrl(createDeviconIconUrl(icon.name, selectedVersion, deviconBranch));
     const tempCodeBlockOptions = getCodeBlockOptions(deviconBranch, icon, selectedVersion)
     setCodeBlockOptions(tempCodeBlockOptions)
     if (!tempCodeBlockOptions.includes(selectedOption)) setSelectedOption(tempCodeBlockOptions[0])
-    
-
-    const getInitialData = async () => {
-      const tempSvgContent = await fetchIconSVG(link)
-      setSvgContent(tempSvgContent);
-      setCodeText(createIconCodeBlockText(icon, selectedIconSize, link, tempSvgContent, selectedVersion, selectedColor, selectedOption))
-      setIconExceptions(getSvgExceptions(icon, selectedVersion, tempSvgContent));
-    }
-    getInitialData();
-
   }, [icon, selectedVersion, deviconBranch])
 
 
@@ -114,7 +103,6 @@ export const IconModal = ({ icon, deviconBranch }: IconModalProps) => {
               setSelectedVersion(item.base as IconVersion)
             }}
           />
-          <ExceptionBar exceptions={iconExceptions} extraClasses='fade-in' />
         </div>
       </section>
       <CodeBlock

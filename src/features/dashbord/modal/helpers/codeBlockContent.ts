@@ -8,10 +8,6 @@ export const getCodeBlockOptions = (deviconBranch: string, icon: IIcon, selected
 }
 
 
-export const fetchIconSVG = async (iconUrl: string) => {
-  const response = await fetch(iconUrl)
-  return response.text()
-}
 
 export const adjustSVGAttributes = (
   icon: IIcon,
@@ -45,6 +41,12 @@ export const adjustSVGAttributes = (
   return updatedSvgContent;
 };
 
+const getSVGTag = async (icon: IIcon, iconUrl: string, iconSize: IIconSize, selectedColor: string) => {
+  const response = await fetch(iconUrl)
+  const svg = await response.text()
+  return adjustSVGAttributes(icon, svg, iconSize, selectedColor)
+}
+
 
 export const getImageTag = (icon: IIcon, iconUrl: string, iconSize: IIconSize) => {
   const styles: { [key: string]: string } = {};
@@ -76,20 +78,20 @@ export const getIconTag = (icon: IIcon, selectedVersion: IconVersion, iconSize: 
 };
 
 
-export const createIconCodeBlockText = (
+export const createIconCodeBlockText = async (
   icon: IIcon,
   iconSize: IIconSize,
   iconUrl: string,
-  svgContent: string,
   selectedVersion: IconVersion,
   selectedColor: string,
   selectedCodeBlockFormat: CodeBlockOptionTypes
 ) => {
-  const codeClockFormats: Record<CodeBlockOptionTypes, () => string> = {
+  
+  const codeClockFormats = {
     LINK: () => iconUrl,
     IMG: () => getImageTag(icon, iconUrl, iconSize),
     ICON: () => getIconTag(icon, selectedVersion, iconSize, selectedColor),
-    SVG: () => adjustSVGAttributes(icon, svgContent, iconSize, selectedColor)
+    SVG: async () =>  await getSVGTag(icon, iconUrl, iconSize, selectedColor)
   }
 
   return codeClockFormats[selectedCodeBlockFormat]();
