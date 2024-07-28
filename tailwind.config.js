@@ -7,7 +7,7 @@ export default {
       colors: {
         smoke: {
           100: '#fffdff',
-          200: '#e0e0e0',
+          200: '#f4f4f4',
           300: '#c1c1c1',
           400: '#a3a3a3'
         },

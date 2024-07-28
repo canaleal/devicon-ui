@@ -4,7 +4,7 @@
     @apply flex border-2 dark:border-dark-400 overflow-hidden w-full rounded-md;
 
     table {
-        @apply table-auto w-full;
+        @apply table-auto w-full bg-white;
     }
 
     &__head {

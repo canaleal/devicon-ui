@@ -68,22 +68,10 @@ const GalleryPage = () => {
         <IconModal icon={selectedIcon!} deviconBranch={deviconBranch} />
       </Modal>
 
-      <section className='flex flex-col xl:flex-row px-8 md:px-12 lg:px-24 py-4 gap-4 w-full border-b border-dark-600 bg-dark-800'>
-        <FilterDropdown
-          filterGroup={filterGroups[0]}
-          handleFilterClick={handleFilterClick}
-          handleResetFilterGroup={handleResetFilterGroup}
-          size='xxl'
-        />
-        <FilterDropdown
-          filterGroup={filterGroups[1]}
-          handleFilterClick={handleFilterClick}
-          handleResetFilterGroup={handleResetFilterGroup}
-          size='xxl'
-        />
-        <div className='flex-1 flex flex-col md:flex-row gap-4 justify-end'>
+      <section className='flex flex-col xl:flex-row px-8 md:px-12 lg:px-24 py-4 gap-4 w-full border-b dark:border-dark-600 dark:bg-dark-800'>
+        <div className='flex-1 flex flex-col md:flex-row gap-4 justify-start'>
           <Dropdown
-            size='md'
+            size='xxl'
             isDisabled={false}
             selectedOption={deviconBranch}
             options={['master', 'develop']}
@@ -93,10 +81,28 @@ const GalleryPage = () => {
           />
           <SearchBar size='xl' onSearch={setSearchTerm} autoCompleteOptions={searchAutoCompleteOptions} />
         </div>
-      </section>
-      
 
-      <section className='flex flex-col px-8 md:px-12 lg:px-24 py-8 gap-4 w-full dark:bg-dark-700 dark:text-smoke-100'>
+        <div className='flex-1 flex flex-col md:flex-row gap-4 justify-end'>
+          <FilterDropdown
+            filterGroup={filterGroups[0]}
+            handleFilterClick={handleFilterClick}
+            handleResetFilterGroup={handleResetFilterGroup}
+            size='xxl'
+          />
+          <FilterDropdown
+            filterGroup={filterGroups[1]}
+            handleFilterClick={handleFilterClick}
+            handleResetFilterGroup={handleResetFilterGroup}
+            size='xxl'
+          />
+        </div>
+
+
+
+      </section>
+
+
+      <section className='flex flex-col px-8 md:px-12 lg:px-24 py-4 gap-4 w-full bg-zinc-50 dark:bg-dark-700 dark:text-smoke-100'>
         <CodeBlockLink deviconBranch={deviconBranch} />
         <Pagination icons={filteredIcons} deviconBranch={deviconBranch} onSelect={setNewSelectedIcon} />
       </section>

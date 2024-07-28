@@ -1,3 +1,5 @@
+import './styles/links.css'
+
 const CONTACT_ITEMS = [
   { link: 'https://github.com/devicons/devicon/', title: 'GitHub', icon: 'devicon-github-original' },
   { link: 'https://devicon.dev/', title: 'Devicon', icon: 'devicon-devicon-plain' }

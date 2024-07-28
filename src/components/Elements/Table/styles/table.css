@@ -2,7 +2,7 @@
   @apply flex border-2 dark:border-dark-400 overflow-hidden w-full rounded-md;
 }
 .table table {
-  @apply table-auto w-full;
+  @apply table-auto w-full bg-white;
 }
 .table__head {
   @apply border-b-2 dark:border-dark-400 bg-dark-900 text-smoke-100;

@@ -28,7 +28,7 @@
   }
 
   &__item {
-    @apply px-4 py-2 text-sm text-left items-center flex gap-2;
+    @apply px-4 py-4 text-sm text-left items-center flex gap-2;
 
     &:hover {
       @apply bg-gray-100 cursor-pointer;
@@ -58,11 +58,11 @@
   &__color-picker {
     
     &__mark {
-      @apply w-8 h-6 rounded-md inline-block
+      @apply w-8 h-6 inline-block
     }
 
     &__input {
-      @apply h-12 w-full rounded-md border-0;
+      @apply h-12 w-full border-0;
   
       &:hover {
         @apply cursor-pointer;
@@ -70,7 +70,7 @@
     }
   
     &__item {
-      @apply h-6 w-full rounded-md border-0 transition-transform;
+      @apply h-6 w-full  border transition-transform;
   
       &:hover {
         @apply scale-110 cursor-pointer;

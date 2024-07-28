@@ -26,7 +26,7 @@ export const PaginationCard = ({ icon, deviconBranch, onSelect }: PaginationCard
     <button
       onClick={() => onSelect(icon)}
       aria-label={`Select icon: ${icon.name}`}
-      className="card fade-in"
+      className={`card ${icon.color === '#fff' ? 'card--dark' : ''}`}
     >
       <img className='mx-auto' width={40} height={'auto'} src={iconUrl} alt={icon.name} />
       <p className='text-xs mx-auto'>{icon.name}</p>

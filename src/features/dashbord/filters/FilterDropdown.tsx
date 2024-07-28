@@ -120,7 +120,7 @@ const DropdownMenu = ({
 
   return (
   <div className='dropdown__popup'>
-    <div className={`flex flex-col mb-4 overflow-y-auto ${hasMaxHeight ? 'h-[30rem]' : 'h-fit'}`}>
+    <div className={`flex flex-col  overflow-y-auto ${hasMaxHeight ? 'h-[30rem]' : 'h-fit'}`}>
       {filterGroup.filters.map((filter, index) => (
         <FilterItem
           key={index}

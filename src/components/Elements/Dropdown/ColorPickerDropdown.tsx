@@ -19,7 +19,12 @@ const PALLET_COLORS = {
   cyan: '#00bcd4',
   green: '#4caf50',
   brown: '#795548',
-  purple: '#673ab7'
+  purple: '#673ab7',
+  blue: '#2196f3',
+  gray: '#9e9e9e',
+  black: '#000000',
+  white: '#ffffff',
+  pink: '#e91e63',
 }
 
 const ColorPickerDropdown = ({
