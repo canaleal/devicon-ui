@@ -15,7 +15,7 @@ const PaginationSelection: React.FC<PaginationSelectionProps> = ({
   totalElements,
   elementsPerPageOptions,
   handlePerPageChange,
-  extraClasses = ''
+  extraClasses
 }: PaginationSelectionProps) => {
   const handlePageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     handlePerPageChange(parseInt(e.target.value, 10))
@@ -26,7 +26,7 @@ const PaginationSelection: React.FC<PaginationSelectionProps> = ({
   const TOTAL_ELEMENTS_TEXT = `${firstElementIndex}-${lastElementIndex} of ${totalElements} icons`
 
   return (
-    <div className={`flex items-center gap-2 text-sm ${extraClasses}`}>
+    <div className={`flex flex-row items-center gap-2 text-sm ${extraClasses}`}>
       <p>Items Per Page</p>
       <select
         value={elementsPerPage}

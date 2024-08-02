@@ -1,1 +1,1 @@
-{"version":3,"sources":["paginationCard.scss","paginationCard.css"],"names":[],"mappings":"AAAA;EACE,uHAAA;EACA,iBAAA;EACA,sDAAA;ACCF;ADCE;EACE,wDAAA;ACCJ;ADEE;EACE,qDAAA;ACAJ;ADGE;EACE,iEAAA;ACDJ;ADGI;EACE,6BAAA;ACDN;ADII;EACE,6BAAA;ACFN","file":"paginationCard.css"}
+{"version":3,"sources":["paginationCard.scss","paginationCard.css"],"names":[],"mappings":"AAAA;EACE,0HAAA;ACCF;ADCE;EACE,oCAAA;ACCJ;ADEE;EACE,wDAAA;ACAJ;ADEI;EACE,kBAAA;ACAN","file":"paginationCard.css"}

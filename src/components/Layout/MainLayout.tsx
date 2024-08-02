@@ -1,5 +1,5 @@
 import { Outlet } from 'react-router-dom'
-import { Footer } from './Footer'
+
 import Navbar from './Navbar'
 import { DarkModeToggle, ScrollButton } from '../Elements/FixedButtons'
 
@@ -11,7 +11,7 @@ export const MainLayout = () => {
 
       <Navbar />
       <Outlet />
-      <Footer />
+
     </section>
   )
 }

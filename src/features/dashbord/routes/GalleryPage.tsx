@@ -68,43 +68,40 @@ const GalleryPage = () => {
         <IconModal icon={selectedIcon!} deviconBranch={deviconBranch} />
       </Modal>
 
-      <section className='flex flex-col xl:flex-row px-8 md:px-12 lg:px-24 py-4 gap-4 w-full border-b dark:border-dark-600 dark:bg-dark-800'>
-        <div className='flex-1 flex flex-col md:flex-row gap-4 justify-start'>
-          <Dropdown
-            size='xxl'
-            isDisabled={false}
-            selectedOption={deviconBranch}
-            options={['master', 'develop']}
-            onChange={(value) => {
-              handleBranchChange(value as DeviconBranch)
-            }}
-          />
-          <SearchBar size='xl' onSearch={setSearchTerm} autoCompleteOptions={searchAutoCompleteOptions} />
-        </div>
-
-        <div className='flex-1 flex flex-col md:flex-row gap-4 justify-end'>
-          <FilterDropdown
-            filterGroup={filterGroups[0]}
-            handleFilterClick={handleFilterClick}
-            handleResetFilterGroup={handleResetFilterGroup}
-            size='xxl'
-          />
-          <FilterDropdown
-            filterGroup={filterGroups[1]}
-            handleFilterClick={handleFilterClick}
-            handleResetFilterGroup={handleResetFilterGroup}
-            size='xxl'
-          />
-        </div>
-
-
-
-      </section>
-
-
-      <section className='flex flex-col px-8 md:px-12 lg:px-24 py-4 gap-4 w-full bg-zinc-50 dark:bg-dark-700 dark:text-smoke-100'>
+      <section className='flex flex-col px-32 py-16 gap-4 w-full bg-smoke-100 dark:bg-dark-700 dark:text-smoke-100'>
         <CodeBlockLink deviconBranch={deviconBranch} />
-        <Pagination icons={filteredIcons} deviconBranch={deviconBranch} onSelect={setNewSelectedIcon} />
+        <div className='flex flex-col  items-center bg-white dark:bg-dark-900 border dark:border-dark-400 shadow-md rounded-lg w-full'>
+          <div className='flex flex-row gap-4 px-8 py-4 border-b dark:border-dark-400  w-full'>
+            <Dropdown
+              extraClasses='w-96'
+              isDisabled={false}
+              selectedOption={deviconBranch}
+              options={['master', 'develop']}
+              onChange={(value) => {
+                handleBranchChange(value as DeviconBranch)
+              }}
+            />
+            <SearchBar placeholder='Search Icons' extraClasses='w-full' onSearch={setSearchTerm} autoCompleteOptions={searchAutoCompleteOptions} />
+
+            <FilterDropdown
+              filterGroup={filterGroups[0]}
+              handleFilterClick={handleFilterClick}
+              handleResetFilterGroup={handleResetFilterGroup}
+              extraClasses='w-96'
+
+            />
+            <FilterDropdown
+              filterGroup={filterGroups[1]}
+              handleFilterClick={handleFilterClick}
+              handleResetFilterGroup={handleResetFilterGroup}
+              extraClasses='w-96'
+            />
+          </div>
+
+          <div className='px-8 py-4 w-full'>
+            <Pagination icons={filteredIcons} deviconBranch={deviconBranch} onSelect={setNewSelectedIcon} />
+          </div>
+        </div>
       </section>
     </>
   )

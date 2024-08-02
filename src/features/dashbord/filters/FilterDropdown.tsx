@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { ICON_VERSION_FA_MAP } from '../../../config'
 import { IFilterGroup, IFilterItem } from './types'
-import { DROPDOWN_SIZES } from '../../../components/Elements/Dropdown'
+
 import { IconVersion } from '../../../types'
 
 interface FilterItemProps {
@@ -24,7 +24,6 @@ interface FiltersPopupProps {
   filterGroup: IFilterGroup
   handleFilterClick: (filterGroup: IFilterGroup, filter: IFilterItem) => void
   handleResetFilterGroup: (filterGroup: IFilterGroup) => void
-  size: keyof typeof DROPDOWN_SIZES
   extraClasses?: string
 }
 
@@ -32,7 +31,7 @@ const FilterDropdown = ({
   filterGroup,
   handleFilterClick,
   handleResetFilterGroup,
-  size,
+
   extraClasses = ''
 }: FiltersPopupProps) => {
   const [isOpen, setIsOpen] = useState(false)
@@ -58,7 +57,7 @@ const FilterDropdown = ({
   const toggleDropdown = () => setIsOpen(!isOpen)
 
   return (
-    <div className={`relative ${DROPDOWN_SIZES[size]} ${extraClasses}`} ref={dropdownRef}>
+    <div className={`relative ${extraClasses}`} ref={dropdownRef}>
       <DropdownButton
         categoryName={filterGroup.categoryName}
         totalActiveFilters={totalActiveFilters}

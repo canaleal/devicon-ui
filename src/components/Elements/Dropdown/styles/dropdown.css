@@ -1,5 +1,5 @@
 .dropdown {
-  @apply h-12 text-sm px-4 w-full flex justify-between items-center border rounded-md;
+  @apply h-12 text-sm px-4 gap-4 w-full flex justify-between items-center border rounded-md;
   @apply bg-white text-dark-900 dark:bg-dark-900 dark:text-smoke-100 dark:border-dark-400;
 }
 .dropdown:hover {

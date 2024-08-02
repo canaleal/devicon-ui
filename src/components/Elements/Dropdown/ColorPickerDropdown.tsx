@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { DROPDOWN_SIZES } from './dropdownSize'
+
 import './styles/dropdown.css'
 
 export interface DropdownProps {
@@ -8,7 +8,7 @@ export interface DropdownProps {
   defaultColor: string
   selectedColor: string
   onColorChange: (value: string) => void
-  size: keyof typeof DROPDOWN_SIZES
+
   extraClasses?: string
 }
 
@@ -33,7 +33,7 @@ const ColorPickerDropdown = ({
   defaultColor,
   selectedColor,
   onColorChange,
-  size,
+
   extraClasses = ''
 }: DropdownProps) => {
   const [isOpen, setIsOpen] = useState(false)
@@ -55,7 +55,7 @@ const ColorPickerDropdown = ({
   const toggleDropdown = () => setIsOpen(!isOpen)
 
   return (
-    <div className={`relative ${DROPDOWN_SIZES[size]} ${extraClasses}`} ref={dropdownRef}>
+    <div className={`relative ${extraClasses}`} ref={dropdownRef}>
       <p className='font-bold text-sm mb-1'>{title}</p>
       <DropdownButton
         isDisabled={isDisabled}

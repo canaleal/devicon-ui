@@ -1,16 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react'
 import './styles/searchBar.css'
-import { SEARCHBAR_SIZES } from './SearchBarSizes'
-
 
 export interface SearchBarProps {
   placeholder?: string
   autoCompleteOptions?: string[]
-  size: keyof typeof SEARCHBAR_SIZES
+  extraClasses?: string
   onSearch: (query: string) => void
 }
 
-export const SearchBar = ({ placeholder = 'Search', autoCompleteOptions = [], size, onSearch }: SearchBarProps) => {
+export const SearchBar = ({ placeholder = 'Search', autoCompleteOptions = [], extraClasses, onSearch }: SearchBarProps) => {
   const [searchTerm, setSearchTerm] = useState<string>('')
   const [filteredOptions, setFilteredOptions] = useState<string[]>([])
   const [showOptions, setShowOptions] = useState<boolean>(false)
@@ -52,13 +50,13 @@ export const SearchBar = ({ placeholder = 'Search', autoCompleteOptions = [], si
   }, [])
 
   return (
-    <article className='relative' ref={searchRef}>
+    <div className={`relative ${extraClasses}`} ref={searchRef}>
       <input
         type='text'
         value={searchTerm}
         onChange={handleInputChange}
         placeholder={placeholder}
-        className={`${SEARCHBAR_SIZES[size]} searchbar`}
+        className={`searchbar`}
       />
 
       {showOptions && (
@@ -70,7 +68,7 @@ export const SearchBar = ({ placeholder = 'Search', autoCompleteOptions = [], si
           ))}
         </ul>
       )}
-    </article>
+    </div>
   )
 }
 

@@ -16,31 +16,9 @@ interface ArrowButtonProps {
 
 const ArrowButton: React.FC<ArrowButtonProps> = ({ disabled, onClick, direction }) => {
   return (
-    <button className={`button button--small ${ disabled ? "button--disabled" : ""}`} disabled={disabled} onClick={onClick}>
+    <button className={`button button--small ${disabled ? "button--disabled" : ""}`} disabled={disabled} onClick={onClick}>
       <i className={`fa fa-arrow-${direction}`}></i>
     </button>
-  )
-}
-
-interface PageNumberButtonProps {
-  page: number
-  currentPage: number
-  setCurrentPage: (page: number) => void
-}
-
-const PageNumberButton: React.FC<PageNumberButtonProps> = ({ page, currentPage, setCurrentPage }) => {
-  return (
-    <button className={`button button--small ${currentPage === page ? "button--selected" : "" }`} onClick={() => setCurrentPage(page)}>
-      {page}
-    </button>
-  )
-}
-
-const EllipsisButton: React.FC = () => {
-  return (
-    <span className="button button--small button--disabled">
-      <i className='fa fa-ellipsis-h'></i>
-    </span>
   )
 }
 
@@ -57,9 +35,13 @@ const PaginationButtons: React.FC<PaginationButtonsProps> = ({ currentPage, setC
 
       {pagesToRender.map((page) =>
         typeof page === 'number' ? (
-          <PageNumberButton key={uuidv4()} page={page} currentPage={currentPage} setCurrentPage={setCurrentPage} />
+          <button key={uuidv4()} className={`button button--small ${currentPage === page ? "button--selected" : ""}`} onClick={() => setCurrentPage(page)}>
+            {page}
+          </button>
         ) : (
-          <EllipsisButton key={uuidv4()} />
+          <span key={uuidv4()} className="button button--small button--disabled">
+            <i className='fa fa-ellipsis-h'></i>
+          </span>
         )
       )}
 

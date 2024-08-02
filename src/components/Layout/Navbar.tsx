@@ -2,7 +2,7 @@ import DeviconLogo from '../Elements/DeviconLogo/DeviconLogo'
 
 const Navbar = () => {
   return (
-    <header className='flex flex-col xl:flex-row px-8 md:px-12 lg:px-24 py-4  gap-4  w-full border-b border-dark-400 bg-dark-900 text-smoke-100'>
+    <header className='flex flex-col px-4 py-3  gap-4  w-full border-b bg-white dark:border-dark-400 dark:bg-dark-900 dark:text-smoke-100'>
       <DeviconLogo />
     </header>
   )

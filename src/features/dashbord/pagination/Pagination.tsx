@@ -7,21 +7,13 @@ import { Dropdown } from '../../../components/Elements/Dropdown/Dropdown'
 import PaginationButtons from './PaginationButtons'
 import PaginationCard from './paginationCard/PaginationCard'
 import PaginationSelection from './PaginationSelection'
-
-type PaginationStyle = 'card' | 'table'
+import { DEFAULT_ELEMENTS_PER_PAGE, ELEMENTS_PER_PAGE_OPTIONS, PaginationStyle } from './types'
 
 interface PaginationProps {
   icons: IIcon[]
   deviconBranch: DeviconBranch
   onSelect: (icon: IIcon) => void
 }
-
-export const NoIconsFound = () => (
-  <div className='flex flex-col items-center justify-center min-h-screen'>
-    <p className='text-xl'>No icons found</p>
-    <p>Try a different search term or change filters</p>
-  </div>
-)
 
 export const PaginationGrid = ({ icons, onSelect, deviconBranch }: PaginationProps) => {
   return (
@@ -33,13 +25,19 @@ export const PaginationGrid = ({ icons, onSelect, deviconBranch }: PaginationPro
   )
 }
 
+
+export const NoIconsFound = () => (
+  <div className='flex flex-col items-center justify-center min-h-screen'>
+    <p className='text-xl'>No icons found</p>
+    <p>Try a different search term or change filters</p>
+  </div>
+)
+
 export const Pagination = ({ icons, onSelect, deviconBranch }: PaginationProps) => {
   const [paginationStyle, setPaginationStyle] = useState<PaginationStyle>('card')
-
   const [paginatedIcons, setPaginatedIcons] = useState<IIcon[]>([])
   const [currentPage, setCurrentPage] = useState<number>(1)
-  const elementsPerPageOptions = [54, 72, 81]
-  const [elementsPerPage, setElementsPerPage] = useState<number>(elementsPerPageOptions[0])
+  const [elementsPerPage, setElementsPerPage] = useState<number>(DEFAULT_ELEMENTS_PER_PAGE)
   const totalPages = Math.ceil(icons.length / elementsPerPage)
 
   const handleIconsPerPageChange = (elementsPerPage: number) => {
@@ -64,16 +62,16 @@ export const Pagination = ({ icons, onSelect, deviconBranch }: PaginationProps) 
   }, [currentPage, elementsPerPage])
 
   return (
-    <section className='flex flex-col gap-4 min-h-screen'>
+    <section className='flex flex-col gap-4 w-full'>
       <div className='flex w-full gap-4 items-center'>
-        <p className='font-bold text-xl uppercase'>{icons.length} Icons</p>
+        <p className='font-bold text-xl'>{icons.length} Icons</p>
         <p className='ml-auto hidden md:inline-block text-sm'>
           Page {currentPage} of {totalPages || 1}
         </p>
         <Dropdown
           isDisabled={false}
           extraClasses='hidden md:inline-block'
-          size={'lg'}
+
           selectedOption={paginationStyle}
           options={['card', 'table']}
           onChange={(value) => {
@@ -116,7 +114,7 @@ export const Pagination = ({ icons, onSelect, deviconBranch }: PaginationProps) 
           elementsPerPage={elementsPerPage}
           currentPage={currentPage}
           totalElements={icons.length}
-          elementsPerPageOptions={elementsPerPageOptions}
+          elementsPerPageOptions={ELEMENTS_PER_PAGE_OPTIONS}
           handlePerPageChange={handleIconsPerPageChange}
           extraClasses='hidden lg:flex'
         />

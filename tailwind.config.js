@@ -6,7 +6,7 @@ export default {
     extend: {
       colors: {
         smoke: {
-          100: '#fffdff',
+          100: '#fcfefd',
           200: '#f4f4f4',
           300: '#c1c1c1',
           400: '#a3a3a3'
@@ -23,8 +23,8 @@ export default {
           900: '#0f0f0f'
         },
         frog: {
-          700: '#1a24c2',
-          800: '#22289f'
+          700: '#10b982',
+          800: '#0D9668'
         },
         rose: '#f44336',
         orange: '#ff9800',

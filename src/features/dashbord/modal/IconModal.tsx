@@ -63,7 +63,7 @@ export const IconModal = ({ icon, deviconBranch }: IconModalProps) => {
             <Dropdown
               title='Version'
               isDisabled={false}
-              size='full'
+              extraClasses='w-full'
               selectedOption={selectedVersion}
               options={icon.versions.svg}
               onChange={(value) => {
@@ -73,7 +73,7 @@ export const IconModal = ({ icon, deviconBranch }: IconModalProps) => {
             <Dropdown
               title='Size'
               isDisabled={false}
-              size='full'
+             extraClasses='w-full'
               selectedOption={selectedIconSize.name}
               options={ICON_SIZE_OPTIONS.map((option) => option.name)}
               onChange={(value) => {
@@ -83,7 +83,7 @@ export const IconModal = ({ icon, deviconBranch }: IconModalProps) => {
             <ColorPickerDropdown
               title='Color'
               isDisabled={!icon.versions.font.includes(selectedVersion)}
-              size='full'
+              extraClasses='w-full'
               defaultColor={icon.color}
               selectedColor={selectedColor}
               onColorChange={(color) => {
