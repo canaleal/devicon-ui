@@ -68,10 +68,10 @@ const GalleryPage = () => {
         <IconModal icon={selectedIcon!} deviconBranch={deviconBranch} />
       </Modal>
 
-      <section className='flex flex-col px-32 py-16 gap-4 w-full bg-smoke-100 dark:bg-dark-700 dark:text-smoke-100'>
+      <section className='flex flex-col px-8 md:px-16 lg:px-24 xl:px-32 py-8 md:py-16 lg:py-16 gap-4 w-full bg-smoke-100 dark:bg-dark-700 dark:text-white'>
         <CodeBlockLink deviconBranch={deviconBranch} />
         <div className='flex flex-col  items-center bg-white dark:bg-dark-900 border dark:border-dark-400 shadow-md rounded-lg w-full'>
-          <div className='flex flex-row gap-4 px-8 py-4 border-b dark:border-dark-400  w-full'>
+          <div className='flex flex-row gap-4 px-8 py-6 border-b dark:border-dark-400  w-full'>
             <Dropdown
               extraClasses='w-96'
               isDisabled={false}
@@ -98,7 +98,7 @@ const GalleryPage = () => {
             />
           </div>
 
-          <div className='px-8 py-4 w-full'>
+          <div className='px-8 py-6 w-full'>
             <Pagination icons={filteredIcons} deviconBranch={deviconBranch} onSelect={setNewSelectedIcon} />
           </div>
         </div>

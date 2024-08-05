@@ -5,7 +5,7 @@
 }
 .modal__container {
   @apply relative p-8 w-11/12 md:w-5/6 lg:w-5/6;
-  @apply bg-white rounded-md overflow-hidden dark:bg-dark-900 dark:text-smoke-100;
+  @apply bg-white rounded-md overflow-hidden dark:bg-dark-900 dark:text-white;
 }
 .modal__close-button {
   @apply absolute top-0 right-0 p-4 text-2xl leading-none transition-colors rounded-bl-md;

@@ -3,7 +3,7 @@
   @apply flex flex-col gap-2;
 
     &__element {
-      @apply flex flex-row gap-2 text-red-500 items-center;
+      @apply flex flex-row gap-2 text-rose items-center;
 
       i {
         @apply text-lg;

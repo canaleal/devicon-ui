@@ -17,14 +17,13 @@ interface PaginationProps {
 
 export const PaginationGrid = ({ icons, onSelect, deviconBranch }: PaginationProps) => {
   return (
-    <div className='grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-6 2xl:grid-cols-9 3xl:grid-cols-9 gap-4'>
+    <div className='grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-10 2xl:grid-cols-10 3xl:grid-cols-12 gap-4'>
       {icons.map((icon) => (
         <PaginationCard key={icon.name} icon={icon} onSelect={onSelect} deviconBranch={deviconBranch} />
       ))}
     </div>
   )
 }
-
 
 export const NoIconsFound = () => (
   <div className='flex flex-col items-center justify-center min-h-screen'>
