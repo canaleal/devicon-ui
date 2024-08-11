@@ -1,7 +1,6 @@
 import React from 'react'
 import './styles/table.css'
 
-
 export interface TableProps<T> {
   title?: string
   data: T[]
@@ -18,12 +17,12 @@ export function Table<T>({ title, data, headers, keyExtractor, rowRenderer, onRo
   return (
     <div className={`flex flex-col gap-2 ${extraClasses}`}>
       {title && <p className='font-bold text-sm'>{title}</p>}
-      <div className="table">
+      <div className='table'>
         <table>
-          <thead className="table__head">
+          <thead className='table__head'>
             <tr>
               {headers.map((header, index) => (
-                <th key={index} className="table__element">
+                <th key={index} className='table__element'>
                   {header}
                 </th>
               ))}
@@ -31,13 +30,9 @@ export function Table<T>({ title, data, headers, keyExtractor, rowRenderer, onRo
           </thead>
           <tbody>
             {data.map((item, index) => (
-              <tr
-                key={keyExtractor(item, index)}
-                className="table__row"
-                onClick={() => onRowClick && onRowClick(item)}
-              >
+              <tr key={keyExtractor(item, index)} className='table__row' onClick={() => onRowClick && onRowClick(item)}>
                 {rowRenderer(item).map((cell, cellIndex) => (
-                  <td key={cellIndex} className="table__element">
+                  <td key={cellIndex} className='table__element'>
                     {cell}
                   </td>
                 ))}

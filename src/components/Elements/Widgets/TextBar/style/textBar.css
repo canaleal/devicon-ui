@@ -1,0 +1,9 @@
+.text-bar {
+  @apply flex flex-row gap-2 items-center text-sm;
+}
+.text-bar__title {
+  @apply font-bold;
+}
+.text-bar__content {
+  @apply underline;
+}/*# sourceMappingURL=textBar.css.map */

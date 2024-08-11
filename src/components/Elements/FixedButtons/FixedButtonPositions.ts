@@ -4,4 +4,3 @@ export const FIXED_BUTTON_POSITIONS = {
   bottomLeft: 'bottom-8 left-8',
   bottomRight: 'bottom-8 right-8'
 }
-

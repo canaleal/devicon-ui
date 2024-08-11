@@ -1,9 +1,9 @@
 import { useState } from 'react'
-import { SearchBar } from '../../../components/Elements/SearchBar'
+import { SearchBar } from '../../../components/Elements/Form/SearchBar'
 import { IIcon, DeviconBranch } from '../../../types'
 import { IconModal } from '../modal'
 import { Pagination } from '../pagination'
-import { Dropdown } from '../../../components/Elements/Dropdown'
+import { Dropdown } from '../../../components/Elements/Form/Dropdown'
 import {
   IFilterItem,
   updateFilter,
@@ -17,8 +17,7 @@ import {
 import Modal from '../../../components/Elements/Modal/Modal'
 import storage from '../../../helpers/storage'
 import { useDeviconBranch, useIcons, useSelectedIcon } from '../../../hooks'
-import { CodeBlockLink } from '../code/CodeBlockLink'
-
+import { CDNBlockLink } from '../cdnBlock/CDNBlockLink'
 import FilterDropdown from '../filters/FilterDropdown'
 
 const GalleryPage = () => {
@@ -68,41 +67,57 @@ const GalleryPage = () => {
         <IconModal icon={selectedIcon!} deviconBranch={deviconBranch} />
       </Modal>
 
-      <section className='flex flex-col px-8 md:px-16 lg:px-24 xl:px-32 py-8 md:py-16 lg:py-16 gap-4 w-full bg-smoke-100 dark:bg-dark-700 dark:text-white'>
-        <CodeBlockLink deviconBranch={deviconBranch} />
-        <div className='flex flex-col  items-center bg-white dark:bg-dark-900 border dark:border-dark-400 shadow-md rounded-lg w-full'>
-          <div className='flex flex-row gap-4 px-8 py-6 border-b dark:border-dark-400  w-full'>
-            <Dropdown
-              extraClasses='w-96'
-              isDisabled={false}
-              selectedOption={deviconBranch}
-              options={['master', 'develop']}
-              onChange={(value) => {
-                handleBranchChange(value as DeviconBranch)
-              }}
-            />
-            <SearchBar placeholder='Search Icons' extraClasses='w-full' onSearch={setSearchTerm} autoCompleteOptions={searchAutoCompleteOptions} />
+      <section className='flex flex-col w-full bg-white dark:bg-dark-900 border-b border-gray-600/20'>
+        <div className="mx-auto w-full  py-6 px-6 sm:max-w-[40rem] md:max-w-[48rem] md:px-8 lg:max-w-[64rem] xl:max-w-[90rem]">
+          <div className='flex flex-col xl:flex-row gap-4 justify-between w-full'>
+            <div className='flex flex-row gap-4'>
+              <Dropdown
+                extraClasses='w-full xl:w-32'
+                isDisabled={false}
+                selectedOption={deviconBranch}
+                options={['master', 'develop']}
+                onChange={(value) => {
+                  handleBranchChange(value as DeviconBranch)
+                }}
+              />
+              <SearchBar
+                placeholder='Search Icons'
+                extraClasses='w-full xl:w-96'
+                onSearch={setSearchTerm}
+                autoCompleteOptions={searchAutoCompleteOptions}
+              />
+            </div>
 
-            <FilterDropdown
-              filterGroup={filterGroups[0]}
-              handleFilterClick={handleFilterClick}
-              handleResetFilterGroup={handleResetFilterGroup}
-              extraClasses='w-96'
-
-            />
-            <FilterDropdown
-              filterGroup={filterGroups[1]}
-              handleFilterClick={handleFilterClick}
-              handleResetFilterGroup={handleResetFilterGroup}
-              extraClasses='w-96'
-            />
+            <div className='flex flex-row gap-4'>
+              <FilterDropdown
+                filterGroup={filterGroups[0]}
+                handleFilterClick={handleFilterClick}
+                handleResetFilterGroup={handleResetFilterGroup}
+                extraClasses='w-full xl:w-64'
+              />
+              <FilterDropdown
+                filterGroup={filterGroups[1]}
+                handleFilterClick={handleFilterClick}
+                handleResetFilterGroup={handleResetFilterGroup}
+                extraClasses='w-full xl:w-96'
+              />
+            </div>
           </div>
+        </div>
+      </section>
 
-          <div className='px-8 py-6 w-full'>
+
+      <section className='flex flex-col w-full bg-gray-50 dark:bg-dark-900'>
+        <div className="flex flex-col gap-6 mx-auto w-full py-6 px-6 sm:max-w-[40rem] md:max-w-[48rem] md:px-8 lg:max-w-[64rem] xl:max-w-[90rem]">
+          <CDNBlockLink deviconBranch={deviconBranch} />
+
+          <div className='flex flex-col p-8 rounded-2xl bg-white border border-gray-600/20 dark:bg-dark-900 dark:text-white  dark:border-gray-600/20 shadow-md'>
             <Pagination icons={filteredIcons} deviconBranch={deviconBranch} onSelect={setNewSelectedIcon} />
           </div>
         </div>
       </section>
+
+
     </>
   )
 }

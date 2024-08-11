@@ -8,8 +8,7 @@
   font-feature-settings:
     'liga' 1,
     'calt' 1;
-  color: #0f0f0f;
-  background-color: #0f0f0f;
+
   font-size: 14px;
   font-weight: 400;
   text-rendering: optimizeLegibility;
@@ -46,8 +45,6 @@ html {
   background: #6e6e6e;
 }
 
-
-
 .fade-in {
   -webkit-animation: fade-in 0.3s ease-in-out both;
   animation: fade-in 0.3s ease-in-out both;
@@ -55,20 +52,20 @@ html {
 
 @-webkit-keyframes fade-in {
   0% {
-      opacity: 0;
+    opacity: 0;
   }
 
   100% {
-      opacity: 1;
+    opacity: 1;
   }
 }
 
 @keyframes fade-in {
   0% {
-      opacity: 0;
+    opacity: 0;
   }
 
   100% {
-      opacity: 1;
+    opacity: 1;
   }
 }

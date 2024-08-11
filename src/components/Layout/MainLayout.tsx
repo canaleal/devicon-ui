@@ -2,6 +2,7 @@ import { Outlet } from 'react-router-dom'
 
 import Navbar from './Navbar'
 import { DarkModeToggle, ScrollButton } from '../Elements/FixedButtons'
+import Footer from './Footer'
 
 export const MainLayout = () => {
   return (
@@ -11,7 +12,7 @@ export const MainLayout = () => {
 
       <Navbar />
       <Outlet />
-
+      <Footer />
     </section>
   )
 }

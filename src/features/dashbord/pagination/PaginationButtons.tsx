@@ -16,7 +16,11 @@ interface ArrowButtonProps {
 
 const ArrowButton: React.FC<ArrowButtonProps> = ({ disabled, onClick, direction }) => {
   return (
-    <button className={`button button--small ${disabled ? "button--disabled" : ""}`} disabled={disabled} onClick={onClick}>
+    <button
+      className={`button button--small ${disabled ? 'button--disabled' : ''}`}
+      disabled={disabled}
+      onClick={onClick}
+    >
       <i className={`fa fa-arrow-${direction}`}></i>
     </button>
   )
@@ -35,11 +39,15 @@ const PaginationButtons: React.FC<PaginationButtonsProps> = ({ currentPage, setC
 
       {pagesToRender.map((page) =>
         typeof page === 'number' ? (
-          <button key={uuidv4()} className={`button button--small ${currentPage === page ? "button--selected" : ""}`} onClick={() => setCurrentPage(page)}>
+          <button
+            key={uuidv4()}
+            className={`button button--small ${currentPage === page ? 'button--selected' : ''}`}
+            onClick={() => setCurrentPage(page)}
+          >
             {page}
           </button>
         ) : (
-          <span key={uuidv4()} className="button button--small button--disabled">
+          <span key={uuidv4()} className='button button--small button--disabled'>
             <i className='fa fa-ellipsis-h'></i>
           </span>
         )

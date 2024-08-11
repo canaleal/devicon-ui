@@ -1,4 +1,4 @@
-export type IconSize = 'X-Small' | 'Small' | 'Medium' | 'Large'  | 'X-Large'
+export type IconSize = 'X-Small' | 'Small' | 'Medium' | 'Large' | 'X-Large'
 
 export interface IIconSize {
   name: IconSize

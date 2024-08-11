@@ -1,3 +1,3 @@
 export * from './ScrollButton'
 export * from './DarkModeToggle'
-export * from './FixedButtonPositions';
+export * from './FixedButtonPositions'

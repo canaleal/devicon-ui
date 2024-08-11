@@ -1,12 +1,19 @@
 .card {
-  @apply flex flex-col relative align-middle justify-center text-center gap-4 w-full overflow-hidden h-32 text-sm rounded-lg;
+  @apply flex flex-col relative align-middle justify-center text-center gap-4 w-full overflow-hidden h-32 text-sm rounded-xl;
 }
-.card:hover {
-  @apply bg-smoke-200 dark:bg-dark-800;
+.card__image {
+  @apply mx-auto object-cover;
+}
+.card__title {
+  @apply text-xs mx-auto text-gray-600 dark:text-gray-400 font-semibold;
 }
 .card--dark {
-  @apply bg-dark-900 text-white border border-dark-400;
+  @apply bg-dark-900 text-white border border-gray-600/20;
 }
 .card--dark:hover {
   @apply bg-dark-800;
+}
+.card:hover {
+  @apply border-gray-600/20 dark:bg-dark-800;
+  @apply border border-gray-600/20 shadow-md;
 }/*# sourceMappingURL=paginationCard.css.map */

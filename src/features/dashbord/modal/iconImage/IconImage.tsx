@@ -1,14 +1,14 @@
 import { useState } from 'react'
 
-import Tooltip from '../../../../components/Elements/Tooltip/Tooltip'
+import Tooltip from '../../../../components/Elements/Widgets/Tooltip/Tooltip'
 import { IIconSize } from '../types'
-import '../../../../components/Elements/Button/styles/button.css'
+import '../../../../components/Elements/Widgets/Button/styles/button.css'
 import './styles/iconImage.css'
 import { IconVersion, IIcon } from '../../../../types'
 import { createStyleMap } from '../helpers/iconImage'
 
 interface IconContainerProps {
-  icon: IIcon,
+  icon: IIcon
   selectedIconSize: IIconSize
   selectedColor: string
   selectedVersion: IconVersion
@@ -16,11 +16,18 @@ interface IconContainerProps {
   extraClasses?: string
 }
 
-export const IconImage = ({ icon, selectedIconSize, selectedColor, selectedVersion, iconUrl, extraClasses }: IconContainerProps) => {
+export const IconImage = ({
+  icon,
+  selectedIconSize,
+  selectedColor,
+  selectedVersion,
+  iconUrl,
+  extraClasses
+}: IconContainerProps) => {
   const styleMap = createStyleMap(icon, selectedVersion, selectedColor, iconUrl)
   const [isDarkBackground, setIsDarkBackground] = useState<boolean>(false)
   const [isViewBoxVisible, setIsViewBoxVisible] = useState<boolean>(false)
- 
+
   const handleToggleBackground = () => {
     setIsDarkBackground(!isDarkBackground)
   }
@@ -33,13 +40,9 @@ export const IconImage = ({ icon, selectedIconSize, selectedColor, selectedVersi
     <div className={`icon-image ${isDarkBackground ? 'icon-image--dark' : 'icon-image--light'} ${extraClasses}`}>
       <div className={`view-box  ${isViewBoxVisible ? (isDarkBackground ? 'view-box--dark' : 'view-box--light') : ''}`}>
         {styleMap ? (
-          <div className='fade-in' style={{ height: selectedIconSize.height, width: selectedIconSize.width, ...styleMap }} />
+          <div style={{ height: selectedIconSize.height, width: selectedIconSize.width, ...styleMap }} />
         ) : (
-          <img
-            height={selectedIconSize.height}
-            width={selectedIconSize.width}
-            src={iconUrl}
-          />
+          <img height={selectedIconSize.height} width={selectedIconSize.width} src={iconUrl} />
         )}
       </div>
 

@@ -18,7 +18,6 @@ export interface IIcon {
 }
 
 export interface IException {
-  name: string;
-  message: string;
+  name: string
+  message: string
 }
-

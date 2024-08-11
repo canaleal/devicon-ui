@@ -3,7 +3,7 @@ import { DeviconBranch, IIcon } from '../../../types'
 
 import { Table } from '../../../components/Elements/Table'
 import { createDeviconIconUrl } from '../../../helpers/iconUrl'
-import { Dropdown } from '../../../components/Elements/Dropdown/Dropdown'
+import { Dropdown } from '../../../components/Elements/Form/Dropdown/Dropdown'
 import PaginationButtons from './PaginationButtons'
 import PaginationCard from './paginationCard/PaginationCard'
 import PaginationSelection from './PaginationSelection'
@@ -17,7 +17,7 @@ interface PaginationProps {
 
 export const PaginationGrid = ({ icons, onSelect, deviconBranch }: PaginationProps) => {
   return (
-    <div className='grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-10 2xl:grid-cols-10 3xl:grid-cols-12 gap-4'>
+    <div className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-4'>
       {icons.map((icon) => (
         <PaginationCard key={icon.name} icon={icon} onSelect={onSelect} deviconBranch={deviconBranch} />
       ))}
@@ -61,16 +61,15 @@ export const Pagination = ({ icons, onSelect, deviconBranch }: PaginationProps) 
   }, [currentPage, elementsPerPage])
 
   return (
-    <section className='flex flex-col gap-4 w-full'>
+    <section className='flex flex-col gap-6 w-full'>
       <div className='flex w-full gap-4 items-center'>
-        <p className='font-bold text-xl'>{icons.length} Icons</p>
-        <p className='ml-auto hidden md:inline-block text-sm'>
+        <p className='font-semibold text-xl'>{icons.length} Icons</p>
+        <p className='ml-auto hidden md:inline-block text-xs'>
           Page {currentPage} of {totalPages || 1}
         </p>
         <Dropdown
           isDisabled={false}
           extraClasses='hidden md:inline-block'
-
           selectedOption={paginationStyle}
           options={['card', 'table']}
           onChange={(value) => {

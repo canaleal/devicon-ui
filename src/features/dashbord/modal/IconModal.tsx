@@ -2,14 +2,14 @@ import { useEffect, useState } from 'react'
 import { DEVICON_VERSION_RELEASE } from '../../../constants'
 import { DeviconBranch, IIcon, IconVersion } from '../../../types'
 import { createDeviconIconUrl } from '../../../helpers/iconUrl'
-import { Tooltip } from '../../../components/Elements/Tooltip'
+import { Tooltip } from '../../../components/Elements/Widgets/Tooltip'
 import { IIconSize, ICON_SIZE_OPTIONS, INIT_ICON_SIZE, CodeBlockOptionTypes } from './types'
-import { Dropdown } from '../../../components/Elements/Dropdown'
+import { Dropdown } from '../../../components/Elements/Form/Dropdown'
 import { Table } from '../../../components/Elements/Table'
-import { TextBar } from '../../../components/Elements/TextBar'
+import { TextBar } from '../../../components/Elements/Widgets/TextBar'
 import { copyToClipboard } from '../../../helpers/copyToClipboard'
 import IconImage from './iconImage/IconImage'
-import ColorPickerDropdown from '../../../components/Elements/Dropdown/ColorPickerDropdown'
+import ColorPickerDropdown from '../../../components/Elements/Form/Dropdown/ColorPickerDropdown'
 import { CodeBlock } from '../../../components/Elements/CodeBlock'
 import { createIconCodeBlockText, getCodeBlockOptions } from './helpers/codeBlockContent'
 
@@ -27,36 +27,46 @@ export const IconModal = ({ icon, deviconBranch }: IconModalProps) => {
   const [codeText, setCodeText] = useState<string>('')
   const [iconUrl, setIconUrl] = useState<string>('')
 
-
   useEffect(() => {
-
     const getCodeText = async () => {
-      const code = await createIconCodeBlockText(icon, selectedIconSize, iconUrl, selectedVersion, selectedColor, selectedOption)
+      const code = await createIconCodeBlockText(
+        icon,
+        selectedIconSize,
+        iconUrl,
+        selectedVersion,
+        selectedColor,
+        selectedOption
+      )
       setCodeText(code)
     }
     getCodeText()
   }, [iconUrl, selectedOption, selectedVersion, selectedIconSize, selectedColor])
 
-
   useEffect(() => {
-    setIconUrl(createDeviconIconUrl(icon.name, selectedVersion, deviconBranch));
+    setIconUrl(createDeviconIconUrl(icon.name, selectedVersion, deviconBranch))
     const tempCodeBlockOptions = getCodeBlockOptions(deviconBranch, icon, selectedVersion)
     setCodeBlockOptions(tempCodeBlockOptions)
     if (!tempCodeBlockOptions.includes(selectedOption)) setSelectedOption(tempCodeBlockOptions[0])
   }, [icon, selectedVersion, deviconBranch])
 
-
   return (
     <>
       <Tooltip content='Copy Name' position='bottom' flashMessage='Copied!'>
-        <button onClick={() => copyToClipboard(icon.name)} className="button button--icon">
+        <button onClick={() => copyToClipboard(icon.name)} className='button button--icon'>
           <p className='font-bold text-2xl'>{icon.name}</p>
           <i className='fa-solid fa-copy text-xl'></i>
         </button>
       </Tooltip>
 
       <section className='flex flex-col 2xl:flex-row my-4 gap-8'>
-        <IconImage icon={icon} iconUrl={iconUrl} selectedIconSize={selectedIconSize} selectedVersion={selectedVersion} selectedColor={selectedColor} extraClasses='flex-1' />
+        <IconImage
+          icon={icon}
+          iconUrl={iconUrl}
+          selectedIconSize={selectedIconSize}
+          selectedVersion={selectedVersion}
+          selectedColor={selectedColor}
+          extraClasses='flex-1'
+        />
         <div className='flex-1 flex flex-col gap-4'>
           <TextBar icon={{ icon: 'fa-solid fa-folder', copyTitle: 'Copy Tags' }} content={[icon.name]} />
           <div className='flex flex-row gap-4 w-full'>
@@ -73,7 +83,7 @@ export const IconModal = ({ icon, deviconBranch }: IconModalProps) => {
             <Dropdown
               title='Size'
               isDisabled={false}
-             extraClasses='w-full'
+              extraClasses='w-full'
               selectedOption={selectedIconSize.name}
               options={ICON_SIZE_OPTIONS.map((option) => option.name)}
               onChange={(value) => {
@@ -87,8 +97,7 @@ export const IconModal = ({ icon, deviconBranch }: IconModalProps) => {
               defaultColor={icon.color}
               selectedColor={selectedColor}
               onColorChange={(color) => {
-                if (color != selectedColor)
-                  setSelectedColor(color)
+                if (color != selectedColor) setSelectedColor(color)
               }}
             />
           </div>

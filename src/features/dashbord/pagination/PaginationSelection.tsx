@@ -26,13 +26,9 @@ const PaginationSelection: React.FC<PaginationSelectionProps> = ({
   const TOTAL_ELEMENTS_TEXT = `${firstElementIndex}-${lastElementIndex} of ${totalElements} icons`
 
   return (
-    <div className={`flex flex-row items-center gap-2 text-sm ${extraClasses}`}>
+    <div className={`flex flex-row items-center gap-2 text-xs ${extraClasses}`}>
       <p>Items Per Page</p>
-      <select
-        value={elementsPerPage}
-        onChange={handlePageChange}
-        className="dropdown dropdown--small"
-      >
+      <select value={elementsPerPage} onChange={handlePageChange} className='dropdown dropdown--small'>
         {elementsPerPageOptions.map((option: number) => (
           <option key={option} value={option}>
             {option}

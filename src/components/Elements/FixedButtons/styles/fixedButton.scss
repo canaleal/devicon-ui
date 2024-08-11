@@ -1,10 +1,10 @@
 .fixed-button {
-  @apply fixed font-bold h-12 w-12 z-20 transition-colors rounded-md;
-  @apply bg-frog-700 text-white;
+  @apply fixed font-bold h-10 w-10 z-20 transition-colors rounded-lg;
+  @apply bg-primary-800 text-white;
   @apply hidden xl:inline;
 
   &:hover {
-    @apply bg-frog-800;
+    @apply bg-primary-900;
   }
 
   &--hidden {

@@ -114,30 +114,30 @@ const DropdownMenu = ({
   handleFilterClick: (filterGroup: IFilterGroup, filter: IFilterItem) => void
   handleResetFilterGroup: (filterGroup: IFilterGroup) => void
 }) => {
-
-  const isResetButtonDisabled = filterGroup.filters.every((filter) => !filter.isSelected);
+  const isResetButtonDisabled = filterGroup.filters.every((filter) => !filter.isSelected)
 
   return (
-  <div className='dropdown__popup'>
-    <div className={`flex flex-col  overflow-y-auto ${hasMaxHeight ? 'h-[30rem]' : 'h-fit'}`}>
-      {filterGroup.filters.map((filter, index) => (
-        <FilterItem
-          key={index}
-          filter={filter}
-          icon={ICON_VERSION_FA_MAP[filter.filterName as IconVersion] ?? 'fa-solid fa-square'}
-          handleFilter={() => handleFilterClick(filterGroup, filter)}
-        />
-      ))}
+    <div className='dropdown__popup'>
+      <div className={`flex flex-col  overflow-y-auto ${hasMaxHeight ? 'h-[30rem]' : 'h-fit'}`}>
+        {filterGroup.filters.map((filter, index) => (
+          <FilterItem
+            key={index}
+            filter={filter}
+            icon={ICON_VERSION_FA_MAP[filter.filterName as IconVersion] ?? 'fa-solid fa-square'}
+            handleFilter={() => handleFilterClick(filterGroup, filter)}
+          />
+        ))}
+      </div>
+      <button
+        disabled={isResetButtonDisabled}
+        className={`dropdown__item dropdown__item--reset ${isResetButtonDisabled ? 'dropdown__item--disabled' : ''}`}
+        onClick={() => handleResetFilterGroup(filterGroup)}
+      >
+        <i className='fas fa-undo-alt' />
+        Reset Filters
+      </button>
     </div>
-    <button
-      disabled={isResetButtonDisabled}
-      className={`dropdown__item dropdown__item--reset ${isResetButtonDisabled ? 'dropdown__item--disabled' : ''}`}
-      onClick={() => handleResetFilterGroup(filterGroup)}
-    >
-      <i className='fas fa-undo-alt' />
-      Reset Filters
-    </button>
-  </div>
-)}
+  )
+}
 
 export default FilterDropdown

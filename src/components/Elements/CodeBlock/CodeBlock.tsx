@@ -1,14 +1,16 @@
 import { copyToClipboard } from '../../../helpers/copyToClipboard'
-import { Tooltip } from '../Tooltip'
+import { Tooltip } from '../Widgets/Tooltip'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
-import { a11yDark } from 'react-syntax-highlighter/dist/esm/styles/prism'
-import "./styles/codeBlock.css"
+import { atomDark } from 'react-syntax-highlighter/dist/esm/styles/prism'
+import './styles/codeBlock.css'
 
 const SYNTAX_HIGHLIGHTER_STYLE = {
   margin: '0rem',
-  padding: '0.75rem 1rem ',
+  padding: ' 1rem ',
   borderRadius: '0rem',
-  height: '3rem'
+  height: '3.5rem',
+  alignItems: 'center',
+  justifyContent: 'center'
 }
 
 interface CodeBlockOptionProps {
@@ -22,7 +24,7 @@ const CodeBlockOption = ({ optionName, isOptionSelected, onClickCodeBlockOption 
     <button
       key={optionName}
       onClick={() => onClickCodeBlockOption(optionName)}
-      className={`code-block__button ${isOptionSelected ? "code-block__button--selected" : ""}`}
+      className={`code-block__button ${isOptionSelected ? 'code-block__button--selected' : ''}`}
     >
       <span>{optionName}</span>
     </button>
@@ -47,9 +49,9 @@ export const CodeBlock = ({
   const codeString = code.replace(/(\r\n|\n|\r)/gm, '')
 
   return (
-    <div className="code-block">
-      <div className="code-block__header">
-        {title && <p className="code-block__button code-block__button--no-hover">{title}</p>}
+    <div className='code-block'>
+      <div className='code-block__header'>
+      {title && <p className='code-block__header__title'>{title}</p>}
         {codeBlockOptions && onClickCodeBlockOption && (
           <div className='flex flex-row mr-auto'>
             {codeBlockOptions.map((codeType) => (
@@ -62,25 +64,29 @@ export const CodeBlock = ({
             ))}
           </div>
         )}
-        <Tooltip content='Copy Code' position='bottom' flashMessage='Copied!'>
-          <button
-            onClick={() => copyToClipboard(codeString)}
-            className="code-block__button ml-auto"
-          >
+          <Tooltip content='Copy Code' position='bottom' flashMessage='Copied!'>
+          <button onClick={() => copyToClipboard(codeString)} className='code-block__button ml-auto'>
             <span>Copy Code</span>
             <i className='fa-solid fa-copy'></i>
           </button>
         </Tooltip>
+
       </div>
 
-      <SyntaxHighlighter
-        customStyle={SYNTAX_HIGHLIGHTER_STYLE}
-        language='javascript'
-        style={a11yDark}
-        wrapLongLines={false}
-      >
-        {codeString}
-      </SyntaxHighlighter>
+
+      <div className='overflow-hidden bg-dark-900'>
+        <SyntaxHighlighter
+          customStyle={SYNTAX_HIGHLIGHTER_STYLE}
+          language='javascript'
+          style={atomDark}
+          wrapLongLines={false}
+          showInlineLineNumbers={true}
+        >
+          {codeString}
+        </SyntaxHighlighter>
+      </div>
+
+
     </div>
   )
 }

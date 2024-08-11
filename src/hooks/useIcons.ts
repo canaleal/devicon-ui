@@ -38,7 +38,7 @@ export const useSelectedIcon = (icons: IIcon[]) => {
 }
 
 export const useDeviconBranch = () => {
-  const [deviconBranch, setDeviconBranch] = useState<DeviconBranch>('develop')
+  const [deviconBranch, setDeviconBranch] = useState<DeviconBranch>('master')
 
   useEffect(() => {
     // Get from url

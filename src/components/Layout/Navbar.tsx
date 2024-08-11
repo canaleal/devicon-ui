@@ -1,10 +1,15 @@
-import DeviconLogo from '../Elements/DeviconLogo/DeviconLogo'
+import Logo from '../Elements/Widgets/Logo/Logo'
 
 const Navbar = () => {
   return (
-    <header className='flex flex-col px-8 md:px-16 lg:px-24 xl:px-32 py-3  gap-4  w-full border-b bg-white dark:border-dark-400 dark:bg-dark-900 dark:text-white'>
-      <DeviconLogo />
+
+    <header className='flex flex-col w-full border-b border-gray-600/20 bg-dark-900 text-white'>
+      <div className="py-6 mx-auto w-full px-6 sm:max-w-[40rem] md:max-w-[48rem] md:px-8 lg:max-w-[64rem] xl:max-w-[90rem]">
+        <Logo />
+
+      </div>
     </header>
+
   )
 }
 
