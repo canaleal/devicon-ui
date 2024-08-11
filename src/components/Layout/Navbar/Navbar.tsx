@@ -1,14 +1,10 @@
+import Logo from '../../Elements/Widgets/Logo/Logo'
 import { useEffect, useState } from 'react'
 import storage from '../../../helpers/storage'
-import { FIXED_BUTTON_POSITIONS } from './FixedButtonPositions'
-import './styles/fixedButton.css'
+import './styles/navbar.css'
 
-export interface DarkModeProps {
-  position: keyof typeof FIXED_BUTTON_POSITIONS
-  extraClasses?: string
-}
+const DarkModeToggle = () => {
 
-export const DarkModeToggle = ({ position, extraClasses = '' }: DarkModeProps) => {
   const [darkMode, setDarkMode] = useState(storage.getToken()['isDark'] ?? false)
 
   useEffect(() => {
@@ -31,10 +27,27 @@ export const DarkModeToggle = ({ position, extraClasses = '' }: DarkModeProps) =
   }
 
   return (
-    <button onClick={toggleDarkMode} className={`fixed-button ${FIXED_BUTTON_POSITIONS[position]} ${extraClasses}`}>
+    <button onClick={toggleDarkMode} className='dark-mode-toggle'>
       {darkMode ? <i className='fa-solid fa-sun'></i> : <i className='fa-solid fa-moon'></i>}
     </button>
+  );
+};
+
+
+const Navbar = () => {
+
+  return (
+    <>
+      <header className='navbar'>
+        <div className="navbar-content">
+          <Logo />
+          <DarkModeToggle  />
+        </div>
+      </header>
+
+      <div className='navbar-placeholder' />
+    </>
   )
 }
 
-export default DarkModeToggle
+export default Navbar

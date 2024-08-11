@@ -27,7 +27,7 @@ export const ScrollButton = ({ position, extraClasses = '' }: ScrollButtonProps)
   return (
     <button
       onClick={scrollToTop}
-      className={` fixed-button ${!visible ? 'fixed-button--hidden' : ''} ${FIXED_BUTTON_POSITIONS[position]} ${extraClasses}`}
+      className={`fixed-button ${!visible ? 'fixed-button--hidden' : ''} ${FIXED_BUTTON_POSITIONS[position]} ${extraClasses}`}
     >
       <i className='fa fa-arrow-up' aria-hidden='true'></i>
     </button>

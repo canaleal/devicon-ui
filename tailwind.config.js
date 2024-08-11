@@ -10,8 +10,8 @@ export default {
           900: '#131315'
         },
         primary: {
-          800: '#8a4af3',
-          900: '#673ab7'
+          800: '#5de3e1',
+          900: '#20bab8'
         },
         rose: '#f44336',
         orange: '#ff9800',

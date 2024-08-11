@@ -1,0 +1,18 @@
+.animate-infinite-scroll {
+  animation: infinite-scroll 50s linear infinite;
+}
+
+@keyframes infinite-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+.masked-image {
+  -webkit-mask-image: linear-gradient(to right, transparent, black 30%, black 90%, transparent);
+          mask-image: linear-gradient(to right, transparent, black 30%, black 90%, transparent);
+  mask-composite: intersect;
+  -webkit-mask-composite: source-in;
+}/*# sourceMappingURL=InfiniteScroll.css.map */

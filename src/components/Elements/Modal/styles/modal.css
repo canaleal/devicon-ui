@@ -9,5 +9,5 @@
 }
 .modal__close-button {
   @apply absolute top-0 right-0 p-4 text-2xl leading-none transition-colors rounded-bl-md;
-  @apply bg-primary-800 hover:bg-primary-900 text-white;
+  @apply bg-primary-800 hover:bg-primary-900 text-gray-950;
 }/*# sourceMappingURL=modal.css.map */

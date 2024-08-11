@@ -1,13 +1,13 @@
 .fixed-button {
-  @apply fixed font-bold h-10 w-10 z-20 transition-colors rounded-lg;
-  @apply bg-primary-800 text-white;
-  @apply hidden xl:inline;
+  @apply z-30 fixed font-bold shadow-md transition-all;
+  @apply bg-primary-800 text-gray-950;
+  @apply w-44 px-4 py-3;
 
   &:hover {
     @apply bg-primary-900;
   }
 
   &--hidden {
-    @apply hidden;
-  }
+    @apply w-0 overflow-hidden py-3 px-0;
+}
 }
