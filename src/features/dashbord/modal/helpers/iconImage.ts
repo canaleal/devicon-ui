@@ -1,12 +1,13 @@
-import { IIcon, IconVersion } from '../../../../types'
+import { IIcon } from '../../../../types'
+import { IIconSettings } from '../types'
 
-export const createStyleMap = (icon: IIcon, selectedVersion: IconVersion, selectedColor: string, iconUrl: string) => {
-  if (!icon.versions.font.includes(selectedVersion)) return null
-  if (icon.color === selectedColor) return null
+export const createStyleMap = (icon: IIcon, iconSettings: IIconSettings) => {
+  if (!icon.versions.font.includes(iconSettings.selectedVersion)) return null
+  if (icon.color === iconSettings.selectedColor) return null
   const styleMap = {
-    WebkitMaskImage: `url(${iconUrl})`,
-    maskImage: `url(${iconUrl})`,
-    background: selectedColor
+    WebkitMaskImage: `url(${iconSettings.iconUrl})`,
+    maskImage: `url(${iconSettings.iconUrl})`,
+    background: iconSettings.selectedColor
   }
   return styleMap
 }

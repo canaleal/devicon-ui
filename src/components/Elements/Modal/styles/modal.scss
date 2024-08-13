@@ -6,12 +6,16 @@
   max-height: 100vh;
 
   &__container {
-    @apply relative p-8 w-11/12 md:w-5/6 lg:w-5/6;
-    @apply bg-white rounded-lg overflow-hidden dark:bg-dark-900 dark:text-white;
+    @apply mx-auto w-full  py-6 px-6 sm:max-w-[40rem] md:max-w-[48rem] md:px-8 lg:max-w-[64rem] xl:max-w-[90rem];
+  }
+
+  &__content {
+    @apply relative p-8 w-full;
+    @apply bg-white rounded-2xl  dark:bg-dark-900 dark:text-white;
   }
 
   &__close-button {
-    @apply absolute top-0 right-0 p-4 text-2xl leading-none transition-colors rounded-bl-md;
+    @apply absolute top-0 right-0 p-4 text-2xl leading-none rounded-bl-xl rounded-tr-2xl;
     @apply bg-primary-800 hover:bg-primary-900 text-gray-950;
   }
 }

@@ -61,11 +61,11 @@
 
   &__color-picker {
     &__mark {
-      @apply w-8 h-6 inline-block;
+      @apply w-6 h-6 inline-block rounded-md;
     }
 
     &__input {
-      @apply h-10 w-full border-0;
+      @apply h-10 w-full border-0 rounded-md;
 
       &:hover {
         @apply cursor-pointer;
@@ -73,10 +73,10 @@
     }
 
     &__item {
-      @apply h-6 w-full  border transition-transform;
+      @apply px-4 py-4 rounded-md;
 
       &:hover {
-        @apply scale-110 cursor-pointer;
+        @apply cursor-pointer;
       }
     }
   }

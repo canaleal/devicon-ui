@@ -1,3 +1,5 @@
+import { IconVersion } from "../../../../types"
+
 export type IconSize = 'X-Small' | 'Small' | 'Medium' | 'Large' | 'X-Large'
 
 export interface IIconSize {
@@ -16,3 +18,10 @@ export const INIT_ICON_SIZE = ICON_SIZE_OPTIONS[2]
 
 export type CodeBlockOptionTypes = 'LINK' | 'IMG' | 'SVG' | 'ICON'
 export const CODE_BLOCK_OPTIONS: CodeBlockOptionTypes[] = ['LINK', 'SVG', 'IMG', 'ICON']
+
+export interface IIconSettings {
+  iconUrl: string
+  selectedVersion: IconVersion
+  selectedIconSize: IIconSize
+  selectedColor: string
+}

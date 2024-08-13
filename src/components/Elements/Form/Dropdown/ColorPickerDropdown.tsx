@@ -144,7 +144,7 @@ const ColorInput = ({
 )
 
 const ColorPalette = ({ onColorChange }: { onColorChange: (color: string) => void }) => (
-  <div className='grid grid-cols-6 gap-2 h-fit'>
+  <div className='grid grid-cols-4 gap-2 h-fit'>
     {Object.values(PALLET_COLORS).map((color) => (
       <div
         key={color}

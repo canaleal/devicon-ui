@@ -1,3 +1,4 @@
+import { IIconSettings } from './../types/index';
 import { IIcon, IconVersion } from '../../../../types'
 import { IIconSize, CodeBlockOptionTypes, CODE_BLOCK_OPTIONS } from '../types'
 
@@ -74,17 +75,14 @@ export const getIconTag = (icon: IIcon, selectedVersion: IconVersion, iconSize: 
 
 export const createIconCodeBlockText = async (
   icon: IIcon,
-  iconSize: IIconSize,
-  iconUrl: string,
-  selectedVersion: IconVersion,
-  selectedColor: string,
+  iconSettings: IIconSettings,
   selectedCodeBlockFormat: CodeBlockOptionTypes
 ) => {
   const codeClockFormats = {
-    LINK: () => iconUrl,
-    IMG: () => getImageTag(icon, iconUrl, iconSize),
-    ICON: () => getIconTag(icon, selectedVersion, iconSize, selectedColor),
-    SVG: async () => await getSVGTag(icon, iconUrl, iconSize, selectedColor)
+    LINK: () => iconSettings.iconUrl,
+    IMG: () => getImageTag(icon, iconSettings.iconUrl, iconSettings.selectedIconSize),
+    ICON: () => getIconTag(icon, iconSettings.selectedVersion, iconSettings.selectedIconSize, iconSettings.selectedColor),
+    SVG: async () => await getSVGTag(icon, iconSettings.iconUrl, iconSettings.selectedIconSize, iconSettings.selectedColor)
   }
 
   return codeClockFormats[selectedCodeBlockFormat]()

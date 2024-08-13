@@ -48,17 +48,17 @@
   @apply cursor-auto;
 }
 .dropdown__color-picker__mark {
-  @apply w-8 h-6 inline-block;
+  @apply w-6 h-6 inline-block rounded-md;
 }
 .dropdown__color-picker__input {
-  @apply h-10 w-full border-0;
+  @apply h-10 w-full border-0 rounded-md;
 }
 .dropdown__color-picker__input:hover {
   @apply cursor-pointer;
 }
 .dropdown__color-picker__item {
-  @apply h-6 w-full  border transition-transform;
+  @apply px-4 py-4 rounded-md;
 }
 .dropdown__color-picker__item:hover {
-  @apply scale-110 cursor-pointer;
+  @apply cursor-pointer;
 }/*# sourceMappingURL=dropdown.css.map */
