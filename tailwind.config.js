@@ -5,13 +5,13 @@ export default {
   theme: {
     extend: {
       colors: {
-        dark: {  
+        dark: {
           800: '#222126',
           900: '#131315'
         },
         primary: {
-          800: '#5de3e1',
-          900: '#20bab8'
+          800: '#39b948',
+          900: '#38a448'
         },
         rose: '#f44336',
         orange: '#ff9800',

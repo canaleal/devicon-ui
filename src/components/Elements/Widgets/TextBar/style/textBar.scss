@@ -1,12 +1,11 @@
-
 .text-bar {
-   @apply flex flex-row gap-2 items-center text-sm;
+  @apply flex flex-row gap-2 items-center text-sm;
 
-   &__title {
-        @apply font-bold;
-   }
+  &__title {
+    @apply font-bold;
+  }
 
-   &__content {
+  &__content {
     @apply underline;
-   }
+  }
 }

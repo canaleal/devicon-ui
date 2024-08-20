@@ -2,7 +2,7 @@
   @apply flex border-2 dark:border-gray-600/20 overflow-hidden w-full rounded-2xl;
 }
 .table table {
-  @apply table-auto w-full bg-white;
+  @apply table-auto w-full bg-white  text-sm;
 }
 .table__head {
   @apply border-b-2 dark:border-gray-600/20 bg-dark-900 text-white;
@@ -11,8 +11,8 @@
   @apply text-left px-4 py-2 h-10;
 }
 .table__row {
-  @apply dark:bg-dark-800  cursor-pointer text-xs;
+  @apply dark:bg-dark-800  cursor-pointer;
 }
 .table__row:hover {
   @apply bg-gray-50 dark:bg-dark-900;
-}/*# sourceMappingURL=table.css.map */
+} /*# sourceMappingURL=table.css.map */

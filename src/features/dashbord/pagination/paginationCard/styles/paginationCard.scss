@@ -1,13 +1,12 @@
 .card {
   @apply flex flex-col relative text-center justify-center gap-4 w-full overflow-hidden h-32 text-sm rounded-xl;
 
-  
   &__image {
     @apply mx-auto object-cover transition-transform ease-in-out;
   }
 
   &__title {
-    @apply text-xs  text-gray-600 dark:text-gray-400 font-semibold;
+    @apply text-xs mx-auto text-gray-600 dark:text-gray-400 font-semibold;
   }
 
   &--dark {
@@ -19,9 +18,9 @@
   }
 
   &:hover {
-    @apply  border-gray-600/20 dark:bg-dark-800;
+    @apply border-gray-600/20 dark:bg-dark-800;
     @apply border border-gray-600/20 shadow-md;
-    
+
     .card__image {
       @apply transform scale-125;
     }
@@ -29,7 +28,5 @@
     .card__title {
       @apply font-semibold text-gray-950 dark:text-white;
     }
-
   }
-
 }

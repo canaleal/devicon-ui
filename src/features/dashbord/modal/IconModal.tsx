@@ -18,9 +18,7 @@ interface IconModalProps {
   deviconBranch: DeviconBranch
 }
 
-
 export const IconModal = ({ icon, deviconBranch }: IconModalProps) => {
-
   const [iconSettings, setIconSettings] = useState<IIconSettings>({
     iconUrl: createDeviconIconUrl(icon.name, icon.versions.svg[0], deviconBranch),
     selectedVersion: icon.versions.svg[0],
@@ -28,52 +26,51 @@ export const IconModal = ({ icon, deviconBranch }: IconModalProps) => {
     selectedColor: icon.color
   })
 
-  const [codeBlockOptions, setCodeBlockOptions] = useState<CodeBlockOptionTypes[]>(getCodeBlockOptions(deviconBranch, icon, iconSettings.selectedVersion))
-  const [selectedOption, setSelectedOption] = useState<CodeBlockOptionTypes>('LINK')
+  const [codeBlockOptions, setCodeBlockOptions] = useState<CodeBlockOptionTypes[]>(
+    getCodeBlockOptions(deviconBranch, icon, iconSettings.selectedVersion)
+  )
+  const [selectedCodeBlockOption, setSelectedCodeBlockOption] = useState<CodeBlockOptionTypes>('LINK')
   const [codeText, setCodeText] = useState<string>('')
 
   const getCodeText = async () => {
-    const code = await createIconCodeBlockText(
-      icon,
-      iconSettings,
-      selectedOption
-    )
+    const code = await createIconCodeBlockText(icon, iconSettings, selectedCodeBlockOption)
     setCodeText(code)
   }
 
   useEffect(() => {
-    getCodeText();
-  }, []);
+    getCodeText()
+  }, [selectedCodeBlockOption, iconSettings])
 
   const onSelectedOptionChange = (value: string) => {
-    setSelectedOption(value as CodeBlockOptionTypes)
-    getCodeText()
+    setSelectedCodeBlockOption(value as CodeBlockOptionTypes)
   }
 
   const onVersionChange = (value: string) => {
-    let newIconSettings = { ...iconSettings, selectedVersion: value as IconVersion }
+    const options = getCodeBlockOptions(deviconBranch, icon, value as IconVersion)
+    setCodeBlockOptions(options)
+    if (!options.includes(selectedCodeBlockOption)) {
+      setSelectedCodeBlockOption(options[0])
+    }
+
     const iconUrl = createDeviconIconUrl(icon.name, value as IconVersion, deviconBranch)
-    newIconSettings = { ...newIconSettings, iconUrl }
+    const newIconSettings = { ...iconSettings, selectedVersion: value as IconVersion, iconUrl }
     setIconSettings(newIconSettings)
-    setCodeBlockOptions(getCodeBlockOptions(deviconBranch, icon, value as IconVersion))
-    getCodeText()
   }
 
   const onSizeChange = (value: string) => {
-    const newIconSettings = { ...iconSettings, selectedIconSize: ICON_SIZE_OPTIONS.find((option) => option.name === value)! }
+    const newIconSettings = {
+      ...iconSettings,
+      selectedIconSize: ICON_SIZE_OPTIONS.find((option) => option.name === value)!
+    }
     setIconSettings(newIconSettings)
-    getCodeText()
   }
 
   const onColorChange = (color: string) => {
     if (color != iconSettings.selectedColor) {
       const newIconSettings = { ...iconSettings, selectedColor: color }
       setIconSettings(newIconSettings)
-      getCodeText()
     }
   }
-
-
 
   return (
     <>
@@ -85,12 +82,8 @@ export const IconModal = ({ icon, deviconBranch }: IconModalProps) => {
       </Tooltip>
 
       <section className='flex flex-col 2xl:flex-row my-4 gap-8'>
-       <IconImage
-          icon={icon}
-          iconSettings={iconSettings}
-          extraClasses='flex-1'
-        />
-        
+        <IconImage icon={icon} iconSettings={iconSettings} extraClasses='flex-1' />
+
         <div className='flex-1 flex flex-col gap-4'>
           <TextBar icon={{ icon: 'fa-solid fa-folder', copyTitle: 'Copy Tags' }} content={[icon.name]} />
           <div className='flex flex-row gap-4 w-full'>
@@ -141,7 +134,7 @@ export const IconModal = ({ icon, deviconBranch }: IconModalProps) => {
       <CodeBlock
         code={codeText}
         codeBlockOptions={codeBlockOptions}
-        selectedOption={selectedOption}
+        selectedOption={selectedCodeBlockOption}
         onClickCodeBlockOption={(codeType) => onSelectedOptionChange(codeType)}
       />
       <div className='hidden lg:flex flex-row justify-between mt-4'>

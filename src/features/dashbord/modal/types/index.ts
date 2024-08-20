@@ -1,4 +1,4 @@
-import { IconVersion } from "../../../../types"
+import { IconVersion } from '../../../../types'
 
 export type IconSize = 'X-Small' | 'Small' | 'Medium' | 'Large' | 'X-Large'
 

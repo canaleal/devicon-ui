@@ -5,7 +5,7 @@
   @apply mx-auto object-cover transition-transform ease-in-out;
 }
 .card__title {
-  @apply text-xs  text-gray-600 dark:text-gray-400 font-semibold;
+  @apply text-xs mx-auto text-gray-600 dark:text-gray-400 font-semibold;
 }
 .card--dark {
   @apply bg-dark-900 text-white border border-gray-600/20;

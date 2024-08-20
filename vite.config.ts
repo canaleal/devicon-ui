@@ -6,7 +6,8 @@ export default defineConfig(() => ({
   plugins: [react()],
   test: {
     coverage: {
-      provider: 'istanbul' // or 'v8'
+      provider: 'istanbul', // or 'v8'
+      include: ['src/**/*.ts']
     },
     include: ['**.test.ts', '**.test.tsx'],
     globals: true

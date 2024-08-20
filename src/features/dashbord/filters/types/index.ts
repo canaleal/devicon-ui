@@ -11,3 +11,17 @@ export interface IFilterGroup {
   filterType: FilterType
   filters: IFilterItem[]
 }
+
+
+export const INIT_FILTER_GROUPS: IFilterGroup[] = [
+  {
+    categoryName: 'Versions',
+    filterType: 'versions',
+    filters: []
+  },
+  {
+    categoryName: 'Tags',
+    filterType: 'tags',
+    filters: []
+  }
+]

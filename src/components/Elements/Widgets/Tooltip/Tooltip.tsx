@@ -2,7 +2,6 @@ import { useState, ReactNode, useEffect } from 'react'
 import './styles/tooltip.css'
 import { TooltipPosition, TOOLTIP_POSITIONS } from './tooltipPositions'
 
-
 export interface TooltipProps {
   children: ReactNode
   content: string

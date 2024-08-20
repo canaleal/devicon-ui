@@ -17,7 +17,7 @@
   @apply mb-2 text-gray-400;
 }
 .footer .footer-links a {
-  @apply font-medium transition-colors text-gray-950 hover:text-gray-700 w-fit;
+  @apply font-medium text-gray-950 hover:text-primary-900 w-fit;
 }
 .footer .footer-bottom {
   @apply relative isolate mt-12 flex justify-between items-center border-t border-gray-600/20 pb-20 pt-6 text-sm;

@@ -2,7 +2,7 @@
   @apply flex border-2 dark:border-gray-600/20 overflow-hidden w-full rounded-2xl;
 
   table {
-    @apply table-auto w-full bg-white;
+    @apply table-auto w-full bg-white  text-sm;
   }
 
   &__head {
@@ -14,7 +14,7 @@
   }
 
   &__row {
-    @apply dark:bg-dark-800  cursor-pointer text-xs;
+    @apply dark:bg-dark-800  cursor-pointer;
 
     &:hover {
       @apply bg-gray-50 dark:bg-dark-900;

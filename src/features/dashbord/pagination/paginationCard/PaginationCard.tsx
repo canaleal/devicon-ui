@@ -1,19 +1,21 @@
-import { DeviconBranch, IIcon } from '../../../../types'
+import { IIcon } from '../../../../types'
 import { createDeviconIconUrl } from '../../../../helpers/iconUrl'
 import './styles/paginationCard.css'
+import useStore from '../../../../store/iconStore'
 
 interface PaginationCardProps {
   icon: IIcon
-  deviconBranch: DeviconBranch
-  onSelect: (icon: IIcon) => void
 }
 
-export const PaginationCard = ({ icon, deviconBranch, onSelect }: PaginationCardProps) => {
+export const PaginationCard = ({ icon }: PaginationCardProps) => {
+
+  const deviconBranch = useStore((state) => state.deviconBranch)
+  const setSelectedIcon = useStore((state) => state.setSelectedIcon)
   const iconUrl = createDeviconIconUrl(icon.name, icon.versions.svg[0], deviconBranch)
 
   return (
     <button
-      onClick={() => onSelect(icon)}
+      onClick={() => setSelectedIcon(icon)}
       aria-label={icon.name}
       className={`card ${icon.color === '#fff' ? 'card--dark' : ''}`}
     >

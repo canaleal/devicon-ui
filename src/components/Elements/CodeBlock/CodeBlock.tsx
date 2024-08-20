@@ -51,7 +51,7 @@ export const CodeBlock = ({
   return (
     <div className='code-block'>
       <div className='code-block__header'>
-      {title && <p className='code-block__header__title'>{title}</p>}
+        {title && <p className='code-block__header__title'>{title}</p>}
         {codeBlockOptions && onClickCodeBlockOption && (
           <div className='flex flex-row mr-auto'>
             {codeBlockOptions.map((codeType) => (
@@ -64,15 +64,13 @@ export const CodeBlock = ({
             ))}
           </div>
         )}
-          <Tooltip content='Copy Code' position='bottom' flashMessage='Copied!'>
+        <Tooltip content='Copy Code' position='bottom' flashMessage='Copied!'>
           <button onClick={() => copyToClipboard(codeString)} className='code-block__button ml-auto'>
             <span>Copy Code</span>
             <i className='fa-solid fa-copy'></i>
           </button>
         </Tooltip>
-
       </div>
-
 
       <div className='overflow-hidden bg-dark-900'>
         <SyntaxHighlighter
@@ -85,8 +83,6 @@ export const CodeBlock = ({
           {codeString}
         </SyntaxHighlighter>
       </div>
-
-
     </div>
   )
 }

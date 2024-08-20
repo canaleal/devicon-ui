@@ -1,10 +1,10 @@
-import {  useState } from 'react'
+import { useState } from 'react'
 
 import Tooltip from '../../../../components/Elements/Widgets/Tooltip/Tooltip'
 import { IIconSettings } from '../types'
 import '../../../../components/Elements/Widgets/Button/styles/button.css'
 import './styles/iconImage.css'
-import {IIcon } from '../../../../types'
+import { IIcon } from '../../../../types'
 import { createStyleMap } from '../helpers/iconImage'
 
 interface IconContainerProps {
@@ -13,11 +13,7 @@ interface IconContainerProps {
   extraClasses?: string
 }
 
-export const IconImage = ({
-  icon,
-  iconSettings,
-  extraClasses
-}: IconContainerProps) => {
+export const IconImage = ({ icon, iconSettings, extraClasses }: IconContainerProps) => {
   const styleMap = createStyleMap(icon, iconSettings)
   const [isDarkBackground, setIsDarkBackground] = useState<boolean>(false)
   const [isViewBoxVisible, setIsViewBoxVisible] = useState<boolean>(false)
@@ -34,9 +30,19 @@ export const IconImage = ({
     <div className={`icon-image ${isDarkBackground ? 'icon-image--dark' : 'icon-image--light'} ${extraClasses}`}>
       <div className={`view-box  ${isViewBoxVisible ? (isDarkBackground ? 'view-box--dark' : 'view-box--light') : ''}`}>
         {styleMap ? (
-          <div style={{ height: iconSettings.selectedIconSize.height, width: iconSettings.selectedIconSize.width, ...styleMap }} />
+          <div
+            style={{
+              height: iconSettings.selectedIconSize.height,
+              width: iconSettings.selectedIconSize.width,
+              ...styleMap
+            }}
+          />
         ) : (
-          <img height={iconSettings.selectedIconSize.height} width={iconSettings.selectedIconSize.width} src={iconSettings.iconUrl} />
+          <img
+            height={iconSettings.selectedIconSize.height}
+            width={iconSettings.selectedIconSize.width}
+            src={iconSettings.iconUrl}
+          />
         )}
       </div>
 

@@ -4,7 +4,6 @@ import storage from '../../../helpers/storage'
 import './styles/navbar.css'
 
 const DarkModeToggle = () => {
-
   const [darkMode, setDarkMode] = useState(storage.getToken()['isDark'] ?? false)
 
   useEffect(() => {
@@ -30,18 +29,16 @@ const DarkModeToggle = () => {
     <button onClick={toggleDarkMode} className='dark-mode-toggle'>
       {darkMode ? <i className='fa-solid fa-sun'></i> : <i className='fa-solid fa-moon'></i>}
     </button>
-  );
-};
-
+  )
+}
 
 const Navbar = () => {
-
   return (
     <>
       <header className='navbar'>
-        <div className="navbar-content">
+        <div className='navbar-content'>
           <Logo />
-          <DarkModeToggle  />
+          <DarkModeToggle />
         </div>
       </header>
 
