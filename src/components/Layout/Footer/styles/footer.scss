@@ -1,5 +1,5 @@
 .footer {
-  @apply flex flex-col w-full bg-gray-50;
+  @apply flex flex-col w-full bg-gray-50 dark:bg-dark-900 dark:text-white;
 
   .footer-content {
     @apply mx-auto w-full px-6 sm:max-w-[40rem] md:max-w-[48rem] md:px-8 lg:max-w-[64rem] xl:max-w-[90rem];
@@ -17,11 +17,11 @@
     @apply col-span-1 flex flex-col gap-2 text-sm;
 
     p {
-      @apply mb-2 text-gray-400;
+      @apply mb-2 text-gray-400 dark:text-gray-400;
     }
 
     a {
-      @apply font-medium text-gray-950 hover:text-primary-900 w-fit;
+      @apply font-medium text-gray-950 dark:text-white hover:text-primary-900 dark:hover:text-primary-900 w-fit;
     }
   }
 

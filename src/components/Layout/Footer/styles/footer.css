@@ -1,5 +1,5 @@
 .footer {
-  @apply flex flex-col w-full bg-gray-50;
+  @apply flex flex-col w-full bg-gray-50 dark:bg-dark-900 dark:text-white;
 }
 .footer .footer-content {
   @apply mx-auto w-full px-6 sm:max-w-[40rem] md:max-w-[48rem] md:px-8 lg:max-w-[64rem] xl:max-w-[90rem];
@@ -14,10 +14,10 @@
   @apply col-span-1 flex flex-col gap-2 text-sm;
 }
 .footer .footer-links p {
-  @apply mb-2 text-gray-400;
+  @apply mb-2 text-gray-400 dark:text-gray-400;
 }
 .footer .footer-links a {
-  @apply font-medium text-gray-950 hover:text-primary-900 w-fit;
+  @apply font-medium text-gray-950 dark:text-white hover:text-primary-900 dark:hover:text-primary-900 w-fit;
 }
 .footer .footer-bottom {
   @apply relative isolate mt-12 flex justify-between items-center border-t border-gray-600/20 pb-20 pt-6 text-sm;

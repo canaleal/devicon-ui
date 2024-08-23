@@ -12,7 +12,7 @@
 }
 .masked-image {
   -webkit-mask-image: linear-gradient(to right, transparent, black 30%, black 90%, transparent);
-  mask-image: linear-gradient(to right, transparent, black 30%, black 90%, transparent);
+          mask-image: linear-gradient(to right, transparent, black 30%, black 90%, transparent);
   mask-composite: intersect;
   -webkit-mask-composite: source-in;
-} /*# sourceMappingURL=InfiniteScroll.css.map */
+}/*# sourceMappingURL=InfiniteScroll.css.map */

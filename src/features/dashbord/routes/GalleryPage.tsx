@@ -26,24 +26,15 @@ import storage from '../../../helpers/storage'
 import { fetchIcons } from '../../../service/icons'
 
 const GalleryPage = () => {
+  const { icons, selectedIcon, deviconBranch, setSelectedIcon, setDeviconBranch, setFilteredIcons, setIcons } =
+    useIconStore()
 
-  const {
-    icons,
-    filteredIcons,
-    selectedIcon,
-    deviconBranch,
-    setSelectedIcon,
-    setDeviconBranch,
-    setFilteredIcons,
-    setIcons
-  } = useIconStore()
-
-  const [searchQuery, setSearchQuery] = useState<string>('');
-  const [filterGroups, setFilterGroups] = useState<IFilterGroup[]>([]);
+  const [searchQuery, setSearchQuery] = useState<string>('')
+  const [filterGroups, setFilterGroups] = useState<IFilterGroup[]>([])
 
   const handleIconsUpdate = (tempIcons: IIcon[], search: string, tempFilterGroups: IFilterGroup[]) => {
-    const searchedIconsTemp = search ? filterIcons(tempIcons, 'name', search) : tempIcons;
-    let tempFilteredIcons: IIcon[] = searchedIconsTemp;
+    const searchedIconsTemp = search ? filterIcons(tempIcons, 'name', search) : tempIcons
+    let tempFilteredIcons: IIcon[] = searchedIconsTemp
     tempFilterGroups.forEach((group) => {
       group.filters.forEach((filter) => {
         if (filter.isSelected) {
@@ -55,17 +46,15 @@ const GalleryPage = () => {
   }
 
   useEffect(() => {
-   
     const init = async () => {
-      console.log('init')
-      const params = new URLSearchParams(location.search);
-      const branch = params.get('branch') as DeviconBranch || storage.getToken().deviconBranch || deviconBranch;
-      const tempIcons = await fetchIcons(branch);
+      const params = new URLSearchParams(location.search)
+      const branch = (params.get('branch') as DeviconBranch) || storage.getToken().deviconBranch || deviconBranch
+      const tempIcons = await fetchIcons(branch)
       const initFilterGroups = INIT_FILTER_GROUPS.map((group) => populateIconFilters(tempIcons, group))
       setIcons(tempIcons)
-      setDeviconBranch(branch);
-      setFilterGroups( initFilterGroups)
-      handleIconsUpdate(tempIcons, searchQuery, initFilterGroups);
+      setDeviconBranch(branch)
+      setFilterGroups(initFilterGroups)
+      handleIconsUpdate(tempIcons, searchQuery, initFilterGroups)
     }
 
     init()
@@ -73,26 +62,26 @@ const GalleryPage = () => {
 
   const handleSearch = (query: string) => {
     setSearchQuery(query)
-    handleIconsUpdate(icons, searchQuery, filterGroups);
+    handleIconsUpdate(icons, searchQuery, filterGroups)
   }
 
   const handleDeviconBranchChange = async (branch: DeviconBranch) => {
     setDeviconBranch(branch)
-    const tempIcons = await fetchIcons(branch);
+    const tempIcons = await fetchIcons(branch)
     setIcons(tempIcons)
-    handleIconsUpdate(tempIcons, searchQuery, filterGroups);
+    handleIconsUpdate(tempIcons, searchQuery, filterGroups)
   }
 
   const handleFilterClick = (filterGroup: IFilterGroup, filter: IFilterItem) => {
     const updatedFilterGroups = updateFilterGroups(filterGroups, updateFilter(filterGroup, filter))
     setFilterGroups(updatedFilterGroups)
-    handleIconsUpdate(icons, searchQuery, updatedFilterGroups);
+    handleIconsUpdate(icons, searchQuery, updatedFilterGroups)
   }
 
   const handleResetFilterGroup = (filterGroup: IFilterGroup) => {
     const updatedFilterGroups = updateFilterGroups(filterGroups, resetFilterGroup(filterGroup))
     setFilterGroups(updatedFilterGroups)
-    handleIconsUpdate(icons, searchQuery, updatedFilterGroups);
+    handleIconsUpdate(icons, searchQuery, updatedFilterGroups)
   }
 
   return (
@@ -105,38 +94,35 @@ const GalleryPage = () => {
 
       <section className='bg-white dark:bg-dark-900 border-b border-gray-600/20'>
         <div className='base-container xl:flex-row justify-between '>
-            <div className='flex flex-row gap-4'>
-              <Dropdown
-                extraClasses='w-full xl:w-32'
-                isDisabled={false}
-                selectedOption={deviconBranch}
-                options={['master', 'develop']}
-                onChange={(value) => {
-                  handleDeviconBranchChange(value as DeviconBranch)
-                }}
+          <div className='flex flex-row gap-4'>
+            <Dropdown
+              extraClasses='w-full xl:w-32'
+              isDisabled={false}
+              selectedOption={deviconBranch}
+              options={['master', 'develop']}
+              onChange={(value) => {
+                handleDeviconBranchChange(value as DeviconBranch)
+              }}
+            />
+            <SearchBar
+              placeholder='Search Icons'
+              extraClasses='w-full xl:w-96'
+              onSearch={handleSearch}
+              autoCompleteOptions={icons.map((icon) => [icon.name, ...icon.altnames]).flat()}
+            />
+          </div>
+
+          <div className='flex flex-row gap-4'>
+            {filterGroups.map((filterGroup) => (
+              <FilterDropdown
+                key={filterGroup.categoryName}
+                filterGroup={filterGroup}
+                handleFilterClick={handleFilterClick}
+                handleResetFilterGroup={handleResetFilterGroup}
+                extraClasses='w-full xl:w-64'
               />
-              <SearchBar
-                placeholder='Search Icons'
-                extraClasses='w-full xl:w-96'
-                onSearch={handleSearch}
-                autoCompleteOptions={icons.map((icon) => [icon.name, ...icon.altnames]).flat()}
-              />
-            </div>
-
-            <div className='flex flex-row gap-4'>
-
-              {filterGroups.map((filterGroup) => (
-                <FilterDropdown
-                  key={filterGroup.categoryName}
-                  filterGroup={filterGroup}
-                  handleFilterClick={handleFilterClick}
-                  handleResetFilterGroup={handleResetFilterGroup}
-                  extraClasses='w-full xl:w-64'
-                />
-              ))}
-
-            </div>
-         
+            ))}
+          </div>
         </div>
       </section>
 
@@ -144,12 +130,10 @@ const GalleryPage = () => {
         <div className='base-container flex-col'>
           <CDNBlockLink />
           <div className='base-container__card'>
-            <Pagination filteredIcons={filteredIcons} />
+            <Pagination />
           </div>
         </div>
       </section>
-
-
     </>
   )
 }

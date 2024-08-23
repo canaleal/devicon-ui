@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { DEVICON_VERSION_RELEASE } from '../../../constants'
 import { DeviconBranch, IIcon, IconVersion } from '../../../types'
 import { createDeviconIconUrl } from '../../../helpers/iconUrl'
@@ -12,6 +12,7 @@ import IconImage from './iconImage/IconImage'
 import ColorPickerDropdown from '../../../components/Elements/Form/Dropdown/ColorPickerDropdown'
 import { CodeBlock } from '../../../components/Elements/CodeBlock'
 import { createIconCodeBlockText, getCodeBlockOptions } from './helpers/codeBlockContent'
+import { useIconSettingStore } from './iconSettingStore'
 
 interface IconModalProps {
   icon: IIcon
@@ -19,42 +20,51 @@ interface IconModalProps {
 }
 
 export const IconModal = ({ icon, deviconBranch }: IconModalProps) => {
-  const [iconSettings, setIconSettings] = useState<IIconSettings>({
-    iconUrl: createDeviconIconUrl(icon.name, icon.versions.svg[0], deviconBranch),
-    selectedVersion: icon.versions.svg[0],
-    selectedIconSize: INIT_ICON_SIZE,
-    selectedColor: icon.color
-  })
-
-  const [codeBlockOptions, setCodeBlockOptions] = useState<CodeBlockOptionTypes[]>(
-    getCodeBlockOptions(deviconBranch, icon, iconSettings.selectedVersion)
-  )
-  const [selectedCodeBlockOption, setSelectedCodeBlockOption] = useState<CodeBlockOptionTypes>('LINK')
-  const [codeText, setCodeText] = useState<string>('')
-
-  const getCodeText = async () => {
-    const code = await createIconCodeBlockText(icon, iconSettings, selectedCodeBlockOption)
+  const {
+    codeText,
+    setCodeText,
+    iconSettings,
+    codeBlockOptions,
+    setIconSettings,
+    setCodeBlockOptions,
+    selectedCodeBlockOption,
+    setSelectedCodeBlockOption
+  } = useIconSettingStore()
+  const getCodeText = async (tempIconSettings: IIconSettings, tempSelectedCodeBlock: CodeBlockOptionTypes) => {
+    const code = await createIconCodeBlockText(icon, tempIconSettings, tempSelectedCodeBlock)
     setCodeText(code)
   }
 
   useEffect(() => {
-    getCodeText()
-  }, [selectedCodeBlockOption, iconSettings])
+    const initCodeBlockOptions = getCodeBlockOptions(deviconBranch, icon, iconSettings.selectedVersion)
+    const initIconSetting = {
+      iconUrl: createDeviconIconUrl(icon.name, icon.versions.svg[0], deviconBranch),
+      selectedVersion: icon.versions.svg[0],
+      selectedIconSize: INIT_ICON_SIZE,
+      selectedColor: icon.color
+    }
+    setIconSettings(initIconSetting)
+    setCodeBlockOptions(initCodeBlockOptions)
+    getCodeText(initIconSetting, selectedCodeBlockOption)
+  }, [icon])
 
   const onSelectedOptionChange = (value: string) => {
     setSelectedCodeBlockOption(value as CodeBlockOptionTypes)
+    getCodeText(iconSettings, value as CodeBlockOptionTypes)
   }
 
   const onVersionChange = (value: string) => {
-    const options = getCodeBlockOptions(deviconBranch, icon, value as IconVersion)
-    setCodeBlockOptions(options)
-    if (!options.includes(selectedCodeBlockOption)) {
-      setSelectedCodeBlockOption(options[0])
-    }
-
     const iconUrl = createDeviconIconUrl(icon.name, value as IconVersion, deviconBranch)
     const newIconSettings = { ...iconSettings, selectedVersion: value as IconVersion, iconUrl }
     setIconSettings(newIconSettings)
+
+    const options = getCodeBlockOptions(deviconBranch, icon, value as IconVersion)
+    setCodeBlockOptions(options)
+    const tempCodeBlockOption = !options.includes(selectedCodeBlockOption) ? options[0] : selectedCodeBlockOption
+    if (tempCodeBlockOption != selectedCodeBlockOption) {
+      setSelectedCodeBlockOption(tempCodeBlockOption)
+    }
+    getCodeText(newIconSettings, tempCodeBlockOption)
   }
 
   const onSizeChange = (value: string) => {
@@ -63,12 +73,14 @@ export const IconModal = ({ icon, deviconBranch }: IconModalProps) => {
       selectedIconSize: ICON_SIZE_OPTIONS.find((option) => option.name === value)!
     }
     setIconSettings(newIconSettings)
+    getCodeText(newIconSettings, selectedCodeBlockOption)
   }
 
   const onColorChange = (color: string) => {
     if (color != iconSettings.selectedColor) {
       const newIconSettings = { ...iconSettings, selectedColor: color }
       setIconSettings(newIconSettings)
+      getCodeText(newIconSettings, selectedCodeBlockOption)
     }
   }
 

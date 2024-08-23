@@ -12,7 +12,6 @@ export interface IFilterGroup {
   filters: IFilterItem[]
 }
 
-
 export const INIT_FILTER_GROUPS: IFilterGroup[] = [
   {
     categoryName: 'Versions',

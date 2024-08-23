@@ -24,8 +24,12 @@ const PaginationSelection: React.FC<PaginationSelectionProps> = ({
   return (
     <div className={`flex flex-row items-center gap-2 text-xs ${extraClasses}`}>
       <p>Items Per Page</p>
-      <select value={elementsPerPage} onChange={(e) => handlePerPageChange(parseInt(e.target.value))} className='dropdown dropdown--small'>
-        {elementsPerPageOptions.map(option => (
+      <select
+        value={elementsPerPage}
+        onChange={(e) => handlePerPageChange(parseInt(e.target.value))}
+        className='dropdown dropdown--small'
+      >
+        {elementsPerPageOptions.map((option) => (
           <option key={option} value={option}>
             {option}
           </option>

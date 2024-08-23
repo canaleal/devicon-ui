@@ -13,13 +13,7 @@ const ContactLogos = () => {
   return (
     <div className='flex flex-row gap-4 text-xl'>
       {contactLinks.map(({ href, iconClass }, index) => (
-        <a
-          key={index}
-          className='text-gray-400 hover:text-gray-950'
-          href={href}
-          target='_blank'
-          rel='noreferrer'
-        >
+        <a key={index} className='text-gray-400 hover:text-gray-950' href={href} target='_blank' rel='noreferrer'>
           <i className={iconClass}></i>
         </a>
       ))}

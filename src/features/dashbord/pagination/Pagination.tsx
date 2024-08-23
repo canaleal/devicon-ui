@@ -4,6 +4,7 @@ import PaginationButtons from './PaginationButtons'
 import PaginationCard from './paginationCard/PaginationCard'
 import PaginationSelection from './PaginationSelection'
 import { DEFAULT_ELEMENTS_PER_PAGE, ELEMENTS_PER_PAGE_OPTIONS } from './types'
+import useIconStore from '../../../store/iconStore'
 
 interface IPaginationGridProps {
   icons: IIcon[]
@@ -25,11 +26,8 @@ export const NoIconsFound = () => (
   </div>
 )
 
-interface PaginationProps {
-  filteredIcons: IIcon[]
-}
-
-export const Pagination = ({ filteredIcons }: PaginationProps) => {
+export const Pagination = () => {
+  const { filteredIcons } = useIconStore()
 
   const [paginatedIcons, setPaginatedIcons] = useState<IIcon[]>([])
   const [currentPage, setCurrentPage] = useState<number>(1)
@@ -64,14 +62,9 @@ export const Pagination = ({ filteredIcons }: PaginationProps) => {
         <p className='ml-auto hidden md:inline-block text-xs'>
           Page {currentPage} of {totalPages || 1}
         </p>
-        
       </div>
 
-      {paginatedIcons.length ? (
-        <PaginationGrid icons={paginatedIcons} />
-      ) : (
-        <NoIconsFound />
-      )}
+      {paginatedIcons.length ? <PaginationGrid icons={paginatedIcons} /> : <NoIconsFound />}
 
       <div className='flex flex-row justify-center lg:justify-between'>
         <PaginationSelection

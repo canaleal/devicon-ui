@@ -33,7 +33,6 @@ const PaginationButtons: React.FC<PaginationButtonsProps> = ({ currentPage, setC
     setPagesToRender(getPaginationButtons(currentPage, totalPages))
   }, [currentPage, totalPages])
 
-
   return pagesToRender.length === 1 ? null : (
     <div className='flex flex-row'>
       <ArrowButton disabled={currentPage === 1} onClick={() => setCurrentPage(currentPage - 1)} direction='left' />
