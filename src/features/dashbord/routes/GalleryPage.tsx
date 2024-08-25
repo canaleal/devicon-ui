@@ -23,7 +23,7 @@ import useIconStore from '../../../store/iconStore'
 
 import '../../../components/Layout/Container/container.css'
 import storage from '../../../helpers/storage'
-import { fetchIcons } from '../../../service/icons'
+import { fetchIcons } from '../../../service/iconService'
 
 const GalleryPage = () => {
   const { icons, selectedIcon, deviconBranch, setSelectedIcon, setDeviconBranch, setFilteredIcons, setIcons } =

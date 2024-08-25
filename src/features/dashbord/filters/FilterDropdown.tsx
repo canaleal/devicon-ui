@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
-import { ICON_VERSION_FA_MAP } from '../../../config'
+
 import { IFilterGroup, IFilterItem } from './types'
 
 import { IconVersion } from '../../../types'
+import { ICON_VERSION_FA_MAP } from '../../../constants'
 
 interface FilterItemProps {
   filter: IFilterItem

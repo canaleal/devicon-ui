@@ -5,6 +5,14 @@
     @apply py-32;
   }
 
+  &--row {
+    @apply flex-row;
+  }
+
+  &--col {
+    @apply flex-col;
+  }
+
   &__card {
     @apply z-10  flex flex-col p-8 rounded-2xl bg-white border border-gray-600/20 dark:bg-dark-900 dark:text-white  dark:border-gray-600/20 shadow-md;
   }

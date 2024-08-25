@@ -1,15 +1,36 @@
-import { useEffect, useRef, useState } from 'react'
-
-import './styles/dropdown.css'
+import { useEffect, useRef, useState } from 'react';
+import './styles/dropdown.css';
 
 export interface DropdownProps {
-  title: string
-  isDisabled: boolean
-  defaultColor: string
-  selectedColor: string
-  onColorChange: (value: string) => void
+  title: string;
+  isDisabled: boolean;
+  defaultColor: string;
+  selectedColor: string;
+  onColorChange: (value: string) => void;
+  extraClasses?: string;
+}
 
-  extraClasses?: string
+interface DropdownButtonProps {
+  isDisabled: boolean;
+  selectedColor: string;
+  isOpen: boolean;
+  toggleDropdown: () => void;
+}
+
+interface DropdownMenuProps {
+  selectedColor: string;
+  defaultColor: string;
+  onColorChange: (color: string) => void;
+  resetColor: () => void;
+}
+
+interface ColorInputProps {
+  selectedColor: string;
+  onColorChange: (color: string) => void;
+}
+
+interface ColorPaletteProps {
+  onColorChange: (color: string) => void;
 }
 
 const PALLET_COLORS = {
@@ -25,7 +46,7 @@ const PALLET_COLORS = {
   black: '#000000',
   white: '#ffffff',
   pink: '#e91e63'
-}
+};
 
 const ColorPickerDropdown = ({
   title,
@@ -33,35 +54,30 @@ const ColorPickerDropdown = ({
   defaultColor,
   selectedColor,
   onColorChange,
-
   extraClasses = ''
 }: DropdownProps) => {
-  const [isOpen, setIsOpen] = useState(false)
-  const dropdownRef = useRef<HTMLDivElement>(null)
+  const [isOpen, setIsOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-        setIsOpen(false)
+        setIsOpen(false);
       }
-    }
+    };
 
-    document.addEventListener('mousedown', handleClickOutside)
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside)
-    }
-  }, [])
-
-  const toggleDropdown = () => setIsOpen(!isOpen)
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   return (
     <div className={`relative ${extraClasses}`} ref={dropdownRef}>
-      <p className='font-bold text-sm mb-1'>{title}</p>
+      <p className="font-bold text-sm mb-1">{title}</p>
       <DropdownButton
         isDisabled={isDisabled}
         selectedColor={selectedColor}
         isOpen={isOpen}
-        toggleDropdown={toggleDropdown}
+        toggleDropdown={() => setIsOpen(!isOpen)}
       />
       {isOpen && (
         <DropdownMenu
@@ -72,47 +88,37 @@ const ColorPickerDropdown = ({
         />
       )}
     </div>
-  )
-}
+  );
+};
 
 const DropdownButton = ({
   isDisabled,
   selectedColor,
   isOpen,
   toggleDropdown
-}: {
-  isDisabled: boolean
-  selectedColor: string
-  isOpen: boolean
-  toggleDropdown: () => void
-}) => {
-  const BUTTON_STYLE = `dropdown ${isDisabled ? 'dropdown--disabled' : ''}`
+}: DropdownButtonProps) => {
+  const BUTTON_STYLE = `dropdown ${isDisabled ? 'dropdown--disabled' : ''}`;
   return (
     <button disabled={isDisabled} onClick={toggleDropdown} className={BUTTON_STYLE}>
-      <span className='dropdown__placeholder'>
-        <span className='dropdown__color-picker__mark' style={{ backgroundColor: selectedColor }} />
+      <span className="dropdown__placeholder">
+        <span className="dropdown__color-picker__mark" style={{ backgroundColor: selectedColor }} />
         {selectedColor}
       </span>
       <i className={`fas ${isOpen ? 'fa-chevron-up' : 'fa-chevron-down'}`} />
     </button>
-  )
-}
+  );
+};
 
 const DropdownMenu = ({
   selectedColor,
   defaultColor,
   onColorChange,
   resetColor
-}: {
-  selectedColor: string
-  defaultColor: string
-  onColorChange: (color: string) => void
-  resetColor: () => void
-}) => {
-  const isResetButtonDisabled = selectedColor === defaultColor
+}: DropdownMenuProps) => {
+  const isResetButtonDisabled = selectedColor === defaultColor;
   return (
-    <div className='dropdown__popup'>
-      <div className='flex flex-col gap-2 p-4'>
+    <div className="dropdown__popup">
+      <div className="flex flex-col gap-2 p-4">
         <ColorInput selectedColor={selectedColor} onColorChange={onColorChange} />
         <ColorPalette onColorChange={onColorChange} />
       </div>
@@ -121,39 +127,33 @@ const DropdownMenu = ({
         className={`dropdown__item dropdown__item--reset ${isResetButtonDisabled ? 'dropdown__item--disabled' : ''}`}
         onClick={resetColor}
       >
-        <span className='dropdown__color-picker__mark' style={{ backgroundColor: defaultColor }} />
+        <span className="dropdown__color-picker__mark" style={{ backgroundColor: defaultColor }} />
         Reset Color
       </button>
     </div>
-  )
-}
+  );
+};
 
-const ColorInput = ({
-  selectedColor,
-  onColorChange
-}: {
-  selectedColor: string
-  onColorChange: (color: string) => void
-}) => (
+const ColorInput = ({ selectedColor, onColorChange }: ColorInputProps) => (
   <input
-    type='color'
+    type="color"
     value={selectedColor}
-    className='dropdown__color-picker__input'
+    className="dropdown__color-picker__input"
     onChange={(e) => onColorChange(e.target.value)}
   />
-)
+);
 
-const ColorPalette = ({ onColorChange }: { onColorChange: (color: string) => void }) => (
-  <div className='grid grid-cols-4 gap-2 h-fit'>
+const ColorPalette = ({ onColorChange }: ColorPaletteProps) => (
+  <div className="grid grid-cols-4 gap-2 h-fit">
     {Object.values(PALLET_COLORS).map((color) => (
       <div
         key={color}
-        className='dropdown__color-picker__item'
+        className="dropdown__color-picker__item"
         style={{ backgroundColor: color }}
         onClick={() => onColorChange(color)}
       />
     ))}
   </div>
-)
+);
 
-export default ColorPickerDropdown
+export default ColorPickerDropdown;

@@ -13,6 +13,7 @@ import ColorPickerDropdown from '../../../components/Elements/Form/Dropdown/Colo
 import { CodeBlock } from '../../../components/Elements/CodeBlock'
 import { createIconCodeBlockText, getCodeBlockOptions } from './helpers/codeBlockContent'
 import { useIconSettingStore } from './iconSettingStore'
+import './styles/iconModal.css'
 
 interface IconModalProps {
   icon: IIcon
@@ -88,17 +89,17 @@ export const IconModal = ({ icon, deviconBranch }: IconModalProps) => {
     <>
       <Tooltip content='Copy Name' position='bottom' flashMessage='Copied!'>
         <button onClick={() => copyToClipboard(icon.name)} className='button button--icon'>
-          <p className='font-bold text-2xl'>{icon.name}</p>
-          <i className='fa-solid fa-copy text-xl'></i>
+          <p className='icon-title'>{icon.name}</p>
+          <i className='fa-solid fa-copy  text-xl'></i>
         </button>
       </Tooltip>
 
-      <section className='flex flex-col 2xl:flex-row my-4 gap-8'>
-        <IconImage icon={icon} iconSettings={iconSettings} extraClasses='flex-1' />
+      <section className='icon-section'>
+        <IconImage icon={icon} iconSettings={iconSettings} extraClasses='icon-container' />
 
-        <div className='flex-1 flex flex-col gap-4'>
+        <div className='icon-options'>
           <TextBar icon={{ icon: 'fa-solid fa-folder', copyTitle: 'Copy Tags' }} content={[icon.name]} />
-          <div className='flex flex-row gap-4 w-full'>
+          <div className='option-row'>
             <Dropdown
               title='Version'
               isDisabled={false}
@@ -132,7 +133,7 @@ export const IconModal = ({ icon, deviconBranch }: IconModalProps) => {
           </div>
           <Table
             title='Aliases'
-            extraClasses='hidden lg:flex'
+            extraClasses='alias-table'
             data={icon.aliases}
             headers={['Base', 'Alias']}
             keyExtractor={(item, index) => `${item}-${index}`}
@@ -149,7 +150,7 @@ export const IconModal = ({ icon, deviconBranch }: IconModalProps) => {
         selectedOption={selectedCodeBlockOption}
         onClickCodeBlockOption={(codeType) => onSelectedOptionChange(codeType)}
       />
-      <div className='hidden lg:flex flex-row justify-between mt-4'>
+      <div className='alt-names-bar'>
         <TextBar title='Alt Names' content={icon.altnames ?? []} />
         <span className='text-sm'>{deviconBranch === 'master' ? DEVICON_VERSION_RELEASE : 'Development Branch'}</span>
       </div>

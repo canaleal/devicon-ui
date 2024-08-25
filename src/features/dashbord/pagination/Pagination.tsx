@@ -57,7 +57,7 @@ export const Pagination = () => {
 
   return (
     <section className='flex flex-col gap-6 w-full'>
-      <div className='flex w-full gap-4 items-center'>
+      <div className='flex gap-4 items-center'>
         <p className='font-semibold text-xl'>{filteredIcons.length} Icons</p>
         <p className='ml-auto hidden md:inline-block text-xs'>
           Page {currentPage} of {totalPages || 1}
