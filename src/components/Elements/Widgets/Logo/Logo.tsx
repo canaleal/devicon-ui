@@ -1,6 +1,7 @@
+import './logo.css'
 const Logo = () => {
   return (
-    <div className='flex flex-row gap-2 items-center text-xl'>
+    <div className='logo'>
       <p className='font-thin'>DEVICON</p>
       <p className='font-bold'>UI</p>
     </div>

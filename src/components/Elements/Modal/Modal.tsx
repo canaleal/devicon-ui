@@ -1,5 +1,5 @@
 import ReactDOM from 'react-dom'
-import './styles/modal.css'
+import './modal.css'
 
 interface ModalProps {
   isOpen: boolean

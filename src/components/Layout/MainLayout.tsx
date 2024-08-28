@@ -1,7 +1,7 @@
 import { Outlet } from 'react-router-dom'
 
 import Navbar from './Navbar/Navbar'
-import { ScrollButton } from '../Elements/FixedButtons'
+import { ScrollButton } from '../Elements/Widgets/FixedButtons'
 import Footer from './Footer/Footer'
 
 export const MainLayout = () => {

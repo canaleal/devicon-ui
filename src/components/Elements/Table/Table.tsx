@@ -1,5 +1,5 @@
 import React from 'react'
-import './styles/table.css'
+import './table.css'
 
 export interface TableProps<T> {
   title?: string
@@ -15,8 +15,8 @@ export function Table<T>({ title, data, headers, keyExtractor, rowRenderer, onRo
   if (!data.length) return null
 
   return (
-    <div className={`flex flex-col gap-2 ${extraClasses}`}>
-      {title && <p className='font-bold text-sm'>{title}</p>}
+    <div className={`table-container ${extraClasses}`}>
+      {title && <p className='table-container__title'>{title}</p>}
       <div className='table'>
         <table>
           <thead className='table__head'>

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { SearchBar } from '../../../components/Elements/Form/SearchBar'
+
 import { DeviconBranch, IconVersion, IIcon } from '../../../types'
 import { IconModal } from '../modal'
 import { Pagination } from '../pagination'
@@ -24,6 +24,7 @@ import useIconStore from '../../../store/iconStore'
 import '../../../components/Layout/Container/container.css'
 import storage from '../../../helpers/storage'
 import { fetchIcons } from '../../../service/iconService'
+import SearchBar from '../../../components/Elements/Form/SearchBar/SearchBar'
 
 const GalleryPage = () => {
   const { icons, selectedIcon, deviconBranch, setSelectedIcon, setDeviconBranch, setFilteredIcons, setIcons } =
@@ -127,7 +128,7 @@ const GalleryPage = () => {
       </section>
 
       <section className='bg-gray-50 dark:bg-dark-900'>
-        <div className='base-container flex-col'>
+        <div className='base-container base-container--col'>
           <CDNBlockLink />
           <div className='base-container__card'>
             <Pagination />

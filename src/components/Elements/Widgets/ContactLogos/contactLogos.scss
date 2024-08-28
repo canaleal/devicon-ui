@@ -1,0 +1,7 @@
+.contact-logos {
+  @apply flex flex-row gap-4 text-xl;
+
+  &__link {
+    @apply text-gray-400 hover:text-gray-950 transition-colors;
+  }
+}

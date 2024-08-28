@@ -1,29 +1,27 @@
 .icon-section {
-    @apply flex flex-col 2xl:flex-row my-4 gap-8;
-  }
-  
-  .icon-container {
-    @apply flex-1;
-  }
-  
-  .icon-options {
-    @apply flex-1 flex flex-col gap-4;
-  }
-  
-  .option-row {
-    @apply flex flex-row gap-4 w-full;
-  }
-  
-  .alias-table {
-    @apply hidden lg:flex;
-  }
-  
-  .alt-names-bar {
-    @apply hidden lg:flex flex-row justify-between mt-4;
-  }
+  @apply flex flex-col 2xl:flex-row my-4 gap-8;
+}
 
-  
-  .icon-title {
-    @apply font-bold text-2xl;
-  }
-  
+.icon-container {
+  @apply flex-1;
+}
+
+.icon-options {
+  @apply flex-1 flex flex-col gap-4;
+}
+
+.option-row {
+  @apply flex flex-row gap-4 w-full;
+}
+
+.alias-table {
+  @apply hidden lg:flex;
+}
+
+.alt-names-bar {
+  @apply hidden lg:flex flex-row justify-between mt-4;
+}
+
+.icon-title {
+  @apply font-bold text-xl;
+}

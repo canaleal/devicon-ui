@@ -1,7 +1,7 @@
 import Logo from '../../Elements/Widgets/Logo/Logo'
 import { useEffect, useState } from 'react'
 import storage from '../../../helpers/storage'
-import './styles/navbar.css'
+import './navbar.css'
 
 const DarkModeToggle = () => {
   const [darkMode, setDarkMode] = useState(storage.getToken()['isDark'] ?? false)

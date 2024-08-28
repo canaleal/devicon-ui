@@ -1,4 +1,4 @@
-import { CodeBlock } from '../../../components/Elements/CodeBlock'
+import CodeBlock from '../../../components/Elements/CodeBlock/CodeBlock'
 import { DEVICON_LINK_TAG } from '../../../constants'
 import useIconStore from '../../../store/iconStore'
 

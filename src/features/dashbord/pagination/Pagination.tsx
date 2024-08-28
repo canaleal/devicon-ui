@@ -1,17 +1,18 @@
 import { useEffect, useState } from 'react'
 import { IIcon } from '../../../types'
-import PaginationButtons from './PaginationButtons'
-import PaginationCard from './paginationCard/PaginationCard'
-import PaginationSelection from './PaginationSelection'
+import PaginationButtons from './widgets/paginationButtons/PaginationButtons'
+import PaginationCard from './widgets/paginationCard/PaginationCard'
+import PaginationSelection from './widgets/paginationSelection/PaginationSelection'
 import { DEFAULT_ELEMENTS_PER_PAGE, ELEMENTS_PER_PAGE_OPTIONS } from './types'
 import useIconStore from '../../../store/iconStore'
+import './styles/pagination.css'
 
 interface IPaginationGridProps {
   icons: IIcon[]
 }
 export const PaginationGrid = ({ icons }: IPaginationGridProps) => {
   return (
-    <div className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-4'>
+    <div className='pagination__grid'>
       {icons.map((icon) => (
         <PaginationCard key={icon.name} icon={icon} />
       ))}
@@ -20,8 +21,8 @@ export const PaginationGrid = ({ icons }: IPaginationGridProps) => {
 }
 
 export const NoIconsFound = () => (
-  <div className='flex flex-col items-center justify-center min-h-screen'>
-    <p className='text-xl'>No icons found</p>
+  <div className='pagination__no-icons'>
+    <p>No icons found</p>
     <p>Try a different search term or change filters</p>
   </div>
 )
@@ -56,24 +57,24 @@ export const Pagination = () => {
   }, [currentPage, elementsPerPage])
 
   return (
-    <section className='flex flex-col gap-6 w-full'>
-      <div className='flex gap-4 items-center'>
-        <p className='font-semibold text-xl'>{filteredIcons.length} Icons</p>
-        <p className='ml-auto hidden md:inline-block text-xs'>
+    <section className='pagination'>
+      <div className='pagination__header'>
+        <p className='pagination__header__title'>{filteredIcons.length} Icons</p>
+        <p className='pagination__header__page-info'>
           Page {currentPage} of {totalPages || 1}
         </p>
       </div>
 
       {paginatedIcons.length ? <PaginationGrid icons={paginatedIcons} /> : <NoIconsFound />}
 
-      <div className='flex flex-row justify-center lg:justify-between'>
+      <div className='pagination__footer'>
         <PaginationSelection
           elementsPerPage={elementsPerPage}
           currentPage={currentPage}
           totalElements={filteredIcons.length}
           elementsPerPageOptions={ELEMENTS_PER_PAGE_OPTIONS}
           handlePerPageChange={handleIconsPerPageChange}
-          extraClasses='hidden lg:flex'
+          extraClasses='pagination__footer__selection'
         />
         <PaginationButtons currentPage={currentPage} setCurrentPage={setCurrentPage} totalPages={totalPages} />
       </div>

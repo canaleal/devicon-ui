@@ -8,12 +8,13 @@ import { Dropdown } from '../../../components/Elements/Form/Dropdown'
 import { Table } from '../../../components/Elements/Table'
 import { TextBar } from '../../../components/Elements/Widgets/TextBar'
 import { copyToClipboard } from '../../../helpers/copyToClipboard'
-import IconImage from './iconImage/IconImage'
+import IconImage from './widgets/iconImage/IconImage'
 import ColorPickerDropdown from '../../../components/Elements/Form/Dropdown/ColorPickerDropdown'
-import { CodeBlock } from '../../../components/Elements/CodeBlock'
+
 import { createIconCodeBlockText, getCodeBlockOptions } from './helpers/codeBlockContent'
 import { useIconSettingStore } from './iconSettingStore'
 import './styles/iconModal.css'
+import CodeBlock from '../../../components/Elements/CodeBlock/CodeBlock'
 
 interface IconModalProps {
   icon: IIcon

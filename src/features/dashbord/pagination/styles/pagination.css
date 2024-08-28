@@ -1,0 +1,24 @@
+.pagination {
+  @apply flex flex-col gap-6 w-full;
+}
+.pagination__header {
+  @apply flex gap-4 items-center;
+}
+.pagination__header__title {
+  @apply font-semibold text-xl;
+}
+.pagination__header__page-info {
+  @apply ml-auto hidden md:inline-block text-xs;
+}
+.pagination__grid {
+  @apply grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-4;
+}
+.pagination__no-icons {
+  @apply flex flex-col items-center justify-center min-h-screen;
+}
+.pagination__footer {
+  @apply flex flex-row justify-center lg:justify-between;
+}
+.pagination__footer__selection {
+  @apply hidden lg:flex;
+}/*# sourceMappingURL=pagination.css.map */

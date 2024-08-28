@@ -2,7 +2,7 @@ import { copyToClipboard } from '../../../helpers/copyToClipboard'
 import { Tooltip } from '../Widgets/Tooltip'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { atomDark } from 'react-syntax-highlighter/dist/esm/styles/prism'
-import './styles/codeBlock.css'
+import './codeBlock.css'
 
 const SYNTAX_HIGHLIGHTER_STYLE = {
   margin: '0rem',
@@ -11,24 +11,6 @@ const SYNTAX_HIGHLIGHTER_STYLE = {
   height: '3.5rem',
   alignItems: 'center',
   justifyContent: 'center'
-}
-
-interface CodeBlockOptionProps {
-  optionName: string
-  isOptionSelected: boolean
-  onClickCodeBlockOption: (codeType: string) => void
-}
-
-const CodeBlockOption = ({ optionName, isOptionSelected, onClickCodeBlockOption }: CodeBlockOptionProps) => {
-  return (
-    <button
-      key={optionName}
-      onClick={() => onClickCodeBlockOption(optionName)}
-      className={`code-block__button ${isOptionSelected ? 'code-block__button--selected' : ''}`}
-    >
-      <span>{optionName}</span>
-    </button>
-  )
 }
 
 export interface CodeBlockProps {
@@ -53,14 +35,15 @@ export const CodeBlock = ({
       <div className='code-block__header'>
         {title && <p className='code-block__header__title'>{title}</p>}
         {codeBlockOptions && onClickCodeBlockOption && (
-          <div className='flex flex-row mr-auto'>
+          <div className='code-block__options'>
             {codeBlockOptions.map((codeType) => (
-              <CodeBlockOption
+              <button
                 key={codeType}
-                optionName={codeType}
-                isOptionSelected={codeType === selectedOption}
-                onClickCodeBlockOption={onClickCodeBlockOption}
-              />
+                onClick={() => onClickCodeBlockOption(codeType)}
+                className={`code-block__button ${codeType === selectedOption ? 'code-block__button--selected' : ''}`}
+              >
+                <span>{codeType}</span>
+              </button>
             ))}
           </div>
         )}

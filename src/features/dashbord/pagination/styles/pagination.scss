@@ -1,0 +1,31 @@
+.pagination {
+  @apply flex flex-col gap-6 w-full;
+
+  &__header {
+    @apply flex gap-4 items-center;
+
+    &__title {
+      @apply font-semibold text-xl;
+    }
+
+    &__page-info {
+      @apply ml-auto hidden md:inline-block text-xs;
+    }
+  }
+
+  &__grid {
+    @apply grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-4;
+  }
+
+  &__no-icons {
+    @apply flex flex-col items-center justify-center min-h-screen;
+  }
+
+  &__footer {
+    @apply flex flex-row justify-center lg:justify-between;
+
+    &__selection {
+      @apply hidden lg:flex;
+    }
+  }
+}
