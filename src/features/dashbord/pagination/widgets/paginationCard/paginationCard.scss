@@ -9,14 +9,6 @@
     @apply text-xs mx-auto text-gray-600 dark:text-gray-400;
   }
 
-  &--dark {
-    @apply bg-dark-900 text-white border border-gray-600/20;
-
-    &:hover {
-      @apply bg-dark-800;
-    }
-  }
-
   &:hover {
     @apply border-gray-600/20 dark:bg-dark-800;
     @apply border border-gray-600/20 shadow-md;
@@ -29,4 +21,19 @@
       @apply text-gray-950 dark:text-white;
     }
   }
+
+  &--dark {
+    @apply bg-dark-900 text-white border border-gray-600/20;
+    
+
+    &:hover {
+      @apply bg-dark-800;
+
+      .card__title {
+        @apply text-gray-400;
+      }
+    }
+  }
+
+
 }

@@ -15,6 +15,7 @@ interface IconContainerProps {
 }
 
 export const IconImage = ({ icon, iconSettings, extraClasses }: IconContainerProps) => {
+  
   const styleMap = createStyleMap(icon, iconSettings)
   const [isDarkBackground, setIsDarkBackground] = useState<boolean>(false)
   const [isViewBoxVisible, setIsViewBoxVisible] = useState<boolean>(false)
@@ -28,10 +29,11 @@ export const IconImage = ({ icon, iconSettings, extraClasses }: IconContainerPro
   }
 
   return (
-    <div className={`icon-image ${isDarkBackground ? 'icon-image--dark' : 'icon-image--light'} ${extraClasses}`}>
+    <div className={`image-container ${isDarkBackground ? 'image-container--dark' : 'image-container--light'} ${extraClasses}`}>
       <div className={`view-box  ${isViewBoxVisible ? (isDarkBackground ? 'view-box--dark' : 'view-box--light') : ''}`}>
         {styleMap ? (
           <div
+            className='image-container__image'
             style={{
               height: iconSettings.selectedIconSize.height,
               width: iconSettings.selectedIconSize.width,
@@ -40,6 +42,7 @@ export const IconImage = ({ icon, iconSettings, extraClasses }: IconContainerPro
           />
         ) : (
           <img
+            className='image-container__image'
             height={iconSettings.selectedIconSize.height}
             width={iconSettings.selectedIconSize.width}
             src={iconSettings.iconUrl}

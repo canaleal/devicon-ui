@@ -47,6 +47,7 @@ export const IconModal = ({ icon, deviconBranch }: IconModalProps) => {
     }
     setIconSettings(initIconSetting)
     setCodeBlockOptions(initCodeBlockOptions)
+    setSelectedCodeBlockOption(initCodeBlockOptions[0])
     getCodeText(initIconSetting, selectedCodeBlockOption)
   }, [icon])
 

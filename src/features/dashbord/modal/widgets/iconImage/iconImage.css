@@ -1,11 +1,14 @@
-.icon-image {
-  @apply flex-1 flex flex-col p-4 h-[30rem] rounded-2xl;
+.image-container {
+  @apply flex-1 flex flex-col p-4 h-[30rem] rounded-2xl transition-all;
 }
-.icon-image--light {
+.image-container--light {
   @apply bg-white text-dark-900 border;
 }
-.icon-image--dark {
+.image-container--dark {
   @apply bg-dark-900 text-white border border-gray-600/20;
+}
+.image-container__image {
+  @apply object-cover transition-transform ease-in-out;
 }
 
 .view-box {
