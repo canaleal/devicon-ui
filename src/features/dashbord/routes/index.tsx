@@ -1,5 +1,5 @@
 import { Route, Routes } from 'react-router-dom'
-import GalleryPage from './GalleryPage'
+import GalleryPage from './galleryPage/GalleryPage'
 
 export const DashboardRoutes = () => {
   return (

@@ -4,7 +4,7 @@ import PaginationButtons from './widgets/paginationButtons/PaginationButtons'
 import PaginationCard from './widgets/paginationCard/PaginationCard'
 import PaginationSelection from './widgets/paginationSelection/PaginationSelection'
 import { DEFAULT_ELEMENTS_PER_PAGE, ELEMENTS_PER_PAGE_OPTIONS } from './types'
-import useIconStore from '../../../store/iconStore'
+
 import './styles/pagination.css'
 
 interface IPaginationGridProps {
@@ -27,8 +27,11 @@ export const NoIconsFound = () => (
   </div>
 )
 
-export const Pagination = () => {
-  const { filteredIcons } = useIconStore()
+interface IPaginationProps {
+  filteredIcons: IIcon[]
+}
+
+export const Pagination = ({ filteredIcons }: IPaginationProps) => {
 
   const [paginatedIcons, setPaginatedIcons] = useState<IIcon[]>([])
   const [currentPage, setCurrentPage] = useState<number>(1)
