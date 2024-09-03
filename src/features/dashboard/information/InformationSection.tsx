@@ -1,6 +1,7 @@
 import InfiniteScroll from '../../../components/Elements/Widgets/InfiniteScroll/InfiniteScroll'
 import { ICONS } from './constants/informationConstants'
 import './styles/informationStyle.css'
+import  '../../../style/Container/container.css'
 
 const InformationSection = () => {
   return (

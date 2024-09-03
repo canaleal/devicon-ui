@@ -12,3 +12,8 @@ export const ICON_VERSION_FA_MAP: Record<IconVersion, string> = {
   line: 'line',
   'line-wordmark': 'line'
 }
+
+export const INIT_STORAGE = {
+  branch: 'master',
+  darkMode: false
+}

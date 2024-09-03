@@ -1,4 +1,4 @@
-import { CODE_BLOCK_OPTIONS, CodeBlockOptionTypes, IIconSettings, INIT_ICON_SIZE } from './types'
+import { CODE_BLOCK_OPTIONS, CodeBlockOptionTypes, IIconSettings, INIT_ICON_SIZE } from '../types'
 import { create } from 'zustand'
 
 interface IIconSettingStore {

@@ -1,4 +1,4 @@
-import { DashboardRoutes } from '../features/dashbord/routes'
+import { DashboardRoutes } from '../features/dashboard/routes'
 import NotFound from '../features/misc/routes/NotFound'
 import MainLayout from '../components/Layout/MainLayout'
 

@@ -1,9 +1,8 @@
 import Modal from "../../../components/Elements/Modal/Modal"
 import useIconStore from "../../../store/iconStore"
 import IconModal from "./IconModal"
-import "../../../components/Layout/Container/container.css"
-
-const ModalSection = () => {
+import  '../../../style/Container/container.css'
+const IconModalSection = () => {
   const { selectedIcon, deviconBranch, setSelectedIcon } = useIconStore()
 
   return (
@@ -13,4 +12,4 @@ const ModalSection = () => {
   )
 }
 
-export default ModalSection
+export default IconModalSection

@@ -55,7 +55,7 @@ export const CodeBlock = ({
         </Tooltip>
       </div>
 
-      <div className='overflow-hidden bg-dark-900'>
+      <div className='code-block__content'>
         <SyntaxHighlighter
           customStyle={SYNTAX_HIGHLIGHTER_STYLE}
           language='javascript'

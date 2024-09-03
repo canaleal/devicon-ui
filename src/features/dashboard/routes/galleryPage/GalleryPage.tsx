@@ -6,7 +6,7 @@ import { fetchIcons } from '../../../../service/iconService'
 
 import InformationSection from '../../information/InformationSection'
 import FilterSection from '../../filters/FilterSection'
-import ModalSection from '../../modal/ModalSection'
+import IconModalSection from '../../modal/IconModalSection'
 import PaginationSection from '../../pagination/PaginationSection'
 import { INIT_FILTER_GROUPS } from '../../filters/types'
 import { populateIconFilters } from '../../filters/helpers'
@@ -30,7 +30,7 @@ const GalleryPage = () => {
 
   return (
     <>
-      <ModalSection />
+      <IconModalSection />
       <InformationSection />
       <FilterSection />
       <PaginationSection />

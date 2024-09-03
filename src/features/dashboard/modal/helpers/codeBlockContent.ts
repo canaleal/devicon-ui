@@ -1,4 +1,4 @@
-import { IIconSettings } from './../types/index'
+import { IIconSettings } from '../types/index'
 import { IIcon, IconVersion } from '../../../../types'
 import { IIconSize, CodeBlockOptionTypes, CODE_BLOCK_OPTIONS } from '../types'
 

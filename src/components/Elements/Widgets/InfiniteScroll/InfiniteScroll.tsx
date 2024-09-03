@@ -1,5 +1,5 @@
 import React from 'react'
-import './style/InfiniteScroll.css'
+import './InfiniteScroll.css'
 
 export interface IScrollItem {
   link: string

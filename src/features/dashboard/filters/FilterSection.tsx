@@ -6,7 +6,7 @@ import FilterDropdown from "./FilterDropdown"
 import { filterIcons, updateFilterGroups, updateFilter, resetFilterGroup, populateIconFilters } from "./helpers"
 import { IFilterGroup, IFilterItem } from "./types"
 import { DeviconBranch } from "../../../types"
-import "../../../components/Layout/Container/container.css"
+import  '../../../style/Container/container.css'
 import { fetchIcons } from "../../../service/iconService"
 
 const FilterSection = () => {

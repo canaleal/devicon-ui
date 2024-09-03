@@ -12,7 +12,7 @@ import IconImage from './widgets/iconImage/IconImage'
 import ColorPickerDropdown from '../../../components/Elements/Form/Dropdown/ColorPickerDropdown'
 
 import { createIconCodeBlockText, getCodeBlockOptions } from './helpers/codeBlockContent'
-import { useIconSettingStore } from './iconSettingStore'
+import { useIconSettingStore } from './store/iconSettingStore'
 import './styles/iconModal.css'
 import CodeBlock from '../../../components/Elements/CodeBlock/CodeBlock'
 

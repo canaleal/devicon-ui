@@ -1,6 +1,6 @@
 import Pagination from "./Pagination"
 import { CDNBlockLink } from "./widgets/cdnBlockLink/CDNBlockLink"
-import "../../../components/Layout/Container/container.css"
+import  '../../../style/Container/container.css'
 import useIconStore from "../../../store/iconStore"
 
 const PaginationSection = () => {

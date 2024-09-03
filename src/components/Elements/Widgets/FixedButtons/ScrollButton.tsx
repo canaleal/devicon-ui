@@ -11,8 +11,7 @@ export const ScrollButton = ({ position, extraClasses = '' }: ScrollButtonProps)
   const [visible, setVisible] = useState(false)
 
   const toggleVisible = () => {
-    const scrolled = document.documentElement.scrollTop
-    scrolled > 300 ? setVisible(true) : setVisible(false)
+    document.documentElement.scrollTop > 300 ? setVisible(true) : setVisible(false)
   }
 
   const scrollToTop = () => {

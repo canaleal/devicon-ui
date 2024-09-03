@@ -6,7 +6,7 @@
 }
 
 .table {
-  @apply flex  overflow-hidden w-full border-2 dark:border-gray-600/20 rounded-lg shadow-md;
+  @apply flex  overflow-hidden w-full border-2 dark:border-gray-600/20 rounded-lg shadow-sm;
 
   table {
     @apply table-auto w-full bg-white  text-sm;

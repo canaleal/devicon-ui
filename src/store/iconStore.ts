@@ -1,7 +1,7 @@
 import { create } from 'zustand'
 import { DeviconBranch, IIcon } from '../types'
 import storage from '../helpers/storage'
-import { IFilterGroup } from '../features/dashbord/filters/types'
+import { IFilterGroup } from '../features/dashboard/filters/types'
 
 interface IIconStore {
   icons: IIcon[]

@@ -28,4 +28,7 @@
 }
 .code-block__button--no-hover:hover {
   @apply bg-transparent;
+}
+.code-block__content {
+  @apply overflow-hidden bg-dark-900;
 }/*# sourceMappingURL=codeBlock.css.map */

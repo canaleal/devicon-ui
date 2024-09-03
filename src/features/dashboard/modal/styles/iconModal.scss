@@ -11,7 +11,7 @@
 }
 
 .option-row {
-  @apply flex flex-row gap-4 w-full;
+  @apply flex flex-col xl:flex-row gap-4 w-full;
 }
 
 .alias-table {
@@ -24,4 +24,4 @@
 
 .icon-title {
   @apply font-bold text-xl;
-}/*# sourceMappingURL=iconModal.css.map */
+}
