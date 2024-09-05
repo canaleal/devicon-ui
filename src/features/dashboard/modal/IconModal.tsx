@@ -100,7 +100,7 @@ export const IconModal = ({ icon, deviconBranch }: IconModalProps) => {
         <IconImage icon={icon} iconSettings={iconSettings} extraClasses='icon-container' />
 
         <div className='icon-options'>
-          <TextBar icon={{ icon: 'fa-solid fa-folder', copyTitle: 'Copy Tags' }} content={[icon.name]} />
+          <TextBar extraClasses='hidden lg:block' icon={{ icon: 'fa-solid fa-folder', copyTitle: 'Copy Tags' }} content={[icon.name]} />
           <div className='option-row'>
             <Dropdown
               title='Version'
@@ -115,7 +115,7 @@ export const IconModal = ({ icon, deviconBranch }: IconModalProps) => {
             <Dropdown
               title='Size'
               isDisabled={false}
-              extraClasses='w-full'
+              extraClasses='w-full  hidden lg:block'
               selectedOption={iconSettings.selectedIconSize.name}
               options={ICON_SIZE_OPTIONS.map((option) => option.name)}
               onChange={(value) => {
@@ -125,7 +125,7 @@ export const IconModal = ({ icon, deviconBranch }: IconModalProps) => {
             <ColorPickerDropdown
               title='Color'
               isDisabled={!icon.versions.font.includes(iconSettings.selectedVersion)}
-              extraClasses='w-full'
+              extraClasses='w-full  hidden lg:block'
               defaultColor={icon.color}
               selectedColor={iconSettings.selectedColor}
               onColorChange={(color) => {

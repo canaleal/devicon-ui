@@ -10,15 +10,16 @@ export interface TextBarProps {
     copyTitle: string
   }
   content: string[]
+  extraClasses?: string
 }
 
-export const TextBar = ({ title, icon, content }: TextBarProps) => {
+export const TextBar = ({ title, icon, content, extraClasses }: TextBarProps) => {
   if (!content.length) return null
 
   const handleCopy = () => icon && copyToClipboard(content.join(', '))
 
   return (
-    <div className='text-bar'>
+    <div className={`text-bar ${extraClasses}`}>
       {title && <span className='text-bar__title'>{title}:</span>}
       {icon && (
         <Tooltip content={icon.copyTitle} position='top' flashMessage='Copied!'>

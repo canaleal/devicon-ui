@@ -5,5 +5,5 @@ import useIconStore from "../../../../../store/iconStore"
 export const CDNBlockLink = () => {
   const deviconBranch = useIconStore((state) => state.deviconBranch)
   if (deviconBranch !== 'master') return null
-  return <CodeBlock title='Place this in your header (once per HTML file)' code={DEVICON_LINK_TAG} />
+  return <CodeBlock title='Place this in your Header' code={DEVICON_LINK_TAG} />
 }
