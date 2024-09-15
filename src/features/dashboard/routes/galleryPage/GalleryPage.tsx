@@ -4,7 +4,7 @@ import useIconStore from '../../../../store/iconStore'
 import storage from '../../../../helpers/storage'
 import { fetchIcons } from '../../../../service/iconService'
 
-import InformationSection from '../../information/InformationSection'
+import AboutSection from '../../about/AboutSection'
 import FilterSection from '../../filters/FilterSection'
 import IconModalSection from '../../modal/IconModalSection'
 import PaginationSection from '../../pagination/PaginationSection'
@@ -31,7 +31,7 @@ const GalleryPage = () => {
   return (
     <>
       <IconModalSection />
-      <InformationSection />
+      <AboutSection />
       <FilterSection />
       <PaginationSection />
     </>

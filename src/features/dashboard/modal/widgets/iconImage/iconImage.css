@@ -1,5 +1,5 @@
 .image-container {
-  @apply flex-1 flex flex-col p-4 h-[30rem] rounded-2xl transition-all;
+  @apply flex-1 flex flex-col p-4 h-[30rem] rounded-2xl;
 }
 .image-container--light {
   @apply bg-white text-dark-900 border;
@@ -9,6 +9,12 @@
 }
 .image-container__image {
   @apply object-cover transition-transform ease-in-out;
+}
+.image-container__options {
+  @apply flex flex-row justify-between;
+}
+.image-container__options-list {
+  @apply flex flex-row gap-4;
 }
 
 .view-box {

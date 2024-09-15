@@ -1,24 +1,33 @@
-import { useState } from 'react'
-
+import { useEffect, useState } from 'react'
 import Tooltip from '../../../../../components/Elements/Widgets/Tooltip/Tooltip'
-import { IIconSettings } from '../../types'
-import '../../../../../components/Elements/Widgets/Button/button.css'
 import './iconImage.css'
 import { IIcon } from '../../../../../types'
 import { createStyleMap } from './iconImageUtils'
+import { useIconSettingStore } from '../../store/iconSettingStore'
+import { createIconCodeBlockText } from '../../helpers/codeBlockContent'
+import { downloadText } from '../../../../../helpers/downloadText'
 
 
 interface IconContainerProps {
   icon: IIcon
-  iconSettings: IIconSettings
   extraClasses?: string
 }
 
-export const IconImage = ({ icon, iconSettings, extraClasses }: IconContainerProps) => {
-  
-  const styleMap = createStyleMap(icon, iconSettings)
+export const IconImage = ({ icon, extraClasses }: IconContainerProps) => {
+
+  const {
+    iconSettings
+  } = useIconSettingStore()
+
   const [isDarkBackground, setIsDarkBackground] = useState<boolean>(false)
   const [isViewBoxVisible, setIsViewBoxVisible] = useState<boolean>(false)
+  const [styleMap, setStyleMap] = useState<React.CSSProperties | null>(null)
+
+
+  useEffect(() => {
+    const tempStyleMap = createStyleMap(icon, iconSettings)
+    setStyleMap(tempStyleMap)
+  }, [iconSettings])
 
   const handleToggleBackground = () => {
     setIsDarkBackground(!isDarkBackground)
@@ -26,6 +35,12 @@ export const IconImage = ({ icon, iconSettings, extraClasses }: IconContainerPro
 
   const handleToggleViewBox = () => {
     setIsViewBoxVisible(!isViewBoxVisible)
+  }
+
+  const handleCopySVGClick = async () => {
+    const code = await createIconCodeBlockText(icon, iconSettings, 'SVG');
+    const fileName = `${icon.name}-${iconSettings.selectedVersion}-${iconSettings.selectedIconSize.width}x${iconSettings.selectedIconSize.height}.svg`
+    downloadText(code, fileName)
   }
 
   return (
@@ -50,16 +65,25 @@ export const IconImage = ({ icon, iconSettings, extraClasses }: IconContainerPro
         )}
       </div>
 
-      <div className='flex flex-row justify-between'>
-        <Tooltip content={`${isDarkBackground ? 'Light' : 'Dark'} Background`} position='top'>
-          <button onClick={handleToggleBackground} className='button--icon icon--xxl'>
-            {isDarkBackground ? <i className='fa-solid fa-sun'></i> : <i className='fa-solid fa-moon'></i>}
-          </button>
-        </Tooltip>
+      <div className='image-container__options'>
 
-        <Tooltip content={`${isViewBoxVisible ? 'Hide' : 'Show'} ViewBox`} position='top'>
-          <button onClick={handleToggleViewBox} className={`button--icon icon--xxl `}>
-            {isViewBoxVisible ? <i className='fa-solid fa-eye-slash'></i> : <i className='fa-solid fa-eye'></i>}
+        
+        <Tooltip content={`${isDarkBackground ? 'Light' : 'Dark'} Background`} position='top'>
+            <button onClick={handleToggleBackground} className='button--icon icon--xxl'>
+              {isDarkBackground ? <i className='fa-solid fa-sun'></i> : <i className='fa-solid fa-moon'></i>}
+            </button>
+          </Tooltip>
+
+          <Tooltip content={`${isViewBoxVisible ? 'Hide' : 'Show'} ViewBox`} position='top'>
+            <button onClick={handleToggleViewBox} className={`button--icon icon--xxl `}>
+              {isViewBoxVisible ? <i className='fa-solid fa-eye-slash'></i> : <i className='fa-solid fa-eye'></i>}
+            </button>
+          </Tooltip>
+
+
+        <Tooltip content='Download SVG' position='top' flashMessage='Copied!'>
+          <button onClick={() => handleCopySVGClick()} className='button--icon icon--xxl'>
+            <i className='fa-solid fa-download'></i>
           </button>
         </Tooltip>
       </div>

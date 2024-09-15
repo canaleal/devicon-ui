@@ -1,3 +1,11 @@
+.dropdown-container {
+  @apply relative;
+
+  &__title {
+    @apply font-bold text-sm mb-2;
+  }
+}
+
 .dropdown {
   @apply py-2 text-sm  px-4 gap-4 w-full flex justify-between items-center border rounded-lg;
   @apply bg-white text-dark-900 dark:bg-dark-900 dark:text-white dark:border-gray-600/20;

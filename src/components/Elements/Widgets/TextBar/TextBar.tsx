@@ -1,6 +1,5 @@
 import { copyToClipboard } from '../../../../helpers/copyToClipboard'
 import { Tooltip } from '../Tooltip'
-import '../Button/button.css'
 import './style/textBar.css'
 
 export interface TextBarProps {

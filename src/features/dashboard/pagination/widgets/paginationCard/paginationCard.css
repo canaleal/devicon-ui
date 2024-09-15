@@ -5,7 +5,7 @@
   @apply mx-auto object-cover transition-transform ease-in-out;
 }
 .card__title {
-  @apply text-xs mx-auto text-gray-600 dark:text-gray-400;
+  @apply text-xs mx-auto dark:text-gray-400;
 }
 .card:hover {
   @apply border-gray-600/20 dark:bg-dark-800;

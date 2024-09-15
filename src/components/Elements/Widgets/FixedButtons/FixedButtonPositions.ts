@@ -1,6 +1,6 @@
 export const FIXED_BUTTON_POSITIONS = {
-  topLeft: 'top-8 left-0 text-right  rounded-r-md',
-  topRight: 'top-8 right-0 text-left  rounded-l-md',
-  bottomLeft: 'bottom-8 left-0 text-right  rounded-r-md',
-  bottomRight: 'bottom-8 right-0  text-left rounded-l-md'
+  topLeft: 'top-8 left-8 text-right  rounded-full',
+  topRight: 'top-8 right-8 text-left   rounded-full',
+  bottomLeft: 'bottom-8 left-8 text-right   rounded-full',
+  bottomRight: 'bottom-8 right-8  text-left  rounded-full'
 }

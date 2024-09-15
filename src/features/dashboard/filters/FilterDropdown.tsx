@@ -58,7 +58,7 @@ const FilterDropdown = ({
   const toggleDropdown = () => setIsOpen(!isOpen)
 
   return (
-    <div className={`relative ${extraClasses}`} ref={dropdownRef}>
+    <div className={`dropdown-container ${extraClasses}`} ref={dropdownRef}>
       <DropdownButton
         categoryName={filterGroup.categoryName}
         totalActiveFilters={totalActiveFilters}

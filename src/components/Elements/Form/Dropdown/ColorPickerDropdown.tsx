@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import './styles/dropdown.css'
 
 export interface DropdownProps {
-  title: string
+  title?: string
   isDisabled: boolean
   defaultColor: string
   selectedColor: string
@@ -71,8 +71,8 @@ const ColorPickerDropdown = ({
   }, [])
 
   return (
-    <div className={`relative ${extraClasses}`} ref={dropdownRef}>
-      <p className='font-bold text-sm mb-1'>{title}</p>
+    <div className={`dropdown-container ${extraClasses}`} ref={dropdownRef}>
+      {title && <p className='dropdown-container__title'>{title}</p>}
       <DropdownButton
         isDisabled={isDisabled}
         selectedColor={selectedColor}
@@ -92,9 +92,8 @@ const ColorPickerDropdown = ({
 }
 
 const DropdownButton = ({ isDisabled, selectedColor, isOpen, toggleDropdown }: DropdownButtonProps) => {
-  const BUTTON_STYLE = `dropdown ${isDisabled ? 'dropdown--disabled' : ''}`
   return (
-    <button disabled={isDisabled} onClick={toggleDropdown} className={BUTTON_STYLE}>
+    <button disabled={isDisabled} onClick={toggleDropdown} className={`dropdown ${isDisabled ? 'dropdown--disabled' : ''}`}>
       <span className='dropdown__placeholder'>
         <span className='dropdown__color-picker__mark' style={{ backgroundColor: selectedColor }} />
         {selectedColor}

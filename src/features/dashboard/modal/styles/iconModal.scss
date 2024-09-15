@@ -1,5 +1,5 @@
 .icon-section {
-  @apply flex flex-col 2xl:flex-row my-4 gap-8;
+  @apply flex flex-col lg:flex-row my-4 gap-8;
 }
 
 .icon-container {
@@ -11,7 +11,7 @@
 }
 
 .option-row {
-  @apply flex flex-col xl:flex-row gap-4 w-full;
+  @apply flex flex-col lg:flex-row gap-4 w-full;
 }
 
 .alias-table {

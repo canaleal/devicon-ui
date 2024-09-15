@@ -8,7 +8,7 @@
   @apply font-semibold text-xl;
 }
 .pagination__header__page-info {
-  @apply ml-auto hidden md:inline-block text-xs;
+  @apply ml-auto hidden md:inline-block text-sm;
 }
 .pagination__grid {
   @apply grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-4;

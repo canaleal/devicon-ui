@@ -45,8 +45,8 @@ export const Dropdown = ({
   }, [])
 
   return (
-    <div className={`relative ${extraClasses}`} ref={dropdownRef}>
-      {title && <p className='font-bold text-sm mb-1'>{title}</p>}
+    <div className={`dropdown-container ${extraClasses}`} ref={dropdownRef}>
+      {title && <p className='dropdown-container__title'>{title}</p>}
       <DropdownButton
         isDisabled={isDisabled}
         selectedOption={selectedOption}
@@ -67,9 +67,8 @@ export const Dropdown = ({
 }
 
 const DropdownButton = ({ isDisabled, selectedOption, isOpen, toggleDropdown }: DropdownButtonProps) => {
-  const BUTTON_STYLE = `dropdown ${isDisabled ? 'dropdown--disabled' : ''}`
   return (
-    <button onClick={toggleDropdown} className={BUTTON_STYLE} disabled={isDisabled}>
+    <button onClick={toggleDropdown} className={`dropdown ${isDisabled ? 'dropdown--disabled' : ''}`} disabled={isDisabled}>
       <span className='dropdown__placeholder'>{selectedOption}</span>
       <i className={`fas ${isOpen ? 'fa-chevron-up' : 'fa-chevron-down'}`} />
     </button>

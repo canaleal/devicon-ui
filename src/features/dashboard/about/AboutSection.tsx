@@ -1,15 +1,14 @@
 import InfiniteScroll from '../../../components/Elements/Widgets/InfiniteScroll/InfiniteScroll'
-import { ICONS } from './constants/informationConstants'
-import './styles/informationStyle.css'
-import  '../../../style/Container/container.css'
+import { ICONS } from './constants/aboutConstants'
+import './styles/aboutStyle.css'
 
 const InformationSection = () => {
   return (
-    <section className='info-section'>
+    <section className='about-section'>
       <div className='base-container base-container--lg base-container--col'>
-        <div className='info-section-title'>
-          <h1 className='info-section-heading'>Developer Icons, simplified</h1>
-          <p className='info-section-paragraph'>
+        <div className='about-section-title'>
+          <h1 className='about-section-heading'>Developer Icons, simplified</h1>
+          <p className='about-section-paragraph'>
             Devicon is a comprehensive collection of icons representing development languages and tools. Each icon is
             available in multiple formats, including font and SVG, and offers various styles such as original, plain,
             line, colored, and non-colored versions, with or without wordmarks.
