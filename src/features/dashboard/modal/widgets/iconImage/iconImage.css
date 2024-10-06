@@ -1,5 +1,5 @@
 .image-container {
-  @apply flex-1 flex flex-col p-4 h-[30rem] rounded-2xl;
+  @apply flex-1 flex flex-col p-4 h-[30rem] rounded-xl;
 }
 .image-container--light {
   @apply bg-white text-dark-900 border;
@@ -10,19 +10,15 @@
 .image-container__image {
   @apply object-cover transition-transform ease-in-out;
 }
-.image-container__options {
-  @apply flex flex-row justify-between;
-}
 .image-container__options-list {
-  @apply flex flex-row gap-4;
+  @apply flex-row justify-between  hidden md:flex;
 }
-
-.view-box {
-  @apply m-auto;
+.image-container__view-box {
+  @apply m-auto min-h-[24rem] md:min-h-[0rem] items-center align-middle justify-center flex;
 }
-.view-box--light {
+.image-container__view-box--light {
   @apply border border-dotted border-gray-950;
 }
-.view-box--dark {
+.image-container__view-box--dark {
   @apply border border-dotted border-white;
 }/*# sourceMappingURL=iconImage.css.map */

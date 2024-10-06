@@ -22,8 +22,12 @@ html {
   scroll-behavior: smooth;
 }
 
+.shadow-sm {
+  box-shadow-sm: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
 .base-container {
-  @apply flex  gap-6 mx-auto w-full py-6 px-6 sm:max-w-[40rem] md:max-w-[48rem] md:px-8 lg:max-w-[64rem] xl:max-w-[90rem];
+  @apply flex  gap-6 mx-auto w-full py-6 px-6 sm:max-w-[45rem] md:max-w-[55rem] md:px-8 lg:max-w-[64rem] xl:max-w-[90rem];
 }
 .base-container--lg {
   @apply py-32;
@@ -38,17 +42,17 @@ html {
   @apply justify-between;
 }
 .base-container__card {
-  @apply z-10  flex flex-col p-8 rounded-2xl bg-white border border-gray-600/20 dark:bg-dark-900 dark:text-white  dark:border-gray-600/20 shadow-md;
+  @apply z-10  flex flex-col p-8 rounded-xl bg-white border border-gray-600/20 dark:bg-dark-900 dark:text-white  dark:border-gray-600/20 shadow-sm;
 }
 
 .button {
-  @apply flex gap-2 items-center px-2 py-2 rounded-lg text-gray-950 dark:text-white;
+  @apply flex gap-2 items-center px-2 py-2 rounded-md text-gray-950 dark:text-white;
 }
 .button:hover {
   @apply bg-gray-200 dark:bg-dark-800;
 }
 .button--small {
-  @apply px-4 py-2 text-sm rounded-lg;
+  @apply px-4 py-2 text-sm rounded-md;
 }
 .button--icon:hover {
   @apply text-primary-900;

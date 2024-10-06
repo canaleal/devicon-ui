@@ -45,45 +45,48 @@ export const IconImage = ({ icon, extraClasses }: IconContainerProps) => {
 
   return (
     <div className={`image-container ${isDarkBackground ? 'image-container--dark' : 'image-container--light'} ${extraClasses}`}>
-      <div className={`view-box  ${isViewBoxVisible ? (isDarkBackground ? 'view-box--dark' : 'view-box--light') : ''}`}>
-        {styleMap ? (
-          <div
-            className='image-container__image'
-            style={{
-              height: iconSettings.selectedIconSize.height,
-              width: iconSettings.selectedIconSize.width,
-              ...styleMap
-            }}
-          />
-        ) : (
-          <img
-            className='image-container__image'
-            height={iconSettings.selectedIconSize.height}
-            width={iconSettings.selectedIconSize.width}
-            src={iconSettings.iconUrl}
-          />
-        )}
-      </div>
 
-      <div className='image-container__options'>
-
-        
-        <Tooltip content={`${isDarkBackground ? 'Light' : 'Dark'} Background`} position='top'>
-            <button onClick={handleToggleBackground} className='button--icon icon--xxl'>
-              {isDarkBackground ? <i className='fa-solid fa-sun'></i> : <i className='fa-solid fa-moon'></i>}
-            </button>
-          </Tooltip>
-
-          <Tooltip content={`${isViewBoxVisible ? 'Hide' : 'Show'} ViewBox`} position='top'>
-            <button onClick={handleToggleViewBox} className={`button--icon icon--xxl `}>
-              {isViewBoxVisible ? <i className='fa-solid fa-eye-slash'></i> : <i className='fa-solid fa-eye'></i>}
-            </button>
-          </Tooltip>
-
-
+      <div className='image-container__options-list'>
         <Tooltip content='Download SVG' position='top' flashMessage='Copied!'>
           <button onClick={() => handleCopySVGClick()} className='button--icon icon--xxl'>
             <i className='fa-solid fa-download'></i>
+          </button>
+        </Tooltip>
+      </div>
+
+   
+        <div className={`image-container__view-box  ${isViewBoxVisible ? (isDarkBackground ? 'image-container__view-box--dark' : 'image-container__view-box--light') : ''}`}>
+          {styleMap ? (
+            <div
+              className='image-container__image'
+              style={{
+                height: iconSettings.selectedIconSize.height,
+                width: iconSettings.selectedIconSize.width,
+                ...styleMap
+              }}
+            />
+          ) : (
+            <img
+              className='image-container__image'
+              height={iconSettings.selectedIconSize.height}
+              width={iconSettings.selectedIconSize.width}
+              src={iconSettings.iconUrl}
+            />
+          )}
+        </div>
+ 
+
+
+      <div className='image-container__options-list'>
+        <Tooltip content={`${isDarkBackground ? 'Light' : 'Dark'} Background`} position='top'>
+          <button onClick={handleToggleBackground} className='button--icon icon--xxl'>
+            {isDarkBackground ? <i className='fa-solid fa-sun'></i> : <i className='fa-solid fa-moon'></i>}
+          </button>
+        </Tooltip>
+
+        <Tooltip content={`${isViewBoxVisible ? 'Hide' : 'Show'} ViewBox`} position='top'>
+          <button onClick={handleToggleViewBox} className={`button--icon icon--xxl `}>
+            {isViewBoxVisible ? <i className='fa-solid fa-eye-slash'></i> : <i className='fa-solid fa-eye'></i>}
           </button>
         </Tooltip>
       </div>

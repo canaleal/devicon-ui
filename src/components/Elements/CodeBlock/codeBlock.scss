@@ -1,5 +1,5 @@
 .code-block {
-  @apply flex flex-col border border-gray-600/20 h-fit rounded-2xl overflow-hidden bg-dark-900;
+  @apply flex flex-col border border-gray-600/20 h-fit rounded-xl overflow-hidden bg-dark-900;
 
   &__header {
     @apply flex flex-row justify-between  border-b border-white/[0.04]  text-sm;

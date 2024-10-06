@@ -1,5 +1,5 @@
 .fixed-button {
-  @apply z-30 fixed shadow-lg transition-all h-16 w-16 bg-primary-800 text-white;
+  @apply z-30 fixed shadow-sm transition-all h-16 w-16 bg-primary-800 text-white;
   @apply flex items-center justify-center font-bold text-xl;
 }
 .fixed-button--hidden {

@@ -2,7 +2,7 @@
   @apply flex relative w-fit;
 }
 .tooltip__popup {
-  @apply absolute z-10 px-2 py-1 max-w-xs break-words shadow-md rounded-lg text-sm;
+  @apply absolute z-10 px-2 py-1 max-w-xs break-words shadow-sm rounded-md text-sm;
   @apply bg-primary-900 text-white;
 }
 

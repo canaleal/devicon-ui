@@ -1,5 +1,5 @@
 .about-section {
-  @apply dark:bg-dark-900 border-b border-gray-600/20;
+  @apply dark:bg-dark-900 border-b border-gray-600/20 bg-gray-50;
 }
 
 .about-section-title {
