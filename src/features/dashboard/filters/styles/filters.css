@@ -1,0 +1,9 @@
+.filters-section {
+  @apply bg-white dark:bg-dark-900 border-b border-gray-600/20;
+}
+.filters-section__container {
+  @apply flex-col xl:flex-row justify-between;
+}
+.filters-section__group {
+  @apply flex flex-col lg:flex-row gap-4;
+}/*# sourceMappingURL=filters.css.map */

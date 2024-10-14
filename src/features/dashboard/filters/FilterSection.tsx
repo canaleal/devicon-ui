@@ -7,6 +7,7 @@ import { filterIcons, updateFilterGroups, updateFilter, resetFilterGroup, popula
 import { IFilterGroup, IFilterItem } from "./types"
 import { DeviconBranch } from "../../../types"
 import { fetchIcons } from "../../../service/iconService"
+import './styles/filters.css';
 
 const FilterSection = () => {
     const { icons, deviconBranch, setFilteredIcons, setDeviconBranch, filterGroups, setFilterGroups, setIcons} = useIconStore()
@@ -54,9 +55,9 @@ const FilterSection = () => {
     }
   
     return (
-      <section className='bg-white dark:bg-dark-900 border-b border-gray-600/20'>
-        <div className='base-container flex-col xl:flex-row justify-between'>
-          <div className='flex flex-col lg:flex-row gap-4'>
+      <section className='filters-section'>
+        <div className='base-container filters-section__container'>
+          <div className='filters-section__group'>
             <Dropdown
               extraClasses='w-full xl:w-32'
               isDisabled={false}
@@ -72,7 +73,7 @@ const FilterSection = () => {
             />
           </div>
   
-          <div className='flex flex-col lg:flex-row gap-4'>
+          <div className='filters-section__group'>
             {filterGroups.map((filterGroup) => (
               <FilterDropdown
                 key={filterGroup.categoryName}
