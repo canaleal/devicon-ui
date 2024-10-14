@@ -9,12 +9,22 @@
     @apply bg-dark-900 text-white border border-gray-600/20;
   }
 
+  &--checkered {
+    background-image: linear-gradient(45deg, #d4d4d4 25%, transparent 25%), linear-gradient(-45deg, #d4d4d4 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #d4d4d4 75%), linear-gradient(-45deg, transparent 75%, #d4d4d4 75%);
+    background-size: 20px 20px;
+    background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+  }
+
   &__image {
     @apply  object-cover transition-transform ease-in-out;
   }
 
   &__options-list {
-    @apply  flex-row justify-between  hidden md:flex;
+    @apply  flex flex-row gap-4;
+
+    & > *:first-child {
+      @apply mr-auto;
+    }
   }
 
   &__view-box {
