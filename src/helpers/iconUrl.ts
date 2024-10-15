@@ -15,3 +15,7 @@ export const createDeviconIconUrl = (iconName: string, version: IconVersion, bra
   }
   return branchMap[branch]
 }
+
+export const getDeviconIconGithubUrl = (iconName: string, version: IconVersion, branch: DeviconBranch) => {
+  return `https://github.com/devicons/devicon/blob/${branch}/icons/${iconName}/${iconName}-${version}.svg`
+}

@@ -13,10 +13,9 @@ interface PaginationSelectionProps {
 const getTotalElementsText = (elementsPerPage: number, currentPage: number, totalElements: number) => {
   const firstElementIndex = (currentPage - 1) * elementsPerPage + 1
   const lastElementIndex = Math.min(currentPage * elementsPerPage, totalElements)
-  return   `${firstElementIndex}-${lastElementIndex} of ${totalElements} icons`
+  return `${firstElementIndex}-${lastElementIndex} of ${totalElements} icons`
 }
 
- 
 const PaginationSelection: React.FC<PaginationSelectionProps> = ({
   elementsPerPage,
   currentPage,

@@ -59,20 +59,20 @@
   @apply cursor-auto;
 }
 .dropdown__color-picker__mark {
-  @apply w-6 h-6 inline-block rounded-sm;
+  @apply w-6 h-6 inline-block rounded-sm border border-gray-600/20;
 }
 .dropdown__color-picker__input {
-  @apply h-10 w-full border-0 rounded-sm;
+  @apply h-10 w-full border border-gray-600/20 rounded-sm;
 }
 .dropdown__color-picker__input:hover {
   @apply cursor-pointer;
 }
 .dropdown__color-picker__item {
-  @apply px-4 py-4 rounded-sm;
+  @apply px-4 py-4 rounded-sm border border-gray-600/20;
 }
 .dropdown__color-picker__item:hover {
   @apply cursor-pointer;
 }
 .dropdown__color-picker__grid {
   @apply grid grid-cols-4 gap-2 h-fit;
-}/*# sourceMappingURL=dropdown.css.map */
+} /*# sourceMappingURL=dropdown.css.map */

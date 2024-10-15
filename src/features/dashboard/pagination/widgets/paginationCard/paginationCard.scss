@@ -10,14 +10,14 @@
   }
 
   &:hover {
-    @apply border-gray-600/20 dark:bg-dark-800 border shadow-sm;
+    @apply bg-gray-100 dark:bg-dark-800 border-gray-600/20 dark:bg-dark-800 border shadow-sm;
 
     .card__image {
       @apply transform scale-125;
     }
 
     .card__title {
-      @apply text-gray-950 dark:text-white;
+      @apply text-gray-950 dark:text-white font-semibold;
     }
   }
 

@@ -1,7 +1,6 @@
 import { useEffect } from 'react'
 
 import useIconStore from '../../../../store/iconStore'
-import storage from '../../../../helpers/storage'
 import { fetchIcons } from '../../../../service/iconService'
 
 import AboutSection from '../../about/AboutSection'
@@ -10,19 +9,25 @@ import IconModalSection from '../../modal/IconModalSection'
 import PaginationSection from '../../pagination/PaginationSection'
 import { INIT_FILTER_GROUPS } from '../../filters/types'
 import { populateIconFilters } from '../../filters/helpers'
+import { DeviconBranch } from '../../../../types'
 
 const GalleryPage = () => {
-  const { deviconBranch, setIcons, setDeviconBranch, setFilterGroups } = useIconStore()
+  const { deviconBranch, setIcons, setDeviconBranch, setFilterGroups, setSelectedIcon } = useIconStore()
 
   useEffect(() => {
     const init = async () => {
       const params = new URLSearchParams(location.search)
-      const branch = (params.get('branch') as string) || storage.getToken().deviconBranch || deviconBranch
-      const tempIcons = await fetchIcons(branch)
-      const initFilterGroups = INIT_FILTER_GROUPS.map((group) => populateIconFilters(tempIcons, group))
-      setIcons(tempIcons)
-      setDeviconBranch(branch)
-      setFilterGroups(initFilterGroups)
+      const branch = params.get('branch') as DeviconBranch
+      const selectedIconName = params.get('icon') as string
+
+      if (branch) setDeviconBranch(branch)
+      const tempIcons = await fetchIcons(branch || deviconBranch)
+
+      if (tempIcons) {
+        setIcons(tempIcons)
+        setFilterGroups(INIT_FILTER_GROUPS.map((group) => populateIconFilters(tempIcons, group)))
+        if (selectedIconName) setSelectedIcon(tempIcons.find((icon) => icon.name === selectedIconName) || null)
+      }
     }
 
     init()

@@ -1,7 +1,7 @@
 import { create } from 'zustand'
 import { DeviconBranch, IIcon } from '../types'
-import storage from '../helpers/storage'
 import { IFilterGroup } from '../features/dashboard/filters/types'
+import { updateUrlWithQueryParams } from '../helpers/storeUrl'
 
 interface IIconStore {
   icons: IIcon[]
@@ -24,16 +24,18 @@ const useIconStore = create<IIconStore>((set) => ({
   filterGroups: [],
   setIcons: (icons) => set({ icons }),
   setSelectedIcon: (selectedIcon) => {
+    updateUrlWithQueryParams({ icon: selectedIcon?.name })
     set({ selectedIcon })
   },
   setDeviconBranch: (deviconBranch) => {
-    storage.setToken({ ...storage.getToken(), deviconBranch })
+    updateUrlWithQueryParams({ branch: deviconBranch })
     set({ deviconBranch })
   },
-  setFilteredIcons: (filteredIcons) =>
+  setFilteredIcons: (filteredIcons) => {
     set({
       filteredIcons
-    }),
+    })
+  },
   setFilterGroups: (filterGroups) => set({ filterGroups })
 }))
 

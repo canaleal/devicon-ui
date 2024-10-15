@@ -137,7 +137,7 @@ const ColorInput = ({ selectedColor, onColorChange }: ColorInputProps) => (
 )
 
 const ColorPalette = ({ onColorChange }: ColorPaletteProps) => (
-  <div className='dropdown__color-picker__grids'>
+  <div className='dropdown__color-picker__grid'>
     {Object.values(PALLET_COLORS).map((color) => (
       <div
         key={color}
