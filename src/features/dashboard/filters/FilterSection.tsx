@@ -59,7 +59,7 @@ const FilterSection = () => {
       <div className='base-container filters-section__container'>
         <div className='filters-section__group'>
           <Dropdown
-            extraClasses='w-full xl:w-32'
+            extraClasses='w-full lg:w-32'
             isDisabled={false}
             selectedOption={deviconBranch}
             options={['master', 'develop']}
@@ -67,7 +67,7 @@ const FilterSection = () => {
           />
           <SearchBar
             placeholder='Search Icons'
-            extraClasses='w-full xl:w-96'
+            extraClasses='w-full lg:w-64'
             onSearch={handleSearch}
             autoCompleteOptions={icons.map((icon) => [icon.name, ...icon.altnames]).flat()}
           />
@@ -80,7 +80,7 @@ const FilterSection = () => {
               filterGroup={filterGroup}
               handleFilterClick={handleFilterClick}
               handleResetFilterGroup={handleResetFilterGroup}
-              extraClasses='w-full xl:w-64'
+              extraClasses='w-full lg:w-64'
             />
           ))}
         </div>
