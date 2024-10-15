@@ -1,4 +1,4 @@
-import { copyToClipboard } from '../../../../helpers/copyToClipboard'
+import { copyToClipboard } from '../../../helpers/copyToClipboard'
 import { Tooltip } from '../Tooltip'
 import './style/textBar.css'
 

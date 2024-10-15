@@ -10,6 +10,13 @@ interface PaginationSelectionProps {
   extraClasses?: string
 }
 
+const getTotalElementsText = (elementsPerPage: number, currentPage: number, totalElements: number) => {
+  const firstElementIndex = (currentPage - 1) * elementsPerPage + 1
+  const lastElementIndex = Math.min(currentPage * elementsPerPage, totalElements)
+  return   `${firstElementIndex}-${lastElementIndex} of ${totalElements} icons`
+}
+
+ 
 const PaginationSelection: React.FC<PaginationSelectionProps> = ({
   elementsPerPage,
   currentPage,
@@ -18,10 +25,7 @@ const PaginationSelection: React.FC<PaginationSelectionProps> = ({
   handlePerPageChange,
   extraClasses = ''
 }) => {
-  const firstElementIndex = (currentPage - 1) * elementsPerPage + 1
-  const lastElementIndex = Math.min(currentPage * elementsPerPage, totalElements)
-  const totalElementsText = `${firstElementIndex}-${lastElementIndex} of ${totalElements} icons`
-
+  const totalElementsText = getTotalElementsText(elementsPerPage, currentPage, totalElements)
   return (
     <div className={`pagination-selection ${extraClasses}`}>
       <p>Items Per Page</p>

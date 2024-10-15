@@ -1,16 +1,5 @@
-import './contactLogos.css';
-
-const CONTACT_LINKS = [
-  {
-    href: 'https://github.com/devicons/devicon/',
-    iconClass: 'fab fa-github'
-  },
-  {
-    href: 'https://discord.com/invite/hScy8KWACQ',
-    iconClass: 'fab fa-discord'
-  }
-]
-
+import { CONTACT_LINKS } from './constants'
+import './contactLogos.css'
 const ContactLogos = () => {
   return (
     <div className='contact-logos '>

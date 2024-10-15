@@ -1,27 +1,27 @@
 .footer {
   @apply flex flex-col w-full bg-gray-50 dark:bg-dark-900 dark:text-white;
 }
-.footer .footer-content {
+.footer__content {
   @apply mx-auto w-full px-6 sm:max-w-[40rem] md:max-w-[48rem] md:px-8 lg:max-w-[64rem] xl:max-w-[90rem];
 }
-.footer .footer-grid {
+.footer__grid {
   @apply grid grid-cols-2 xl:grid-cols-4 w-full py-16;
 }
-.footer .footer-logo-section {
+.footer__logo-section {
   @apply col-span-2 flex flex-col gap-4 pb-8 xl:pb-0;
 }
-.footer .footer-links {
+.footer__links {
   @apply col-span-1 flex flex-col gap-2 text-sm;
 }
-.footer .footer-links p {
+.footer__links__heading {
   @apply mb-2 text-gray-400 dark:text-gray-400;
 }
-.footer .footer-links a {
+.footer__links__link {
   @apply font-medium text-gray-950 dark:text-white hover:text-primary-900 dark:hover:text-primary-900 w-fit;
 }
-.footer .footer-bottom {
+.footer__bottom {
   @apply relative isolate my-12 flex justify-between items-center border-t border-gray-600/20 pb-20 pt-6 text-sm;
 }
-.footer .footer-bottom p {
+.footer__bottom__text {
   @apply text-gray-400 text-sm;
-}/*# sourceMappingURL=footer.css.map */
+} /*# sourceMappingURL=footer.css.map */

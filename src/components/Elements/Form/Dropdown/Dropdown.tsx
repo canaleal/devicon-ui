@@ -17,7 +17,7 @@ interface DropdownButtonProps {
   toggleDropdown: () => void
 }
 
-interface DropdownMenuProps {
+interface DropdownPopupProps {
   options: string[]
   handleOptionClick: (option: string) => void
 }
@@ -54,7 +54,7 @@ export const Dropdown = ({
         toggleDropdown={() => setIsOpen(!isOpen)}
       />
       {isOpen && (
-        <DropdownMenu
+        <DropdownPopup
           options={options}
           handleOptionClick={(option) => {
             onChange(option)
@@ -68,14 +68,18 @@ export const Dropdown = ({
 
 const DropdownButton = ({ isDisabled, selectedOption, isOpen, toggleDropdown }: DropdownButtonProps) => {
   return (
-    <button onClick={toggleDropdown} className={`dropdown ${isDisabled ? 'dropdown--disabled' : ''}`} disabled={isDisabled}>
+    <button
+      onClick={toggleDropdown}
+      className={`dropdown ${isDisabled ? 'dropdown--disabled' : ''}`}
+      disabled={isDisabled}
+    >
       <span className='dropdown__placeholder'>{selectedOption}</span>
       <i className={`fas ${isOpen ? 'fa-chevron-up' : 'fa-chevron-down'}`} />
     </button>
   )
 }
 
-const DropdownMenu = ({ options, handleOptionClick }: DropdownMenuProps) => (
+const DropdownPopup = ({ options, handleOptionClick }: DropdownPopupProps) => (
   <ul className='dropdown__popup'>
     {options.map((option) => (
       <li key={option} onClick={() => handleOptionClick(option)} className='dropdown__item'>

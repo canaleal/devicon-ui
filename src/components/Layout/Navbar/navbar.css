@@ -1,17 +1,15 @@
 .navbar {
   @apply fixed z-20 h-16 flex flex-col w-full border-b border-gray-600/20 opacity-95 backdrop-blur-sm bg-dark-900 text-white;
 }
-.navbar .navbar-content {
+.navbar__content {
   @apply mx-auto h-full flex items-center w-full px-6 sm:max-w-[40rem] md:max-w-[48rem] md:px-8 lg:max-w-[64rem] xl:max-w-[90rem];
 }
-
-.dark-mode-toggle {
+.navbar__dark-mode-toggle {
   @apply p-2 ml-auto text-xl cursor-pointer;
 }
-.dark-mode-toggle:hover {
+.navbar__dark-mode-toggle:hover {
   @apply text-primary-800;
 }
-
-.navbar-placeholder {
+.navbar__placeholder {
   @apply h-16 bg-dark-900;
-}/*# sourceMappingURL=navbar.css.map */
+} /*# sourceMappingURL=navbar.css.map */

@@ -17,7 +17,7 @@ interface DropdownButtonProps {
   toggleDropdown: () => void
 }
 
-interface DropdownMenuProps {
+interface DropdownPopupProps {
   selectedColor: string
   defaultColor: string
   onColorChange: (color: string) => void
@@ -80,7 +80,7 @@ const ColorPickerDropdown = ({
         toggleDropdown={() => setIsOpen(!isOpen)}
       />
       {isOpen && (
-        <DropdownMenu
+        <DropdownPopup
           selectedColor={selectedColor}
           defaultColor={defaultColor}
           onColorChange={onColorChange}
@@ -93,7 +93,11 @@ const ColorPickerDropdown = ({
 
 const DropdownButton = ({ isDisabled, selectedColor, isOpen, toggleDropdown }: DropdownButtonProps) => {
   return (
-    <button disabled={isDisabled} onClick={toggleDropdown} className={`dropdown ${isDisabled ? 'dropdown--disabled' : ''}`}>
+    <button
+      disabled={isDisabled}
+      onClick={toggleDropdown}
+      className={`dropdown ${isDisabled ? 'dropdown--disabled' : ''}`}
+    >
       <span className='dropdown__placeholder'>
         <span className='dropdown__color-picker__mark' style={{ backgroundColor: selectedColor }} />
         {selectedColor}
@@ -103,7 +107,7 @@ const DropdownButton = ({ isDisabled, selectedColor, isOpen, toggleDropdown }: D
   )
 }
 
-const DropdownMenu = ({ selectedColor, defaultColor, onColorChange, resetColor }: DropdownMenuProps) => {
+const DropdownPopup = ({ selectedColor, defaultColor, onColorChange, resetColor }: DropdownPopupProps) => {
   const isResetButtonDisabled = selectedColor === defaultColor
   return (
     <div className='dropdown__popup'>
@@ -133,7 +137,7 @@ const ColorInput = ({ selectedColor, onColorChange }: ColorInputProps) => (
 )
 
 const ColorPalette = ({ onColorChange }: ColorPaletteProps) => (
-  <div className='grid grid-cols-4 gap-2 h-fit'>
+  <div className='dropdown__color-picker__grids'>
     {Object.values(PALLET_COLORS).map((color) => (
       <div
         key={color}

@@ -1,6 +1,6 @@
-import InfiniteScroll from '../../../components/Elements/Widgets/InfiniteScroll/InfiniteScroll';
-import { ICONS } from './constants/aboutConstants';
-import './styles/aboutStyle.css';
+import InfiniteScroll from '../../../components/Elements/InfiniteScroll/InfiniteScroll'
+import { ICONS } from './constants/aboutConstants'
+import './styles/aboutStyle.css'
 
 const InformationSection = () => {
   return (
@@ -17,7 +17,7 @@ const InformationSection = () => {
         <InfiniteScroll items={ICONS} rows={1} itemType='icon' />
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default InformationSection;
+export default InformationSection

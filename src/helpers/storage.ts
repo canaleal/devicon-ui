@@ -1,5 +1,4 @@
-import { INIT_STORAGE } from "../constants"
-
+import { INIT_STORAGE } from '../constants'
 
 const storagePrefix = 'devicon_ui_react_'
 const storage = {

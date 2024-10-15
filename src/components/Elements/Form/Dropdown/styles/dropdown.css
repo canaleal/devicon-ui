@@ -69,4 +69,7 @@
 }
 .dropdown__color-picker__item:hover {
   @apply cursor-pointer;
+}
+.dropdown__color-picker__grid {
+  @apply grid grid-cols-4 gap-2 h-fit;
 }/*# sourceMappingURL=dropdown.css.map */

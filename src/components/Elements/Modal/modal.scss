@@ -3,7 +3,6 @@
 .modal {
   @apply fixed inset-0 z-50 flex items-center justify-center bg-gray-600/20 backdrop-blur-[2px] overflow-auto dark:bg-black/80;
 
- 
   &__container {
     @apply mx-auto w-full py-6 px-6 sm:max-w-[50rem] md:max-w-[60rem] md:px-8 lg:max-w-[68rem] xl:max-w-[95rem];
   }

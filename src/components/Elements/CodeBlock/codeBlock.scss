@@ -19,7 +19,7 @@
 
   &__button {
     @apply flex gap-2 items-center px-4 pb-3 pt-3  transition-colors;
-    @apply text-gray-400 ;
+    @apply text-gray-400;
 
     &:hover {
       @apply text-white;
@@ -37,6 +37,10 @@
       &:hover {
         @apply bg-transparent;
       }
+    }
+
+    &--copy {
+      @apply ml-auto;
     }
   }
 

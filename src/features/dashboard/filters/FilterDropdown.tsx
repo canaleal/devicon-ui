@@ -4,7 +4,6 @@ import { IconVersion } from '../../../types'
 import { ICON_VERSION_FA_MAP } from '../../../constants'
 import SVGIcon from '../../../components/Elements/SVG/Icon'
 
-
 interface FilterItemProps {
   filter: IFilterItem
   icon?: string

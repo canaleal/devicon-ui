@@ -1,4 +1,4 @@
-import Logo from '../../Elements/Widgets/Logo/Logo'
+import Logo from '../../Elements/Logo/Logo'
 import { useEffect, useState } from 'react'
 import storage from '../../../helpers/storage'
 import './navbar.css'
@@ -26,7 +26,7 @@ const DarkModeToggle = () => {
   }
 
   return (
-    <button onClick={toggleDarkMode} className='dark-mode-toggle'>
+    <button onClick={toggleDarkMode} className='navbar__dark-mode-toggle'>
       {darkMode ? <i className='fa-solid fa-sun'></i> : <i className='fa-solid fa-moon'></i>}
     </button>
   )
@@ -36,13 +36,13 @@ const Navbar = () => {
   return (
     <>
       <header className='navbar'>
-        <div className='navbar-content'>
+        <div className='navbar__content'>
           <Logo />
           <DarkModeToggle />
         </div>
       </header>
 
-      <div className='navbar-placeholder' />
+      <div className='navbar__placeholder' />
     </>
   )
 }

@@ -1,6 +1,6 @@
-import CodeBlock from "../../../../../components/Elements/CodeBlock/CodeBlock"
-import { DEVICON_LINK_TAG } from "../../../../../constants"
-import useIconStore from "../../../../../store/iconStore"
+import CodeBlock from '../../../../../components/Elements/CodeBlock/CodeBlock'
+import { DEVICON_LINK_TAG } from '../../../../../constants'
+import useIconStore from '../../../../../store/iconStore'
 
 export const CDNBlockLink = () => {
   const deviconBranch = useIconStore((state) => state.deviconBranch)

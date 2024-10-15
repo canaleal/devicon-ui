@@ -1,6 +1,6 @@
-import Modal from "../../../components/Elements/Modal/Modal"
-import useIconStore from "../../../store/iconStore"
-import IconModal from "./IconModal"
+import Modal from '../../../components/Elements/Modal/Modal'
+import useIconStore from '../../../store/iconStore'
+import IconModal from './IconModal'
 
 const IconModalSection = () => {
   const { selectedIcon, deviconBranch, setSelectedIcon } = useIconStore()

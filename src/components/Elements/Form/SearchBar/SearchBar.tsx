@@ -55,19 +55,19 @@ export const SearchBar = ({
   }, [])
 
   return (
-    <div className={`relative ${extraClasses}`} ref={searchRef}>
+    <div className={`searchBar-container ${extraClasses}`} ref={searchRef}>
       <input
         type='text'
         value={searchTerm}
         onChange={handleInputChange}
         placeholder={placeholder}
-        className={`searchbar`}
+        className={`searchBar-input`}
       />
 
       {showOptions && (
-        <ul className='searchbar__popup'>
+        <ul className='searchBar-input__popup'>
           {filteredOptions.slice(0, 10).map((option, index) => (
-            <li key={index} className='searchbar__popup__item' onClick={() => handleOptionClick(option)}>
+            <li key={index} className='searchBar-input__popup__item' onClick={() => handleOptionClick(option)}>
               {option}
             </li>
           ))}

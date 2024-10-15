@@ -1,4 +1,4 @@
-import { IScrollItem } from '../../../../components/Elements/Widgets/InfiniteScroll/InfiniteScroll'
+import { IScrollItem } from '../../../../components/Elements/InfiniteScroll/InfiniteScroll'
 
 export const ICONS: IScrollItem[] = [
   { name: 'react', link: 'colored devicon-react-original' },

@@ -1,13 +1,13 @@
-import { Tooltip } from "../../../../../components/Elements/Widgets/Tooltip";
-import { copyToClipboard } from "../../../../../helpers/copyToClipboard";
+import { Tooltip } from '../../../../../components/Elements/Tooltip'
+import { copyToClipboard } from '../../../../../helpers/copyToClipboard'
 
 const ModalHeader = ({ iconName }: { iconName: string }) => (
-    <Tooltip content='Copy Name' position='bottom' flashMessage='Copied!'>
-      <button onClick={() => copyToClipboard(iconName)} className='button button--icon'>
-        <i className='fa-solid fa-copy text-xl'></i>
-        <p className='icon-title'>{iconName}</p>
-      </button>
-    </Tooltip>
-  );
-  
-export default ModalHeader;
+  <Tooltip content='Copy Name' position='bottom' flashMessage='Copied!'>
+    <button onClick={() => copyToClipboard(iconName)} className='button button--icon'>
+      <i className='fa-solid fa-copy text-xl'></i>
+      <p className='icon-title'>{iconName}</p>
+    </button>
+  </Tooltip>
+)
+
+export default ModalHeader

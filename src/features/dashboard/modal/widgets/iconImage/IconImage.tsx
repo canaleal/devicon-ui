@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import Tooltip from '../../../../../components/Elements/Widgets/Tooltip/Tooltip'
+import Tooltip from '../../../../../components/Elements/Tooltip/Tooltip'
 import './iconImage.css'
 import { IIcon } from '../../../../../types'
 import { createStyleMap } from './iconImageUtils'
@@ -46,11 +46,15 @@ export const IconImage = ({ icon, extraClasses }: IconContainerProps) => {
   }
 
   return (
-    <div className={`image-container ${isDarkBackground ? 'image-container--dark' : 'image-container--light'} ${isCheckeredBackground ? 'image-container--checkered' : ''} ${extraClasses}`}>
-      <div className={`image-container__view-box ${isViewBoxVisible ? (isDarkBackground ? 'image-container__view-box--dark' : 'image-container__view-box--light') : ''}`}>
+    <div
+      className={`image-container ${isDarkBackground ? 'image-container--dark' : 'image-container--light'} ${isCheckeredBackground ? 'image-container--checkered' : ''} ${extraClasses}`}
+    >
+      <div
+        className={`image-container__view-box ${isViewBoxVisible ? (isDarkBackground ? 'image-container__view-box--dark' : 'image-container__view-box--light') : ''}`}
+      >
         {styleMap ? (
           <div
-            className="image-container__image"
+            className='image-container__image'
             style={{
               height: iconSettings.selectedIconSize.height,
               width: iconSettings.selectedIconSize.width,
@@ -59,7 +63,7 @@ export const IconImage = ({ icon, extraClasses }: IconContainerProps) => {
           />
         ) : (
           <img
-            className="image-container__image"
+            className='image-container__image'
             height={iconSettings.selectedIconSize.height}
             width={iconSettings.selectedIconSize.width}
             src={iconSettings.iconUrl}
@@ -67,25 +71,29 @@ export const IconImage = ({ icon, extraClasses }: IconContainerProps) => {
         )}
       </div>
 
-      <div className="image-container__options-list">
-        <Tooltip content="Download SVG" position="top" flashMessage="Copied!">
-          <button onClick={handleCopySVGClick} className="button--icon icon--xxl">
-            <i className="fa-solid fa-download"></i>
+      <div className='image-container__options-list'>
+        <Tooltip content='Download SVG' position='top' flashMessage='Copied!'>
+          <button onClick={handleCopySVGClick} className='button--icon icon--xxl'>
+            <i className='fa-solid fa-download'></i>
           </button>
         </Tooltip>
-        <Tooltip content={`${isDarkBackground ? 'Light' : 'Dark'} Background`} position="top">
-          <button onClick={handleToggleBackground} className="button--icon icon--xxl">
-            {isDarkBackground ? <i className="fa-solid fa-sun"></i> : <i className="fa-solid fa-moon"></i>}
+        <Tooltip content={`${isDarkBackground ? 'Light' : 'Dark'} Background`} position='top'>
+          <button onClick={handleToggleBackground} className='button--icon icon--xxl'>
+            {isDarkBackground ? <i className='fa-solid fa-sun'></i> : <i className='fa-solid fa-moon'></i>}
           </button>
         </Tooltip>
-        <Tooltip content={`${isCheckeredBackground ? 'Hide' : 'Show'} Checkered Background`} position="top">
-          <button onClick={handleCheckeredBackground} className="button--icon icon--xxl">
-            {isCheckeredBackground ? <i className="fa-solid fa-border-none"></i> : <i className="fa-solid fa-border-all"></i>}
+        <Tooltip content={`${isCheckeredBackground ? 'Hide' : 'Show'} Checkered Background`} position='top'>
+          <button onClick={handleCheckeredBackground} className='button--icon icon--xxl'>
+            {isCheckeredBackground ? (
+              <i className='fa-solid fa-border-none'></i>
+            ) : (
+              <i className='fa-solid fa-border-all'></i>
+            )}
           </button>
         </Tooltip>
-        <Tooltip content={`${isViewBoxVisible ? 'Hide' : 'Show'} ViewBox`} position="top">
-          <button onClick={handleToggleViewBox} className="button--icon icon--xxl">
-            {isViewBoxVisible ? <i className="fa-solid fa-eye-slash"></i> : <i className="fa-solid fa-eye"></i>}
+        <Tooltip content={`${isViewBoxVisible ? 'Hide' : 'Show'} ViewBox`} position='top'>
+          <button onClick={handleToggleViewBox} className='button--icon icon--xxl'>
+            {isViewBoxVisible ? <i className='fa-solid fa-eye-slash'></i> : <i className='fa-solid fa-eye'></i>}
           </button>
         </Tooltip>
       </div>

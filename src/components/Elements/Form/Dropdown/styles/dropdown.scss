@@ -88,5 +88,9 @@
         @apply cursor-pointer;
       }
     }
+
+    &__grid { 
+      @apply grid grid-cols-4 gap-2 h-fit;
+    }
   }
 }

@@ -1,5 +1,5 @@
 import { copyToClipboard } from '../../../helpers/copyToClipboard'
-import { Tooltip } from '../Widgets/Tooltip'
+import { Tooltip } from '../Tooltip'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { atomDark } from 'react-syntax-highlighter/dist/esm/styles/prism'
 import './codeBlock.css'
@@ -48,7 +48,7 @@ export const CodeBlock = ({
           </div>
         )}
         <Tooltip content='Copy Code' position='bottom' flashMessage='Copied!'>
-          <button onClick={() => copyToClipboard(codeString)} className='code-block__button ml-auto'>
+          <button onClick={() => copyToClipboard(codeString)} className='code-block__button code-block__button--copy'>
             <span>Copy Code</span>
             <i className='fa-solid fa-copy'></i>
           </button>

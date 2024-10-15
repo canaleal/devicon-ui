@@ -64,10 +64,7 @@ export const IconModal = ({ icon, deviconBranch }: IconModalProps) => {
       <ModalHeader iconName={icon.name} />
       <section className='icon-section'>
         <IconImage icon={icon} extraClasses='icon-container' />
-        <IconOptions
-          icon={icon}
-          deviconBranch={deviconBranch}
-        />
+        <IconOptions icon={icon} deviconBranch={deviconBranch} />
       </section>
       <CodeBlock
         code={codeText}

@@ -11,4 +11,4 @@
 .modal__close-button {
   @apply absolute top-0 right-0 p-4 text-2xl leading-none rounded-bl-lg rounded-tr-lg;
   @apply bg-primary-800 hover:bg-primary-900 text-white;
-}/*# sourceMappingURL=modal.css.map */
+} /*# sourceMappingURL=modal.css.map */

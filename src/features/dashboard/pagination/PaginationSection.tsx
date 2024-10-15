@@ -1,9 +1,9 @@
-import Pagination from "./Pagination"
-import { CDNBlockLink } from "./widgets/cdnBlockLink/CDNBlockLink"
-import useIconStore from "../../../store/iconStore"
+import Pagination from './Pagination'
+import { CDNBlockLink } from './widgets/cdnBlockLink/CDNBlockLink'
+import useIconStore from '../../../store/iconStore'
 
 const PaginationSection = () => {
-    const { filteredIcons } = useIconStore()
+  const { filteredIcons } = useIconStore()
 
   return (
     <section className='bg-gray-50 dark:bg-dark-900'>

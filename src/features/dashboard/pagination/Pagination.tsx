@@ -32,7 +32,6 @@ interface IPaginationProps {
 }
 
 export const Pagination = ({ filteredIcons }: IPaginationProps) => {
-
   const [paginatedIcons, setPaginatedIcons] = useState<IIcon[]>([])
   const [currentPage, setCurrentPage] = useState<number>(1)
   const [elementsPerPage, setElementsPerPage] = useState<number>(DEFAULT_ELEMENTS_PER_PAGE)
