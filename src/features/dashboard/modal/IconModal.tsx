@@ -33,6 +33,7 @@ export const IconModal = ({ icon, deviconBranch }: IconModalProps) => {
 
   const getCodeText = async (settings: IIconSettings, codeBlockOption: CodeBlockOptionTypes) => {
     const code = await createIconCodeBlockText(icon, settings, codeBlockOption)
+    console.log(code)
     setCodeText(code)
   }
 
@@ -45,18 +46,16 @@ export const IconModal = ({ icon, deviconBranch }: IconModalProps) => {
     }
 
     const initOptions = getCodeBlockOptions(deviconBranch, icon, initSettings.selectedVersion)
-    setIconSettings(initSettings)
     setCodeBlockOptions(initOptions)
     setSelectedCodeBlockOption(initOptions[0])
+    setIconSettings(initSettings)
+    getCodeText(initSettings, initOptions[0])
   }, [icon])
-
-  useEffect(() => {
-    getCodeText(iconSettings, selectedCodeBlockOption)
-  }, [iconSettings, selectedCodeBlockOption])
 
   const onSelectedOptionChange = (value: CodeBlockOptionTypes) => {
     if (value === selectedCodeBlockOption) return
     setSelectedCodeBlockOption(value)
+    getCodeText(iconSettings, value)
   }
 
   return (
@@ -72,7 +71,7 @@ export const IconModal = ({ icon, deviconBranch }: IconModalProps) => {
         selectedOption={selectedCodeBlockOption}
         onClickCodeBlockOption={(codeType) => onSelectedOptionChange(codeType as CodeBlockOptionTypes)}
       />
-      <ModalFooter altnames={icon.altnames} deviconBranch={deviconBranch} />
+      <ModalFooter icon={icon} deviconBranch={deviconBranch} />
     </>
   )
 }

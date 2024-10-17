@@ -1,7 +1,6 @@
 import { Dropdown } from '../../../../../components/Elements/Form/Dropdown'
 import ColorPickerDropdown from '../../../../../components/Elements/Form/Dropdown/ColorPickerDropdown'
 import { Table } from '../../../../../components/Elements/Table'
-import { TextBar } from '../../../../../components/Elements/TextBar'
 import { createDeviconIconUrl } from '../../../../../helpers/iconUrl'
 import { DeviconBranch, IconVersion, IIcon } from '../../../../../types'
 import { getCodeBlockOptions } from '../../helpers/codeBlockContent'
@@ -39,11 +38,6 @@ export const IconOptions = ({ icon, deviconBranch }: { icon: IIcon; deviconBranc
 
   return (
     <div className='icon-options'>
-      <TextBar
-        extraClasses='hidden lg:inline-flex'
-        icon={{ icon: 'fa-solid fa-folder', copyTitle: 'Copy Tags' }}
-        content={[icon.name]}
-      />
       <div className='option-row'>
         <Dropdown
           title='Version'

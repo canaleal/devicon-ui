@@ -1,16 +1,17 @@
 import { TextBar } from '../../../../../components/Elements/TextBar'
 import { DEVICON_VERSION_RELEASE } from '../../../../../constants'
-import { DeviconBranch } from '../../../../../types'
+import { DeviconBranch, IIcon } from '../../../../../types'
 
 interface ModalFooterProps {
-  altnames: string[]
+  icon: IIcon
   deviconBranch: DeviconBranch
 }
 
-const ModalFooter = ({ altnames, deviconBranch }: ModalFooterProps) => {
+const ModalFooter = ({ icon, deviconBranch }: ModalFooterProps) => {
   return (
     <div className='alt-names-bar'>
-      <TextBar title='Alt Names' content={altnames} />
+      <TextBar title='Alt Names' content={icon.altnames} />
+      <TextBar extraClasses='hidden lg:inline-flex' title='Tags' content={icon.tags} />
       <span className='text-sm'>{deviconBranch === 'master' ? DEVICON_VERSION_RELEASE : 'Development Branch'}</span>
     </div>
   )

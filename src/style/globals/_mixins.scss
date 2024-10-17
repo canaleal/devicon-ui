@@ -1,0 +1,7 @@
+@mixin primary-bg-color {
+  @apply bg-primary-800 dark:bg-primary-800 text-white;
+}
+
+@mixin primary-bg-color--hover {
+  @apply bg-primary-900 dark:bg-primary-900;
+}

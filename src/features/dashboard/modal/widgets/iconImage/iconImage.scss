@@ -1,12 +1,12 @@
 .image-container {
-  @apply flex-1 flex flex-col p-4 h-[30rem] rounded-xl;
+  @apply flex-1 flex flex-col p-4 h-[30rem] rounded-xl min-h-[24rem] md:min-h-[0rem];
 
   &--light {
     @apply bg-white text-dark-900 border;
   }
 
   &--dark {
-    @apply bg-dark-900 text-white border border-gray-600/20;
+    @apply bg-dark-900 text-white border border-stone-600/20;
   }
 
   &--checkered {
@@ -26,18 +26,14 @@
   }
 
   &__options-list {
-    @apply flex flex-row gap-4;
-
-    & > *:first-child {
-      @apply mr-auto;
-    }
+    @apply flex flex-row gap-4 justify-end;
   }
 
   &__view-box {
-    @apply m-auto min-h-[24rem] md:min-h-[0rem] items-center align-middle justify-center flex;
+    @apply m-auto items-center align-middle justify-center flex;
 
     &--light {
-      @apply border border-dotted border-gray-950;
+      @apply border border-dotted border-stone-950;
     }
 
     &--dark {

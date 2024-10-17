@@ -1,5 +1,5 @@
 .about-section {
-  @apply dark:bg-dark-900 border-b border-gray-600/20 bg-gray-50;
+  @apply dark:bg-dark-900 border-b border-stone-600/20 bg-stone-50;
 }
 .about-section__title {
   @apply flex flex-col gap-4 justify-center items-center text-center mb-12;
@@ -8,5 +8,5 @@
   @apply text-3xl font-semibold dark:text-white;
 }
 .about-section__paragraph {
-  @apply text-gray-600 dark:text-gray-400 max-w-3xl items-center;
-} /*# sourceMappingURL=aboutStyle.css.map */
+  @apply text-stone-600 dark:text-stone-400 max-w-3xl text-sm items-center;
+}/*# sourceMappingURL=aboutStyle.css.map */

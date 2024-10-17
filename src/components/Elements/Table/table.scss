@@ -7,14 +7,14 @@
 }
 
 .table {
-  @apply flex overflow-hidden w-full border dark:border-gray-600/20 rounded-md shadow-sm;
+  @apply flex overflow-hidden w-full border dark:border-stone-600/20 rounded-md shadow-sm;
 
   table {
     @apply table-auto w-full bg-white text-sm;
   }
 
   &__head {
-    @apply border-b dark:border-gray-600/20;
+    @apply border-b bg-stone-100 dark:bg-dark-900 dark:border-stone-600/20;
   }
 
   &__element {
@@ -22,10 +22,10 @@
   }
 
   &__row {
-    @apply dark:bg-dark-800  cursor-pointer;
+    @apply bg-white dark:bg-dark-800  cursor-pointer;
 
     &:hover {
-      @apply bg-gray-100 dark:bg-dark-900;
+      @apply bg-stone-100 dark:bg-dark-900;
     }
   }
 }

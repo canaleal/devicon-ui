@@ -61,13 +61,13 @@ export const SearchBar = ({
         value={searchTerm}
         onChange={handleInputChange}
         placeholder={placeholder}
-        className={`searchBar-input`}
+        className={`searchBar`}
       />
 
       {showOptions && (
-        <ul className='searchBar-input__popup'>
+        <ul className='searchBar__popup'>
           {filteredOptions.slice(0, 10).map((option, index) => (
-            <li key={index} className='searchBar-input__popup__item' onClick={() => handleOptionClick(option)}>
+            <li key={index} className='searchBar__popup__item' onClick={() => handleOptionClick(option)}>
               {option}
             </li>
           ))}

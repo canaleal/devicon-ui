@@ -2,5 +2,5 @@
   @apply flex flex-row gap-4 text-xl;
 }
 .contact-logos__link {
-  @apply text-gray-400 hover:text-gray-950 transition-colors;
-} /*# sourceMappingURL=contactLogos.css.map */
+  @apply text-stone-400 hover:text-stone-950 transition-colors;
+}/*# sourceMappingURL=contactLogos.css.map */

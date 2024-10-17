@@ -1,19 +1,19 @@
-// modal.scss
-
 .modal {
-  @apply fixed inset-0 z-50 flex items-center justify-center bg-gray-600/20 backdrop-blur-[2px] overflow-auto dark:bg-black/80;
+  @apply fixed inset-0 z-50 flex items-center justify-center bg-dark-900/80 backdrop-blur-sm overflow-auto dark:bg-black/80;
 
   &__container {
     @apply mx-auto w-full py-6 px-6 sm:max-w-[50rem] md:max-w-[60rem] md:px-8 lg:max-w-[68rem] xl:max-w-[95rem];
   }
 
   &__content {
-    @apply relative p-8 w-full shadow-sm;
-    @apply bg-white rounded-xl  dark:bg-dark-900 dark:text-white;
+    @apply relative p-8 w-full shadow-sm bg-white rounded-xl  dark:bg-dark-900 dark:text-white;
   }
 
   &__close-button {
-    @apply absolute top-0 right-0 p-4 text-2xl leading-none rounded-bl-lg rounded-tr-lg;
-    @apply bg-primary-800 hover:bg-primary-900 text-white;
+    @apply absolute top-0 right-0 p-4 text-2xl leading-none rounded-bl-lg rounded-tr-lg bg-primary-800 dark:bg-primary-800 text-white;
+
+    &:hover {
+      @apply bg-primary-900 dark:bg-primary-900;
+    }
   }
 }

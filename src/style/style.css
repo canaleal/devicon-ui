@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -11,22 +11,11 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
   line-height: 1.5;
-  font-family: 'Roboto Flex', sans-serif;
+  font-family: "Roboto Flex", sans-serif;
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
-  font-variation-settings:
-    'slnt' 0,
-    'wdth' 100,
-    'GRAD' 0,
-    'XOPQ' 96,
-    'XTRA' 468,
-    'YOPQ' 79,
-    'YTAS' 750,
-    'YTDE' -203,
-    'YTFI' 738,
-    'YTLC' 514,
-    'YTUC' 712;
+  font-variation-settings: "slnt" 0, "wdth" 100, "GRAD" 0, "XOPQ" 96, "XTRA" 468, "YOPQ" 79, "YTAS" 750, "YTDE" -203, "YTFI" 738, "YTLC" 514, "YTUC" 712;
 }
 
 html {
@@ -49,14 +38,14 @@ html {
   @apply justify-between;
 }
 .base-container__card {
-  @apply z-10  flex flex-col p-8 rounded-xl bg-white border border-gray-600/20 dark:bg-dark-900 dark:text-white  dark:border-gray-600/20 shadow-sm;
+  @apply z-10  flex flex-col p-8 rounded-xl bg-white border border-stone-600/20 dark:bg-dark-900 dark:text-white  dark:border-stone-600/20 shadow-sm;
 }
 
 .button {
-  @apply flex gap-2 items-center px-2 py-2 rounded-md text-gray-950 dark:text-white;
+  @apply flex gap-2 items-center px-2 py-2 rounded-md text-stone-950 dark:text-white;
 }
 .button:hover {
-  @apply bg-gray-100 dark:bg-dark-800;
+  @apply bg-stone-100 dark:bg-dark-800;
 }
 .button--small {
   @apply px-4 py-2 text-sm rounded-md;
@@ -66,14 +55,13 @@ html {
   @apply bg-transparent dark:bg-transparent;
 }
 .button--selected {
-  @apply bg-primary-800 text-white;
-  @apply dark:text-white;
+  @apply bg-primary-800 dark:bg-primary-800 text-white;
 }
 .button--selected:hover {
   @apply bg-primary-900 dark:bg-primary-900;
 }
 .button--disabled {
-  @apply text-gray-300 bg-transparent;
+  @apply text-stone-300 bg-transparent;
 }
 .button--disabled:hover {
   @apply bg-transparent dark:bg-transparent;
@@ -87,4 +75,4 @@ html {
 }
 .icon--xxl {
   @apply text-2xl;
-} /*# sourceMappingURL=style.css.map */
+}/*# sourceMappingURL=style.css.map */
