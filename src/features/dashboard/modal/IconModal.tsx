@@ -13,6 +13,7 @@ import CodeBlock from '../../../components/Elements/CodeBlock/CodeBlock'
 import ModalHeader from './widgets/modalHeader/ModalHeader'
 import ModalFooter from './widgets/modalFooter/ModalFooter'
 import IconOptions from './widgets/iconOptions/IconOptions'
+import { getSVGErrors } from './helpers/svgChecker'
 
 interface IconModalProps {
   icon: IIcon
@@ -33,8 +34,12 @@ export const IconModal = ({ icon, deviconBranch }: IconModalProps) => {
 
   const getCodeText = async (settings: IIconSettings, codeBlockOption: CodeBlockOptionTypes) => {
     const code = await createIconCodeBlockText(icon, settings, codeBlockOption)
-    console.log(code)
     setCodeText(code)
+
+    if (codeBlockOption === 'SVG') {
+      const errors = getSVGErrors(icon, code)
+      console.log(errors)
+    }
   }
 
   useEffect(() => {
@@ -63,7 +68,7 @@ export const IconModal = ({ icon, deviconBranch }: IconModalProps) => {
       <ModalHeader iconName={icon.name} />
       <section className='icon-section'>
         <IconImage icon={icon} deviconBranch={deviconBranch} extraClasses='icon-container' />
-        <IconOptions icon={icon} deviconBranch={deviconBranch} />
+        <IconOptions icon={icon} deviconBranch={deviconBranch} getCodeText={getCodeText} />
       </section>
       <CodeBlock
         code={codeText}

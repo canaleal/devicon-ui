@@ -4,11 +4,7 @@
 // Icon.color cannot be found in the svg fill color
 
 import { IIcon } from '../../../../types'
-
-interface IError {
-  title: string
-  message: string
-}
+import { IError } from '../types'
 
 const isViewBox128x128 = (svg: string) => {
   return svg.includes('viewBox="0 0 128 128"')
@@ -28,7 +24,7 @@ const iconColorNotInSVG = (icon: IIcon, svg: string) => {
   return !svg.includes(icon.color)
 }
 
-export const getSVGErrors = (icon: IIcon, svg: string) => {
+export const getSVGErrors = (icon: IIcon, svg: string): IError[] => {
   const errors: IError[] = []
 
   if (!isViewBox128x128(svg)) {

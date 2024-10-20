@@ -6,7 +6,7 @@ const PaginationSection = () => {
   const { filteredIcons } = useIconStore()
 
   return (
-    <section className='bg-stone-50 dark:bg-dark-900'>
+    <section className='bg-gray-50 dark:bg-dark-900'>
       <div className='base-container base-container--col'>
         <CDNBlockLink />
         <div className='base-container__card'>

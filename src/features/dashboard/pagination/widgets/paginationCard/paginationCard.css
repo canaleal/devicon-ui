@@ -5,23 +5,23 @@
   @apply mx-auto object-cover transition-transform ease-in-out;
 }
 .card__title {
-  @apply text-xs mx-auto text-stone-600 dark:text-stone-400;
+  @apply text-xs font-semibold mx-auto text-gray-600 dark:text-gray-400;
 }
 .card:hover {
-  @apply bg-stone-100 dark:bg-dark-800 border-stone-600/20 border shadow-sm;
+  @apply bg-gray-100 dark:bg-dark-800 border-gray-600/20 border shadow-sm;
 }
 .card:hover .card__image {
   @apply transform scale-125;
 }
 .card:hover .card__title {
-  @apply text-stone-950 dark:text-white font-semibold;
+  @apply text-gray-950 dark:text-white font-semibold;
 }
 .card--dark {
-  @apply bg-dark-900 text-white border border-stone-600/20;
+  @apply bg-dark-900 text-white border border-gray-600/20;
 }
 .card--dark:hover {
   @apply bg-dark-800;
 }
 .card--dark:hover .card__title {
-  @apply text-stone-400;
+  @apply text-gray-400;
 }/*# sourceMappingURL=paginationCard.css.map */

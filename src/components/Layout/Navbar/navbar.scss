@@ -1,5 +1,5 @@
 .navbar {
-  @apply fixed z-20 h-16 flex flex-col w-full border-b border-stone-600/20 opacity-95 backdrop-blur-sm bg-dark-900 text-white;
+  @apply fixed z-20 h-16 flex flex-col w-full border-b border-gray-600/20 opacity-95 backdrop-blur-sm bg-dark-900 text-white;
 
   &__content {
     @apply mx-auto h-full flex items-center w-full px-6 sm:max-w-[40rem] md:max-w-[48rem] md:px-8 lg:max-w-[64rem] xl:max-w-[90rem];

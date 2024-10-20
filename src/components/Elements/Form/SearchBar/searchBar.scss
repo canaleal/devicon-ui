@@ -3,13 +3,13 @@
 }
 
 .searchBar {
-  @apply py-2  text-sm px-4 flex w-full justify-between items-center border rounded-md bg-white text-dark-900 dark:bg-dark-900 dark:text-white dark:border-stone-600/20 shadow-sm;
+  @apply py-2  text-sm px-4 flex w-full justify-between items-center border rounded-md bg-white text-dark-900 dark:bg-dark-900 dark:text-white dark:border-gray-600/20 shadow-sm;
 
   &__popup {
     @apply absolute mt-1 w-fit bg-white dark:text-dark-900 border shadow-sm z-30 rounded-md;
 
     &__item {
-      @apply px-4 py-2 hover:bg-stone-100 cursor-pointer text-sm;
+      @apply px-4 py-2 hover:bg-gray-100 cursor-pointer text-sm;
     }
   }
 }

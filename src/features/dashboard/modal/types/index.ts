@@ -25,3 +25,8 @@ export interface IIconSettings {
   selectedIconSize: IIconSize
   selectedColor: string
 }
+
+export interface IError {
+  title: string
+  message: string
+}

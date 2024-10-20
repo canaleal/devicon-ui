@@ -7,11 +7,11 @@ export default {
       colors: {
         dark: {
           800: '#222126',
-          900: '#131315'
+          900: '#0f0f0f'
         },
         primary: {
-          800: '#4caf50',
-          900: '#2fbd63'
+          800: '#059669',
+          900: '#047857'
         },
         rose: '#f44336',
         orange: '#ff9800',
@@ -20,14 +20,6 @@ export default {
         green: '#4caf50',
         brown: '#795548',
         purple: '#673ab7'
-      },
-      screens: {
-        sm: '640px',
-        md: '768px',
-        lg: '1024px',
-        xl: '1280px',
-        '2xl': '1536px',
-        '3xl': '1600px'
       }
     }
   },

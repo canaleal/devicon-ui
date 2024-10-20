@@ -5,35 +5,61 @@ import { createDeviconIconUrl } from '../../../../../helpers/iconUrl'
 import { DeviconBranch, IconVersion, IIcon } from '../../../../../types'
 import { getCodeBlockOptions } from '../../helpers/codeBlockContent'
 import { useIconSettingStore } from '../../store/iconSettingStore'
-import { ICON_SIZE_OPTIONS } from '../../types'
+import { CodeBlockOptionTypes, ICON_SIZE_OPTIONS, IIconSettings } from '../../types'
 
-export const IconOptions = ({ icon, deviconBranch }: { icon: IIcon; deviconBranch: DeviconBranch }) => {
+interface IIconOptions {
+  icon: IIcon,
+  deviconBranch: DeviconBranch,
+  getCodeText: (settings: IIconSettings, codeBlockOption: CodeBlockOptionTypes) => Promise<void>
+}
+
+export const IconOptions = ({ icon, deviconBranch, getCodeText }: IIconOptions) => {
   const { iconSettings, setIconSettings, setCodeBlockOptions, selectedCodeBlockOption, setSelectedCodeBlockOption } =
     useIconSettingStore()
 
-  const onVersionChange = (value: string) => {
-    if (value === iconSettings.selectedVersion) return
-    const options = getCodeBlockOptions(deviconBranch, icon, value as IconVersion)
+  const updateCodeBlockOption = (options: string[], currentOption: CodeBlockOptionTypes) => {
+    return options.includes(currentOption) ? currentOption : options[0] as CodeBlockOptionTypes
+  }
+
+  const onVersionChange = (version: string) => {
+    if (version === iconSettings.selectedVersion) return
+    const options = getCodeBlockOptions(deviconBranch, icon, version as IconVersion)
     setCodeBlockOptions(options)
-    const tempCodeBlockOption = !options.includes(selectedCodeBlockOption) ? options[0] : selectedCodeBlockOption
-    if (tempCodeBlockOption != selectedCodeBlockOption) {
-      setSelectedCodeBlockOption(tempCodeBlockOption)
+
+    const newCodeBlockOption = updateCodeBlockOption(options, selectedCodeBlockOption)
+    if (newCodeBlockOption !== selectedCodeBlockOption) {
+      setSelectedCodeBlockOption(newCodeBlockOption)
     }
-    const iconUrl = createDeviconIconUrl(icon.name, value as IconVersion, deviconBranch)
-    setIconSettings({ ...iconSettings, selectedVersion: value as IconVersion, iconUrl })
+
+    const iconUrl = createDeviconIconUrl(icon.name, version as IconVersion, deviconBranch)
+    const tempIconSettings = {
+      ...iconSettings,
+      selectedVersion: version as IconVersion,
+      iconUrl
+    }
+
+    setIconSettings(tempIconSettings)
+    getCodeText(tempIconSettings, newCodeBlockOption)
   }
 
   const onSizeChange = (value: string) => {
-    if (value === iconSettings.selectedIconSize.name) return
-    setIconSettings({
+    if (value === iconSettings.selectedIconSize.name) return;
+    const tempIconSettings = {
       ...iconSettings,
       selectedIconSize: ICON_SIZE_OPTIONS.find((option) => option.name === value)!
-    })
+    }
+    setIconSettings(tempIconSettings)
+    getCodeText(tempIconSettings, selectedCodeBlockOption)
   }
 
   const onColorChange = (color: string) => {
     if (color === iconSettings.selectedColor) return
-    setIconSettings({ ...iconSettings, selectedColor: color })
+    const tempIconSettings = {
+      ...iconSettings,
+      selectedColor: color
+    }
+    setIconSettings(tempIconSettings)
+    getCodeText(tempIconSettings, selectedCodeBlockOption)
   }
 
   return (
