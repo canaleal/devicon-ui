@@ -5,11 +5,13 @@
   @apply mx-auto w-full py-6 px-6 sm:max-w-[50rem] md:max-w-[60rem] md:px-8 lg:max-w-[68rem] xl:max-w-[95rem];
 }
 .modal__content {
-  @apply relative p-8 w-full shadow-sm bg-white rounded-xl  dark:bg-dark-900 dark:text-white;
+  @apply relative p-8 w-full bg-white rounded-lg dark:bg-dark-900 dark:text-white;
 }
 .modal__close-button {
   @apply absolute top-0 right-0 p-4 text-2xl leading-none rounded-bl-lg rounded-tr-lg bg-primary-800 dark:bg-primary-800 text-white;
 }
 .modal__close-button:hover {
   @apply bg-primary-900 dark:bg-primary-900;
-}/*# sourceMappingURL=modal.css.map */
+}
+
+/*# sourceMappingURL=modal.css.map */

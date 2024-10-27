@@ -1,5 +1,9 @@
+.pagination-section {
+  @apply bg-gray-50 dark:bg-dark-900 border-b border-gray-600/20;
+}
+
 .pagination {
-  @apply flex flex-col gap-6 w-full;
+  @apply flex flex-col gap-6 w-full dark:text-white;
 }
 .pagination__header {
   @apply flex gap-4 items-center;
@@ -11,7 +15,7 @@
   @apply ml-auto hidden md:inline-block text-sm;
 }
 .pagination__grid {
-  @apply grid grid-cols-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-4;
+  @apply grid grid-cols-3 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-8 xl:grid-cols-10 gap-4;
 }
 .pagination__no-icons {
   @apply flex flex-col items-center justify-center h-[35rem];
@@ -21,4 +25,6 @@
 }
 .pagination__footer__selection {
   @apply hidden lg:flex;
-}/*# sourceMappingURL=pagination.css.map */
+}
+
+/*# sourceMappingURL=pagination.css.map */

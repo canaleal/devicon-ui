@@ -1,5 +1,5 @@
 .fixed-button {
-  @apply bg-primary-800 dark:bg-primary-800 text-white z-30 fixed shadow-sm transition-all h-16 w-16 flex items-center justify-center font-bold text-xl;
+  @apply bg-primary-800 dark:bg-primary-800 text-white z-30 fixed  transition-all h-16 w-16 flex items-center justify-center font-bold text-xl;
 
   &--hidden {
     @apply translate-x-44;

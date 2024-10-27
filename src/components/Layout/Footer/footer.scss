@@ -1,8 +1,8 @@
 .footer {
-  @apply flex flex-col w-full bg-gray-50 dark:bg-dark-900 dark:text-white mt-auto;
+  @apply flex flex-col w-full bg-white dark:bg-dark-900 dark:text-white mt-auto;
 
   &__content {
-    @apply mx-auto w-full px-6 sm:max-w-[40rem] md:max-w-[48rem] md:px-8 lg:max-w-[64rem] xl:max-w-[90rem];
+    @apply mx-auto w-full px-6 sm:max-w-[40rem] md:max-w-[48rem] md:px-8 lg:max-w-[64rem] xl:max-w-[100rem];
   }
 
   &__grid {

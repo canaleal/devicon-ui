@@ -1,27 +1,32 @@
 .card {
-  @apply flex flex-col relative text-center justify-center gap-4 w-full overflow-hidden h-32 text-sm rounded-lg;
+  @apply flex flex-col relative text-center justify-center gap-4 w-full overflow-hidden h-32 text-sm rounded-sm;
 }
 .card__image {
   @apply mx-auto object-cover transition-transform ease-in-out;
 }
 .card__title {
-  @apply text-xs font-semibold mx-auto text-gray-600 dark:text-gray-400;
+  @apply text-xs mx-auto text-gray-600 dark:text-gray-400;
 }
 .card:hover {
-  @apply bg-gray-100 dark:bg-dark-800 border-gray-600/20 border shadow-sm;
+  @apply bg-white dark:bg-dark-800 border border-gray-600/20;
 }
 .card:hover .card__image {
   @apply transform scale-125;
 }
 .card:hover .card__title {
-  @apply text-gray-950 dark:text-white font-semibold;
+  @apply text-gray-950 dark:text-white;
 }
 .card--dark {
   @apply bg-dark-900 text-white border border-gray-600/20;
+}
+.card--dark .card__title {
+  @apply text-white;
 }
 .card--dark:hover {
   @apply bg-dark-800;
 }
 .card--dark:hover .card__title {
-  @apply text-gray-400;
-}/*# sourceMappingURL=paginationCard.css.map */
+  @apply text-white;
+}
+
+/*# sourceMappingURL=paginationCard.css.map */

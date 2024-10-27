@@ -11,6 +11,7 @@ import { INIT_FILTER_GROUPS } from '../../filters/types'
 import { populateIconFilters } from '../../filters/helpers'
 import { DeviconBranch } from '../../../../types'
 
+
 const GalleryPage = () => {
   const { deviconBranch, setIcons, setDeviconBranch, setFilterGroups, setSelectedIcon } = useIconStore()
 

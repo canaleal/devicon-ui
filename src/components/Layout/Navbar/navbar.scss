@@ -1,8 +1,8 @@
 .navbar {
-  @apply fixed z-20 h-16 flex flex-col w-full border-b border-gray-600/20 opacity-95 backdrop-blur-sm bg-dark-900 text-white;
+  @apply fixed z-20 h-16 flex flex-col w-full border-b border-gray-600/20 opacity-95 backdrop-blur-lg bg-white text-dark-900 dark:bg-dark-900 dark:text-white;
 
   &__content {
-    @apply mx-auto h-full flex items-center w-full px-6 sm:max-w-[40rem] md:max-w-[48rem] md:px-8 lg:max-w-[64rem] xl:max-w-[90rem];
+    @apply mx-auto h-full flex items-center w-full px-6 sm:max-w-[40rem] md:max-w-[48rem] md:px-8 lg:max-w-[64rem] xl:max-w-[100rem];
   }
 
   &__dark-mode-toggle {
@@ -14,6 +14,6 @@
   }
 
   &__placeholder {
-    @apply h-16 bg-dark-900;
+    @apply h-16 bg-white dark:bg-dark-900;
   }
 }

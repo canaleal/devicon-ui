@@ -1,0 +1,27 @@
+.base-container {
+  @apply flex  gap-6 mx-auto w-full py-6 px-6 sm:max-w-[45rem] md:max-w-[55rem] md:px-8 lg:max-w-[64rem] xl:max-w-[100rem];
+
+  &--lg {
+    @apply py-24 gap-16;
+  }
+
+  &--md {
+    @apply py-16;
+  }
+
+  &--row {
+    @apply flex-row;
+  }
+
+  &--col {
+    @apply flex-col;
+  }
+
+  &--justify-between {
+    @apply justify-between;
+  }
+
+  &__card {
+    @apply z-10  flex flex-col p-8 rounded-lg bg-white border border-gray-600/20 dark:bg-dark-900 dark:text-white  dark:border-gray-600/20 ;
+  }
+}

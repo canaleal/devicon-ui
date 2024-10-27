@@ -15,8 +15,7 @@ const FilterSection = () => {
   const [searchQuery, setSearchQuery] = useState<string>('')
 
   const handleIconsUpdate = (tempIcons: typeof icons, search: string, tempFilterGroups: typeof filterGroups) => {
-    const searchedIconsTemp = search ? filterIcons(tempIcons, 'name', search) : tempIcons
-    let tempFilteredIcons: typeof icons = searchedIconsTemp
+    let tempFilteredIcons: typeof icons =  search ? filterIcons(tempIcons, 'name', search) : tempIcons
     tempFilterGroups.forEach((group) => {
       group.filters.forEach((filter) => {
         if (filter.isSelected) {

@@ -1,8 +1,8 @@
 .footer {
-  @apply flex flex-col w-full bg-gray-50 dark:bg-dark-900 dark:text-white mt-auto;
+  @apply flex flex-col w-full bg-white dark:bg-dark-900 dark:text-white mt-auto;
 }
 .footer__content {
-  @apply mx-auto w-full px-6 sm:max-w-[40rem] md:max-w-[48rem] md:px-8 lg:max-w-[64rem] xl:max-w-[90rem];
+  @apply mx-auto w-full px-6 sm:max-w-[40rem] md:max-w-[48rem] md:px-8 lg:max-w-[64rem] xl:max-w-[100rem];
 }
 .footer__grid {
   @apply grid grid-cols-2 xl:grid-cols-4 w-full py-16;
@@ -24,4 +24,6 @@
 }
 .footer__bottom__text {
   @apply text-gray-400 text-sm;
-}/*# sourceMappingURL=footer.css.map */
+}
+
+/*# sourceMappingURL=footer.css.map */
