@@ -15,8 +15,11 @@
 .image-container__image {
   @apply object-cover transition-transform ease-in-out;
 }
-.image-container__options-list {
+.image-container__header {
   @apply flex flex-row gap-4 justify-end;
+}
+.image-container__footer {
+  @apply flex flex-row gap-4 justify-start;
 }
 .image-container__view-box {
   @apply m-auto items-center align-middle justify-center flex;

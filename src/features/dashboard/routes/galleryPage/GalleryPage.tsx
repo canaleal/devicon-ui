@@ -1,16 +1,15 @@
 import { useEffect } from 'react'
-
 import useIconStore from '../../../../store/iconStore'
 import { fetchIcons } from '../../../../service/iconService'
-
 import AboutSection from '../../about/AboutSection'
 import FilterSection from '../../filters/FilterSection'
 import IconModalSection from '../../modal/IconModalSection'
-import PaginationSection from '../../pagination/PaginationSection'
 import { INIT_FILTER_GROUPS } from '../../filters/types'
 import { populateIconFilters } from '../../filters/helpers'
 import { DeviconBranch } from '../../../../types'
-
+import { Pagination } from '../../pagination'
+import './gallerypage.css';
+import { CDNBlockLink } from '../../cdnBlockLink/CDNBlockLink.tsx'
 
 const GalleryPage = () => {
   const { deviconBranch, setIcons, setDeviconBranch, setFilterGroups, setSelectedIcon } = useIconStore()
@@ -36,10 +35,11 @@ const GalleryPage = () => {
 
   return (
     <>
+      <FilterSection />
       <IconModalSection />
       <AboutSection />
-      <FilterSection />
-      <PaginationSection />
+      <CDNBlockLink />
+      <Pagination />
     </>
   )
 }

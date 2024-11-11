@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
-import { Dropdown } from '../../../components/Elements/Form/Dropdown'
-import SearchBar from '../../../components/Elements/Form/SearchBar/SearchBar'
+import { Dropdown } from '../../../components/Elements/Dropdown'
+import SearchBar from '../../../components/Elements/SearchBar/SearchBar'
 import useIconStore from '../../../store/iconStore'
 import FilterDropdown from './FilterDropdown'
 import { filterIcons, updateFilterGroups, updateFilter, resetFilterGroup, populateIconFilters } from './helpers'
@@ -54,37 +54,36 @@ const FilterSection = () => {
   }
 
   return (
-    <section className='filters-section'>
-      <div className='base-container filters-section__container'>
-        <div className='filters-section__group'>
+    <>
+      <section className="filters">
+        <div className="base-container filters__container">
           <Dropdown
-            extraClasses='w-full lg:w-32'
+            extraClasses="w-full"
             isDisabled={false}
             selectedOption={deviconBranch}
             options={['master', 'develop']}
             onChange={(value) => handleDeviconBranchChange(value as DeviconBranch)}
           />
           <SearchBar
-            placeholder='Search Icons'
-            extraClasses='w-full lg:w-64'
+            placeholder="Search Icons"
+            extraClasses="w-full"
             onSearch={handleSearch}
             autoCompleteOptions={icons.map((icon) => [icon.name, ...icon.altnames]).flat()}
           />
-        </div>
 
-        <div className='filters-section__group'>
           {filterGroups.map((filterGroup) => (
             <FilterDropdown
               key={filterGroup.categoryName}
               filterGroup={filterGroup}
               handleFilterClick={handleFilterClick}
               handleResetFilterGroup={handleResetFilterGroup}
-              extraClasses='w-full lg:w-64'
+              extraClasses="w-full"
             />
           ))}
         </div>
-      </div>
-    </section>
+      </section>
+      <div className='filters__placeholder' />
+    </>
   )
 }
 

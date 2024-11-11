@@ -33,9 +33,9 @@ export const CodeBlock = ({
   return (
     <div className='code-block'>
       <div className='code-block__header'>
-        {title && <p className='code-block__header__title'>{title}</p>}
+        {title && <p className='code-block__header-title'>{title}</p>}
         {codeBlockOptions && onClickCodeBlockOption && (
-          <div className='code-block__options'>
+          <div className='code-block__header-options'>
             {codeBlockOptions.map((codeType) => (
               <button
                 key={codeType}

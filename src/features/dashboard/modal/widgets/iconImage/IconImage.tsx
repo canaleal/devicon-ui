@@ -51,7 +51,7 @@ export const IconImage = ({ icon, deviconBranch, extraClasses }: IconContainerPr
   const imageContainerClass = `${isDarkBackground ? 'image-container--dark' : 'image-container--light'} ${isCheckeredBackground ? 'image-container--checkered' : ''} `
   return (
     <div className={`image-container ${imageContainerClass} ${extraClasses}`}>
-      <div className='image-container__options-list'>
+      <div className='image-container__header'>
         <Tooltip content='Download SVG' position='top' flashMessage='Copied!'>
           <button onClick={handleCopySVGClick} className='button--icon icon--xl'>
             <i className='fa-solid fa-download'></i>
@@ -85,11 +85,11 @@ export const IconImage = ({ icon, deviconBranch, extraClasses }: IconContainerPr
             height={iconSettings.selectedIconSize.height}
             width={iconSettings.selectedIconSize.width}
             src={iconSettings.iconUrl}
-          />
+           alt={""}/>
         )}
       </div>
 
-      <div className='image-container__options-list image-container__options-list'>
+      <div className='image-container__footer'>
         <Tooltip content={`${isDarkBackground ? 'Light' : 'Dark'} Background`} position='top'>
           <button onClick={handleToggleBackground} className='button--icon icon--xl'>
             {isDarkBackground ? <i className='fa-solid fa-sun'></i> : <i className='fa-solid fa-moon'></i>}

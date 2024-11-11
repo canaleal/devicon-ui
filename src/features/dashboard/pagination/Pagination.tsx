@@ -6,6 +6,7 @@ import PaginationSelection from './widgets/paginationSelection/PaginationSelecti
 import { DEFAULT_ELEMENTS_PER_PAGE, ELEMENTS_PER_PAGE_OPTIONS } from './types'
 
 import './styles/pagination.css'
+import useIconStore from '../../../store/iconStore.ts'
 
 interface IPaginationGridProps {
   icons: IIcon[]
@@ -27,11 +28,9 @@ export const NoIconsFound = () => (
   </div>
 )
 
-interface IPaginationProps {
-  filteredIcons: IIcon[]
-}
+export const Pagination = () => {
+  const { filteredIcons } = useIconStore()
 
-export const Pagination = ({ filteredIcons }: IPaginationProps) => {
   const [paginatedIcons, setPaginatedIcons] = useState<IIcon[]>([])
   const [currentPage, setCurrentPage] = useState<number>(1)
   const [elementsPerPage, setElementsPerPage] = useState<number>(DEFAULT_ELEMENTS_PER_PAGE)
@@ -60,26 +59,29 @@ export const Pagination = ({ filteredIcons }: IPaginationProps) => {
 
   return (
     <section className='pagination'>
-      <div className='pagination__header'>
-        <p className='pagination__header__title'>{filteredIcons.length} Icons</p>
-        <p className='pagination__header__page-info'>
-          Page {currentPage} of {totalPages || 1}
-        </p>
+      <div className="base-container pagination__container">
+        <div className='pagination__header'>
+          <p className='pagination__header-title'>{filteredIcons.length} Icons</p>
+          <p className='pagination__header-info'>
+            Page {currentPage} of {totalPages || 1}
+          </p>
+        </div>
+
+        {paginatedIcons.length ? <PaginationGrid icons={paginatedIcons} /> : <NoIconsFound />}
+
+        <div className='pagination__footer'>
+          <PaginationSelection
+            elementsPerPage={elementsPerPage}
+            currentPage={currentPage}
+            totalElements={filteredIcons.length}
+            elementsPerPageOptions={ELEMENTS_PER_PAGE_OPTIONS}
+            handlePerPageChange={handleIconsPerPageChange}
+            extraClasses='pagination__footer__selection'
+          />
+          <PaginationButtons currentPage={currentPage} setCurrentPage={setCurrentPage} totalPages={totalPages} />
+        </div>
       </div>
 
-      {paginatedIcons.length ? <PaginationGrid icons={paginatedIcons} /> : <NoIconsFound />}
-
-      <div className='pagination__footer'>
-        <PaginationSelection
-          elementsPerPage={elementsPerPage}
-          currentPage={currentPage}
-          totalElements={filteredIcons.length}
-          elementsPerPageOptions={ELEMENTS_PER_PAGE_OPTIONS}
-          handlePerPageChange={handleIconsPerPageChange}
-          extraClasses='pagination__footer__selection'
-        />
-        <PaginationButtons currentPage={currentPage} setCurrentPage={setCurrentPage} totalPages={totalPages} />
-      </div>
     </section>
   )
 }

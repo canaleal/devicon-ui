@@ -1,9 +1,0 @@
-import CodeBlock from '../../../../components/Elements/CodeBlock/CodeBlock.tsx'
-import { DEVICON_LINK_TAG } from '../../../../constants'
-import useIconStore from '../../../../store/iconStore.ts'
-
-export const CDNBlockLink = () => {
-  const deviconBranch = useIconStore((state) => state.deviconBranch)
-  if (deviconBranch !== 'master') return null
-  return <CodeBlock title='Place this in your Header' code={DEVICON_LINK_TAG} />
-}

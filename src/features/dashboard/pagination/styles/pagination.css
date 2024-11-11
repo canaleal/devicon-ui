@@ -1,18 +1,18 @@
-.pagination-section {
-  @apply bg-gray-50 dark:bg-dark-900 border-b border-gray-600/20;
-}
-
 .pagination {
-  @apply flex flex-col gap-6 w-full dark:text-white;
+  @apply py-16;
+  @apply bg-white text-dark-900 dark:bg-dark-900 dark:text-white;
+}
+.pagination__container {
+  @apply flex flex-col gap-8 w-full;
 }
 .pagination__header {
   @apply flex gap-4 items-center;
 }
-.pagination__header__title {
-  @apply font-semibold text-xl;
+.pagination__header-title {
+  @apply font-semibold text-lg;
 }
-.pagination__header__page-info {
-  @apply ml-auto hidden md:inline-block text-sm;
+.pagination__header-info {
+  @apply ml-auto hidden md:inline-block text-xs;
 }
 .pagination__grid {
   @apply grid grid-cols-3 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-8 xl:grid-cols-10 gap-4;

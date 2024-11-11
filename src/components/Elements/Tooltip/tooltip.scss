@@ -4,7 +4,7 @@
   }
 
   &__popup {
-    @apply absolute z-10 px-2 py-1 max-w-xs break-words rounded-sm text-sm bg-primary-800 dark:bg-primary-800 text-white;
+    @apply absolute z-10 px-2 py-1 max-w-xs break-words rounded-md text-sm bg-primary-800 dark:bg-primary-800 text-white;
   }
 }
 

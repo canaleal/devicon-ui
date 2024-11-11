@@ -26,7 +26,7 @@ const DarkModeToggle = () => {
   }
 
   return (
-    <button onClick={toggleDarkMode} className='navbar__dark-mode-toggle'>
+    <button onClick={toggleDarkMode} className='links'>
       {darkMode ? <i className='fa-solid fa-sun'></i> : <i className='fa-solid fa-moon'></i>}
     </button>
   )
@@ -36,12 +36,15 @@ const Navbar = () => {
   return (
     <>
       <header className='navbar'>
-        <div className='navbar__content'>
-          <Logo />
-          <DarkModeToggle />
+        <div className="base-container navbar__container">
+          <div className={"navbar__start"}>
+            <Logo />
+          </div>
+          <div className={"navbar__end"}>
+            <DarkModeToggle />
+          </div>
         </div>
       </header>
-
       <div className='navbar__placeholder' />
     </>
   )

@@ -1,5 +1,5 @@
-import { Dropdown } from '../../../../../components/Elements/Form/Dropdown'
-import ColorPickerDropdown from '../../../../../components/Elements/Form/Dropdown/ColorPickerDropdown'
+import { Dropdown } from '../../../../../components/Elements/Dropdown'
+import ColorPickerDropdown from '../../../../../components/Elements/Dropdown/ColorPickerDropdown'
 import { Table } from '../../../../../components/Elements/Table'
 import { createDeviconIconUrl } from '../../../../../helpers/iconUrl'
 import { DeviconBranch, IconVersion, IIcon } from '../../../../../types'

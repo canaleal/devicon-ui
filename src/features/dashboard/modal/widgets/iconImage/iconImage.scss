@@ -25,8 +25,12 @@
     @apply object-cover transition-transform ease-in-out;
   }
 
-  &__options-list {
+  &__header {
     @apply flex flex-row gap-4 justify-end;
+  }
+
+  &__footer {
+    @apply flex flex-row gap-4 justify-start;
   }
 
   &__view-box {

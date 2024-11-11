@@ -1,11 +1,13 @@
-.filters-section {
-  @apply bg-white dark:bg-dark-900 border-b border-gray-600/20;
+.filters {
+  @apply py-4;
+  @apply bg-white text-dark-900 dark:bg-dark-900 dark:text-white border-b border-gray-600/20 fixed w-full z-50;
 
   &__container {
-    @apply flex-col lg:flex-row justify-between;
+    @apply flex flex-row gap-4 w-full;
   }
 
-  &__group {
-    @apply flex gap-4;
+  &__placeholder {
+    @apply h-16;
   }
 }
+

@@ -1,8 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
 import { IFilterGroup, IFilterItem } from './types'
-import { IconVersion } from '../../../types'
-import { ICON_VERSION_FA_MAP } from '../../../constants'
-import SVGIcon from '../../../components/Elements/SVG/Icon'
 
 interface FilterItemProps {
   filter: IFilterItem
@@ -10,10 +7,9 @@ interface FilterItemProps {
   handleFilter: () => void
 }
 
-const FilterItem = ({ filter, icon, handleFilter }: FilterItemProps) => {
+const FilterItem = ({ filter, handleFilter }: FilterItemProps) => {
   return (
     <button className={`dropdown__item ${filter.isSelected ? 'dropdown__item--selected' : ''}`} onClick={handleFilter}>
-      {icon && <SVGIcon name={icon} />}
       <span className='clamped-text'>{filter.filterName}</span>
       <span className='ml-auto'>{filter.numberOfIcons}</span>
     </button>
@@ -123,7 +119,6 @@ const DropdownMenu = ({
           <FilterItem
             key={index}
             filter={filter}
-            icon={ICON_VERSION_FA_MAP[filter.filterName as IconVersion] ?? undefined}
             handleFilter={() => handleFilterClick(filterGroup, filter)}
           />
         ))}

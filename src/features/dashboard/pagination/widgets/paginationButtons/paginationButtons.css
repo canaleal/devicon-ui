@@ -1,3 +1,5 @@
 .pagination-buttons {
-  @apply flex flex-row;
-}/*# sourceMappingURL=paginationButtons.css.map */
+  @apply flex flex-row items-center text-sm;
+}
+
+/*# sourceMappingURL=paginationButtons.css.map */

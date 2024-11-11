@@ -10,7 +10,6 @@ interface ModalFooterProps {
 const ModalFooter = ({ icon, deviconBranch }: ModalFooterProps) => {
   return (
     <div className='alt-names-bar'>
-      <TextBar title='Alt Names' content={icon.altnames} />
       <TextBar extraClasses='hidden lg:inline-flex' title='Tags' content={icon.tags} />
       <span className='text-sm'>{deviconBranch === 'master' ? DEVICON_VERSION_RELEASE : 'Development Branch'}</span>
     </div>

@@ -1,11 +1,17 @@
 .modal {
-  @apply fixed inset-0 z-50 flex items-center justify-center bg-dark-900/80 backdrop-blur-sm overflow-auto dark:bg-black/80;
+  @apply fixed inset-0 z-50 flex flex-row items-center justify-center bg-dark-900/80 backdrop-blur-sm dark:bg-black/80 overflow-hidden;
 }
 .modal__container {
-  @apply mx-auto w-full py-6 px-6 sm:max-w-[50rem] md:max-w-[60rem] md:px-8 lg:max-w-[68rem] xl:max-w-[95rem];
+  @apply w-full sm:max-w-[50rem] md:max-w-[60rem] md:px-8 lg:max-w-[68rem] xl:max-w-[110rem] flex flex-row gap-4;
 }
-.modal__content {
+.modal__body {
   @apply relative p-8 w-full bg-white rounded-lg dark:bg-dark-900 dark:text-white;
+}
+.modal__arrow-btn {
+  @apply text-white text-2xl h-12 w-12 my-auto;
+}
+.modal__arrow-btn:hover {
+  @apply text-primary-800;
 }
 .modal__close-button {
   @apply absolute top-0 right-0 p-4 text-2xl leading-none rounded-bl-lg rounded-tr-lg bg-primary-800 dark:bg-primary-800 text-white;

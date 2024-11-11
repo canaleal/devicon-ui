@@ -6,7 +6,7 @@
 }
 
 .dropdown {
-  @apply py-2 text-sm px-4 gap-4 w-full flex justify-between items-center border rounded-sm bg-white text-dark-900 dark:bg-dark-900 dark:text-white dark:border-gray-600/20;
+  @apply py-2 text-sm px-4 gap-4 w-full flex justify-between items-center border rounded-md bg-white text-dark-900 dark:bg-dark-900 dark:text-white dark:border-gray-600/20;
 }
 .dropdown:hover {
   @apply cursor-pointer bg-gray-50 dark:bg-dark-800;
@@ -25,7 +25,7 @@
   @apply flex gap-2 items-center;
 }
 .dropdown__popup {
-  @apply absolute mt-1 w-full border z-30 rounded-sm overflow-hidden bg-white text-dark-900 dark:bg-dark-900 dark:text-white dark:border-gray-600/20;
+  @apply absolute mt-1 w-full border z-30 rounded-md overflow-hidden bg-white text-dark-900 dark:bg-dark-900 dark:text-white dark:border-gray-600/20;
 }
 .dropdown__popup__section {
   @apply flex flex-col overflow-y-auto;
@@ -43,7 +43,7 @@
   @apply bg-primary-800 dark:bg-primary-800 text-white;
 }
 .dropdown__item--selected:hover {
-  @apply bg-primary-900 dark:bg-primary-900;
+  @apply bg-primary-800 dark:bg-primary-900;
 }
 .dropdown__item--disabled {
   @apply bg-gray-50 text-gray-400 dark:bg-dark-800 dark:text-gray-400;
@@ -52,16 +52,16 @@
   @apply cursor-auto;
 }
 .dropdown__color-picker__mark {
-  @apply w-6 h-6 inline-block rounded-sm border border-gray-600/20;
+  @apply w-6 h-6 inline-block rounded-md border border-gray-600/20;
 }
 .dropdown__color-picker__input {
-  @apply h-10 w-full border border-gray-600/20 rounded-sm;
+  @apply h-10 w-full border border-gray-600/20 rounded-md;
 }
 .dropdown__color-picker__input:hover {
   @apply cursor-pointer;
 }
 .dropdown__color-picker__item {
-  @apply px-4 py-4 rounded-sm border border-gray-600/20;
+  @apply px-4 py-4 rounded-md border border-gray-600/20;
 }
 .dropdown__color-picker__item:hover {
   @apply cursor-pointer;

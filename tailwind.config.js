@@ -6,12 +6,12 @@ export default {
     extend: {
       colors: {
         dark: {
-          800: '#2b2c31',
+          800: '#1D1C21',
           900: '#1f1e24'
         },
         primary: {
-          800: '#6ca96d',
-          900: '#588566'
+          800: '#4caf50',
+          900: '#75d166'
         },
         rose: '#f44336',
         orange: '#ff9800',
