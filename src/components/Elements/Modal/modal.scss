@@ -2,7 +2,7 @@
   @apply fixed  inset-0 z-50 flex flex-row  items-center justify-center bg-dark-900/80 backdrop-blur-sm dark:bg-black/80 overflow-hidden;
 
   &__container {
-    @apply w-full sm:max-w-[50rem] md:max-w-[60rem] md:px-8 lg:max-w-[68rem] xl:max-w-[110rem] flex flex-row gap-4;
+    @apply w-full max-w-[calc(100%-10%)] sm:max-w-[50rem] md:max-w-[60rem] md:px-8 lg:max-w-[68rem] xl:max-w-[100rem] flex flex-row gap-4;
   }
 
   &__body{
@@ -10,7 +10,7 @@
   }
 
   &__arrow-btn {
-    @apply text-white text-2xl h-12 w-12 my-auto;
+    @apply text-white text-2xl h-12 w-12 my-auto hidden md:flex;
 
     &:hover {
       @apply text-primary-800;

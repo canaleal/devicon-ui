@@ -56,13 +56,18 @@ export const SearchBar = ({
 
   return (
     <div className={`searchBar-container ${extraClasses}`} ref={searchRef}>
-      <input
-        type='text'
-        value={searchTerm}
-        onChange={handleInputChange}
-        placeholder={placeholder}
-        className={`searchBar`}
-      />
+      <div className={'searchBar__input'}>
+        <div className={'searchBar__input-icon'}>
+          <i className={'fa fa-search'} />
+        </div>
+        <input
+          type='text'
+          value={searchTerm}
+          onChange={handleInputChange}
+          placeholder={placeholder}
+          className={`searchBar__input-text`}
+        />
+      </div>
 
       {showOptions && (
         <ul className='searchBar__popup'>
