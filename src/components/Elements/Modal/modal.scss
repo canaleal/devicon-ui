@@ -6,11 +6,11 @@
   }
 
   &__body{
-    @apply relative p-8 w-full  bg-white rounded-lg  dark:bg-dark-900 dark:text-white;
+    @apply relative p-8 w-full  bg-white rounded-lg  dark:bg-dark-900 dark:text-white  overflow-hidden;
   }
 
   &__arrow-btn {
-    @apply text-white text-2xl h-12 w-12 my-auto hidden md:flex;
+    @apply text-white text-2xl h-12 w-12 my-auto hidden md:flex justify-center items-center align-middle;
 
     &:hover {
       @apply text-primary-800;

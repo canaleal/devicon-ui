@@ -31,7 +31,7 @@ const IconModalSection = () => {
   }, [selectedIcon, filteredIcons])
 
   return (
-    <Modal isOpen={!!selectedIcon} onClose={() => setSelectedIcon(null)}  onNext={() => setSelectedIcon(nextIcon)}  onPrev={() => setSelectedIcon(prevIcon)}>
+    <Modal isOpen={!!selectedIcon} onClose={() => setSelectedIcon(null)}  onNext={() => setSelectedIcon(nextIcon)}  onPrev={() => setSelectedIcon(prevIcon)} onNextPlaceholderText={nextIcon?.name} onPrevPlaceholderText={prevIcon?.name}>
       {selectedIcon && (
         <IconModal
           icon={selectedIcon}

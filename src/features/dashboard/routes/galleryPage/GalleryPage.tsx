@@ -15,6 +15,7 @@ const GalleryPage = () => {
   const { deviconBranch, setIcons, setDeviconBranch, setFilterGroups, setSelectedIcon } = useIconStore()
 
   useEffect(() => {
+
     const init = async () => {
       const params = new URLSearchParams(location.search)
       const branch = params.get('branch') as DeviconBranch
@@ -31,6 +32,8 @@ const GalleryPage = () => {
     }
 
     init()
+
+
   }, [])
 
   return (

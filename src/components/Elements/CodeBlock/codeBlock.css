@@ -34,7 +34,7 @@
   @apply ml-auto;
 }
 .code-block__content {
-  @apply overflow-hidden bg-dark-900;
+  @apply overflow-hidden bg-dark-900 w-full;
 }
 
 /*# sourceMappingURL=codeBlock.css.map */

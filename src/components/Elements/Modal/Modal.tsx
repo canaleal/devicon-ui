@@ -4,28 +4,30 @@ import './modal.css'
 interface ModalProps {
   isOpen: boolean
   onClose: () => void
-  onNext?: () => void
-  onPrev?: () => void
+  onNext: () => void
+  onNextPlaceholderText?: string
+  onPrev: () => void
+  onPrevPlaceholderText?: string
   children: React.ReactNode
 }
 
-const Modal = ({ isOpen, onClose, onNext, onPrev, children }: ModalProps) => {
+const Modal = ({ isOpen, onClose, onNext, onNextPlaceholderText, onPrev, onPrevPlaceholderText, children }: ModalProps) => {
   if (!isOpen) return null
   return ReactDOM.createPortal(
     <section className='modal'>
       <div className='modal__container'>
-        {onPrev && <button onClick={onPrev} className='modal__arrow-btn'>
+        <button onClick={onPrev} className='modal__arrow-btn' title={onPrevPlaceholderText}>
           <i className='fas fa-chevron-left' />
-        </button>}
+        </button>
         <div className='modal__body'>
           <button className='modal__close-button' onClick={onClose}>
             <i className='fas fa-times' />
           </button>
           {children}
         </div>
-        {onNext && <button onClick={onNext} className='modal__arrow-btn'>
+        <button onClick={onNext} className='modal__arrow-btn' title={onNextPlaceholderText}>
           <i className='fas fa-chevron-right' />
-        </button>}
+        </button>
       </div>
     </section>,
     document.getElementById('modal') as HTMLElement

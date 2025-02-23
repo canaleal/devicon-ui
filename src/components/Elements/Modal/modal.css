@@ -5,10 +5,10 @@
   @apply w-full max-w-[calc(100%-10%)] sm:max-w-[50rem] md:max-w-[60rem] md:px-8 lg:max-w-[68rem] xl:max-w-[100rem] flex flex-row gap-4;
 }
 .modal__body {
-  @apply relative p-8 w-full bg-white rounded-lg dark:bg-dark-900 dark:text-white;
+  @apply relative p-8 w-full bg-white rounded-lg dark:bg-dark-900 dark:text-white overflow-hidden;
 }
 .modal__arrow-btn {
-  @apply text-white text-2xl h-12 w-12 my-auto hidden md:flex;
+  @apply text-white text-2xl h-12 w-12 my-auto hidden md:flex justify-center items-center align-middle;
 }
 .modal__arrow-btn:hover {
   @apply text-primary-800;

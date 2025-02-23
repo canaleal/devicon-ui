@@ -46,6 +46,6 @@
   }
 
   &__content {
-    @apply overflow-hidden bg-dark-900;
+    @apply overflow-hidden bg-dark-900 w-full;
   }
 }

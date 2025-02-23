@@ -25,7 +25,7 @@
   @apply flex gap-2 items-center;
 }
 .dropdown__popup {
-  @apply absolute mt-1 w-full border z-30 rounded-md overflow-hidden bg-white text-dark-900 dark:bg-dark-900 dark:text-white dark:border-gray-600/20;
+  @apply absolute mt-1 w-full border z-30 rounded-md overflow-hidden bg-white text-dark-900 dark:bg-dark-900 dark:text-white dark:border-gray-600/20 shadow-md;
 }
 .dropdown__popup__section {
   @apply flex flex-col overflow-y-auto;
