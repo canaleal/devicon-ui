@@ -15,7 +15,7 @@ const FilterSection = () => {
   const [searchQuery, setSearchQuery] = useState<string>('')
 
   const handleIconsUpdate = (tempIcons: typeof icons, search: string, tempFilterGroups: typeof filterGroups) => {
-    let tempFilteredIcons: typeof icons =  search ? filterIcons(tempIcons, 'name', search) : tempIcons
+    let tempFilteredIcons: typeof icons = search ? filterIcons(tempIcons, 'name', search) : tempIcons
     tempFilterGroups.forEach((group) => {
       group.filters.forEach((filter) => {
         if (filter.isSelected) {
@@ -55,18 +55,18 @@ const FilterSection = () => {
 
   return (
     <>
-      <section className="filters">
-        <div className="base-container filters__container">
+      <section className='filters'>
+        <div className='base-container filters__container'>
           <Dropdown
-            extraClasses="w-full"
+            extraClasses='w-full'
             isDisabled={false}
             selectedOption={deviconBranch}
             options={['master', 'develop']}
             onChange={(value) => handleDeviconBranchChange(value as DeviconBranch)}
           />
           <SearchBar
-            placeholder="Search Icons"
-            extraClasses="w-full"
+            placeholder='Search Icons'
+            extraClasses='w-full'
             onSearch={handleSearch}
             autoCompleteOptions={icons.map((icon) => [icon.name, ...icon.altnames]).flat()}
           />
@@ -77,7 +77,7 @@ const FilterSection = () => {
               filterGroup={filterGroup}
               handleFilterClick={handleFilterClick}
               handleResetFilterGroup={handleResetFilterGroup}
-              extraClasses="w-full"
+              extraClasses='w-full'
             />
           ))}
         </div>

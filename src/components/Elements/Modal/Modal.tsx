@@ -1,5 +1,6 @@
 import ReactDOM from 'react-dom'
 import './modal.css'
+import React from 'react'
 
 interface ModalProps {
   isOpen: boolean
@@ -11,7 +12,15 @@ interface ModalProps {
   children: React.ReactNode
 }
 
-const Modal = ({ isOpen, onClose, onNext, onNextPlaceholderText, onPrev, onPrevPlaceholderText, children }: ModalProps) => {
+const Modal = ({
+  isOpen,
+  onClose,
+  onNext,
+  onNextPlaceholderText,
+  onPrev,
+  onPrevPlaceholderText,
+  children
+}: ModalProps) => {
   if (!isOpen) return null
   return ReactDOM.createPortal(
     <section className='modal'>

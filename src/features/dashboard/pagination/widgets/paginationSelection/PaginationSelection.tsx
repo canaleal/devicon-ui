@@ -26,7 +26,7 @@ const PaginationSelection: React.FC<PaginationSelectionProps> = ({
 }) => {
   const totalElementsText = getTotalElementsText(elementsPerPage, currentPage, totalElements)
   return (
-    <div className={`pagination-selection ${extraClasses}`}>
+    <div className={`pagination-selection pagination__footer__selection ${extraClasses}`}>
       <p>Items Per Page</p>
       <select
         value={elementsPerPage}

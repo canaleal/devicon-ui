@@ -116,11 +116,7 @@ const DropdownMenu = ({
     <div className='dropdown__popup'>
       <div className={`dropdown__popup__section ${hasMaxHeight ? 'h-[30rem]' : 'h-fit'}`}>
         {filterGroup.filters.map((filter, index) => (
-          <FilterItem
-            key={index}
-            filter={filter}
-            handleFilter={() => handleFilterClick(filterGroup, filter)}
-          />
+          <FilterItem key={index} filter={filter} handleFilter={() => handleFilterClick(filterGroup, filter)} />
         ))}
       </div>
       <button

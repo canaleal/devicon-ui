@@ -1,26 +1,25 @@
 import { useEffect } from 'react'
-
 import { DeviconBranch, IIcon } from '../../../types'
-import { createDeviconIconUrl } from '../../../helpers/iconUrl'
 import { INIT_ICON_SIZE, CodeBlockOptionTypes, IIconSettings } from './types'
-
-import IconImage from './widgets/iconImage/IconImage'
+import { createDeviconIconUrl } from '../../../helpers/iconUrl'
 import { createIconCodeBlockText, getCodeBlockOptions } from './helpers/codeBlockContent'
+import { getSVGErrors } from './helpers/svgChecker'
 import { useIconSettingStore } from './store/iconSettingStore'
 
-import './styles/iconModal.css'
-import CodeBlock from '../../../components/Elements/CodeBlock/CodeBlock'
+import IconImage from './widgets/iconImage/IconImage'
 import ModalHeader from './widgets/modalHeader/ModalHeader'
 import ModalFooter from './widgets/modalFooter/ModalFooter'
 import IconOptions from './widgets/iconOptions/IconOptions'
-import { getSVGErrors } from './helpers/svgChecker'
+import CodeBlock from '../../../components/Elements/CodeBlock/CodeBlock'
+
+import './styles/iconModal.css'
 
 interface IconModalProps {
   icon: IIcon
   deviconBranch: DeviconBranch
 }
 
-export const IconModal = ({ icon, deviconBranch }: IconModalProps) => {
+const IconModal = ({ icon, deviconBranch }: IconModalProps) => {
   const {
     codeText,
     setCodeText,
@@ -32,35 +31,37 @@ export const IconModal = ({ icon, deviconBranch }: IconModalProps) => {
     setSelectedCodeBlockOption
   } = useIconSettingStore()
 
-  const getCodeText = async (settings: IIconSettings, codeBlockOption: CodeBlockOptionTypes) => {
-    const code = await createIconCodeBlockText(icon, settings, codeBlockOption)
+  const buildInitialSettings = (): IIconSettings => ({
+    iconUrl: createDeviconIconUrl(icon.name, icon.versions.svg[0], deviconBranch),
+    selectedVersion: icon.versions.svg[0],
+    selectedIconSize: INIT_ICON_SIZE,
+    selectedColor: icon.color
+  })
+
+  const loadCodeText = async (settings: IIconSettings, option: CodeBlockOptionTypes) => {
+    const code = await createIconCodeBlockText(icon, settings, option)
     setCodeText(code)
 
-    if (codeBlockOption === 'SVG') {
+    if (option === 'SVG') {
       const errors = getSVGErrors(icon, code)
       console.log(errors)
     }
   }
 
   useEffect(() => {
-    const initSettings = {
-      iconUrl: createDeviconIconUrl(icon.name, icon.versions.svg[0], deviconBranch),
-      selectedVersion: icon.versions.svg[0],
-      selectedIconSize: INIT_ICON_SIZE,
-      selectedColor: icon.color
-    }
+    const settings = buildInitialSettings()
+    const options = getCodeBlockOptions(deviconBranch, icon, settings.selectedVersion)
 
-    const initOptions = getCodeBlockOptions(deviconBranch, icon, initSettings.selectedVersion)
-    setCodeBlockOptions(initOptions)
-    setSelectedCodeBlockOption(initOptions[0])
-    setIconSettings(initSettings)
-    getCodeText(initSettings, initOptions[0])
+    setIconSettings(settings)
+    setCodeBlockOptions(options)
+    setSelectedCodeBlockOption(options[0])
+    loadCodeText(settings, options[0])
   }, [icon])
 
-  const onSelectedOptionChange = (value: CodeBlockOptionTypes) => {
+  const handleOptionChange = (value: CodeBlockOptionTypes) => {
     if (value === selectedCodeBlockOption) return
     setSelectedCodeBlockOption(value)
-    getCodeText(iconSettings, value)
+    loadCodeText(iconSettings, value)
   }
 
   return (
@@ -68,13 +69,13 @@ export const IconModal = ({ icon, deviconBranch }: IconModalProps) => {
       <ModalHeader iconName={icon.name} />
       <section className='icon-section'>
         <IconImage icon={icon} deviconBranch={deviconBranch} extraClasses='icon-container' />
-        <IconOptions icon={icon} deviconBranch={deviconBranch} getCodeText={getCodeText} />
+        <IconOptions icon={icon} deviconBranch={deviconBranch} getCodeText={loadCodeText} />
       </section>
       <CodeBlock
         code={codeText}
         codeBlockOptions={codeBlockOptions}
         selectedOption={selectedCodeBlockOption}
-        onClickCodeBlockOption={(codeType) => onSelectedOptionChange(codeType as CodeBlockOptionTypes)}
+        onClickCodeBlockOption={(option) => handleOptionChange(option as CodeBlockOptionTypes)}
       />
       <ModalFooter icon={icon} deviconBranch={deviconBranch} />
     </>

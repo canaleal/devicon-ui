@@ -36,11 +36,11 @@ const Navbar = () => {
   return (
     <>
       <header className='navbar'>
-        <div className="base-container navbar__container">
-          <div className={"navbar__start"}>
+        <div className='base-container navbar__container'>
+          <div className={'navbar__start'}>
             <Logo />
           </div>
-          <div className={"navbar__end"}>
+          <div className={'navbar__end'}>
             <DarkModeToggle />
           </div>
         </div>

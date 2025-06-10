@@ -1,4 +1,3 @@
-
 .pagination {
   @apply py-16;
   @apply bg-white text-dark-900 dark:bg-dark-900 dark:text-white;
@@ -29,9 +28,5 @@
 
   &__footer {
     @apply flex flex-row justify-center lg:justify-between;
-
-    &__selection {
-      @apply hidden lg:flex;
-    }
   }
 }

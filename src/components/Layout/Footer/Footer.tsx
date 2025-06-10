@@ -5,11 +5,11 @@ import './footer.css'
 const Footer = () => {
   return (
     <footer className='footer'>
-      <div className={"base-container footer__container"}>
-        <div className={"footer__left"}>
+      <div className={'base-container footer__container'}>
+        <div className={'footer__left'}>
           <Logo />
         </div>
-        <div className={"footer__right"}>
+        <div className={'footer__right'}>
           {FOOTER_LINKS.map((section, index) => (
             <div key={index} className='footer__links-section'>
               <p className='footer__link-title'>{section.title}</p>

@@ -6,38 +6,37 @@ import { IIcon } from '../../../types'
 
 const IconModalSection = () => {
   const { selectedIcon, filteredIcons, deviconBranch, setSelectedIcon } = useIconStore()
-
   const [nextIcon, setNextIcon] = useState<IIcon | null>(null)
   const [prevIcon, setPrevIcon] = useState<IIcon | null>(null)
 
-  // Update next and previous icons whenever the selected icon changes
   useEffect(() => {
-    if (!selectedIcon) {
+    if (!selectedIcon || filteredIcons.length === 0) {
       setNextIcon(null)
       setPrevIcon(null)
       return
     }
 
-    const currentIndex = filteredIcons.findIndex(icon => icon === selectedIcon)
+    const currentIndex = filteredIcons.findIndex((icon) => icon === selectedIcon)
+    if (currentIndex === -1) return
 
-    // Set next icon, wrap around if needed
-    const nextIndex = (currentIndex + 1) % filteredIcons.length
-    setNextIcon(filteredIcons[nextIndex])
+    const getWrappedIndex = (index: number) => (index + filteredIcons.length) % filteredIcons.length
 
-    // Set previous icon, wrap around if needed
-    const prevIndex = (currentIndex - 1 + filteredIcons.length) % filteredIcons.length
-    setPrevIcon(filteredIcons[prevIndex])
-
+    setNextIcon(filteredIcons[getWrappedIndex(currentIndex + 1)])
+    setPrevIcon(filteredIcons[getWrappedIndex(currentIndex - 1)])
   }, [selectedIcon, filteredIcons])
 
+  if (!selectedIcon) return null
+
   return (
-    <Modal isOpen={!!selectedIcon} onClose={() => setSelectedIcon(null)}  onNext={() => setSelectedIcon(nextIcon)}  onPrev={() => setSelectedIcon(prevIcon)} onNextPlaceholderText={nextIcon?.name} onPrevPlaceholderText={prevIcon?.name}>
-      {selectedIcon && (
-        <IconModal
-          icon={selectedIcon}
-          deviconBranch={deviconBranch}
-        />
-      )}
+    <Modal
+      isOpen={true}
+      onClose={() => setSelectedIcon(null)}
+      onNext={() => nextIcon && setSelectedIcon(nextIcon)}
+      onPrev={() => prevIcon && setSelectedIcon(prevIcon)}
+      onNextPlaceholderText={nextIcon?.name}
+      onPrevPlaceholderText={prevIcon?.name}
+    >
+      <IconModal icon={selectedIcon} deviconBranch={deviconBranch} />
     </Modal>
   )
 }

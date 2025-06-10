@@ -32,5 +32,3 @@ export const ScrollButton = ({ position, extraClasses = '' }: ScrollButtonProps)
     </button>
   )
 }
-
-export default ScrollButton

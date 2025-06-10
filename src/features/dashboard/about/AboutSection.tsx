@@ -5,7 +5,7 @@ import './styles/aboutStyle.css'
 const InformationSection = () => {
   return (
     <section className='about-section'>
-      <div className={"base-container about-section__container"}>
+      <div className={'base-container about-section__container'}>
         <div className='about-section__header'>
           <h1 className='about-section__title'>Developer Icons, simplified</h1>
           <p className='about-section__paragraph'>

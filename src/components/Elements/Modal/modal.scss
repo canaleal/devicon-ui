@@ -5,7 +5,7 @@
     @apply w-full max-w-[calc(100%-10%)] sm:max-w-[50rem] md:max-w-[60rem] md:px-8 lg:max-w-[68rem] xl:max-w-[100rem] flex flex-row gap-4;
   }
 
-  &__body{
+  &__body {
     @apply relative p-8 w-full  bg-white rounded-lg  dark:bg-dark-900 dark:text-white  overflow-hidden;
   }
 

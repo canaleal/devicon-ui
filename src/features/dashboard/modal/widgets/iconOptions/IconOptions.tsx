@@ -8,8 +8,8 @@ import { useIconSettingStore } from '../../store/iconSettingStore'
 import { CodeBlockOptionTypes, ICON_SIZE_OPTIONS, IIconSettings } from '../../types'
 
 interface IIconOptions {
-  icon: IIcon,
-  deviconBranch: DeviconBranch,
+  icon: IIcon
+  deviconBranch: DeviconBranch
   getCodeText: (settings: IIconSettings, codeBlockOption: CodeBlockOptionTypes) => Promise<void>
 }
 
@@ -18,7 +18,7 @@ export const IconOptions = ({ icon, deviconBranch, getCodeText }: IIconOptions) 
     useIconSettingStore()
 
   const updateCodeBlockOption = (options: string[], currentOption: CodeBlockOptionTypes) => {
-    return options.includes(currentOption) ? currentOption : options[0] as CodeBlockOptionTypes
+    return options.includes(currentOption) ? currentOption : (options[0] as CodeBlockOptionTypes)
   }
 
   const onVersionChange = (version: string) => {
@@ -43,7 +43,7 @@ export const IconOptions = ({ icon, deviconBranch, getCodeText }: IIconOptions) 
   }
 
   const onSizeChange = (value: string) => {
-    if (value === iconSettings.selectedIconSize.name) return;
+    if (value === iconSettings.selectedIconSize.name) return
     const tempIconSettings = {
       ...iconSettings,
       selectedIconSize: ICON_SIZE_OPTIONS.find((option) => option.name === value)!

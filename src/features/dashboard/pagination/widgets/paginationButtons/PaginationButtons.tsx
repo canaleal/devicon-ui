@@ -1,6 +1,5 @@
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { getPaginationButtons } from './paginationHelpers'
-import { v4 as uuidv4 } from 'uuid'
 import './paginationButtons.css'
 
 interface PaginationButtonsProps {
@@ -15,42 +14,46 @@ interface ArrowButtonProps {
   direction: 'left' | 'right'
 }
 
-const ArrowButton: React.FC<ArrowButtonProps> = ({ disabled, onClick, direction }) => {
-  return (
-    <button
-      className={`button button--small ${disabled ? 'button--disabled' : ''}`}
-      disabled={disabled}
-      onClick={onClick}
-    >
-      <i className={`fa fa-arrow-${direction}`}></i>
-    </button>
-  )
-}
+const ArrowButton = ({ disabled, onClick, direction }: ArrowButtonProps) => (
+  <button
+    className={`button button--small ${disabled ? 'button--disabled' : ''}`}
+    disabled={disabled}
+    onClick={onClick}
+  >
+    <i className={`fa fa-arrow-${direction}`} />
+  </button>
+)
 
-const PaginationButtons: React.FC<PaginationButtonsProps> = ({ currentPage, setCurrentPage, totalPages }) => {
-  const [pagesToRender, setPagesToRender] = useState<(string | number)[]>([])
+const PageButton = ({ page, isSelected, onClick }: { page: number; isSelected: boolean; onClick: () => void }) => (
+  <button className={`button button--small ${isSelected ? 'button--selected' : ''}`} onClick={onClick}>
+    {page}
+  </button>
+)
+
+const Ellipsis = ({ index }: { index: number }) => (
+  <span key={`ellipsis-${index}`} className='button button--small button--disabled'>
+    <i className='fa fa-ellipsis-h' />
+  </span>
+)
+
+const PaginationButtons = ({ currentPage, setCurrentPage, totalPages }: PaginationButtonsProps) => {
+  const [pagesToRender, setPagesToRender] = useState<(number | string)[]>([])
 
   useEffect(() => {
     setPagesToRender(getPaginationButtons(currentPage, totalPages))
   }, [currentPage, totalPages])
 
-  return pagesToRender.length === 1 ? null : (
+  if (pagesToRender.length <= 1) return null
+
+  return (
     <div className='pagination-buttons'>
       <ArrowButton disabled={currentPage === 1} onClick={() => setCurrentPage(currentPage - 1)} direction='left' />
 
-      {pagesToRender.map((page) =>
-        typeof page === 'number' ? (
-          <button
-            key={uuidv4()}
-            className={`button button--small ${currentPage === page ? 'button--selected' : ''}`}
-            onClick={() => setCurrentPage(page)}
-          >
-            {page}
-          </button>
+      {pagesToRender.map((item, index) =>
+        typeof item === 'number' ? (
+          <PageButton key={item} page={item} isSelected={currentPage === item} onClick={() => setCurrentPage(item)} />
         ) : (
-          <span key={uuidv4()} className='button button--small button--disabled'>
-            <i className='fa fa-ellipsis-h'></i>
-          </span>
+          <Ellipsis key={index} index={index} />
         )
       )}
 

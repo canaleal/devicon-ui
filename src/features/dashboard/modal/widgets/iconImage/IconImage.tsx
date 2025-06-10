@@ -85,7 +85,8 @@ export const IconImage = ({ icon, deviconBranch, extraClasses }: IconContainerPr
             height={iconSettings.selectedIconSize.height}
             width={iconSettings.selectedIconSize.width}
             src={iconSettings.iconUrl}
-           alt={""}/>
+            alt={''}
+          />
         )}
       </div>
 
