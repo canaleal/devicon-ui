@@ -1,5 +1,5 @@
 .pagination-selection {
-  @apply flex flex-row items-center gap-2 text-sm;
+  @apply hidden lg:flex flex-row items-center gap-2 text-sm;
 }
 
 /*# sourceMappingURL=paginationSelection.css.map */

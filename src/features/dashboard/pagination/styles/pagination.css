@@ -23,8 +23,5 @@
 .pagination__footer {
   @apply flex flex-row justify-center lg:justify-between;
 }
-.pagination__footer__selection {
-  @apply hidden lg:flex;
-}
 
 /*# sourceMappingURL=pagination.css.map */
