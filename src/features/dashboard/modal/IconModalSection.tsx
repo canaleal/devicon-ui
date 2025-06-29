@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import Modal from '../../../components/Elements/Modal/Modal'
+import Modal from '../../../components/Molecules/Modal/Modal'
 import useIconStore from '../../../store/iconStore'
 import IconModal from './IconModal'
 import { IIcon } from '../../../types'

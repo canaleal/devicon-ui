@@ -10,7 +10,7 @@ import IconImage from './widgets/iconImage/IconImage'
 import ModalHeader from './widgets/modalHeader/ModalHeader'
 import ModalFooter from './widgets/modalFooter/ModalFooter'
 import IconOptions from './widgets/iconOptions/IconOptions'
-import CodeBlock from '../../../components/Elements/CodeBlock/CodeBlock'
+import CodeBlock from '../../../components/Molecules/CodeBlock/CodeBlock'
 
 import './styles/iconModal.css'
 

@@ -1,4 +1,4 @@
-import Logo from '../../Elements/Logo/Logo'
+import Logo from '../../Atoms/Logo/Logo'
 import { FOOTER_LINKS } from './constants'
 import './footer.css'
 

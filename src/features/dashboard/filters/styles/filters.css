@@ -1,12 +1,9 @@
 .filters {
   @apply py-4;
-  @apply bg-white text-dark-900 dark:bg-dark-900 dark:text-white border-b border-gray-600/20 fixed w-full z-50;
+  @apply bg-white text-dark-900 dark:bg-dark-900 dark:text-white border-b border-gray-600/20 w-full z-50;
 }
 .filters__container {
   @apply flex flex-col lg:flex-row gap-4 w-full;
-}
-.filters__placeholder {
-  @apply h-16;
 }
 
 /*# sourceMappingURL=filters.css.map */

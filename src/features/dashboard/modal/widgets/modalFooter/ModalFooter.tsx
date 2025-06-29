@@ -1,4 +1,4 @@
-import { TextBar } from '../../../../../components/Elements/TextBar'
+import { TextBar } from '../../../../../components/Atoms/TextBar'
 import { DEVICON_VERSION_RELEASE } from '../../../../../constants'
 import { DeviconBranch, IIcon } from '../../../../../types'
 

@@ -1,0 +1,25 @@
+.searchBar-container {
+  @apply relative;
+}
+
+.searchBar__input {
+  @apply flex flex-row overflow-hidden text-sm w-full justify-between items-center border rounded-md;
+  @apply bg-white text-dark-900 dark:bg-dark-900 dark:text-white dark:border-gray-600/20;
+}
+.searchBar__input-icon {
+  @apply h-full py-2 px-4 border-r border-gray-600/20;
+}
+.searchBar__input-text {
+  @apply h-full w-full py-2 px-4 bg-white text-dark-900 dark:bg-dark-900 dark:text-white;
+}
+.searchBar__input-text:focus {
+  @apply outline-none;
+}
+.searchBar__popup {
+  @apply absolute mt-1 w-fit bg-white dark:text-dark-900 border z-30 rounded-md;
+}
+.searchBar__popup-item {
+  @apply px-4 py-2 hover:bg-gray-50 cursor-pointer text-sm;
+}
+
+/*# sourceMappingURL=searchBar.css.map */

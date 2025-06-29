@@ -1,4 +1,4 @@
-import { Tooltip } from '../../../../../components/Elements/Tooltip'
+import { Tooltip } from '../../../../../components/Atoms/Tooltip'
 import { copyToClipboard } from '../../../../../helpers/copyToClipboard'
 
 const ModalHeader = ({ iconName }: { iconName: string }) => (

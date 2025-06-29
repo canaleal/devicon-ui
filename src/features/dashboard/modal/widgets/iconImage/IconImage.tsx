@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import Tooltip from '../../../../../components/Elements/Tooltip/Tooltip'
+import Tooltip from '../../../../../components/Atoms/Tooltip/Tooltip'
 import './iconImage.css'
 import { DeviconBranch, IIcon } from '../../../../../types'
 import { createStyleMap } from './iconImageUtils'

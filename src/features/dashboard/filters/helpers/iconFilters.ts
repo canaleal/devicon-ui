@@ -1,5 +1,5 @@
-import { IIcon, IconVersion } from '../../../../types'
-import { FilterType, IFilterItem, IFilterGroup } from '../types'
+import { IconVersion, IIcon } from '../../../../types'
+import { FilterType, IFilterGroup, IFilterItem } from '../types'
 
 const FilterMapRecord: Record<FilterType, string> = {
   versions: 'versions.svg',
@@ -9,24 +9,31 @@ const FilterMapRecord: Record<FilterType, string> = {
   name: 'name'
 }
 
-const getItemsFromPath = (icons: IIcon, path: string): string[] => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const items = path.split('.').reduce((acc: any, curr: string) => acc[curr], icons)
-  return items
+const getItemsFromPath = (icon: IIcon, path: string): string[] => {
+  const result = path.split('.').reduce<unknown>((acc, key) => {
+    if (acc && typeof acc === 'object' && key in acc) {
+      return (acc as Record<string, unknown>)[key]
+    }
+    return undefined
+  }, icon)
+
+  return Array.isArray(result) ? (result as string[]) : []
 }
 
-export const populateIconFilters = (icons: IIcon[], filterGroup: IFilterGroup) => {
+export const populateIconFilters = (icons: IIcon[], filterGroup: IFilterGroup): IFilterGroup => {
   const itemsPath = FilterMapRecord[filterGroup.filterType]
+
   filterGroup.filters.forEach((filter) => {
     filter.numberOfIcons = 0
   })
 
   icons.forEach((icon) => {
-    const items: string[] = getItemsFromPath(icon, itemsPath)
+    const items = getItemsFromPath(icon, itemsPath)
+
     items.forEach((item) => {
-      const category = filterGroup.filters.find((category) => category.filterName === item)
-      if (category) {
-        category.numberOfIcons++
+      const existing = filterGroup.filters.find((f) => f.filterName === item)
+      if (existing) {
+        existing.numberOfIcons++
       } else {
         filterGroup.filters.push({
           filterName: item as IconVersion,

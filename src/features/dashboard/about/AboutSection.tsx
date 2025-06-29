@@ -1,8 +1,8 @@
-import InfiniteScroll from '../../../components/Elements/InfiniteScroll/InfiniteScroll'
+import InfiniteScroll from '../../../components/Atoms/InfiniteScroll/InfiniteScroll'
 import { ICONS } from './constants/aboutConstants'
 import './styles/aboutStyle.css'
 
-const InformationSection = () => {
+export const InformationSection = () => {
   return (
     <section className='about-section'>
       <div className={'base-container about-section__container'}>
@@ -19,5 +19,3 @@ const InformationSection = () => {
     </section>
   )
 }
-
-export default InformationSection

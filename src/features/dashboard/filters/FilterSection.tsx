@@ -1,13 +1,15 @@
 import { useState, useEffect } from 'react'
-import { Dropdown } from '../../../components/Elements/Dropdown'
-import SearchBar from '../../../components/Elements/SearchBar/SearchBar'
+
+import SearchBar from '../../../components/Molecules/SearchBar/SearchBar'
 import useIconStore from '../../../store/iconStore'
-import FilterDropdown from './FilterDropdown'
-import { filterIcons, updateFilterGroups, updateFilter, resetFilterGroup, populateIconFilters } from './helpers'
-import { IFilterGroup, IFilterItem } from './types'
+
+import { filterIcons, updateFilterGroups, resetFilterGroup, populateIconFilters } from './helpers'
+
 import { DeviconBranch } from '../../../types'
 import { fetchIcons } from '../../../service/iconService'
 import './styles/filters.css'
+import { MultiSelectDropdown } from '../../../components/Atoms/Dropdown/MultiSelectDropdown'
+import { Dropdown } from '../../../components/Atoms/Dropdown/Dropdown'
 
 const FilterSection = () => {
   const { icons, deviconBranch, setFilteredIcons, setDeviconBranch, filterGroups, setFilterGroups, setIcons } =
@@ -43,16 +45,6 @@ const FilterSection = () => {
     setFilterGroups(initFilterGroups)
   }
 
-  const handleFilterClick = (filterGroup: IFilterGroup, filter: IFilterItem) => {
-    const updatedFilterGroups = updateFilterGroups(filterGroups, updateFilter(filterGroup, filter))
-    setFilterGroups(updatedFilterGroups)
-  }
-
-  const handleResetFilterGroup = (filterGroup: IFilterGroup) => {
-    const updatedFilterGroups = updateFilterGroups(filterGroups, resetFilterGroup(filterGroup))
-    setFilterGroups(updatedFilterGroups)
-  }
-
   return (
     <>
       <section className='filters'>
@@ -62,7 +54,7 @@ const FilterSection = () => {
             isDisabled={false}
             selectedOption={deviconBranch}
             options={['master', 'develop']}
-            onChange={(value) => handleDeviconBranchChange(value as DeviconBranch)}
+            onChange={(value: string) => handleDeviconBranchChange(value as DeviconBranch)}
           />
           <SearchBar
             placeholder='Search Icons'
@@ -72,11 +64,30 @@ const FilterSection = () => {
           />
 
           {filterGroups.map((filterGroup) => (
-            <FilterDropdown
+            <MultiSelectDropdown
               key={filterGroup.categoryName}
-              filterGroup={filterGroup}
-              handleFilterClick={handleFilterClick}
-              handleResetFilterGroup={handleResetFilterGroup}
+              title={filterGroup.categoryName}
+              options={filterGroup.filters.map((f) => ({
+                label: f.filterName,
+                value: f.filterName,
+                count: f.numberOfIcons
+              }))}
+              selected={filterGroup.filters.filter((f) => f.isSelected).map((f) => f.filterName)}
+              onChange={(selectedNames) => {
+                const updatedGroup = {
+                  ...filterGroup,
+                  filters: filterGroup.filters.map((f) => ({
+                    ...f,
+                    isSelected: selectedNames.includes(f.filterName)
+                  }))
+                }
+
+                setFilterGroups(updateFilterGroups(filterGroups, updatedGroup))
+              }}
+              onReset={() => {
+                const updatedGroup = resetFilterGroup(filterGroup)
+                setFilterGroups(updateFilterGroups(filterGroups, updatedGroup))
+              }}
               extraClasses='w-full'
             />
           ))}
