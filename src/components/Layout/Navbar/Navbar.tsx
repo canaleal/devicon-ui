@@ -1,5 +1,5 @@
-import Logo from '../../Atoms/Logo/Logo'
-import React, { useEffect, useState } from 'react'
+import { Logo } from '../../Atoms/Logo/Logo'
+import { useEffect, useState } from 'react'
 import storage from '../../../helpers/storage'
 import './navbar.css'
 
@@ -32,11 +32,7 @@ const DarkModeToggle = () => {
   )
 }
 
-interface INavbarProps {
-  children?: React.ReactNode
-}
-
-const Navbar = ({children}: INavbarProps) => {
+export const Navbar = () => {
   return (
     <>
       <header className='navbar'>
@@ -45,12 +41,7 @@ const Navbar = ({children}: INavbarProps) => {
             <Logo />
           </div>
           <div className={'navbar__end'}>
-            {children}
-
             <DarkModeToggle />
-
-
-
           </div>
         </div>
       </header>
@@ -58,5 +49,3 @@ const Navbar = ({children}: INavbarProps) => {
     </>
   )
 }
-
-export default Navbar

@@ -7,6 +7,11 @@ export const getPaginationButtons = (currentPage: number, totalPages: number) =>
     return range
   }
 
+  // If 5 or fewer pages, return all page numbers without ellipses
+  if (totalPages <= 5) {
+    return getRange(1, totalPages)
+  }
+
   // Initial and final pages
   const pages: (number | '...')[] = [1]
 

@@ -2,30 +2,30 @@
   @apply hidden lg:flex flex-col gap-2;
 
   &__title {
-    @apply font-bold text-sm;
+    @apply font-bold  text-sm;
   }
 }
 
 .table {
-  @apply flex overflow-hidden w-full border dark:border-gray-600/20 rounded-md;
+  @apply flex overflow-hidden w-full border dark:border-gray-600/20;
 
   table {
-    @apply table-auto w-full bg-white text-sm;
+    @apply table-auto w-full bg-white;
   }
 
   &__head {
-    @apply border-b bg-gray-50 dark:bg-dark-900 dark:border-gray-600/20;
+    @apply border-b bg-gray-100 dark:bg-dark-900 dark:border-gray-600/20;
   }
 
   &__element {
-    @apply text-left px-4 py-2 h-10;
+    @apply text-left px-4 py-2 h-10  text-sm;
   }
 
   &__row {
     @apply bg-white dark:bg-dark-800  cursor-pointer;
 
     &:hover {
-      @apply bg-gray-50 dark:bg-dark-900;
+      @apply bg-gray-100 dark:bg-dark-700;
     }
   }
 }

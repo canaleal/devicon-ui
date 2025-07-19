@@ -4,14 +4,20 @@ export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
+      'secondary': '#9B9EA7',        // used as secondary text in light mode
+      'secondary-dark': '#676B7A',   // used as secondary text in dark mode
+
       colors: {
         dark: {
-          800: '#1D1C21',
-          900: '#1f1e24'
+          200: '#9B9EA7',
+          400: '#676B7A',
+          700: '#2B2B2D',
+          800: '#1F1F21',
+          900: '#19191C'
         },
         primary: {
-          800: '#0166b4',
-          900: '#223ebc'
+          800: '#3B86FF',
+          900: '#3573F1'
         },
         rose: '#f44336',
         orange: '#ff9800',

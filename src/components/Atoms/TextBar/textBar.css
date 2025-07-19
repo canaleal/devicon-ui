@@ -1,5 +1,5 @@
 .text-bar {
-  @apply flex flex-row gap-2 items-center text-sm;
+  @apply flex flex-row gap-2 items-center;
 }
 .text-bar__title {
   @apply font-bold;

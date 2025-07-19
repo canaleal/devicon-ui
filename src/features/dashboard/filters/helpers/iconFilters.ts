@@ -72,8 +72,9 @@ export const updateFilter = (filterGroup: IFilterGroup, filter: IFilterItem) => 
   return tempFilterGroup
 }
 
-export const resetFilterGroup = (filterGroup: IFilterGroup) => {
-  const tempFilterGroup = { ...filterGroup }
-  tempFilterGroup.filters.forEach((filter) => (filter.isSelected = false))
-  return tempFilterGroup
+export const resetFilterGroup = (group: IFilterGroup): IFilterGroup => {
+  return {
+    ...group,
+    filters: group.filters.map((filter) => ({ ...filter, isSelected: false }))
+  }
 }

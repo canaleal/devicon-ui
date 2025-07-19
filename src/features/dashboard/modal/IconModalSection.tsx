@@ -1,18 +1,24 @@
 import { useEffect, useState } from 'react'
-import Modal from '../../../components/Molecules/Modal/Modal'
-import useIconStore from '../../../store/iconStore'
-import IconModal from './IconModal'
-import { IIcon } from '../../../types'
+import { Modal, INavAction } from '../../../components/Molecules/Modal/Modal'
+import { IconModal } from './IconModal'
+import { DeviconBranch, IIcon } from '../../../types'
 
-const IconModalSection = () => {
-  const { selectedIcon, filteredIcons, deviconBranch, setSelectedIcon } = useIconStore()
-  const [nextIcon, setNextIcon] = useState<IIcon | null>(null)
-  const [prevIcon, setPrevIcon] = useState<IIcon | null>(null)
+interface IconModalSectionProps {
+  selectedIcon: IIcon
+  filteredIcons: IIcon[]
+  deviconBranch: DeviconBranch
+  setSelectedIcon: (selectedIcon: IIcon | null) => void
+}
+
+const IconModalSection = ({ selectedIcon, filteredIcons, deviconBranch, setSelectedIcon }: IconModalSectionProps) => {
+  const [navIcons, setNavIcons] = useState<{
+    next?: INavAction
+    prev?: INavAction
+  }>({})
 
   useEffect(() => {
-    if (!selectedIcon || filteredIcons.length === 0) {
-      setNextIcon(null)
-      setPrevIcon(null)
+    if (!selectedIcon || filteredIcons.length === 1) {
+      setNavIcons({})
       return
     }
 
@@ -21,21 +27,19 @@ const IconModalSection = () => {
 
     const getWrappedIndex = (index: number) => (index + filteredIcons.length) % filteredIcons.length
 
-    setNextIcon(filteredIcons[getWrappedIndex(currentIndex + 1)])
-    setPrevIcon(filteredIcons[getWrappedIndex(currentIndex - 1)])
-  }, [selectedIcon, filteredIcons])
+    const next = filteredIcons[getWrappedIndex(currentIndex + 1)]
+    const prev = filteredIcons[getWrappedIndex(currentIndex - 1)]
+
+    setNavIcons({
+      next: next ? { fn: () => setSelectedIcon(next), label: next.name } : undefined,
+      prev: prev ? { fn: () => setSelectedIcon(prev), label: prev.name } : undefined
+    })
+  }, [selectedIcon, filteredIcons, setSelectedIcon])
 
   if (!selectedIcon) return null
 
   return (
-    <Modal
-      isOpen={true}
-      onClose={() => setSelectedIcon(null)}
-      onNext={() => nextIcon && setSelectedIcon(nextIcon)}
-      onPrev={() => prevIcon && setSelectedIcon(prevIcon)}
-      onNextPlaceholderText={nextIcon?.name}
-      onPrevPlaceholderText={prevIcon?.name}
-    >
+    <Modal isOpen={true} onClose={() => setSelectedIcon(null)} onNext={navIcons.next} onPrev={navIcons.prev}>
       <IconModal icon={selectedIcon} deviconBranch={deviconBranch} />
     </Modal>
   )

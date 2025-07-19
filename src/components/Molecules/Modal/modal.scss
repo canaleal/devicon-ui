@@ -6,7 +6,7 @@
   }
 
   &__body {
-    @apply relative p-8 w-full  bg-white rounded-lg  dark:bg-dark-900 dark:text-white  overflow-hidden;
+    @apply relative p-8 w-full  bg-white   dark:bg-dark-900 dark:text-white;
   }
 
   &__arrow-btn {
@@ -18,7 +18,7 @@
   }
 
   &__close-button {
-    @apply absolute top-0 right-0 p-4 text-2xl leading-none rounded-bl-lg rounded-tr-lg bg-primary-800 dark:bg-primary-800 text-white;
+    @apply absolute top-0 right-0 p-4 text-2xl leading-none bg-primary-800 dark:bg-primary-800 text-white;
 
     &:hover {
       @apply bg-primary-900 dark:bg-primary-900;

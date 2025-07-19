@@ -1,8 +1,11 @@
 .filters {
-  @apply py-4;
-  @apply bg-white text-dark-900  dark:bg-dark-900 dark:text-white border-b border-gray-600/20 w-full z-50 ;
+  @apply py-4 bg-white text-dark-900  dark:bg-dark-900 dark:text-white border-b border-gray-600/20 w-full z-50 fixed;
 
   &__container {
     @apply flex flex-col lg:flex-row gap-4 w-full;
+  }
+
+  &__placeholder {
+    @apply h-16;
   }
 }

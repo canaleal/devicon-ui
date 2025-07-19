@@ -1,91 +1,85 @@
-import { IIconSettings } from '../types/index'
+import { IIconSettings, IIconSize, CodeBlockOptionTypes, CODE_BLOCK_OPTIONS } from '../types'
 import { IIcon, IconVersion } from '../../../../types'
-import { IIconSize, CodeBlockOptionTypes, CODE_BLOCK_OPTIONS } from '../types'
 
 export const getCodeBlockOptions = (deviconBranch: string, icon: IIcon, selectedVersion: IconVersion) => {
-  return deviconBranch === 'develop' || !icon.versions.font.includes(selectedVersion)
-    ? CODE_BLOCK_OPTIONS.filter((option) => option !== 'ICON')
-    : CODE_BLOCK_OPTIONS
+  const isFontVersion = icon.versions.font.includes(selectedVersion)
+  const allowIcon = deviconBranch !== 'develop' && isFontVersion
+  return allowIcon ? CODE_BLOCK_OPTIONS : CODE_BLOCK_OPTIONS.filter((opt) => opt !== 'ICON')
 }
 
-export const adjustSVGAttributes = (icon: IIcon, svgContent: string, iconSize: IIconSize, selectedColor: string) => {
-  const replaceOrAddAttribute = (content: string, attr: 'width' | 'height'): string => {
-    if (iconSize[attr] === 128) return content
+export const adjustSVGAttributes = (icon: IIcon, svg: string, size: IIconSize, color: string): string => {
+  const updateAttr = (content: string, attr: 'width' | 'height', value: number): string => {
     const pattern = new RegExp(`${attr}="[^"]*"`)
-    const replacement = `${attr}="${iconSize[attr]}"`
-    return content.includes(`${attr}=`)
+    const replacement = `${attr}="${value}"`
+    return pattern.test(content)
       ? content.replace(pattern, replacement)
       : content.replace('<svg', `<svg ${replacement}`)
   }
 
-  const replaceOrAddFillColors = (content: string): string => {
-    if (icon.color !== selectedColor) {
-      content = content.replace(/fill="[^"]*"/g, `fill="${selectedColor}"`)
-      if (!content.includes('fill=')) {
-        content = content.replace('<svg', `<svg fill="${selectedColor}"`)
-      }
-    }
-    return content
+  let updated = svg
+  if (size.width !== 128) updated = updateAttr(updated, 'width', size.width)
+  if (size.height !== 128) updated = updateAttr(updated, 'height', size.height)
+
+  if (icon.color !== color) {
+    updated = /fill="/.test(updated)
+      ? updated.replace(/fill="[^"]*"/g, `fill="${color}"`)
+      : updated.replace('<svg', `<svg fill="${color}"`)
   }
 
-  let updatedSvgContent = svgContent
-  updatedSvgContent = replaceOrAddAttribute(updatedSvgContent, 'width')
-  updatedSvgContent = replaceOrAddAttribute(updatedSvgContent, 'height')
-  updatedSvgContent = replaceOrAddFillColors(updatedSvgContent)
-  return updatedSvgContent
+  return updated
 }
 
-const getSVGTag = async (icon: IIcon, iconUrl: string, iconSize: IIconSize, selectedColor: string) => {
-  const response = await fetch(iconUrl)
-  const svg = await response.text()
-  return adjustSVGAttributes(icon, svg, iconSize, selectedColor)
+const getSVGTag = async (icon: IIcon, url: string, size: IIconSize, color: string) => {
+  const response = await fetch(url)
+  const rawSvg = await response.text()
+  return adjustSVGAttributes(icon, rawSvg, size, color)
 }
 
-export const getImageTag = (icon: IIcon, iconUrl: string, iconSize: IIconSize) => {
-  const styles: { [key: string]: string } = {}
-
-  if (iconSize.name !== 'Medium') {
-    styles.height = iconSize.height.toString()
-    styles.width = iconSize.width.toString()
-  }
-
-  const styleString = Object.entries(styles)
-    .map(([key, value]) => `${key}: ${value};`)
+const buildStyle = (styles: Record<string, string>) =>
+  Object.entries(styles)
+    .map(([k, v]) => `${k}: ${v};`)
     .join(' ')
-  return `<img src="${iconUrl}" alt="${icon.name}" ${styleString ? `style="${styleString}"` : ''}/>`
-}
 
-export const getIconTag = (icon: IIcon, selectedVersion: IconVersion, iconSize: IIconSize, selectedColor: string) => {
-  const styles: { [key: string]: string } = {}
-
-  if (iconSize.name !== 'Medium') {
-    styles.height = iconSize.height.toString()
-    styles.width = iconSize.width.toString()
+export const getImageTag = (icon: IIcon, url: string, size: IIconSize) => {
+  const style: Record<string, string> = {}
+  if (size.name !== 'Medium') {
+    style.width = `${size.width}`
+    style.height = `${size.height}`
   }
 
-  if (icon.color !== selectedColor) {
-    styles.color = selectedColor
-  }
-
-  const styleString = Object.entries(styles)
-    .map(([key, value]) => `${key}: ${value};`)
-    .join(' ')
-  return `<i class="devicon-${icon.name}-${selectedVersion} colored" ${styleString ? `style="${styleString}"` : ''}/>`
+  const styleStr = buildStyle(style)
+  return `<img src="${url}" alt="${icon.name}" ${styleStr ? `style="${styleStr}"` : ''}/>`
 }
 
-export const createIconCodeBlockText = async (
+export const getIconTag = (icon: IIcon, version: IconVersion, size: IIconSize, color: string) => {
+  const style: Record<string, string> = {}
+
+  if (size.name !== 'Medium') {
+    style.width = `${size.width}`
+    style.height = `${size.height}`
+  }
+
+  if (icon.color !== color) {
+    style.color = color
+  }
+
+  const styleStr = buildStyle(style)
+  return `<i class="devicon-${icon.name}-${version} colored" ${styleStr ? `style="${styleStr}"` : ''}/>`
+}
+
+export const createIconCodeBlockText = (
   icon: IIcon,
-  iconSettings: IIconSettings,
-  selectedCodeBlockFormat: CodeBlockOptionTypes
-) => {
-  const codeClockFormats = {
-    LINK: () => iconSettings.iconUrl,
-    IMG: () => getImageTag(icon, iconSettings.iconUrl, iconSettings.selectedIconSize),
-    ICON: () =>
-      getIconTag(icon, iconSettings.selectedVersion, iconSettings.selectedIconSize, iconSettings.selectedColor),
-    SVG: async () =>
-      await getSVGTag(icon, iconSettings.iconUrl, iconSettings.selectedIconSize, iconSettings.selectedColor)
+  settings: IIconSettings,
+  format: CodeBlockOptionTypes
+): Promise<string> | string => {
+  switch (format) {
+    case 'LINK':
+      return settings.iconUrl
+    case 'IMG':
+      return getImageTag(icon, settings.iconUrl, settings.selectedIconSize)
+    case 'ICON':
+      return getIconTag(icon, settings.selectedVersion, settings.selectedIconSize, settings.selectedColor)
+    case 'SVG':
+      return getSVGTag(icon, settings.iconUrl, settings.selectedIconSize, settings.selectedColor)
   }
-
-  return codeClockFormats[selectedCodeBlockFormat]()
 }

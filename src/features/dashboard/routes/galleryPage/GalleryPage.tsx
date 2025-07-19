@@ -9,15 +9,41 @@ import useIconStore from '../../../../store/iconStore.ts'
 const GalleryPage = () => {
   useGallery()
 
-  const { deviconBranch,} = useIconStore()
+  const {
+    icons,
+    filteredIcons,
+    deviconBranch,
+    filterGroups,
+    selectedIcon,
+    setIcons,
+    setFilteredIcons,
+    setDeviconBranch,
+    setFilterGroups,
+    setSelectedIcon
+  } = useIconStore()
 
   return (
     <>
-      <FilterSection />
-      <IconModalSection />
+      {selectedIcon && (
+        <IconModalSection
+          deviconBranch={deviconBranch}
+          selectedIcon={selectedIcon}
+          filteredIcons={filteredIcons}
+          setSelectedIcon={setSelectedIcon}
+        />
+      )}
+      <FilterSection
+        icons={icons}
+        filterGroups={filterGroups}
+        deviconBranch={deviconBranch}
+        setIcons={setIcons}
+        setFilteredIcons={setFilteredIcons}
+        setFilterGroups={setFilterGroups}
+        setDeviconBranch={setDeviconBranch}
+      />
       <InformationSection />
       <CDNBlockLink branch={deviconBranch} />
-      <Pagination />
+      <Pagination filteredIcons={filteredIcons} />
     </>
   )
 }

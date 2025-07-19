@@ -1,5 +1,8 @@
 export type IconVersion = 'plain' | 'line' | 'original' | 'plain-wordmark' | 'line-wordmark' | 'original-wordmark'
-export type DeviconBranch = 'master' | 'develop'
+
+export const MASTER = 'master'
+export const DEVELOP = 'develop'
+export type DeviconBranch = typeof MASTER | typeof DEVELOP
 
 export interface IIcon {
   name: string
