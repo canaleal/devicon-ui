@@ -1,19 +1,16 @@
 .button {
-  @apply flex gap-2 items-center px-2 py-2  text-dark-900 dark:text-white;
+  @apply flex gap-2 items-center px-2 py-2 text-dark-900 dark:text-white;
 
   &:hover {
-    @apply bg-gray-100 dark:bg-dark-700;
+    @apply bg-dark-100 dark:bg-dark-700;
   }
 
   &--small {
-    @apply px-4 py-2 ;
+    @apply px-4 py-2;
   }
 
   &--icon {
-    &:hover {
-      @apply text-primary-900;
-      @apply bg-transparent dark:bg-transparent;
-    }
+    @apply hover:text-primary-900 hover:bg-transparent dark:hover:bg-transparent;
   }
 
   &--selected {
@@ -25,11 +22,7 @@
   }
 
   &--disabled {
-    @apply text-dark-200 dark:text-dark-400 bg-transparent;
-
-    &:hover {
-      @apply bg-transparent dark:bg-transparent;
-    }
+    @apply text-dark-200 dark:text-dark-200 bg-transparent hover:bg-transparent dark:hover:bg-transparent;
   }
 }
 
@@ -37,11 +30,9 @@
   &--lg {
     @apply text-lg;
   }
-
   &--xl {
     @apply text-xl;
   }
-
   &--xxl {
     @apply text-2xl;
   }

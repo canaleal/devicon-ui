@@ -2,7 +2,7 @@
   @apply fixed inset-0 z-50 flex flex-row items-center justify-center bg-dark-900/80 backdrop-blur-sm dark:bg-black/80 overflow-hidden;
 }
 .modal__container {
-  @apply w-full max-w-[calc(100%-10%)] sm:max-w-[50rem] md:max-w-[60rem] md:px-8 lg:max-w-[68rem] xl:max-w-[100rem] flex flex-row gap-4;
+  @apply w-full max-w-[calc(100%-10%)] sm:max-w-[50rem] md:max-w-[60rem] md:px-8 lg:max-w-[68rem] xl:max-w-[120rem] flex flex-row gap-4;
 }
 .modal__body {
   @apply relative p-8 w-full bg-white dark:bg-dark-900 dark:text-white;

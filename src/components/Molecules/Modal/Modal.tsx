@@ -31,14 +31,12 @@ export const Modal = ({ isOpen, onClose, onNext, onPrev, children }: ModalProps)
         </button>
       )}
       <div className='modal__container'>
-
         <div className='modal__body'>
           <button className='modal__close-button' onClick={onClose} aria-label='Close modal'>
             <i className='fas fa-times' />
           </button>
           {children}
         </div>
-
       </div>
       {onNext && (
         <button

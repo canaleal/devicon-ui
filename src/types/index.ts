@@ -1,8 +1,16 @@
-export type IconVersion = 'plain' | 'line' | 'original' | 'plain-wordmark' | 'line-wordmark' | 'original-wordmark'
+export const DEVICON_BRANCH = {
+  MASTER: 'master',
+  DEVELOP: 'develop'
+} as const
+export type DeviconBranch = (typeof DEVICON_BRANCH)[keyof typeof DEVICON_BRANCH]
 
-export const MASTER = 'master'
-export const DEVELOP = 'develop'
-export type DeviconBranch = typeof MASTER | typeof DEVELOP
+
+export const URL_PARAMS = {
+  BRANCH: 'branch',
+  ICON: 'icon'
+}
+
+export type IconVersion = 'plain' | 'line' | 'original' | 'plain-wordmark' | 'line-wordmark' | 'original-wordmark'
 
 export interface IIcon {
   name: string
@@ -17,9 +25,4 @@ export interface IIcon {
     base: IconVersion
     alias: IconVersion
   }[]
-}
-
-export interface IException {
-  name: string
-  message: string
 }

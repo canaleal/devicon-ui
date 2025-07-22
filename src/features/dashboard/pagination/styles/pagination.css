@@ -1,21 +1,20 @@
 .pagination {
-  @apply py-16;
-  @apply bg-white text-dark-900 dark:bg-dark-900 dark:text-white;
+  @apply py-16 bg-white text-dark-900 dark:bg-dark-900 dark:text-white;
 }
 .pagination__container {
-  @apply flex flex-col gap-8 w-full;
+  @apply flex flex-col w-full gap-8;
 }
 .pagination__header {
-  @apply flex gap-4 items-center;
+  @apply flex items-center gap-4;
 }
 .pagination__header-title {
-  @apply font-semibold text-lg;
+  @apply text-lg font-semibold;
 }
 .pagination__header-info {
   @apply ml-auto hidden md:inline-block text-sm;
 }
 .pagination__grid {
-  @apply grid grid-cols-3 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-8 xl:grid-cols-12 gap-4;
+  @apply grid gap-4 grid-cols-3 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-8 xl:grid-cols-12;
 }
 .pagination__no-icons {
   @apply flex flex-col items-center justify-center h-[35rem];

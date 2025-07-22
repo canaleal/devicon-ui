@@ -1,11 +1,13 @@
 .fixed-button {
-  @apply bg-primary-800 dark:bg-primary-800 text-white z-30 fixed  transition-all h-16 w-16 flex items-center justify-center font-bold text-xl;
-
-  &--hidden {
-    @apply translate-x-44;
-  }
+  @apply fixed z-30 h-16 w-16 flex items-center justify-center
+  bg-primary-800 dark:bg-primary-800 text-white
+  text-xl font-bold transition-all;
 
   &:hover {
     @apply bg-primary-900 dark:bg-primary-900;
+  }
+
+  &--hidden {
+    @apply translate-x-44;
   }
 }

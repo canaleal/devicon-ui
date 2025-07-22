@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import { DeviconBranch, IIcon } from '../types'
+import { DEVICON_BRANCH, DeviconBranch, IIcon, URL_PARAMS } from '../types'
 import { IFilterGroup } from '../features/dashboard/filters/types'
 import { updateUrlWithQueryParams } from '../helpers/storeUrl'
 
@@ -20,16 +20,16 @@ const useIconStore = create<IIconStore>((set) => ({
   icons: [],
   filteredIcons: [],
   selectedIcon: null,
-  deviconBranch: 'develop',
+  deviconBranch: DEVICON_BRANCH.MASTER,
   filterGroups: [],
   setIcons: (icons) => set({ icons }),
   setSelectedIcon: (selectedIcon) => {
-    updateUrlWithQueryParams({ icon: selectedIcon?.name })
+    updateUrlWithQueryParams({ [URL_PARAMS.ICON]: selectedIcon?.name })
     set({ selectedIcon })
   },
   setDeviconBranch: (deviconBranch) => {
-    updateUrlWithQueryParams({ branch: deviconBranch })
-    set({ deviconBranch })
+    updateUrlWithQueryParams({ [URL_PARAMS.BRANCH]: deviconBranch });
+    set({ deviconBranch });
   },
   setFilteredIcons: (filteredIcons) => set({ filteredIcons }),
   setFilterGroups: (filterGroups) => set({ filterGroups })

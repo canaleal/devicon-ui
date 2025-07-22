@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from 'react'
+import React, { useState, useEffect, useMemo } from 'react'
 import { IIcon } from '../../../types'
 import PaginationButtons from './widgets/paginationButtons/PaginationButtons'
 import PaginationCard from './widgets/paginationCard/PaginationCard'
@@ -30,7 +30,7 @@ interface IPaginationProps {
   filteredIcons: IIcon[]
 }
 
-export const Pagination = ({ filteredIcons }: IPaginationProps) => {
+export const Pagination = React.memo(({ filteredIcons }: IPaginationProps) => {
   const [elementsPerPage, setElementsPerPage] = useState(DEFAULT_ELEMENTS_PER_PAGE)
   const { paginatedIcons, totalPages, currentPage, setCurrentPage } = usePagination(filteredIcons, elementsPerPage)
 
@@ -69,4 +69,4 @@ export const Pagination = ({ filteredIcons }: IPaginationProps) => {
       </div>
     </section>
   )
-}
+})

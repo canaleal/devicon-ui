@@ -1,33 +1,32 @@
 .tooltip {
   &__container {
-    @apply flex relative w-fit;
+    @apply relative flex w-fit;
   }
 
   &__popup {
-    @apply absolute z-10 px-2 py-1 max-w-xs break-words  bg-primary-800 dark:bg-primary-800 text-white;
+    @apply absolute z-10 max-w-xs px-2 py-1 break-words
+    bg-primary-800 dark:bg-primary-800 text-white;
   }
 }
 
 .fade-in {
-  -webkit-animation: fade-in 0.3s ease-in-out both;
   animation: fade-in 0.3s ease-in-out both;
-}
-
-@-webkit-keyframes fade-in {
-  0% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
-  }
+  -webkit-animation: fade-in 0.3s ease-in-out both;
 }
 
 @keyframes fade-in {
   0% {
     opacity: 0;
   }
+  100% {
+    opacity: 1;
+  }
+}
 
+@-webkit-keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
   100% {
     opacity: 1;
   }

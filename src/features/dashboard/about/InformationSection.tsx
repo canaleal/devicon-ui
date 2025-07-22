@@ -1,8 +1,9 @@
 import InfiniteScroll from '../../../components/Atoms/InfiniteScroll/InfiniteScroll'
 import { ICONS } from './constants/aboutConstants'
 import './styles/aboutStyle.css'
+import React from 'react'
 
-export const InformationSection = () => {
+export const InformationSection = React.memo(() => {
   return (
     <section className='about-section'>
       <div className={'base-container about-section__container'}>
@@ -18,4 +19,4 @@ export const InformationSection = () => {
       </div>
     </section>
   )
-}
+})

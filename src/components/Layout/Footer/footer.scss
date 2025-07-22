@@ -1,5 +1,5 @@
 .footer {
-  @apply pt-16 pb-24 dark:bg-dark-800 dark:text-white border-t border-gray-600/20;
+  @apply pt-16 pb-24 dark:bg-dark-800 dark:text-white border-t border-dark-400/20;
 
   &__left {
     @apply flex flex-col w-full gap-4 pb-8 xl:pb-0;
@@ -14,11 +14,11 @@
   }
 
   &__link-title {
-    @apply mb-2 text-gray-950 dark:text-dark-200 font-extrabold;
+    @apply mb-2 font-extrabold text-dark-900 dark:text-white;
   }
 
   &__link {
-    @apply text-gray-950 dark:text-white hover:text-primary-900 dark:hover:text-primary-900 w-fit hover:underline;
+    @apply text-sm text-dark-400 dark:text-dark-200 hover:text-primary-900 dark:hover:text-primary-900 w-fit hover:underline;
   }
 
   &__description {

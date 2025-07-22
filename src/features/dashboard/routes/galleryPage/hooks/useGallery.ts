@@ -1,9 +1,5 @@
-import { useEffect } from 'react'
-import { DeviconBranch } from '../../../../../types'
-import useIconStore from '../../../../../store/iconStore.ts'
+import { DEVICON_BRANCH, DeviconBranch, URL_PARAMS } from '../../../../../types'
 import { fetchIcons } from '../../../../../service/iconService.ts'
-import { INIT_FILTER_GROUPS } from '../../../filters/types'
-import { populateIconFilters } from '../../../filters/helpers'
 import useSWR from 'swr'
 
 export const useIcons = (branch: DeviconBranch) => {
@@ -17,33 +13,7 @@ export const useIcons = (branch: DeviconBranch) => {
 
 export const getQueryParams = (): { branch: DeviconBranch; iconName: string | null } => {
   const params = new URLSearchParams(location.search)
-  const branch = (params.get('branch') as DeviconBranch) || 'master'
-  const iconName = params.get('icon')
+  const branch = (params.get(URL_PARAMS.BRANCH) as DeviconBranch) || DEVICON_BRANCH.MASTER
+  const iconName = params.get(URL_PARAMS.ICON)
   return { branch, iconName }
-}
-
-export const useGallery = () => {
-  const { setIcons, setFilterGroups, setSelectedIcon, setDeviconBranch } = useIconStore()
-  const { branch, iconName } = getQueryParams()
-  const { data: icons, error, isLoading } = useIcons(branch)
-
-  useEffect(() => {
-    setDeviconBranch(branch)
-  }, [branch, setDeviconBranch])
-
-  useEffect(() => {
-    if (!icons) return
-
-    setIcons(icons)
-
-    const filters = INIT_FILTER_GROUPS.map((group) => populateIconFilters(icons, group))
-    setFilterGroups(filters)
-
-    if (iconName) {
-      const selected = icons.find((icon) => icon.name === iconName)
-      setSelectedIcon(selected || null)
-    }
-  }, [icons, iconName, setIcons, setFilterGroups, setSelectedIcon])
-
-  return { icons, error, isLoading }
 }

@@ -53,7 +53,7 @@ export const IconImage = ({ icon, deviconBranch, iconSettings, extraClasses = ''
   }, [isDarkBackground, isCheckeredBackground])
 
   return (
-    <div className={`image-container icon-container ${imageContainerClass} ${extraClasses}`}>
+    <div className={`image-container ${imageContainerClass} ${extraClasses}`}>
       <div className='image-container__header'>
         <Tooltip content='Download SVG' position='top' flashMessage='Copied!'>
           <button onClick={handleDownload} className='button--icon icon--xl'>
@@ -72,25 +72,28 @@ export const IconImage = ({ icon, deviconBranch, iconSettings, extraClasses = ''
         </Tooltip>
       </div>
 
-      <div className={`image-container__view-box ${viewBoxClass}`}>
-        {styleMap ? (
-          <div
-            className='image-container__image'
-            style={{
-              height: iconSettings.selectedIconSize.height,
-              width: iconSettings.selectedIconSize.width,
-              ...styleMap
-            }}
-          />
-        ) : (
-          <img
-            className='image-container__image'
-            height={iconSettings.selectedIconSize.height}
-            width={iconSettings.selectedIconSize.width}
-            src={iconSettings.iconUrl}
-            alt={`${icon.name} icon`}
-          />
-        )}
+      <div className='image-container__view-box-wrapper'>
+        <div className={`image-container__view-box ${viewBoxClass}`}>
+          {styleMap ? (
+            <div
+              className='image-container__image'
+              style={{
+                height: iconSettings.selectedIconSize.height,
+                width: iconSettings.selectedIconSize.width,
+                ...styleMap
+              }}
+            />
+          ) : (
+            <img
+              className='image-container__image'
+              height={iconSettings.selectedIconSize.height}
+              width={iconSettings.selectedIconSize.width}
+              src={iconSettings.iconUrl}
+              alt={`${icon.name} icon`}
+              draggable={false}
+            />
+          )}
+        </div>
       </div>
 
       <div className='image-container__footer'>
@@ -121,5 +124,3 @@ export const IconImage = ({ icon, deviconBranch, iconSettings, extraClasses = ''
     </div>
   )
 }
-
-export default IconImage

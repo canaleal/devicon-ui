@@ -5,11 +5,11 @@
 .searchBar {
   &__input {
     @apply flex flex-row overflow-hidden w-full justify-between items-center border  text-sm;
-    @apply bg-white text-dark-900 dark:bg-dark-900 dark:text-white dark:border-gray-600/20;
+    @apply bg-white text-dark-900 dark:bg-dark-900 dark:text-white dark:border-dark-400/20;
   }
 
   &__input-icon {
-    @apply h-full py-2 px-4 border-r border-gray-600/20 bg-primary-800 text-white text-sm;
+    @apply h-full py-2 px-4 border-r border-dark-400/20 bg-primary-800 text-white text-sm;
   }
 
   &__input-text {
@@ -21,10 +21,10 @@
   }
 
   &__popup {
-    @apply absolute mt-1 w-fit bg-white dark:text-dark-900 border z-30 ;
+    @apply absolute mt-1 w-fit bg-white dark:text-dark-900 border z-30;
   }
 
   &__popup-item {
-    @apply px-4 py-2 hover:bg-gray-100 cursor-pointer text-sm;
+    @apply px-4 py-2 hover:bg-dark-100 cursor-pointer text-sm;
   }
 }

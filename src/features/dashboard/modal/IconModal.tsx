@@ -11,7 +11,6 @@ import { CodeBlock } from '../../../components/Molecules/CodeBlock/CodeBlock'
 import { TextBar } from '../../../components/Atoms/TextBar'
 import { Tooltip } from '../../../components/Atoms/Tooltip'
 import { copyToClipboard } from '../../../helpers/copyToClipboard.ts'
-
 import { DEVICON_VERSION_RELEASE } from '../../../constants'
 import './styles/iconModal.css'
 

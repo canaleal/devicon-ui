@@ -4,11 +4,9 @@ export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
-      'secondary': '#9B9EA7',        // used as secondary text in light mode
-      'secondary-dark': '#676B7A',   // used as secondary text in dark mode
-
       colors: {
         dark: {
+          100: '#F7F8FA',
           200: '#9B9EA7',
           400: '#676B7A',
           700: '#2B2B2D',

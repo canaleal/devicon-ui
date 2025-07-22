@@ -3,10 +3,8 @@ export const updateUrlWithQueryParams = (queryParams: Record<string, string | un
 
   Object.entries(queryParams).forEach(([key, value]) => {
     if (value) {
-      // Set the query param if the value exists
       url.searchParams.set(key, value)
     } else {
-      // Remove the query param if the value is empty
       url.searchParams.delete(key)
     }
   })

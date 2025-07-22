@@ -1,12 +1,13 @@
 import CodeBlock from '../CodeBlock/CodeBlock.tsx'
 import { DEVICON_LINK_TAG } from '../../../constants'
 import './styles/cdnBlock.css'
+import React from 'react'
 
 interface CDNBlockLinkProps {
   branch: string
 }
 
-export const CDNBlockLink = ({ branch }: CDNBlockLinkProps) => {
+export const CDNBlockLink = React.memo(({ branch }: CDNBlockLinkProps) => {
   if (branch !== 'master') return null
 
   return (
@@ -16,4 +17,4 @@ export const CDNBlockLink = ({ branch }: CDNBlockLinkProps) => {
       </div>
     </section>
   )
-}
+})

@@ -17,6 +17,7 @@ export const SearchBar = ({
   const [searchTerm, setSearchTerm] = useState<string>('')
   const [filteredOptions, setFilteredOptions] = useState<string[]>([])
   const [showOptions, setShowOptions] = useState<boolean>(false)
+  const [isFocused, setIsFocused] = useState<boolean>(false)
   const searchRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -43,6 +44,7 @@ export const SearchBar = ({
 
   const handleClickOutside = (event: MouseEvent) => {
     if (searchRef.current && !searchRef.current.contains(event.target as Node)) {
+      setIsFocused(false)
       setShowOptions(false)
     }
   }
@@ -56,20 +58,22 @@ export const SearchBar = ({
 
   return (
     <div className={`searchBar-container ${extraClasses}`} ref={searchRef}>
-      <div className={'searchBar__input'}>
-        <div className={'searchBar__input-icon'}>
-          <i className={'fa fa-search'} />
+      <div className='searchBar__input'>
+        <div className='searchBar__input-icon'>
+          <i className='fa fa-search' />
         </div>
         <input
           type='text'
           value={searchTerm}
           onChange={handleInputChange}
+          onFocus={() => setIsFocused(true)}
+          onBlur={() => setTimeout(() => setIsFocused(false), 100)} // allow option click
           placeholder={placeholder}
-          className={`searchBar__input-text`}
+          className='searchBar__input-text'
         />
       </div>
 
-      {showOptions && (
+      {showOptions && isFocused && (
         <ul className='searchBar__popup'>
           {filteredOptions.slice(0, 10).map((option, index) => (
             <li key={index} className='searchBar__popup-item' onClick={() => handleOptionClick(option)}>

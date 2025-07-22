@@ -10,7 +10,12 @@ interface IconModalSectionProps {
   setSelectedIcon: (selectedIcon: IIcon | null) => void
 }
 
-const IconModalSection = ({ selectedIcon, filteredIcons, deviconBranch, setSelectedIcon }: IconModalSectionProps) => {
+export const IconModalWrapper = ({
+  selectedIcon,
+  filteredIcons,
+  deviconBranch,
+  setSelectedIcon
+}: IconModalSectionProps) => {
   const [navIcons, setNavIcons] = useState<{
     next?: INavAction
     prev?: INavAction
@@ -36,13 +41,9 @@ const IconModalSection = ({ selectedIcon, filteredIcons, deviconBranch, setSelec
     })
   }, [selectedIcon, filteredIcons, setSelectedIcon])
 
-  if (!selectedIcon) return null
-
   return (
     <Modal isOpen={true} onClose={() => setSelectedIcon(null)} onNext={navIcons.next} onPrev={navIcons.prev}>
       <IconModal icon={selectedIcon} deviconBranch={deviconBranch} />
     </Modal>
   )
 }
-
-export default IconModalSection
