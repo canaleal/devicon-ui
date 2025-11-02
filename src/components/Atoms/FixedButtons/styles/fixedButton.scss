@@ -1,10 +1,10 @@
 .fixed-button {
   @apply fixed z-30 h-16 w-16 flex items-center justify-center
-  bg-primary-800 dark:bg-primary-800 text-white
+  bg-primary-800  text-white
   text-xl font-bold transition-all;
 
   &:hover {
-    @apply bg-primary-900 dark:bg-primary-900;
+    @apply bg-primary-900;
   }
 
   &--hidden {

@@ -20,6 +20,7 @@ export const Modal = ({ isOpen, onClose, onNext, onPrev, children }: ModalProps)
 
   return ReactDOM.createPortal(
     <section className='modal'>
+
       {onPrev && (
         <button
           onClick={onPrev.fn}

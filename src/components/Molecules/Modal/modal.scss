@@ -1,12 +1,12 @@
 .modal {
-  @apply fixed  inset-0 z-50 flex flex-row  items-center justify-center bg-dark-900/80 backdrop-blur-sm dark:bg-black/80 overflow-hidden;
+  @apply fixed  inset-0 z-50 flex flex-row  items-center justify-center bg-dark-900/80 backdrop-blur-sm  overflow-hidden;
 
   &__container {
     @apply w-full max-w-[calc(100%-10%)] sm:max-w-[50rem] md:max-w-[60rem] md:px-8 lg:max-w-[68rem] xl:max-w-[120rem] flex flex-row gap-4;
   }
 
   &__body {
-    @apply relative p-8 w-full  bg-white   dark:bg-dark-900 dark:text-white;
+    @apply relative p-8 w-full  bg-white rounded-md;
   }
 
   &__arrow-btn {
@@ -18,10 +18,10 @@
   }
 
   &__close-button {
-    @apply absolute top-0 right-0 p-4 text-2xl leading-none bg-primary-800 dark:bg-primary-800 text-white;
+    @apply absolute top-0 right-0 p-4 text-2xl leading-none bg-primary-800  text-white rounded-tr-md rounded-bl-md;
 
     &:hover {
-      @apply bg-primary-900 dark:bg-primary-900;
+      @apply bg-primary-900;
     }
   }
 }

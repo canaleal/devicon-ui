@@ -1,5 +1,5 @@
 .code-block {
-  @apply flex flex-col h-fit overflow-hidden w-full;
+  @apply flex flex-col h-fit overflow-hidden w-full rounded-md;
   @apply border border-dark-400/20 bg-dark-900;
 
   &__header {
@@ -12,25 +12,25 @@
   }
 
   &__header-title {
-    @apply text-white px-4 py-3 text-sm;
+    @apply text-white px-4 py-3 ;
   }
 
   &__header-options {
-    @apply flex flex-row mr-auto text-sm;
+    @apply flex flex-row mr-auto ;
   }
 
   &__button {
-    @apply flex gap-2 items-center px-4 pb-3 pt-3  transition-colors text-sm text-dark-200;
+    @apply flex gap-2 items-center px-4 pb-3 pt-3  transition-colors  text-dark-200;
 
     &:hover {
       @apply text-white bg-dark-700;
     }
 
     &--selected {
-      @apply bg-primary-800 dark:bg-primary-800 text-white;
+      @apply bg-primary-800  text-white;
 
       &:hover {
-        @apply bg-primary-900 dark:bg-primary-900;
+        @apply bg-primary-900;
       }
     }
 

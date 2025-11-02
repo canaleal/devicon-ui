@@ -75,7 +75,9 @@ export const FilterSection = React.memo(
     return (
       <>
         <section className='filters'>
+
           <div className='base-container filters__container'>
+
             <Dropdown
               extraClasses='w-full'
               isDisabled={false}
@@ -106,9 +108,11 @@ export const FilterSection = React.memo(
                 extraClasses='w-full'
               />
             ))}
+
           </div>
+
         </section>
       </>
-    )
+  )
   }
-)
+  )

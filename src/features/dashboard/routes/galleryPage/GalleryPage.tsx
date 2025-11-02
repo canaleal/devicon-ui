@@ -3,7 +3,6 @@ import { getQueryParams, useIcons } from './hooks/useGallery.ts'
 import { FilterSection } from '../../filters/FilterSection'
 import { IconModalWrapper } from '../../modal/IconModalWrapper'
 import { InformationSection } from '../../about/InformationSection.tsx'
-import { CDNBlockLink } from '../../../../components/Molecules/cdnBlockLink/CDNBlockLink.tsx'
 import { Pagination } from '../../pagination'
 import useIconStore from '../../../../store/iconStore.ts'
 import { INIT_FILTER_GROUPS } from '../../filters/types'
@@ -46,10 +45,7 @@ const GalleryPage = () => {
 
   return (
     <>
-
-
       <InformationSection />
-      <CDNBlockLink branch={deviconBranch} />
 
       {selectedIcon && (
         <IconModalWrapper

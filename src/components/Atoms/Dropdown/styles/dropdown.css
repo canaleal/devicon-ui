@@ -2,24 +2,22 @@
   @apply relative;
 }
 .dropdown-container__title {
-  @apply mb-2 text-sm font-bold;
+  @apply mb-2 font-bold;
 }
 
 .dropdown {
-  @apply flex items-center justify-between w-full gap-4 px-4 py-2 text-sm
-  bg-white text-dark-900 border
-  dark:bg-dark-800 dark:text-white dark:border-dark-400/20;
+  @apply flex items-center justify-between w-full gap-4 px-4 py-2
+  bg-white text-dark-900 border rounded-md;
 }
 .dropdown:hover {
-  @apply cursor-pointer bg-dark-100 dark:bg-dark-700;
+  @apply cursor-pointer bg-dark-100;
 }
 .dropdown--small {
   @apply h-8 px-2;
   width: fit-content;
 }
 .dropdown--disabled {
-  @apply bg-dark-100 text-dark-400
-    dark:bg-dark-800 dark:text-dark-200 dark:border-dark-400/20;
+  @apply bg-dark-100 text-dark-400;
 }
 .dropdown--disabled:hover {
   @apply cursor-auto;
@@ -28,32 +26,32 @@
   @apply flex items-center gap-2;
 }
 .dropdown__item {
-  @apply flex items-center gap-2 w-full px-4 py-2 text-left text-sm dark:bg-dark-800;
+  @apply flex items-center gap-2 w-full px-4 py-2 text-left;
 }
 .dropdown__item:hover {
-  @apply cursor-pointer bg-dark-100 dark:bg-dark-700;
+  @apply cursor-pointer bg-dark-100;
 }
 .dropdown__item--reset {
-  @apply w-full border-t py-4 dark:border-dark-400/20;
+  @apply w-full border-t py-4;
 }
 .dropdown__item--selected {
-  @apply bg-primary-800 dark:bg-primary-800 text-white;
+  @apply bg-primary-800 text-white;
 }
 .dropdown__item--selected:hover {
-  @apply bg-primary-800 dark:bg-primary-900;
+  @apply bg-primary-800;
 }
 .dropdown__item--disabled {
-  @apply bg-dark-100 text-dark-400 dark:bg-dark-800 dark:text-dark-200;
+  @apply bg-dark-100 text-dark-400;
 }
 .dropdown__item--disabled:hover {
-  @apply cursor-auto dark:bg-dark-800;
+  @apply cursor-auto;
 }
 .dropdown__item-count {
-  @apply ml-auto text-sm;
+  @apply ml-auto;
 }
 .dropdown__popup {
   @apply absolute z-30 mt-1 w-full overflow-hidden border bg-white text-dark-900
-    dark:bg-dark-900 dark:text-white dark:border-dark-400/20 shadow-md;
+       shadow-md rounded-md;
 }
 .dropdown__popup--padding {
   @apply p-4;
@@ -72,7 +70,7 @@
   @apply cursor-pointer;
 }
 .dropdown-color__item {
-  @apply px-4 py-4 border border-dark-400/20 text-sm;
+  @apply px-4 py-4 border border-dark-400/20;
 }
 .dropdown-color__item:hover {
   @apply cursor-pointer;

@@ -1,8 +1,8 @@
 .button {
-  @apply flex gap-2 items-center px-2 py-2 text-dark-900 dark:text-white;
+  @apply flex gap-2 items-center px-2 py-2 text-dark-900 rounded-md;
 
   &:hover {
-    @apply bg-dark-100 dark:bg-dark-700;
+    @apply bg-dark-100;
   }
 
   &--small {
@@ -10,19 +10,19 @@
   }
 
   &--icon {
-    @apply hover:text-primary-900 hover:bg-transparent dark:hover:bg-transparent;
+    @apply hover:text-primary-900 hover:bg-transparent;
   }
 
   &--selected {
-    @apply bg-primary-800 dark:bg-primary-800 text-white;
+    @apply bg-primary-800  text-white;
 
     &:hover {
-      @apply bg-primary-900 dark:bg-primary-900;
+      @apply bg-primary-900;
     }
   }
 
   &--disabled {
-    @apply text-dark-200 dark:text-dark-200 bg-transparent hover:bg-transparent dark:hover:bg-transparent;
+    @apply text-dark-200  bg-transparent hover:bg-transparent;
   }
 }
 

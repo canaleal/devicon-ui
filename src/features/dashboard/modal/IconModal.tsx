@@ -130,7 +130,7 @@ export const IconModal = ({ icon, deviconBranch }: IconModalProps) => {
 
       <div className='alt-names-bar'>
         <TextBar extraClasses='hidden lg:inline-flex' title='Tags' content={icon.tags} />
-        <span className='text-sm'>{deviconBranch === 'master' ? DEVICON_VERSION_RELEASE : 'Development Branch'}</span>
+        <span className=''>{deviconBranch === 'master' ? DEVICON_VERSION_RELEASE : 'Development Branch'}</span>
       </div>
     </>
   )

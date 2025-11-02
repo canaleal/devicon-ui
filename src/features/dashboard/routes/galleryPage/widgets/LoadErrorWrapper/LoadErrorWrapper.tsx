@@ -8,16 +8,12 @@ interface LoadErrorWrapperProps {
 
 export const LoadErrorWrapper: React.FC<LoadErrorWrapperProps> = ({ isLoading, error, children }) => {
   if (isLoading) {
-    return (
-      <div className="flex justify-center items-center h-[20rem] text-lg">
-        Loading icons...
-      </div>
-    )
+    return <div className='flex justify-center items-center h-[20rem] text-lg'>Loading icons...</div>
   }
 
   if (error) {
     return (
-      <div className="flex justify-center items-center h-[20rem] text-red-500 text-lg">
+      <div className='flex justify-center items-center h-[20rem] text-red-500 text-lg'>
         Failed to load icons. Please try again later.
       </div>
     )

@@ -1,8 +1,8 @@
 .pagination {
-  @apply py-16 bg-white text-dark-900 dark:bg-dark-900 dark:text-white;
+  @apply py-16 bg-white text-dark-900 w-full;
 }
 .pagination__container {
-  @apply flex flex-col w-full gap-8;
+  @apply flex flex-col gap-8;
 }
 .pagination__header {
   @apply flex items-center gap-4;
@@ -11,7 +11,7 @@
   @apply text-lg font-semibold;
 }
 .pagination__header-info {
-  @apply ml-auto hidden md:inline-block text-sm;
+  @apply ml-auto hidden md:inline-block;
 }
 .pagination__grid {
   @apply grid gap-4 grid-cols-3 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-8 xl:grid-cols-12;
@@ -23,7 +23,7 @@
   @apply text-lg font-extrabold;
 }
 .pagination__no-icons-description {
-  @apply text-dark-400 dark:text-dark-200;
+  @apply text-dark-400;
 }
 .pagination__footer {
   @apply flex flex-row justify-center lg:justify-between;

@@ -68,5 +68,5 @@ export const Pagination = React.memo(({ filteredIcons }: IPaginationProps) => {
         </div>
       </div>
     </section>
-  )
+)
 })

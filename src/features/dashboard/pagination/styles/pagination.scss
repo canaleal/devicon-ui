@@ -1,8 +1,8 @@
 .pagination {
-  @apply py-16 bg-white text-dark-900 dark:bg-dark-900 dark:text-white;
+  @apply py-16 bg-white text-dark-900 w-full;
 
   &__container {
-    @apply flex flex-col w-full gap-8;
+    @apply flex flex-col gap-8;
   }
 
   &__header {
@@ -14,7 +14,7 @@
   }
 
   &__header-info {
-    @apply ml-auto hidden md:inline-block text-sm;
+    @apply ml-auto hidden md:inline-block ;
   }
 
   &__grid {
@@ -30,7 +30,7 @@
   }
 
   &__no-icons-description {
-    @apply text-dark-400 dark:text-dark-200;
+    @apply text-dark-400;
   }
 
   &__footer {

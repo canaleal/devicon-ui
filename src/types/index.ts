@@ -4,7 +4,6 @@ export const DEVICON_BRANCH = {
 } as const
 export type DeviconBranch = (typeof DEVICON_BRANCH)[keyof typeof DEVICON_BRANCH]
 
-
 export const URL_PARAMS = {
   BRANCH: 'branch',
   ICON: 'icon'

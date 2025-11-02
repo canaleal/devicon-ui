@@ -28,8 +28,8 @@ const useIconStore = create<IIconStore>((set) => ({
     set({ selectedIcon })
   },
   setDeviconBranch: (deviconBranch) => {
-    updateUrlWithQueryParams({ [URL_PARAMS.BRANCH]: deviconBranch });
-    set({ deviconBranch });
+    updateUrlWithQueryParams({ [URL_PARAMS.BRANCH]: deviconBranch })
+    set({ deviconBranch })
   },
   setFilteredIcons: (filteredIcons) => set({ filteredIcons }),
   setFilterGroups: (filterGroups) => set({ filterGroups })

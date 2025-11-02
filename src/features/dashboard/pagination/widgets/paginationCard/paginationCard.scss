@@ -1,12 +1,12 @@
 .card {
-  @apply flex flex-col relative text-center justify-center gap-4 w-full overflow-hidden h-32;
+  @apply flex flex-col relative text-center justify-center gap-4 w-full overflow-hidden h-32 rounded-md;
 
   &__image {
     @apply mx-auto object-cover transition-transform ease-in-out;
   }
 
   &__title {
-    @apply text-xs mx-auto text-dark-400 dark:text-dark-200;
+    @apply text-sm mx-auto text-dark-400;
   }
 
   &:hover {
@@ -14,7 +14,7 @@
       @apply transform scale-125;
     }
     .card__title {
-      @apply text-dark-900 dark:text-white;
+      @apply text-dark-900;
     }
   }
 

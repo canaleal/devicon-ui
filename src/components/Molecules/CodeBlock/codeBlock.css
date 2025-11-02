@@ -1,5 +1,5 @@
 .code-block {
-  @apply flex flex-col h-fit overflow-hidden w-full;
+  @apply flex flex-col h-fit overflow-hidden w-full rounded-md;
   @apply border border-dark-400/20 bg-dark-900;
 }
 .code-block__header {
@@ -10,22 +10,22 @@
   @apply ml-auto;
 }
 .code-block__header-title {
-  @apply text-white px-4 py-3 text-sm;
+  @apply text-white px-4 py-3;
 }
 .code-block__header-options {
-  @apply flex flex-row mr-auto text-sm;
+  @apply flex flex-row mr-auto;
 }
 .code-block__button {
-  @apply flex gap-2 items-center px-4 pb-3 pt-3 transition-colors text-sm text-dark-200;
+  @apply flex gap-2 items-center px-4 pb-3 pt-3 transition-colors text-dark-200;
 }
 .code-block__button:hover {
   @apply text-white bg-dark-700;
 }
 .code-block__button--selected {
-  @apply bg-primary-800 dark:bg-primary-800 text-white;
+  @apply bg-primary-800 text-white;
 }
 .code-block__button--selected:hover {
-  @apply bg-primary-900 dark:bg-primary-900;
+  @apply bg-primary-900;
 }
 .code-block__button--no-hover:hover {
   @apply bg-transparent;
